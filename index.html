@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Covalente, estudio de diseño en Madrid</title>
+<meta name="description" content="Tenemos química para los negocios pequeños que quieren brillar. Logo, colores, plantillas de Instagram y web con tu dominio, en paquetes cerrados.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Covalente · Tenemos química">
+<meta property="og:description" content="Marca y web para los negocios pequeños que quieren brillar.">
+<meta property="og:image" content="https://gabylazo.github.io/covalente/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fuentes/Unbounded.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fuentes alojadas aquí mismo: sin llamadas a terceros ni cookies */
+@font-face{font-family:"Unbounded"; src:url("fuentes/Unbounded.woff2") format("woff2"); font-weight:600; font-display:swap}
+@font-face{font-family:"Figtree"; src:url("fuentes/Figtree.woff2") format("woff2"); font-weight:400 700; font-display:swap}
+
+:root{
+  --negro:#1A1A1A; --oro:#C9A35C; --marfil:#F3ECDD; --verde:#0F3B32;
+  --tinta-suave:#4A4740;            /* texto secundario sobre marfil */
+  --marfil-suave:#C9C2B4;           /* texto secundario sobre negro y verde */
+  --raya:rgba(26,26,26,.16);
+  --f-marca:"Unbounded", "Arial Black", sans-serif;
+  --f-texto:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ancho:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{margin:0; background:var(--negro); color:var(--marfil); font:400 18px/1.6 var(--f-texto)}
+img, svg{display:block; max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--oro); outline-offset:3px; border-radius:4px}
+.caja{max-width:var(--ancho); margin:0 auto; padding-inline:max(16px, 4vw)}
+@media (min-width:1240px){ .caja{padding-inline:40px} }
+h1, h2, h3{font-family:var(--f-marca); font-weight:600; letter-spacing:-.01em; margin:0}
+h2{font-size:clamp(30px, 4.2vw, 46px); line-height:1.1}
+p{margin:0}
+
+/* Botones: el de WhatsApp es la acción principal en toda la página */
+.boton{display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:12px 24px; border-radius:999px;
+  background:var(--oro); color:var(--negro); font-weight:700; font-size:17px; text-decoration:none; transition:background-color .15s}
+.boton:hover{background:#D8B670}
+.boton.chico{min-height:40px; padding:8px 18px; font-size:15px}
+.enlace{font-weight:600; text-underline-offset:4px; text-decoration-thickness:1px}
+.enlace:hover{text-decoration-thickness:2px}
+
+/* Cabecera */
+.cabecera{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:20px}
+.cabecera img{height:30px; width:auto}
+@media (max-width:420px){ .cabecera img{height:24px} }
+
+/* Portada: la molécula sube por la derecha y el lema ocupa todo el ancho */
+.portada{padding-block:clamp(8px, 3vw, 32px) clamp(64px, 9vw, 120px)}
+.mol{width:min(62%, 620px); margin-left:auto; overflow:visible}
+@media (max-width:700px){ .mol{width:88%; margin-inline:auto 0} }
+.mol .linea{fill:none; stroke:var(--oro); stroke-width:4; stroke-linejoin:round; stroke-linecap:round}
+.mol .at{fill:var(--oro); transform-box:fill-box; transform-origin:center}
+.portada h1{font-size:clamp(40px, 8.6vw, 104px); line-height:1; margin-top:clamp(-56px, -3vw, 0px); color:var(--marfil)}
+.portada .sub{font-size:clamp(21px, 2.4vw, 28px); line-height:1.3; margin-top:18px; max-width:34ch; text-wrap:balance}
+.portada .que{color:var(--marfil-suave); margin-top:18px; max-width:52ch}
+.acciones{display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; margin-top:32px}
+
+/* La molécula se dibuja una vez al cargar: la cadena, después los átomos en orden y al final el doble enlace y la flecha */
+@media (prefers-reduced-motion: no-preference){
+  .mol .cadena{stroke-dasharray:1; stroke-dashoffset:1; animation:trazo 1.4s .25s linear forwards}
+  .mol .at{transform:scale(0); animation:atomo .4s var(--d) cubic-bezier(.3,1.5,.5,1) forwards}
+  .mol .doble{opacity:0; animation:aparece .4s 1.15s forwards}
+  .mol .flecha{opacity:0; animation:aparece .3s 1.6s forwards}
+}
+@keyframes trazo{to{stroke-dashoffset:0}}
+@keyframes atomo{to{transform:scale(1)}}
+@keyframes aparece{to{opacity:1}}
+
+/* Qué hacemos: cada paquete escrito como una fórmula */
+.claro{background:var(--marfil); color:var(--negro)}
+.servicios{padding-block:clamp(64px, 9vw, 112px)}
+.servicios .intro{color:var(--tinta-suave); margin-top:16px; max-width:58ch}
+.paquetes{list-style:none; margin:40px 0 0; padding:0; border-top:1px solid var(--raya)}
+.paquete{display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1.9fr); gap:12px 40px; padding-block:30px; border-bottom:1px solid var(--raya)}
+@media (max-width:760px){ .paquete{grid-template-columns:minmax(0, 1fr)} }
+.paquete h3{font-size:clamp(22px, 2.2vw, 26px); line-height:1.2}
+.formula{font-size:clamp(19px, 1.9vw, 22px); font-weight:600; line-height:1.45}
+.formula .mas{color:#9A7835; font-weight:700; padding-inline:.3em}
+.paquete p{color:var(--tinta-suave); margin-top:8px; max-width:56ch}
+.extras{margin-top:28px; color:var(--tinta-suave); max-width:64ch}
+
+/* Cómo trabajamos: una secuencia real, los pasos como átomos unidos por un enlace */
+.pasos{padding-block:0 clamp(64px, 9vw, 112px)}
+.pasos ol{list-style:none; margin:40px 0 0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:32px; counter-reset:paso; position:relative}
+.pasos ol::before{content:""; position:absolute; left:8px; right:12%; top:8px; height:2px; background:var(--oro)}
+.pasos li{position:relative; padding-top:40px; counter-increment:paso}
+.pasos li::before{content:""; position:absolute; left:0; top:0; width:18px; height:18px; border-radius:50%; background:var(--oro)}
+.pasos h3{font-size:19px; line-height:1.3}
+.pasos h3::before{content:counter(paso) ". "}
+.pasos li p{color:var(--tinta-suave); margin-top:8px; font-size:17px}
+@media (max-width:860px){
+  .pasos ol{grid-template-columns:minmax(0, 1fr); gap:28px}
+  .pasos ol::before{left:8px; right:auto; top:8px; bottom:8px; width:2px; height:auto}
+  .pasos li{padding:0 0 0 44px}
+}
+
+/* Por qué Covalente */
+.verde{background:var(--verde); color:var(--marfil)}
+.nombre{padding-block:clamp(64px, 9vw, 112px)}
+.nombre p{font-size:clamp(20px, 2.2vw, 25px); line-height:1.5; margin-top:22px; max-width:46ch}
+.nombre p + p{color:var(--marfil-suave); font-size:18px; line-height:1.6}
+
+/* Contacto y pie */
+.contacto{padding-block:clamp(64px, 9vw, 112px)}
+.contacto h2{font-size:clamp(36px, 6vw, 72px); line-height:1.05}
+.contacto .texto{color:var(--marfil-suave); margin-top:18px; max-width:48ch}
+.contacto .otros{margin-top:28px; display:grid; gap:6px; color:var(--marfil-suave)}
+.contacto .otros a{color:var(--marfil)}
+.pie{border-top:1px solid rgba(243,236,221,.14); padding-block:28px 40px; display:flex; flex-wrap:wrap; gap:12px 32px; align-items:center; justify-content:space-between; color:var(--marfil-suave); font-size:15px}
+.pie img{height:22px; width:auto}
+</style>
+</head>
+<body>
+
+<header class="caja cabecera">
+  <a href="./" aria-label="Covalente, inicio"><img src="img/covalente-horizontal-oscuro.svg" alt="Covalente" width="851" height="134"></a>
+  <a class="boton chico" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Escríbenos</a>
+</header>
+
+<main>
+  <section class="caja portada">
+    <svg class="mol" viewBox="0 0 300 200" aria-hidden="true">
+      <path class="linea cadena" pathLength="1" d="M14 176 64 112 106 140 156 68 198 96 282 18"/>
+      <path class="linea doble" d="M121.6 131.6 153.6 85.5"/>
+      <path class="linea flecha" d="M260.2 21 282 18 277.4 39.5"/>
+      <circle class="at" style="--d:.25s" cx="14" cy="176" r="9"/>
+      <circle class="at" style="--d:.55s" cx="64" cy="112" r="9"/>
+      <circle class="at" style="--d:.73s" cx="106" cy="140" r="9"/>
+      <circle class="at" style="--d:1.05s" cx="156" cy="68" r="9"/>
+      <circle class="at" style="--d:1.23s" cx="198" cy="96" r="9"/>
+    </svg>
+    <h1>Tenemos química</h1>
+    <p class="sub">para los negocios pequeños que quieren brillar.</p>
+    <p class="que">Hacemos la marca y la web de tu negocio: logo, colores, plantillas para Instagram y una web con tu propio dominio. En paquetes cerrados, con el precio claro desde el principio.</p>
+    <div class="acciones">
+      <a class="boton" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Pide presupuesto por WhatsApp</a>
+      <a class="enlace" href="#que-hacemos">Ver qué hacemos</a>
+    </div>
+  </section>
+
+  <div class="claro">
+    <section class="caja servicios" id="que-hacemos" aria-labelledby="t-servicios">
+      <h2 id="t-servicios">Qué hacemos</h2>
+      <p class="intro">Tres paquetes para centros de estética, cafeterías, peluquerías, salones de uñas y tiendas de barrio. Sabes desde el principio qué te llevas y cuánto cuesta.</p>
+      <ul class="paquetes">
+        <li class="paquete">
+          <h3>Kit de marca</h3>
+          <div>
+            <p class="formula">Logo<span class="mas">+</span>colores<span class="mas">+</span>tipografías<span class="mas">+</span>plantillas de Instagram</p>
+            <p>Para que tu negocio se reconozca a la primera: en el cartel, en la tarjeta y en Instagram.</p>
+          </div>
+        </li>
+        <li class="paquete">
+          <h3>Web de una página</h3>
+          <div>
+            <p class="formula">Tus servicios<span class="mas">+</span>precios y horario<span class="mas">+</span>mapa<span class="mas">+</span>botón de WhatsApp</p>
+            <p>Una web clara que se ve bien en el móvil, con tu propio dominio (unos 10-15 € al año) y alojamiento gratis.</p>
+          </div>
+        </li>
+        <li class="paquete">
+          <h3>Kit + web</h3>
+          <div>
+            <p class="formula">Kit de marca<span class="mas">+</span>web de una página</p>
+            <p>Las dos cosas a la vez, con la misma imagen de principio a fin.</p>
+          </div>
+        </li>
+      </ul>
+      <p class="extras">También hacemos cartas de servicios y precios, tarjetas de cita y de fidelidad, y publicaciones sueltas para Instagram.</p>
+    </section>
+
+    <section class="caja pasos" aria-labelledby="t-pasos">
+      <h2 id="t-pasos">Cómo trabajamos</h2>
+      <ol>
+        <li><h3>Nos escribes</h3><p>Por WhatsApp o por correo. Nos cuentas qué negocio tienes y qué necesitas.</p></li>
+        <li><h3>Te mandamos una propuesta</h3><p>Con lo que incluye y un precio cerrado.</p></li>
+        <li><h3>Diseñamos contigo</h3><p>Te enseñamos el diseño y lo ajustamos con tus comentarios.</p></li>
+        <li><h3>Publicamos</h3><p>Subimos tu web con tu dominio y te damos los archivos de tu marca.</p></li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="verde">
+    <section class="caja nombre" aria-labelledby="t-nombre">
+      <h2 id="t-nombre">¿Por qué Covalente?</h2>
+      <p>En química, un enlace covalente une dos átomos que comparten lo que tienen, y juntos son más estables que por separado.</p>
+      <p>Así trabajamos contigo: tú pones lo que sabes de tu negocio y nosotros ponemos el diseño.</p>
+    </section>
+  </div>
+
+  <section class="caja contacto" id="contacto" aria-labelledby="t-contacto">
+    <h2 id="t-contacto">¿Hablamos?</h2>
+    <p class="texto">Cuéntanos qué negocio tienes y qué necesitas. Te contestamos con una propuesta.</p>
+    <div class="acciones">
+      <a class="boton" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Escríbenos por WhatsApp</a>
+    </div>
+    <div class="otros">
+      <p>Por correo: <a class="enlace" href="mailto:covalente.estudio@gmail.com">covalente.estudio@gmail.com</a></p>
+      <p>En Instagram: <a class="enlace" href="https://www.instagram.com/covalente.estudio/">@covalente.estudio</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="caja pie">
+  <img src="img/covalente-horizontal-oscuro.svg" alt="Covalente" width="851" height="134">
+  <p>Estudio de diseño en Madrid. Esta web no usa cookies.</p>
+</footer>
+
+</body>
+</html>
