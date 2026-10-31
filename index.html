@@ -45,7 +45,7 @@ img, svg{display:block; max-width:100%}
 a{color:inherit}
 button{font:inherit; color:inherit}
 :focus-visible{outline:2px solid var(--negro); outline-offset:3px; border-radius:4px}
-.inicio :focus-visible, .camara :focus-visible, .oscuro :focus-visible, .verde :focus-visible, .cabecera :focus-visible{outline-color:var(--oro)}
+.inicio :focus-visible, .camara :focus-visible, .oscuro :focus-visible, .destacada :focus-visible, .cabecera :focus-visible{outline-color:var(--oro)}
 .caja{max-width:var(--ancho); margin:0 auto; padding-inline:max(16px, 4vw)}
 @media (min-width:1300px){ .caja{padding-inline:48px} }
 h1, h2, h3{font-family:var(--f-marca); font-weight:600; letter-spacing:-.015em; margin:0}
@@ -57,7 +57,6 @@ p{margin:0}
 .boton:hover{background:var(--verde)}
 .boton.oro{background:var(--oro); color:var(--negro)}
 .boton.oro:hover{background:#D8B670}
-.boton.chico{min-height:44px; padding:8px 18px; font-size:15px}
 
 /* Cabecera: va encima de la portada verde */
 .cabecera{position:absolute; top:0; left:0; right:0; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:22px}
@@ -250,14 +249,19 @@ p{margin:0}
   .pantalla .horario{margin:auto 10px 10px; font-size:10px}
 }
 
-/* Qué hacemos: cada paquete es el producto de una reacción, escrita con los elementos de la tabla */
+/* Qué hacemos: cada paquete es el producto de una reacción, escrita con sus elementos */
 .servicios{padding-block:clamp(72px, 10vw, 128px) clamp(56px, 8vw, 96px)}
 .servicios .lanzamiento{margin-top:14px; color:var(--tinta-2)}
 .servicios .lanzamiento b{color:var(--oro-tinta)}
 .reacciones{list-style:none; margin:clamp(32px, 5vw, 52px) 0 0; padding:0}
 .reaccion{display:grid; grid-template-columns:auto minmax(56px, 1fr) clamp(260px, 30vw, 380px); gap:14px clamp(20px, 3vw, 40px); align-items:center;
   padding-block:clamp(26px, 3.5vw, 40px); border-top:1px solid var(--raya)}
-.reaccion:last-child{border-bottom:1px solid var(--raya)}
+.reaccion.destacada{background:var(--verde); color:var(--marfil); border:0; border-radius:8px; padding-inline:clamp(18px, 3vw, 36px)}
+.destacada .sim{background:var(--marfil); color:var(--verde)}
+.destacada .sim.w{background:var(--negro); color:var(--marfil)}
+.destacada .mas{color:var(--oro)}
+.destacada .precio-luego{color:var(--marfil-2)}
+.destacada .precio-luego b{color:var(--oro)}
 .reactivos{display:flex; flex-wrap:wrap; align-items:center; gap:10px 8px}
 .reactivos .mas{font:600 22px var(--f-marca); color:var(--oro-tinta)}
 .sim{display:inline-flex; flex-direction:column; justify-content:space-between; min-width:clamp(52px, 5.6vw, 76px); height:clamp(52px, 5.6vw, 76px); padding:6px 8px;
@@ -284,45 +288,12 @@ p{margin:0}
   .sim small{font-size:11px}
 }
 
-/* Arma tu compuesto: la tabla a la izquierda y el compuesto que vas formando a la derecha */
-.mezcla{margin-top:clamp(64px, 9vw, 104px)}
-.mezcla h3{font-size:clamp(24px, 2.6vw, 34px); line-height:1.1}
-.mezcla .instruccion{color:var(--tinta-2); margin-top:10px}
-.lab{display:grid; grid-template-columns:minmax(0, 1.35fr) minmax(0, 1fr); gap:clamp(28px, 5vw, 72px); margin-top:clamp(28px, 4vw, 40px); align-items:start}
-.tabla{display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:8px}
-.el{position:relative; aspect-ratio:1; border:1.5px solid currentColor; border-radius:6px; background:transparent; padding:8px 9px; cursor:pointer;
-  display:flex; flex-direction:column; justify-content:flex-start; text-align:left; transition:background-color .15s, color .15s}
-.el.de-marca{color:var(--verde)}
-.el.de-web{color:var(--negro)}
-.el .s{font-family:var(--f-marca); font-weight:600; font-size:clamp(20px, 2.9vw, 40px); line-height:1; letter-spacing:-.02em; margin-top:auto}
-.el .c{font-size:clamp(11px, 1.05vw, 14px); font-weight:600; line-height:1.15; margin-top:6px}
-.el .z{font-size:12px; line-height:1; align-self:flex-end; opacity:.7}
-.el:hover{background:rgba(26,26,26,.05)}
-.el[aria-pressed="true"].de-marca{background:var(--verde); color:var(--marfil); border-color:var(--verde)}
-.el[aria-pressed="true"].de-web{background:var(--negro); color:var(--marfil); border-color:var(--negro)}
-.el[aria-pressed="true"]::after{content:""; position:absolute; left:9px; top:-5px; width:9px; height:9px; border-radius:50%; background:var(--oro)}
-.leyenda{display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:14px; font-size:15px; color:var(--tinta-2)}
-.leyenda span{display:inline-flex; align-items:center; gap:8px}
-.leyenda i{width:12px; height:12px; border-radius:3px; display:inline-block}
-@media (max-width:520px){ .el{padding:6px 7px} .tabla{gap:6px} }
-
-.compuesto{border-top:2px solid var(--negro); padding-top:18px}
-.compuesto .etiqueta{font-size:15px; color:var(--tinta-2)}
-.formula{font-family:var(--f-marca); font-weight:600; font-size:clamp(26px, 3.2vw, 42px); line-height:1.2; letter-spacing:-.02em; margin-top:8px; min-height:1.2em; overflow-wrap:anywhere}
-.formula .par{white-space:nowrap}
-.formula .mas{color:var(--oro-tinta); font-size:.7em; padding-inline:.12em; vertical-align:.12em}
-.formula .vacio{font-family:var(--f-texto); font-weight:400; font-size:20px; letter-spacing:0; color:var(--tinta-2)}
-@media (prefers-reduced-motion: no-preference){ .formula .nuevo{display:inline-block; animation:entra .35s cubic-bezier(.3,1.4,.5,1)} }
-@keyframes entra{from{transform:translateY(.3em) scale(.6); opacity:0}}
-.nombre-compuesto{margin-top:6px; font-size:19px; font-weight:600; min-height:1.6em}
-.nombre-compuesto b{color:var(--oro-tinta)}
-.compuesto .boton{margin-top:20px}
-.ficha{margin-top:24px; padding:14px 18px; background:rgba(201,163,92,.14); border-radius:6px}
-.ficha:empty{display:none}
-.ficha b{font-family:var(--f-marca); font-weight:600; font-size:17px; display:block}
-.ficha p{color:var(--tinta-2); margin-top:4px; font-size:16px}
-@media (max-width:900px){ .lab{grid-template-columns:minmax(0, 1fr)} }
-.extras{margin-top:clamp(40px, 6vw, 64px); color:var(--tinta-2); max-width:64ch}
+/* Extras con precio: cada uno abre WhatsApp con la pieza ya escrita */
+.sumas-titulo{font-size:clamp(24px, 2.6vw, 34px); line-height:1.1; margin-top:clamp(56px, 8vw, 88px)}
+.sumas{list-style:none; margin:clamp(22px, 3vw, 32px) 0 0; padding:0; display:flex; flex-wrap:wrap; gap:clamp(14px, 2vw, 24px)}
+.suma{display:inline-flex; flex-direction:column; gap:8px; text-decoration:none; color:inherit; border-radius:6px}
+.suma-precio{font-weight:700; text-decoration:underline; text-underline-offset:4px}
+@media (hover:hover){ .suma:hover .sim{background:var(--oro); color:var(--negro)} }
 
 /* Cómo trabajamos: el mecanismo, paso a paso */
 .mecanismo{padding-block:0 clamp(72px, 10vw, 128px)}
@@ -330,20 +301,13 @@ p{margin:0}
 .paso{position:relative; padding:0 28px 0 0}
 .paso .at{width:46px; height:46px; border-radius:50%; border:2px solid var(--negro); display:grid; place-items:center; font:600 16px var(--f-marca); background:var(--marfil); position:relative; z-index:1}
 .paso:not(:last-child)::before{content:""; position:absolute; left:46px; right:0; top:22px; height:2px; background:repeating-linear-gradient(90deg, var(--oro) 0 8px, transparent 8px 14px)}
-.paso h3{font-size:clamp(18px, 1.7vw, 21px); line-height:1.25; margin-top:18px; max-width:13ch}
+.paso h3{font-size:clamp(18px, 1.7vw, 21px); line-height:1.25; margin-top:18px; max-width:16ch}
 @media (max-width:860px){
   .pasos{grid-template-columns:minmax(0, 1fr); gap:26px}
   .paso{display:grid; grid-template-columns:46px 1fr; gap:0 18px; padding:0}
   .paso h3{margin-top:12px}
   .paso:not(:last-child)::before{left:22px; right:auto; top:46px; bottom:-26px; width:2px; height:auto; background:repeating-linear-gradient(180deg, var(--oro) 0 8px, transparent 8px 14px)}
 }
-
-/* ¿Por qué Covalente? Dos átomos que comparten electrones */
-.verde{background:var(--verde); color:var(--marfil)}
-.enlace-sec{padding-block:clamp(72px, 10vw, 120px); display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1.1fr); gap:clamp(32px, 6vw, 88px); align-items:center}
-.enlace-sec svg{width:100%; max-width:560px}
-.enlace-sec p{font-size:clamp(20px, 2.1vw, 25px); line-height:1.5; margin-top:22px; max-width:30ch; color:var(--marfil-2)}
-@media (max-width:860px){ .enlace-sec{grid-template-columns:minmax(0, 1fr)} .enlace-sec svg{max-width:340px} }
 
 /* Preguntas frecuentes */
 .preguntas{padding-block:clamp(72px, 10vw, 120px)}
@@ -384,7 +348,6 @@ p{margin:0}
 
 <header class="caja cabecera">
   <a href="./" aria-label="Covalente, inicio"><img src="img/covalente-horizontal-oscuro.svg" alt="Covalente" width="851" height="134"></a>
-  <a class="boton chico oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Escríbenos</a>
 </header>
 
 <main>
@@ -401,8 +364,8 @@ p{margin:0}
       <div class="texto">
         <p class="sub">para los negocios pequeños que quieren brillar.</p>
         <div class="acciones">
-          <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Pide presupuesto por WhatsApp</a>
-          <a class="a-precios" href="#que-hacemos">Ver precios</a>
+          <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Escríbenos por WhatsApp</a>
+          <a class="a-precios" href="#que-hacemos">Marca y web desde 49&nbsp;€ + IVA</a>
         </div>
       </div>
     </div>
@@ -475,116 +438,69 @@ p{margin:0}
 
   <section class="caja servicios" id="que-hacemos" aria-labelledby="t-servicios">
     <h2 id="t-servicios">Qué hacemos</h2>
-    <p class="lanzamiento"><b>Precio de lanzamiento</b> para los cinco primeros negocios. Sin IVA.</p>
+    <p class="lanzamiento"><b>Precio de lanzamiento:</b> quedan 5 plazas. Sin IVA.</p>
     <ul class="reacciones">
-      <li class="reaccion" data-p="Lg Pa Ti Gu Rs">
+      <li class="reaccion">
         <p class="reactivos" role="img" aria-label="Logotipo, paleta de color, tipografías, guía de marca y plantillas para redes">
           <span class="sim"><b>Lg</b><small>logo</small></span><span class="mas">+</span><span class="sim"><b>Pa</b><small>paleta</small></span><span class="mas">+</span><span class="sim"><b>Ti</b><small>tipos</small></span><span class="mas">+</span><span class="sim"><b>Gu</b><small>guía</small></span><span class="mas">+</span><span class="sim"><b>Rs</b><small>redes</small></span>
         </p>
         <span class="fl" aria-hidden="true"></span>
-        <div class="resultado"><h3>Kit de marca</h3><p class="precio">59 €</p><p class="precio-luego">Después, 190 €</p><a class="pedir-paquete" aria-label="Pedir por WhatsApp el Kit de marca" data-wa="Hola, Covalente. Me interesa el Kit de marca para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Pedir por WhatsApp</a></div>
+        <div class="resultado"><h3>Kit de marca</h3><p class="precio">59 €</p><p class="precio-luego">Después, 190 €</p><a class="pedir-paquete" aria-label="Pedir por WhatsApp el Kit de marca" data-wa="Hola, Covalente. Me interesa el Kit de marca para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Pedir por WhatsApp</a></div>
       </li>
-      <li class="reaccion" data-p="Wb Mv Dm Wa Go">
-        <p class="reactivos" role="img" aria-label="Web a medida, adaptada al móvil, con dominio propio, botón de WhatsApp y preparada para Google">
-          <span class="sim w"><b>Wb</b><small>web</small></span><span class="mas">+</span><span class="sim w"><b>Mv</b><small>móvil</small></span><span class="mas">+</span><span class="sim w"><b>Dm</b><small>dominio</small></span><span class="mas">+</span><span class="sim w"><b>Wa</b><small>WhatsApp</small></span><span class="mas">+</span><span class="sim w"><b>Go</b><small>Google</small></span>
+      <li class="reaccion">
+        <p class="reactivos" role="img" aria-label="Diseño a medida, adaptada al móvil, con tu dominio, botón de WhatsApp y preparada para Google">
+          <span class="sim w"><b>Md</b><small>a medida</small></span><span class="mas">+</span><span class="sim w"><b>Mv</b><small>móvil</small></span><span class="mas">+</span><span class="sim w"><b>Dm</b><small>dominio</small></span><span class="mas">+</span><span class="sim w"><b>Wa</b><small>WhatsApp</small></span><span class="mas">+</span><span class="sim w"><b>Go</b><small>Google</small></span>
         </p>
         <span class="fl" aria-hidden="true"></span>
-        <div class="resultado"><h3>Web de una página</h3><p class="precio">49 €</p><p class="precio-luego">Después, 190 €</p><a class="pedir-paquete" aria-label="Pedir por WhatsApp la Web de una página" data-wa="Hola, Covalente. Me interesa la Web de una página para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Pedir por WhatsApp</a></div>
+        <div class="resultado"><h3>Web de una página</h3><p class="precio">49 €</p><p class="precio-luego">Después, 190 €</p><a class="pedir-paquete" aria-label="Pedir por WhatsApp la Web de una página" data-wa="Hola, Covalente. Me interesa la Web de una página para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Pedir por WhatsApp</a></div>
       </li>
-      <li class="reaccion" data-p="Lg Pa Ti Gu Rs Wb Mv Dm Wa Go">
+      <li class="reaccion destacada">
         <p class="reactivos" role="img" aria-label="Kit de marca más web de una página">
           <span class="sim ancho"><b>Kit</b><small>de marca</small></span><span class="mas">+</span><span class="sim w ancho"><b>Web</b><small>de una página</small></span>
         </p>
         <span class="fl" aria-hidden="true"></span>
-        <div class="resultado"><h3>Kit + web</h3><p class="precio">89 €</p><p class="precio-luego">Después, 290 €</p><a class="pedir-paquete" aria-label="Pedir por WhatsApp el Kit + web" data-wa="Hola, Covalente. Me interesa el Kit + web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Pedir por WhatsApp</a></div>
+        <div class="resultado"><h3>Kit + web</h3><p class="precio">89 €</p><p class="precio-luego"><b>Ahorras 19 €.</b> Después, 290 €</p><a class="pedir-paquete" aria-label="Pedir por WhatsApp el Kit + web" data-wa="Hola, Covalente. Me interesa el Kit + web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Pedir por WhatsApp</a></div>
       </li>
     </ul>
 
-    <div class="mezcla" id="compuesto">
-      <h3>¿Otra mezcla? Arma tu compuesto</h3>
-      <p class="instruccion" id="t-tabla">Toca lo que necesita tu negocio.</p>
-      <div class="lab">
-        <div>
-          <div class="tabla" role="group" aria-labelledby="t-tabla">
-            <button class="el de-marca" aria-pressed="false" data-s="Lg" data-n="Logotipo" data-d="Versiones para fondo claro y oscuro, en vector y en alta resolución."><span class="z" aria-hidden="true">1</span><span class="s">Lg</span><span class="c">Logo</span></button>
-            <button class="el de-marca" aria-pressed="false" data-s="Pa" data-n="Paleta de color" data-d="Tus colores, con sus códigos para pantalla e imprenta."><span class="z" aria-hidden="true">2</span><span class="s">Pa</span><span class="c">Paleta</span></button>
-            <button class="el de-marca" aria-pressed="false" data-s="Ti" data-n="Tipografías" data-d="Las letras de tu marca, para la web, el rótulo y la imprenta."><span class="z" aria-hidden="true">3</span><span class="s">Ti</span><span class="c">Tipos</span></button>
-            <button class="el de-marca" aria-pressed="false" data-s="Gu" data-n="Guía de marca" data-d="Las reglas para que tu marca salga siempre igual."><span class="z" aria-hidden="true">4</span><span class="s">Gu</span><span class="c">Guía</span></button>
-            <button class="el de-marca" aria-pressed="false" data-s="Rs" data-n="Plantillas para redes" data-d="Publicaciones de Instagram editables, con tu imagen."><span class="z" aria-hidden="true">5</span><span class="s">Rs</span><span class="c">Redes</span></button>
-            <button class="el de-web" aria-pressed="false" data-s="Wb" data-n="Web de una página" data-d="Servicios, precios, horario y mapa, en una página a medida."><span class="z" aria-hidden="true">6</span><span class="s">Wb</span><span class="c">Web</span></button>
-            <button class="el de-web" aria-pressed="false" data-s="Mv" data-n="Adaptada al móvil" data-d="Se ve bien y carga rápido en cualquier pantalla."><span class="z" aria-hidden="true">7</span><span class="s">Mv</span><span class="c">Móvil</span></button>
-            <button class="el de-web" aria-pressed="false" data-s="Dm" data-n="Dominio propio" data-d="Tu dirección propia en internet, unos 10-15 € al año."><span class="z" aria-hidden="true">8</span><span class="s">Dm</span><span class="c">Dominio</span></button>
-            <button class="el de-web" aria-pressed="false" data-s="Wa" data-n="Botón de WhatsApp" data-d="Tus clientes te escriben con un toque."><span class="z" aria-hidden="true">9</span><span class="s">Wa</span><span class="c">WhatsApp</span></button>
-            <button class="el de-web" aria-pressed="false" data-s="Go" data-n="Preparada para Google" data-d="Con https y lista para que Google la encuentre."><span class="z" aria-hidden="true">10</span><span class="s">Go</span><span class="c">Google</span></button>
-          </div>
-          <p class="leyenda"><span><i style="background:var(--verde)"></i>Marca</span><span><i style="background:var(--negro)"></i>Web</span><span><i style="background:var(--oro); border-radius:50%"></i>Elegido</span></p>
-        </div>
-
-        <div class="compuesto">
-          <p class="etiqueta">Tu compuesto</p>
-          <div aria-live="polite">
-            <p class="formula"><span class="vacio">Todavía vacío.</span></p>
-            <p class="nombre-compuesto"></p>
-            <div class="ficha"></div>
-          </div>
-          <a class="boton" id="pedir" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Pide presupuesto por WhatsApp</a>
-        </div>
-      </div>
-    </div>
-    <p class="extras">También piezas sueltas: cartas, tarjetas y publicaciones para redes.</p>
+    <h3 class="sumas-titulo">Súmale lo que necesites</h3>
+    <ul class="sumas">
+      <li><a class="suma" data-wa="Hola, Covalente. Me interesa una tarjeta de visita o de fidelidad." href="https://wa.me/34613912752"><span class="sim ancho"><b>Ta</b><small>tarjeta</small></span><span class="suma-precio">19&nbsp;€</span></a></li>
+      <li><a class="suma" data-wa="Hola, Covalente. Me interesa una carta o lista de precios." href="https://wa.me/34613912752"><span class="sim ancho"><b>Ca</b><small>carta</small></span><span class="suma-precio">29&nbsp;€</span></a></li>
+      <li><a class="suma" data-wa="Hola, Covalente. Me interesa 6 plantillas más para Instagram." href="https://wa.me/34613912752"><span class="sim ancho"><b>Pl</b><small>6 plantillas</small></span><span class="suma-precio">29&nbsp;€</span></a></li>
+      <li><a class="suma" data-wa="Hola, Covalente. Me interesa otra página para la web." href="https://wa.me/34613912752"><span class="sim ancho"><b>Pg</b><small>otra página</small></span><span class="suma-precio">39&nbsp;€</span></a></li>
+      <li><a class="suma" data-wa="Hola, Covalente. Me interesa la ficha de Google." href="https://wa.me/34613912752"><span class="sim ancho"><b>Fg</b><small>ficha de Google</small></span><span class="suma-precio">29&nbsp;€</span></a></li>
+      <li><a class="suma" data-wa="Hola, Covalente. Me interesa el mantenimiento mensual." href="https://wa.me/34613912752"><span class="sim ancho"><b>Mt</b><small>cambios al mes</small></span><span class="suma-precio">15&nbsp;€/mes</span></a></li>
+    </ul>
   </section>
 
   <section class="caja mecanismo" aria-labelledby="t-pasos">
     <h2 id="t-pasos">Cómo trabajamos</h2>
     <ol class="pasos">
-      <li class="paso"><span class="at" aria-hidden="true">1</span><h3>Nos escribes</h3></li>
-      <li class="paso"><span class="at" aria-hidden="true">2</span><h3>Propuesta con precio cerrado</h3></li>
-      <li class="paso"><span class="at" aria-hidden="true">3</span><h3>Diseñamos contigo</h3></li>
-      <li class="paso"><span class="at" aria-hidden="true">4</span><h3>Publicamos</h3></li>
+      <li class="paso"><span class="at" aria-hidden="true">1</span><h3>Nos cuentas tu negocio, sin preparar nada</h3></li>
+      <li class="paso"><span class="at" aria-hidden="true">2</span><h3>Eliges entre dos ideas</h3></li>
+      <li class="paso"><span class="at" aria-hidden="true">3</span><h3>Dos rondas de cambios</h3></li>
+      <li class="paso"><span class="at" aria-hidden="true">4</span><h3>Entrega en 3 semanas o menos</h3></li>
     </ol>
   </section>
 
-  <div class="verde">
-    <section class="caja enlace-sec" aria-labelledby="t-nombre">
-      <svg viewBox="0 0 480 300" aria-hidden="true">
-        <circle cx="170" cy="150" r="118" fill="none" stroke="#F3ECDD" stroke-opacity=".5" stroke-width="1.5"/>
-        <circle cx="310" cy="150" r="118" fill="none" stroke="#C9A35C" stroke-width="1.5"/>
-        <circle cx="240" cy="132" r="8" fill="#C9A35C"/><circle cx="240" cy="168" r="8" fill="#C9A35C"/>
-        <text x="118" y="157" fill="#F3ECDD" font-family="Figtree, sans-serif" font-size="20" font-weight="600" text-anchor="middle">tu negocio</text>
-        <text x="372" y="156" fill="#C9A35C" font-family="Unbounded, sans-serif" font-size="15" font-weight="600" text-anchor="middle">covalente</text>
-      </svg>
-      <div>
-        <h2 id="t-nombre">¿Por qué Covalente?</h2>
-        <p>Un enlace covalente une dos átomos que comparten lo que tienen. Así trabajamos contigo.</p>
-      </div>
-    </section>
-  </div>
-
   <section class="caja preguntas" aria-labelledby="t-preguntas">
-    <h2 id="t-preguntas">Preguntas frecuentes</h2>
+    <h2 id="t-preguntas">Preguntas</h2>
     <div class="lista">
       <details>
-        <summary>¿Qué tengo que preparar?</summary>
-        <p>Nada. Nos cuentas tu negocio y nos mandas fotos, si tienes.</p>
-      </details>
-      <details>
         <summary>¿Cuánto cuestan el dominio y el alojamiento?</summary>
-        <p>El alojamiento, nada. El dominio, unos 10-15 € al año, a tu nombre.</p>
+        <p>El alojamiento, nada. El dominio, unos <span style="white-space:nowrap">10-15 €</span> al año, a tu nombre.</p>
       </details>
       <details>
         <summary>¿La marca y la web son mías?</summary>
         <p>Sí. Te damos todos los archivos y los derechos, por escrito.</p>
       </details>
       <details>
-        <summary>¿Cuántos cambios puedo pedir?</summary>
-        <p>Dos rondas de cambios en cada paquete.</p>
-      </details>
-      <details>
         <summary>¿Cómo se paga?</summary>
         <p>La mitad al empezar y la mitad al terminar. En las cinco plazas de lanzamiento, si la primera propuesta no te convence, te devolvemos esa mitad.</p>
       </details>
       <details>
-        <summary>¿Por qué hay precio de lanzamiento?</summary>
+        <summary>¿Por qué tan barato?</summary>
         <p>Estamos empezando. A cambio, enseñamos tu proyecto en nuestra web y en Instagram.</p>
       </details>
     </div>
@@ -593,7 +509,7 @@ p{margin:0}
   <div class="oscuro">
     <section class="caja contacto" id="contacto" aria-labelledby="t-contacto">
       <h2 id="t-contacto">¿Hablamos?</h2>
-      <div class="acciones"><a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20pedir%20presupuesto%20para%20mi%20negocio.">Escríbenos por WhatsApp</a></div>
+      <div class="acciones"><a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Escríbenos por WhatsApp</a></div>
     </section>
     <footer class="caja pie">
       <img src="img/covalente-horizontal-oscuro.svg" alt="Covalente" width="851" height="134">
@@ -744,37 +660,9 @@ p{margin:0}
   trazar(); medir();
 })();
 
-// Los botones de cada paquete abren WhatsApp con el paquete ya escrito
+// Los botones de cada paquete y de cada extra abren WhatsApp con lo elegido ya escrito
 const WA = 'https://wa.me/34613912752?text=';
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.wa); });
-
-// Arma tu compuesto: la fórmula, el paquete y su precio si coincide, y el mensaje de WhatsApp se escriben con lo que eliges.
-// Los nombres y precios de los paquetes se leen de «Qué hacemos», para que solo haya que cambiarlos en un sitio.
-(() => {
-  const els = [...document.querySelectorAll('.el')], formula = document.querySelector('.formula'), nombre = document.querySelector('.nombre-compuesto');
-  const ficha = document.querySelector('.ficha'), pedir = document.getElementById('pedir');
-  const paquetes = {};
-  document.querySelectorAll('.reaccion[data-p]').forEach(r => { paquetes[r.dataset.p] = { n: r.querySelector('h3').textContent, precio: r.querySelector('.precio').textContent }; });
-  let anterior = [];
-  const pintar = (tocado) => {
-    const sel = els.filter(e => e.getAttribute('aria-pressed') === 'true');
-    const simbolos = sel.map(e => e.dataset.s);
-    formula.innerHTML = simbolos.length
-      ? simbolos.map((s, i) => `<span class="par">${i ? '<span class="mas">+</span>' : ''}<span${anterior.includes(s) ? '' : ' class="nuevo"'}>${s}</span></span>`).join('')
-      : '<span class="vacio">Todavía vacío.</span>';
-    anterior = simbolos;
-    const paquete = paquetes[simbolos.join(' ')];
-    nombre.innerHTML = !simbolos.length ? '' : paquete ? `= <b>${paquete.n}</b>, ${paquete.precio}` : '= un compuesto a tu medida';
-    const lista = sel.map(e => e.dataset.n.toLowerCase());
-    const texto = simbolos.length
-      ? `Hola, Covalente. Quiero pedir presupuesto para mi negocio. Me interesa: ${paquete ? paquete.n + ' (' + lista.join(', ') + ')' : lista.join(', ')}.`
-      : 'Hola, Covalente. Quiero pedir presupuesto para mi negocio.';
-    pedir.href = WA + encodeURIComponent(texto);
-    pedir.textContent = simbolos.length ? 'Pide presupuesto de este compuesto' : 'Pide presupuesto por WhatsApp';
-    if (tocado) ficha.innerHTML = `<b>${tocado.dataset.n}</b><p>${tocado.dataset.d}</p>`;
-  };
-  els.forEach(e => e.addEventListener('click', () => { e.setAttribute('aria-pressed', e.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); pintar(e); }));
-})();
 </script>
 </body>
 </html>
