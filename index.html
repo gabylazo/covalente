@@ -352,8 +352,9 @@ p{margin:0}
 .preguntas details:last-child{border-bottom:1px solid var(--raya)}
 .preguntas summary{position:relative; list-style:none; cursor:pointer; padding:20px 44px 20px 0; font-weight:700; font-size:clamp(18px, 1.8vw, 21px); line-height:1.35}
 .preguntas summary::-webkit-details-marker{display:none}
-.preguntas summary::after{content:"+"; position:absolute; right:6px; top:50%; transform:translateY(-50%); font:600 24px/1 var(--f-marca); color:var(--oro-tinta)}
-.preguntas details[open] summary::after{content:"–"}
+.preguntas summary::after{content:""; position:absolute; right:8px; top:50%; width:11px; height:11px; border-right:2px solid var(--oro-tinta); border-bottom:2px solid var(--oro-tinta); transform:translateY(-70%) rotate(45deg); transition:transform .2s}
+.preguntas details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+@media (prefers-reduced-motion:reduce){.preguntas summary::after{transition:none}}
 .preguntas details p{padding-bottom:22px; color:var(--tinta-2); max-width:62ch}
 
 /* Contacto y pie */
