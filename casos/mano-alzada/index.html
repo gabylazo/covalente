@@ -375,7 +375,7 @@ input:disabled + .ficha{opacity:.45; cursor:not-allowed}
 
   /* ---------- Servicios en la página ---------- */
   const pintarServicios = () => {
-    $('#lista-servicios').innerHTML = SERVICIOS.map(s => `<li><img src="img/${s.foto}-640.jpg" width="640" height="857" loading="lazy" alt=""><span><b>${s.n}</b>${s.min} min · ${s.p} €</span><button class="boton contorno" type="button" data-servicio="${s.id}" aria-label="Reservar ${s.n}">Reservar</button></li>`).join('');
+    $('#lista-servicios').innerHTML = SERVICIOS.map(s => `<li><img src="img/${s.foto}-640.jpg" width="640" height="858" loading="lazy" alt=""><span><b>${s.n}</b>${s.min} min · ${s.p} €</span><button class="boton contorno" type="button" data-servicio="${s.id}" aria-label="Reservar ${s.n}">Reservar</button></li>`).join('');
     $('#lista-servicios').querySelectorAll('[data-servicio]').forEach(b => b.onclick = () => abrir({ servicio: b.dataset.servicio, paso: 1 }));
   };
 
