@@ -1,365 +1,476 @@
 <!doctype html>
 <!--
-  Caso 1 de Covalente (03/11/2026): «Mano Alzada», un estudio de uñas INVENTADO. Web de demostración con su app de reservas
-  y el panel de la dueña, todo en el navegador y sin guardar ni cobrar nada. Plan: ../PLAN.md.
-  Fuentes: Bricolage Grotesque e Instrument Sans (OFL), alojadas en fuentes/.
+  Caso 1 de Covalente: «Mano Alzada», estudio de uñas INVENTADO. Versión 2 (03/11/2026), con la receta de
+  investigacion/13-diseno-premium.md (5.1): la carta de esmaltes es la web. Fotos de Gemini (casos/FOTOS.md), en img/.
+  Fuentes: Instrument Serif y Hanken Grotesk (OFL), en fuentes/. La versión 1 está en casos/versiones-anteriores/.
+  Todo funciona en el navegador: no se guarda, no se reserva y no se cobra nada.
 -->
-<html lang="es">
+<html lang="es" data-color="vermut">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mano Alzada · caso inventado por Covalente</title>
-<meta name="description" content="Caso inventado por Covalente: la web de un estudio de uñas con reservas y señal, y el panel donde la dueña cambia precios y horario.">
+<meta name="description" content="Caso inventado por Covalente: la web de un estudio de uñas en Madrid, con carta de colores, reserva en tres pasos y el panel de la dueña.">
 <meta name="robots" content="noindex">
+<link rel="preload" href="fuentes/InstrumentSerif-cursiva.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/HankenGrotesk.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
 <style>
-@font-face{font-family:"Bricolage"; src:url(fuentes/Bricolage.woff2) format("woff2"); font-weight:200 800; font-stretch:75% 100%; font-display:swap}
-@font-face{font-family:"Instrument"; src:url(fuentes/Instrument.woff2) format("woff2"); font-weight:400 700; font-stretch:75% 100%; font-display:swap}
-:root{
-  --tinta:#1B1820; --papel:#F5F4F2; --gris:#66616B; --linea:#DAD6D2; --blanco:#FFFFFF;
-  --esmalte:#8C1D40; --sobre-esmalte:#FFFFFF;
-  --r:14px;
-}
+@font-face{font-family:"Instrument Serif"; src:url(fuentes/InstrumentSerif.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Instrument Serif"; src:url(fuentes/InstrumentSerif-cursiva.woff2) format("woff2"); font-weight:400; font-style:italic; font-display:swap}
+@font-face{font-family:"Hanken Grotesk"; src:url(fuentes/HankenGrotesk.woff2) format("woff2"); font-weight:400 700; font-display:swap}
+
+/* El fondo de la página es el papel de la foto: al elegir color, se tiñe todo */
+:root{--fondo:#582127; --texto:#F3EEE8; --yeso:#F3EEE8; --tinta:#1C1A1F; --hoja:#FBF8F4; --linea-hoja:#DDD5CC}
+html[data-color=aceituna]{--fondo:#7A907C; --texto:#1C1A1F}
+html[data-color=mandarina]{--fondo:#F5CFA6; --texto:#1C1A1F}
+html[data-color=azulejo]{--fondo:#ACCAD7; --texto:#1C1A1F}
+html[data-color=cafe-con-leche]{--fondo:#E6DDCE; --texto:#1C1A1F}
+html[data-color=tinta]{--fondo:#132C42; --texto:#F3EEE8}
+/* Sin JavaScript, los mismos colores con :has() */
+html:not(.js):has(#c-aceituna:checked){--fondo:#7A907C; --texto:#1C1A1F}
+html:not(.js):has(#c-mandarina:checked){--fondo:#F5CFA6; --texto:#1C1A1F}
+html:not(.js):has(#c-azulejo:checked){--fondo:#ACCAD7; --texto:#1C1A1F}
+html:not(.js):has(#c-cafe-con-leche:checked){--fondo:#E6DDCE; --texto:#1C1A1F}
+html:not(.js):has(#c-tinta:checked){--fondo:#132C42; --texto:#F3EEE8}
+
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important; transition:none!important}}
-body{margin:0; background:var(--papel); color:var(--tinta); font:400 17px/1.55 "Instrument", system-ui, sans-serif}
+html{scrollbar-gutter:stable}
+body{margin:0; background:var(--fondo); color:var(--texto); font:400 17px/1.5 "Hanken Grotesk", system-ui, sans-serif; font-variant-numeric:tabular-nums}
+html:not(.js) body{transition:background-color .3s, color .3s}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--tinta); outline-offset:3px}
-.oscuro :focus-visible{outline-color:var(--papel)}
-.ancho{max-width:1120px; margin:0 auto; padding-inline:max(16px, 4vw)}
-h1,h2,.marca{font-family:"Bricolage", system-ui, sans-serif; font-stretch:75%; letter-spacing:-.01em}
-h2{font-size:clamp(34px,6vw,56px); line-height:1; font-weight:700; margin:0 0 28px}
+:focus-visible{outline:3px solid var(--texto); outline-offset:3px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+img{display:block; max-width:100%; height:auto}
+.serif{font-family:"Instrument Serif", Georgia, serif; font-weight:400}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 
-/* Aviso de caso inventado */
-.aviso{margin:0; background:#000; color:var(--papel); font-size:14px; text-align:center; padding:8px 16px}
-.aviso a{color:var(--papel)}
+/* Franja de Covalente */
+.covalente{margin:0; padding:7px 16px; background:var(--tinta); color:var(--yeso); font-size:14px; text-align:center}
 
-/* Cabecera y portada */
-.oscuro{background:var(--tinta); color:var(--papel)}
-.cab{display:flex; align-items:center; justify-content:space-between; padding-block:18px}
-.marca{display:flex; align-items:center; gap:10px; font-size:26px; font-weight:700; text-decoration:none; text-transform:lowercase}
-.marca svg{width:34px; height:20px}
-.boton{display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:999px; border:0;
-  background:var(--esmalte); color:var(--sobre-esmalte); font:700 17px/1 "Instrument", sans-serif; text-decoration:none; cursor:pointer; transition:background-color .4s}
-.boton.claro{background:transparent; color:inherit; box-shadow:inset 0 0 0 2px currentColor}
-.boton[disabled]{opacity:.45; cursor:not-allowed}
-.portada{display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; padding-block:28px 64px}
-.portada h1{font-size:clamp(56px,9vw,116px); line-height:.9; font-weight:800; margin:0 0 22px}
-.portada p.sub{font-size:clamp(18px,2vw,21px); max-width:30ch; margin:0 0 28px; color:#D9D5DC}
-.carta{margin-top:34px}
-.carta .fila{display:flex; flex-wrap:wrap; gap:10px}
-.gota{width:44px; height:44px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; border:0; cursor:pointer; background:var(--c); box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
-.gota[aria-pressed="true"]{box-shadow:0 0 0 3px var(--tinta), 0 0 0 5px var(--papel)}
-.claro-fondo .gota[aria-pressed="true"]{box-shadow:0 0 0 3px var(--papel), 0 0 0 5px var(--tinta)}
-.carta .nombre{margin:12px 0 0; font-size:15px; color:#D9D5DC}
-.carta .nombre b{color:var(--papel); font-weight:700}
-.mano{width:100%; max-width:480px; justify-self:center}
-.mano .dedo{fill:none; stroke:#8F8996; stroke-width:1.6}
-.mano .una{fill:var(--esmalte); transition:fill .5s}
-.mano .brillo{fill:#fff; opacity:.28}
-@media (max-width:760px){
-  .portada{grid-template-columns:1fr; gap:8px; padding-top:8px}
-  .mano{max-width:300px; order:2}
-  .carta .fila{gap:8px} .gota{width:36px; height:36px}
+/* Cabecera */
+.cab{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px max(16px,4vw); background:var(--fondo)}
+.cab h1{margin:0; font:italic 400 30px/1 "Instrument Serif", Georgia, serif; letter-spacing:-.01em}
+.cab h1 a{text-decoration:none}
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 22px; border:0; border-radius:999px;
+  background:var(--texto); color:var(--fondo); font:600 16px/1 "Hanken Grotesk", sans-serif; text-decoration:none; cursor:pointer}
+.boton .punto{width:12px; height:12px; border-radius:50%; background:var(--una); box-shadow:0 0 0 1.5px var(--fondo)}
+.boton.contorno{background:transparent; color:inherit; box-shadow:inset 0 0 0 1.5px currentColor}
+.cab .boton{min-height:44px; padding:0 18px}
+
+/* La foto */
+.foto{margin:0; background:var(--fondo)}
+.covalente{display:block}
+.foto img{width:100%; aspect-ratio:4/5; object-fit:cover; object-position:50% 62%}
+
+/* Portada: el color */
+.bloque{padding:0 max(16px,4vw)}
+.color{padding-top:22px; padding-bottom:40px}
+.color .nombre{margin:0; font:italic 400 clamp(68px,17vw,148px)/.86 "Instrument Serif", Georgia, serif; letter-spacing:-.02em}
+.color .linea{margin:12px 0 0; font-size:19px}
+.carta{border:0; margin:26px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:12px}
+.carta input{position:absolute; opacity:0; width:1px; height:1px}
+.carta label{width:46px; height:46px; border-radius:50%; background:var(--u); cursor:pointer; box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--texto) 45%, transparent)}
+.carta input:checked + label{box-shadow:0 0 0 3px var(--fondo), 0 0 0 5px var(--texto)}
+.carta input:focus-visible + label{outline:3px solid var(--texto); outline-offset:6px}
+.ya{display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin-top:30px}
+.hueco{font:inherit; color:inherit; background:none; border:0; padding:8px 0; cursor:pointer; text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px}
+
+/* Secciones */
+h2{font:400 clamp(38px,6vw,54px)/1 "Instrument Serif", Georgia, serif; margin:0 0 22px; letter-spacing:-.01em}
+.seccion{padding-top:56px; padding-bottom:56px; border-top:1px solid color-mix(in srgb, var(--texto) 30%, transparent)}
+.servicios{list-style:none; margin:0; padding:0; display:grid; gap:0}
+.servicios li{display:grid; grid-template-columns:84px 1fr auto; gap:16px; align-items:center; padding:14px 0; border-bottom:1px solid color-mix(in srgb, var(--texto) 30%, transparent)}
+.servicios li:first-child{border-top:1px solid color-mix(in srgb, var(--texto) 30%, transparent)}
+.servicios img{width:84px; aspect-ratio:3/4; object-fit:cover; object-position:50% 68%}
+.servicios b{display:block; font-weight:600; font-size:18px}
+.servicios .boton{min-height:44px; padding:0 16px}
+details{border-bottom:1px solid color-mix(in srgb, var(--texto) 30%, transparent)}
+summary{cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; min-height:56px; font-size:19px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:""; width:10px; height:10px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg) translateY(-3px); transition:transform .2s}
+details[open] summary::after{transform:rotate(-135deg) translateY(-3px)}
+details ul{margin:0 0 18px; padding-left:20px}
+details li{margin:6px 0}
+.estudio{display:grid; gap:22px}
+.estudio img{width:100%; aspect-ratio:4/5; object-fit:cover}
+.estudio p{margin:0 0 6px}
+.encargo dl{display:grid; grid-template-columns:max-content 1fr; gap:10px 20px; margin:0}
+.encargo dt{font:italic 400 22px/1.2 "Instrument Serif", Georgia, serif}
+.encargo dd{margin:0}
+.encargo .pincel{width:100%; aspect-ratio:3/2; object-fit:cover; margin-bottom:24px}
+footer{padding:36px max(16px,4vw) 44px; font-size:15px; border-top:1px solid color-mix(in srgb, var(--texto) 30%, transparent)}
+
+/* Móvil: la columna se deshace para que la foto quede entre la cabecera y el contenido */
+.sitio{display:flex; flex-direction:column}
+.columna{display:contents}
+.covalente{order:1} .cab{order:2} .foto{order:3} main{order:4} footer{order:5}
+/* Escritorio: la foto fija a la izquierda, a sangre */
+@media (min-width:900px){
+  .sitio{display:grid; grid-template-columns:1fr 1fr}
+  .columna{display:block; grid-column:2; grid-row:1}
+  .foto{grid-column:1; grid-row:1; position:sticky; top:0; height:100vh; height:100dvh; align-self:start}
+  .foto img{height:100%; aspect-ratio:auto}
+  .cab{padding-inline:56px}
+  footer{padding-inline:56px}
+  .bloque{padding-inline:56px}
+  .color{min-height:calc(100dvh - 100px); display:flex; flex-direction:column; justify-content:center; padding-bottom:64px}
+  .servicios{grid-template-columns:repeat(3,1fr); gap:20px}
+  .servicios li{grid-template-columns:1fr; border:0!important; padding:0; align-content:start}
+  .servicios img{width:100%}
+  .estudio{grid-template-columns:1fr 1fr; align-items:end}
 }
 
-/* Servicios */
-section.bloque{padding-block:72px}
-/* Reserva */
-.reserva{max-width:760px; background:var(--blanco); border-radius:var(--r); padding:clamp(18px,4vw,36px); box-shadow:0 0 0 1px var(--linea)}
-.pasos{display:flex; gap:6px; margin:0 0 24px; padding:0; list-style:none; flex-wrap:wrap}
-.pasos li{font-size:14px; padding:6px 12px; border-radius:999px; background:var(--papel); color:var(--gris)}
-.pasos li[aria-current="step"]{background:var(--tinta); color:var(--papel)}
-.paso h3{font:700 24px/1.15 "Bricolage", sans-serif; font-stretch:75%; margin:0 0 16px}
-.opciones{display:grid; gap:10px}
-.op{display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; min-height:56px; padding:12px 16px; border-radius:12px; border:1.5px solid var(--linea); background:var(--blanco); font:inherit; color:inherit; text-align:left; cursor:pointer}
-.op[aria-pressed="true"]{border-color:var(--tinta); box-shadow:inset 0 0 0 1.5px var(--tinta)}
-.op small{color:var(--gris)}
-.dias{display:flex; gap:8px; overflow-x:auto; padding-bottom:6px}
-.dia{flex:none; width:64px; min-height:64px; border-radius:12px; border:1.5px solid var(--linea); background:var(--blanco); font:inherit; cursor:pointer; line-height:1.15}
-.dia b{display:block; font-size:21px}
-.dia[aria-pressed="true"]{background:var(--tinta); color:var(--papel); border-color:var(--tinta)}
-.dia:disabled{opacity:.4; cursor:not-allowed; text-decoration:line-through}
-.horas{display:grid; grid-template-columns:repeat(auto-fill,minmax(82px,1fr)); gap:8px; margin-top:16px}
-.hora{min-height:44px; border-radius:10px; border:1.5px solid var(--linea); background:var(--blanco); font:600 16px/1 "Instrument", sans-serif; cursor:pointer}
-.hora[aria-pressed="true"]{background:var(--esmalte); color:var(--sobre-esmalte); border-color:var(--esmalte)}
-.hora:disabled{color:#A7A2AA; text-decoration:line-through; cursor:not-allowed; background:var(--papel)}
-.vacio{color:var(--gris); margin:16px 0 0}
-.campos{display:grid; gap:14px; max-width:420px}
+/* La hoja de reserva (y el panel de la dueña) */
+dialog.hoja{position:fixed; inset:auto 0 0 0; margin:0; width:100%; max-width:100%; max-height:92dvh; border:0; padding:0;
+  border-radius:22px 22px 0 0; background:var(--hoja); color:var(--tinta); display:flex; flex-direction:column;
+  transition:transform .24s ease-out, opacity .24s ease-out, overlay .24s allow-discrete, display .24s allow-discrete}
+dialog.hoja:not([open]){display:none; transform:translateY(24px); opacity:0}
+@starting-style{dialog.hoja[open]{transform:translateY(24px); opacity:0}}
+dialog.hoja::backdrop{background:rgba(20,16,18,.45)}
+@media (prefers-reduced-motion:reduce){dialog.hoja{transition:none} @starting-style{dialog.hoja[open]{transform:none}}}
+@media (min-width:900px){dialog.hoja{inset:0 0 0 auto; width:460px; height:100dvh; max-height:100dvh; border-radius:0}}
+.hoja :focus-visible{outline-color:var(--tinta)}
+.hoja .arriba{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 20px 6px}
+.hoja .arriba button{font:600 15px/1 "Hanken Grotesk", sans-serif; background:none; border:0; min-height:44px; padding:0 4px; cursor:pointer; color:inherit; text-decoration:underline; text-underline-offset:3px}
+.hoja .arriba button[hidden]{display:inline-block; visibility:hidden}
+.hoja h2{font-size:34px; margin:0; padding:0 20px 14px}
+.hoja h2:focus{outline:none}
+.hoja .cuerpo{overflow:auto; padding:0 20px 20px; flex:1}
+.hoja .pie[hidden]{display:none}
+.hoja .pie{border-top:1px solid var(--linea-hoja); padding:14px 20px calc(14px + env(safe-area-inset-bottom)); display:grid; gap:12px; background:var(--hoja)}
+.resumen{display:flex; justify-content:space-between; align-items:baseline; gap:12px; min-height:24px; font-size:15px}
+.resumen b{font-size:18px}
+.hoja .boton{--texto:var(--tinta); --fondo:var(--hoja); width:100%; min-height:54px; font-size:17px}
+.hoja .boton:disabled{opacity:.35; cursor:not-allowed}
+.hoja .carta label{--texto:var(--tinta); --fondo:var(--hoja)}
+.hoja .carta input:checked + label{box-shadow:0 0 0 3px var(--hoja), 0 0 0 5px var(--tinta)}
+.hoja .carta input:focus-visible + label{outline-color:var(--tinta)}
+.etiqueta{margin:18px 0 10px; font-weight:600; font-size:15px}
+.etiqueta:first-child{margin-top:0}
+.elige{display:grid; gap:8px}
+.hoja input[type=radio]{position:absolute; opacity:0; width:1px; height:1px}
+.fila{display:grid; grid-template-columns:52px 1fr auto; gap:14px; align-items:center; min-height:64px; padding:8px 14px 8px 8px; border-radius:14px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
+.fila img{width:52px; height:52px; border-radius:10px; object-fit:cover; object-position:50% 68%}
+.fila small{display:block; font-size:14px}
+input:checked + .fila{border-color:var(--tinta); box-shadow:inset 0 0 0 1px var(--tinta)}
+input:focus-visible + .fila, input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
+.dias{display:flex; gap:8px; overflow-x:auto; scroll-snap-type:x mandatory; padding:2px 2px 8px; margin:0 -2px}
+.ficha{display:grid; place-items:center; min-width:62px; min-height:48px; padding:6px 12px; border-radius:12px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer; scroll-snap-align:start; line-height:1.15; text-align:center; font-size:15px}
+.dias .ficha{min-height:64px}
+.ficha b{font-size:20px; display:block}
+.ficha small{font-size:12px}
+input:checked + .ficha{background:var(--tinta); color:var(--hoja); border-color:var(--tinta)}
+input:disabled + .ficha{opacity:.45; cursor:not-allowed}
+.horas{display:flex; flex-wrap:wrap; gap:8px}
+.campos{display:grid; gap:14px}
 .campos label{display:grid; gap:6px; font-weight:600; font-size:15px}
-.campos input{font:inherit; min-height:48px; padding:0 14px; border-radius:10px; border:1.5px solid #B9B4BC; background:var(--blanco)}
-.resumen{background:var(--papel); border-radius:12px; padding:16px; margin:0 0 18px}
-.resumen dl{display:grid; grid-template-columns:max-content 1fr; gap:4px 16px; margin:0}
-.resumen dt{color:var(--gris)}
-.resumen dd{margin:0; font-weight:600}
-.nota{font-size:15px; color:var(--gris); margin:14px 0 0}
-.acciones{display:flex; gap:10px; flex-wrap:wrap; margin-top:24px}
-.demo{border:1.5px dashed var(--gris); border-radius:12px; padding:12px 14px; font-size:15px; margin-top:16px}
-
-/* Dónde */
-.donde{display:grid; grid-template-columns:1fr 1fr; gap:40px}
-.horario{width:100%; border-collapse:collapse}
-.horario th,.horario td{padding:10px 0; border-bottom:1px solid var(--linea); text-align:left; font-weight:400}
-.horario td{text-align:right; font-weight:600}
-.horario tr.cerrado td{color:var(--gris); font-weight:400}
-@media (max-width:760px){ .donde{grid-template-columns:1fr} }
-
-footer.pie{padding-block:40px; font-size:15px}
-footer.pie a{color:var(--papel)}
-
-/* Panel de la dueña */
-dialog.panel{width:min(560px, calc(100% - 24px)); max-height:calc(100% - 24px); border:0; border-radius:var(--r); padding:0; color:var(--tinta)}
-dialog.panel::backdrop{background:rgba(27,24,32,.6)}
-.panel .cabeza{display:flex; justify-content:space-between; align-items:center; gap:12px; background:var(--tinta); color:var(--papel); padding:16px 20px}
-.panel .cabeza h2{font-size:26px; margin:0}
-.panel .cuerpo{padding:20px}
-.panel h3{font:700 20px/1.2 "Bricolage", sans-serif; font-stretch:75%; margin:22px 0 10px}
-.panel h3:first-child{margin-top:0}
+.campos input{font:inherit; font-weight:400; min-height:50px; padding:0 14px; border-radius:12px; border:1.5px solid #B8AFA6; background:#fff; color:inherit}
+.senal{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:18px}
+.senal .ficha{min-height:76px; text-align:left; place-items:start; align-content:center}
+.aviso-demo{font-size:14px; margin:12px 0 0}
+.hecho .cuando{font:italic 400 44px/1 "Instrument Serif", Georgia, serif; margin:4px 0 8px}
+.hecho p{margin:0 0 6px}
+.hecho .acciones{display:grid; gap:10px; margin-top:22px}
+.hecho .boton.contorno{color:var(--tinta)}
 .citas{list-style:none; margin:0; padding:0}
-.citas li{display:grid; grid-template-columns:56px 1fr auto; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid var(--linea)}
-.citas .h{font-weight:700}
-.citas .c{width:14px; height:14px; border-radius:50%; display:inline-block; vertical-align:-2px; margin-right:6px; background:var(--c)}
-.citas .nueva{background:#FFF6D9}
-.citas button{font:600 14px/1 "Instrument", sans-serif; min-height:36px; padding:0 12px; border-radius:999px; border:1.5px solid var(--linea); background:var(--blanco); cursor:pointer}
-.citas button[aria-pressed="true"]{background:var(--tinta); color:var(--papel); border-color:var(--tinta)}
+.citas li{display:grid; grid-template-columns:54px 1fr auto; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid var(--linea-hoja)}
+.citas .nueva{background:#FFF3D6; margin:0 -8px; padding-inline:8px; border-radius:8px}
+.citas .p{width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:6px; vertical-align:-1px; background:var(--u)}
+.citas button{font:600 14px/1 "Hanken Grotesk", sans-serif; min-height:36px; padding:0 12px; border-radius:999px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer; color:inherit}
+.citas button[aria-pressed=true]{background:var(--tinta); color:var(--hoja)}
 .precios{display:grid; gap:8px}
-.precios label{display:grid; grid-template-columns:1fr 92px; align-items:center; gap:10px}
-.precios input,.panel select{font:inherit; min-height:44px; padding:0 10px; border-radius:10px; border:1.5px solid #B9B4BC; width:100%}
-.cerrar-x{background:none; border:0; color:var(--papel); font:600 16px/1 "Instrument", sans-serif; min-height:44px; cursor:pointer; text-decoration:underline}
-.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.precios label{display:grid; grid-template-columns:1fr 96px; align-items:center; gap:10px}
+.precios input,.hoja select{font:inherit; min-height:46px; padding:0 10px; border-radius:12px; border:1.5px solid #B8AFA6; width:100%; background:#fff; color:inherit}
 </style>
 </head>
 <body>
-<header class="oscuro">
-  <p class="aviso">Caso inventado por <a href="https://covalente.eu">Covalente</a>. Mano Alzada no existe: aquí no se reserva ni se cobra nada.</p>
-  <div class="cab ancho">
-    <a class="marca" href="#">
-      <svg viewBox="0 0 34 20" aria-hidden="true"><path d="M3 15 C 9 3, 20 2, 31 6" fill="none" stroke="var(--esmalte)" stroke-width="5" stroke-linecap="round"/></svg>
-      mano alzada
-    </a>
-    <a class="boton" href="#reservar">Reservar</a>
-  </div>
+<div class="sitio">
+<div class="columna">
+<aside class="covalente" aria-label="Aviso">Caso inventado por <a href="https://covalente.eu">Covalente</a>. Mano Alzada no existe.</aside>
+
+<header class="cab">
+  <h1><a href="#">Mano Alzada</a></h1>
+  <a class="boton" href="#servicios" data-abrir>Reservar</a>
 </header>
 
-<main>
-<div class="oscuro">
-  <div class="portada ancho">
-    <div>
-      <h1>Uñas a mano alzada.</h1>
-      <p class="sub">Una mesa, una persona y ninguna prisa. Elige color y reserva tu hora.</p>
-      <a class="boton" href="#reservar">Reservar cita</a>
-      <div class="carta" role="group" aria-label="Carta de esmaltes">
-        <div class="fila" id="gotas"></div>
-        <p class="nombre" aria-live="polite">Color: <b id="nombre-color">Guinda</b></p>
-      </div>
-    </div>
-    <svg class="mano" viewBox="0 0 400 420" role="img" aria-label="Dibujo de una mano con las uñas pintadas del color elegido">
-      <!-- Dedos de contorno; las uñas toman el color elegido -->
-      <g id="dedos"></g>
-    </svg>
-  </div>
-</div>
 
-  <section class="bloque ancho" id="reservar" aria-labelledby="t-res">
-    <h2 id="t-res">Elige y reserva</h2>
-    <div class="reserva">
-      <ol class="pasos" id="pasos"></ol>
-      <div id="paso" class="paso" aria-live="polite"></div>
+
+<main>
+  <section class="bloque color" aria-label="Carta de colores">
+    <p class="nombre" id="nombre">Vermut</p>
+    <p class="linea" id="linea">Granate de grifo, domingo a la una.</p>
+    <fieldset class="carta" id="carta">
+      <legend class="sr">Color de esmalte</legend>
+      <input type="radio" name="color" id="c-vermut" value="vermut" checked><label for="c-vermut" style="--u:#4A1420" title="Vermut"><span class="sr">Vermut</span></label>
+      <input type="radio" name="color" id="c-aceituna" value="aceituna"><label for="c-aceituna" style="--u:#5C6332" title="Aceituna"><span class="sr">Aceituna</span></label>
+      <input type="radio" name="color" id="c-mandarina" value="mandarina"><label for="c-mandarina" style="--u:#E8732A" title="Mandarina"><span class="sr">Mandarina</span></label>
+      <input type="radio" name="color" id="c-azulejo" value="azulejo"><label for="c-azulejo" style="--u:#1E4FA8" title="Azulejo"><span class="sr">Azulejo</span></label>
+      <input type="radio" name="color" id="c-cafe-con-leche" value="cafe-con-leche"><label for="c-cafe-con-leche" style="--u:#D8BFA0" title="Café con leche"><span class="sr">Café con leche</span></label>
+      <input type="radio" name="color" id="c-tinta" value="tinta"><label for="c-tinta" style="--u:#172447" title="Tinta"><span class="sr">Tinta</span></label>
+    </fieldset>
+    <div class="ya">
+      <a class="boton" href="#servicios" data-abrir id="cta"><span class="punto" aria-hidden="true"></span><span id="cta-texto">Reservar con Vermut</span></a>
+      <button class="hueco" type="button" id="hueco" hidden></button>
     </div>
   </section>
 
-  <section class="bloque ancho" aria-labelledby="t-donde" style="padding-top:0">
-    <h2 id="t-donde">Dónde y cuándo</h2>
-    <div class="donde">
-      <table class="horario" id="horario"><caption class="sr">Horario</caption></table>
+  <section class="bloque seccion" id="servicios" aria-labelledby="t-serv">
+    <h2 id="t-serv">Servicios</h2>
+    <ul class="servicios" id="lista-servicios"></ul>
+  </section>
+
+  <section class="bloque seccion" aria-labelledby="t-normas" style="padding-top:20px">
+    <h2 id="t-normas" class="sr">Normas</h2>
+    <details>
+      <summary>Si no puedes venir</summary>
+      <ul>
+        <li>Avísanos 24 horas antes y cambiamos la cita.</li>
+        <li>La señal se descuenta del precio.</li>
+        <li>Si no vienes sin avisar, la señal no se devuelve.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="bloque seccion" aria-labelledby="t-estudio">
+    <h2 id="t-estudio">Una mesa, junto a la ventana</h2>
+    <div class="estudio">
+      <img src="img/mesa-640.jpg" srcset="img/mesa-640.jpg 640w, img/mesa-1280.jpg 1280w" sizes="(min-width: 900px) 25vw, 100vw" width="1280" height="1714" loading="lazy"
+        alt="La mesa de manicura junto a un balcón, con una lámpara encendida y una fila de esmaltes">
       <div>
-        <p style="margin-top:0"><b>Madrid centro.</b> Dirección de ejemplo: el negocio es inventado.</p>
-        <p class="nota">¿Eres la dueña? <button class="boton claro" id="abrir-panel" style="margin-left:6px">Abrir mi panel</button></p>
+        <p>Barrio de las Letras, Madrid.</p>
+        <p>Martes a viernes, de 10:00 a 20:00.<br>Sábados, de 10:00 a 15:00.</p>
+        <p style="margin-top:18px"><button class="boton contorno" type="button" id="abrir-panel">Ver el panel de Nerea</button></p>
       </div>
     </div>
+  </section>
+
+  <section class="bloque seccion encargo" aria-labelledby="t-encargo">
+    <h2 id="t-encargo">El encargo</h2>
+    <img class="pincel" src="img/pincel-1280.jpg" width="1280" height="1714" loading="lazy" alt="Un pincel finísimo pintando una línea granate sobre una uña">
+    <dl>
+      <dt>Pidió</dt><dd>Reservas sin llamarla mientras trabaja, que se vean los colores de verdad y que dejen de fallarle citas.</dd>
+      <dt>Antes</dt><dd>Citas por mensajes y una lista de precios en una historia destacada.</dd>
+      <dt>La idea</dt><dd>La carta de esmaltes es la web. Cada color lleva el nombre de una cosa de Madrid.</dd>
+      <dt>Ahora</dt><dd>Reserva en tres pasos sin cuenta, señal opcional, recordatorio y un panel para cambiar precios y cerrar días.</dd>
+    </dl>
   </section>
 </main>
 
-<footer class="pie oscuro">
-  <div class="ancho">Web de demostración hecha por <a href="https://covalente.eu">Covalente</a>. Tenemos química.</div>
-</footer>
+<footer>Caso inventado. Fotos generadas con IA. Diseño y web: <a href="https://covalente.eu">Covalente</a>.</footer>
+</div>
+<section class="foto" aria-label="Foto del color elegido">
+  <picture>
+    <source id="foto-avif" type="image/avif" srcset="img/vermut-640.avif 640w, img/vermut-1280.avif 1280w" sizes="(min-width: 900px) 50vw, 100vw">
+    <img id="foto" src="img/vermut-640.jpg" srcset="img/vermut-640.jpg 640w, img/vermut-1280.jpg 1280w" sizes="(min-width: 900px) 50vw, 100vw"
+      width="1280" height="1714" fetchpriority="high" alt="Mano con las uñas granate sujetando un vaso de vermut con naranja y aceituna">
+  </picture>
+</section>
+</div>
 
-<dialog class="panel" id="panel" aria-labelledby="t-panel">
-  <div class="cabeza"><h2 id="t-panel">Panel de Nerea</h2><button class="cerrar-x" id="cerrar-panel">Cerrar</button></div>
+<dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
+  <div class="arriba"><button type="button" id="atras">Atrás</button><button type="button" id="cerrar">Cerrar</button></div>
+  <h2 id="t-hoja" tabindex="-1">Reservar</h2>
+  <div class="cuerpo" id="paso"></div>
+  <div class="pie" id="pie-hoja">
+    <div class="resumen" aria-live="polite" id="resumen"></div>
+    <button class="boton" type="button" id="seguir">Seguir</button>
+  </div>
+</dialog>
+
+<dialog class="hoja" id="panel" aria-labelledby="t-panel">
+  <div class="arriba"><span></span><button type="button" id="cerrar-panel">Cerrar</button></div>
+  <h2 id="t-panel" tabindex="-1">Panel de Nerea</h2>
   <div class="cuerpo">
-    <p class="nota" style="margin-top:0">Así lo ve la dueña en su móvil. Lo que cambies aquí sale en la web al momento.</p>
-    <h3 id="t-citas">Citas del <span id="dia-panel"></span></h3>
+    <p class="etiqueta" id="t-citas">Citas del <span id="dia-panel"></span></p>
     <ul class="citas" id="citas" aria-labelledby="t-citas"></ul>
-    <h3>Precios</h3>
+    <p class="etiqueta">Precios (cambian en la web al momento)</p>
     <div class="precios" id="precios"></div>
-    <h3>Cerrar un día</h3>
-    <label class="campos" style="max-width:none">Elige el día
-      <select id="cerrar-dia"></select>
-    </label>
+    <label class="etiqueta" for="cerrar-dia" style="display:block">Cerrar un día</label>
+    <select id="cerrar-dia"></select>
   </div>
 </dialog>
 
 <script>
 (() => {
-  const ESMALTES = [
-    ['Guinda', '#8C1D40'], ['Tinta', '#1F2A44'], ['Oliva', '#5E6B3A'], ['Arcilla', '#A0533B'],
-    ['Leche', '#E9E2D6'], ['Mandarina', '#E8762C'], ['Cobalto', '#2747A8'], ['Malva', '#9C7FB0']
+  const COLORES = [
+    { id: 'vermut', n: 'Vermut', l: 'Granate de grifo, domingo a la una.', u: '#4A1420', alt: 'Mano con las uñas granate sujetando un vaso de vermut con naranja y aceituna' },
+    { id: 'aceituna', n: 'Aceituna', l: 'Verde de tapa y palillo.', u: '#5C6332', alt: 'Mano con las uñas verde oliva sujetando un palillo con tres aceitunas' },
+    { id: 'mandarina', n: 'Mandarina', l: 'Naranja de diciembre, piel fina.', u: '#E8732A', alt: 'Dos manos con las uñas mandarina pelando una mandarina' },
+    { id: 'azulejo', n: 'Azulejo', l: 'Azul de zócalo de toda la vida.', u: '#1E4FA8', alt: 'Mano con las uñas azul cobalto sobre un azulejo antiguo' },
+    { id: 'cafe-con-leche', n: 'Café con leche', l: 'Beige de barra, a las nueve.', u: '#D8BFA0', alt: 'Mano con las uñas beige junto a un vaso de café con leche' },
+    { id: 'tinta', n: 'Tinta', l: 'Azul noche de pluma.', u: '#172447', alt: 'Mano con las uñas azul noche dibujando con una pluma' }
   ];
-  const servicios = [
-    { id: 'semi', n: 'Manicura semipermanente', d: 'Limpieza, forma y color que dura dos o tres semanas', min: 60, p: 25 },
-    { id: 'normal', n: 'Esmaltado normal', d: 'Forma y color', min: 30, p: 15 },
-    { id: 'arte', n: 'Semipermanente con dibujo a mano', d: 'El diseño lo hablamos en la mesa', min: 90, p: 35 },
-    { id: 'pies', n: 'Pedicura semipermanente', d: 'Pies con color que dura', min: 60, p: 32 },
-    { id: 'retirar', n: 'Retirar semipermanente', d: 'Sin limar la uña', min: 30, p: 8 }
+  const SERVICIOS = [
+    { id: 'semi', n: 'Semipermanente', min: 45, p: 28, foto: 'servicio-semi' },
+    { id: 'rusa', n: 'Manicura rusa', min: 75, p: 38, foto: 'servicio-rusa' },
+    { id: 'retirada', n: 'Retirada y semipermanente', min: 60, p: 32, foto: 'servicio-retirada' }
   ];
   const SENAL = 5;
-  // Horario: 0 domingo … 6 sábado. [abre, cierra] en minutos.
-  const HORARIO = { 0: null, 1: null, 2: [600, 1200], 3: [600, 1200], 4: [600, 1200], 5: [600, 1200], 6: [600, 900] };
-  const NOMBRES_DIA = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const HORARIO = { 2: [600, 1200], 3: [600, 1200], 4: [600, 1200], 5: [600, 1200], 6: [600, 900] }; // minutos; 0 = domingo
+  const $ = s => document.querySelector(s);
+  const html = document.documentElement;
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)');
+  const hm = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+  const clave = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const deClave = k => new Date(k + 'T12:00');
+  const fDS = new Intl.DateTimeFormat('es-ES', { weekday: 'short' });
+  const corta = d => `${fDS.format(d).replace('.', '')} ${d.getDate()}`;
+  const fLarga = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  const fSemana = new Intl.DateTimeFormat('es-ES', { weekday: 'long' });
+  const may = t => t.charAt(0).toUpperCase() + t.slice(1);
   const cerrados = new Set();
   const citas = [];
-  const $ = s => document.querySelector(s);
-  const hm = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-  const clave = d => d.toISOString().slice(0, 10);
-  const fmtDia = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  let color = COLORES[0];
 
-  // Color sobre el esmalte: blanco o tinta, el que más contraste
-  const lum = h => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; };
-  const contraste = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05); };
-  let color = ESMALTES[0];
-  const pintar = (c) => {
+  /* ---------- La carta de colores ---------- */
+  const fotoSrc = (id, ext) => `img/${id}-640.${ext} 640w, img/${id}-1280.${ext} 1280w`;
+  const carta = (donde, nombre, prefijo) => {
+    donde.insertAdjacentHTML('beforeend', COLORES.map(c => `<input type="radio" name="${nombre}" id="${prefijo}-${c.id}" value="${c.id}"${c.id === color.id ? ' checked' : ''}><label for="${prefijo}-${c.id}" style="--u:${c.u}" title="${c.n}"><span class="sr">${c.n}</span></label>`).join(''));
+  };
+  const ponerColor = (id) => {
+    const c = COLORES.find(x => x.id === id); if (!c || c === color) return;
     const cambiar = () => {
-      color = c;
-      const r = document.documentElement.style;
-      r.setProperty('--esmalte', c[1]);
-      r.setProperty('--sobre-esmalte', contraste(c[1], '#FFFFFF') >= contraste(c[1], '#1B1820') ? '#FFFFFF' : '#1B1820');
-      $('#nombre-color').textContent = c[0];
-      document.querySelectorAll('.gota').forEach(g => g.setAttribute('aria-pressed', g.dataset.n === c[0]));
+      color = c; html.dataset.color = c.id;
+      $('#foto-avif').srcset = fotoSrc(c.id, 'avif');
+      const f = $('#foto'); f.srcset = fotoSrc(c.id, 'jpg'); f.src = `img/${c.id}-640.jpg`; f.alt = c.alt;
+      $('#nombre').textContent = c.n; $('#linea').textContent = c.l; $('#cta-texto').textContent = `Reservar con ${c.n}`;
+      document.querySelectorAll(`input[value="${c.id}"]`).forEach(i => i.checked = true);
+      html.style.setProperty('--una', c.u);
+      if ($('#hoja').open) pintarResumen();
     };
-    document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches ? document.startViewTransition(cambiar) : cambiar();
+    // Se espera a que la foto nueva esté decodificada para que el fundido no enseñe un hueco
+    const img = new Image(); img.sizes = $('#foto').sizes; img.srcset = fotoSrc(c.id, 'jpg');
+    const ir = () => (document.startViewTransition && !quieto.matches) ? document.startViewTransition(cambiar) : cambiar();
+    img.decode().then(ir, ir);
   };
-  const gotas = (donde, alElegir) => {
-    donde.innerHTML = '';
-    ESMALTES.forEach(c => {
-      const b = document.createElement('button');
-      b.className = 'gota'; b.type = 'button'; b.dataset.n = c[0]; b.style.setProperty('--c', c[1]);
-      b.setAttribute('aria-label', c[0]); b.setAttribute('aria-pressed', c[0] === color[0]);
-      b.onclick = () => alElegir(c);
-      donde.append(b);
-    });
+  document.addEventListener('change', e => { if (e.target.name === 'color' || e.target.name === 'color-hoja') ponerColor(e.target.value); });
+  html.style.setProperty('--una', color.u);
+  // Con la página quieta, se traen las demás fotos para que el cambio sea inmediato
+  (window.requestIdleCallback || setTimeout)(() => COLORES.slice(1).forEach(c => { const i = new Image(); i.sizes = $('#foto').sizes; i.srcset = fotoSrc(c.id, 'jpg'); }));
+
+  /* ---------- Agenda de ejemplo (siempre la misma para cada día) ---------- */
+  const proximos = () => { const out = [], hoy = new Date(); hoy.setHours(12, 0, 0, 0); for (let i = 0; i < 21 && out.length < 10; i++) { const d = new Date(hoy); d.setDate(hoy.getDate() + i); if (HORARIO[d.getDay()]) out.push(d); } return out; };
+  const abierto = d => !!HORARIO[d.getDay()] && !cerrados.has(clave(d));
+  const NOMBRES = ['Lucía', 'Marta', 'Inés', 'Ana', 'Sara', 'Paula', 'Elena', 'Carmen'];
+  const deEjemplo = d => { // citas ya cogidas: semilla = la fecha
+    let s = [...clave(d)].reduce((a, ch) => a * 31 + ch.charCodeAt(0) >>> 0, 7); const rnd = () => ((s = (s * 1103515245 + 12345) >>> 0) >>> 16) % 100;
+    const [a, c] = HORARIO[d.getDay()] || [0, 0]; const out = [];
+    for (let m = a; m < c;) { if (rnd() < 38) { const sv = SERVICIOS[rnd() % 3]; if (m + sv.min > c) break; out.push({ ini: m, min: sv.min, serv: sv.n, quien: NOMBRES[out.length % NOMBRES.length], color: COLORES[rnd() % COLORES.length].id }); m += Math.ceil(sv.min / 30) * 30; } else m += 30; }
+    return out;
   };
-  gotas($('#gotas'), pintar);
+  const todas = d => deEjemplo(d).concat(citas.filter(x => x.dia === clave(d)));
+  const huecos = (d, min) => {
+    if (!abierto(d)) return [];
+    const [a, c] = HORARIO[d.getDay()]; const oc = todas(d); const ahora = new Date();
+    const limite = clave(d) === clave(ahora) ? ahora.getHours() * 60 + ahora.getMinutes() + 30 : -1;
+    const out = [];
+    for (let m = a; m + min <= c; m += 30) if (m >= limite && !oc.some(x => m < x.ini + x.min && x.ini < m + min)) out.push(m);
+    return out;
+  };
+  const primerHueco = (min) => { for (const d of proximos()) { const h = huecos(d, min); if (h.length) return { dia: clave(d), hora: h[0] }; } return null; };
+  const cuandoTexto = (k) => { const d = deClave(k), hoy = new Date(); const man = new Date(); man.setDate(hoy.getDate() + 1); return k === clave(hoy) ? 'hoy' : k === clave(man) ? 'mañana' : `el ${fSemana.format(d)}`; };
+  const pintarHueco = () => { const h = primerHueco(SERVICIOS[0].min); const b = $('#hueco'); if (!h) { b.hidden = true; return; } b.hidden = false; b.textContent = `Hueco libre ${cuandoTexto(h.dia)} a las ${hm(h.hora)}`; b.onclick = () => abrir({ servicio: 'semi', dia: h.dia, hora: h.hora, paso: 1 }); };
 
-  // La mano: cuatro dedos con la uña en la punta
-  const DEDOS = [
-    { x: 70, y: 150, w: 54, h: 230, r: -8 }, { x: 140, y: 70, w: 60, h: 310, r: -3 },
-    { x: 215, y: 50, w: 60, h: 330, r: 2 }, { x: 290, y: 100, w: 56, h: 280, r: 7 }
-  ];
-  const g = $('#dedos');
-  const svg = (t, a) => { const e = document.createElementNS('http://www.w3.org/2000/svg', t); for (const k in a) e.setAttribute(k, a[k]); return e; };
-  DEDOS.forEach(d => {
-    const grupo = svg('g', { transform: `rotate(${d.r} ${d.x + d.w / 2} ${d.y + d.h})` });
-    grupo.append(svg('rect', { class: 'dedo', x: d.x, y: d.y, width: d.w, height: d.h + 40, rx: d.w / 2 }));
-    const ux = d.x + 9, uw = d.w - 18, uy = d.y + 10, uh = uw * 1.35;
-    grupo.append(svg('path', { class: 'una', d: `M${ux} ${uy + uh} V${uy + uw / 2} A${uw / 2} ${uw / 1.6} 0 0 1 ${ux + uw} ${uy + uw / 2} V${uy + uh} Q${ux + uw / 2} ${uy + uh + 8} ${ux} ${uy + uh}Z` }));
-    grupo.append(svg('rect', { class: 'brillo', x: ux + 7, y: uy + 12, width: 5, height: uh * .45, rx: 2.5 }));
-    g.append(grupo);
-  });
-
-
-  // Días abiertos de las dos próximas semanas
-  const proximos = () => { const out = [], hoy = new Date(); hoy.setHours(12, 0, 0, 0); for (let i = 0; i < 14; i++) { const d = new Date(hoy); d.setDate(hoy.getDate() + i); out.push(d); } return out; };
-  const abierto = d => HORARIO[d.getDay()] && !cerrados.has(clave(d));
-  // Citas «ya cogidas» de ejemplo: siempre las mismas para cada día
-  const deEjemplo = d => { let s = [...clave(d)].reduce((a, c) => a * 31 + c.charCodeAt(0) >>> 0, 7); const set = new Set(); const [a, c] = HORARIO[d.getDay()] || [0, 0]; for (let m = a; m < c; m += 30) { s = (s * 1103515245 + 12345) >>> 0; if (s % 100 < 30) set.add(m); } return set; };
-  const ocupadas = d => { const set = deEjemplo(d); citas.filter(x => x.dia === clave(d)).forEach(x => { for (let m = x.ini; m < x.ini + x.min; m += 30) set.add(m); }); return set; };
-  // Las citas de ejemplo del panel salen de las mismas horas ocupadas, para que nada se solape
-  const citasEjemplo = d => { const NOM = ['Lucía', 'Marta', 'Inés', 'Ana', 'Sara', 'Paula', 'Elena'], COL = ['Guinda', 'Leche', 'Cobalto', 'Mandarina', 'Oliva', 'Malva', 'Tinta']; const horas = [...deEjemplo(d)].sort((a, b) => a - b); const out = []; for (let i = 0; i < horas.length;) { const largo = horas[i + 1] === horas[i] + 30 ? 60 : 30; const k = out.length; out.push({ ini: horas[i], quien: NOM[k % NOM.length], serv: largo === 60 ? (k % 3 === 2 ? 'Pedicura semipermanente' : 'Manicura semipermanente') : (k % 2 ? 'Retirar semipermanente' : 'Esmaltado normal'), color: COL[k % COL.length], vino: true }); i += largo / 30; } return out; };
-  const huecos = (d, min) => { if (!abierto(d)) return []; const [a, c] = HORARIO[d.getDay()]; const oc = ocupadas(d); const out = [], ahora = new Date(), esHoy = clave(d) === clave(new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate(), 12)), yaPaso = ahora.getHours() * 60 + ahora.getMinutes() + 60; for (let m = a; m + min <= c; m += 30) { let libre = !(esHoy && m < yaPaso); for (let k = m; k < m + min; k += 30) if (oc.has(k)) libre = false; out.push({ m, libre }); } return out; };
-
-  const pintarHorario = () => {
-    const filas = [2, 3, 4, 5, 6, 0, 1].map(i => HORARIO[i] ? `<tr><th scope="row">${NOMBRES_DIA[i]}</th><td>${hm(HORARIO[i][0])}–${hm(HORARIO[i][1])}</td></tr>` : `<tr class="cerrado"><th scope="row">${NOMBRES_DIA[i]}</th><td>Cerrado</td></tr>`);
-    $('#horario').innerHTML = '<caption class="sr">Horario</caption>' + filas.join('');
+  /* ---------- Servicios en la página ---------- */
+  const pintarServicios = () => {
+    $('#lista-servicios').innerHTML = SERVICIOS.map(s => `<li><img src="img/${s.foto}-640.jpg" width="640" height="857" loading="lazy" alt=""><span><b>${s.n}</b>${s.min} min · ${s.p} €</span><button class="boton contorno" type="button" data-servicio="${s.id}" aria-label="Reservar ${s.n}">Reservar</button></li>`).join('');
+    $('#lista-servicios').querySelectorAll('[data-servicio]').forEach(b => b.onclick = () => abrir({ servicio: b.dataset.servicio, paso: 1 }));
   };
 
-  // El asistente de reserva
-  const PASOS = ['Servicio', 'Color', 'Día y hora', 'Tus datos', 'Señal'];
-  const r = { paso: 0, servicio: null, color: null, dia: null, hora: null, nombre: '', movil: '' };
-  const pintarPasos = () => { $('#pasos').innerHTML = PASOS.map((p, i) => `<li${i === r.paso ? ' aria-current="step"' : ''}>${i + 1}. ${p}</li>`).join(''); };
-  const atras = () => `<button class="boton claro" type="button" data-ir="${r.paso - 1}">Atrás</button>`;
+  /* ---------- La hoja de reserva: elegir primero, escribir al final ---------- */
+  const hoja = $('#hoja');
+  const r = { paso: 0, servicio: null, dia: null, hora: null, nombre: '', tel: '', senal: true };
+  const TITULOS = ['¿Qué te hacemos?', '¿Cuándo?', '¿A nombre de quién?', 'Reservado'];
+  const serv = () => SERVICIOS.find(s => s.id === r.servicio);
+  const abrir = (o = {}) => {
+    Object.assign(r, { paso: 0, servicio: null, dia: null, hora: null }, o);
+    pintarPaso(); hoja.showModal(); $('#t-hoja').focus();
+  };
+  document.querySelectorAll('[data-abrir]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); abrir(); }));
+  $('#cerrar').onclick = () => hoja.close();
+  hoja.addEventListener('click', e => { if (e.target === hoja) hoja.close(); });
+  $('#atras').onclick = () => { if (r.paso > 0 && r.paso < 3) { r.paso--; pintarPaso(); $('#t-hoja').focus(); } };
+
+  const pintarResumen = () => {
+    const s = serv();
+    const izq = [s ? `${s.n} con ${color.n}` : `Color ${color.n}`, r.hora != null ? `${may(corta(deClave(r.dia)))}, ${hm(r.hora)}` : ''].filter(Boolean).join('<br>');
+    $('#resumen').innerHTML = `<span>${izq}</span>${s ? `<b>${s.p} €</b>` : ''}`;
+  };
   const pintarPaso = () => {
-    pintarPasos();
-    const p = $('#paso');
-    const s = servicios.find(x => x.id === r.servicio);
+    const p = $('#paso'), s = serv(), seguir = $('#seguir');
+    $('#t-hoja').textContent = TITULOS[r.paso];
+    $('#atras').hidden = !(r.paso === 1 || r.paso === 2);
+    $('#pie-hoja').hidden = r.paso === 3;
     if (r.paso === 0) {
-      p.innerHTML = `<h3>¿Qué te hacemos?</h3><div class="opciones">${servicios.map(x => `<button type="button" class="op" data-serv="${x.id}" aria-pressed="${x.id === r.servicio}"><span>${x.n}<br><small>${x.d} · ${x.min} min</small></span><b>${x.p} €</b></button>`).join('')}</div>`;
+      p.innerHTML = `<p class="etiqueta">Color</p><fieldset class="carta" id="carta-hoja" style="margin:0"><legend class="sr">Color de esmalte</legend></fieldset>
+        <p class="etiqueta">Servicio</p><div class="elige" role="radiogroup" aria-label="Servicio">${SERVICIOS.map(x => `<input type="radio" name="servicio" id="s-${x.id}" value="${x.id}"${x.id === r.servicio ? ' checked' : ''}><label class="fila" for="s-${x.id}"><img src="img/${x.foto}-640.jpg" alt=""><span>${x.n}<small>${x.min} min</small></span><b>${x.p} €</b></label>`).join('')}</div>`;
+      carta($('#carta-hoja'), 'color-hoja', 'h');
+      p.querySelectorAll('[name=servicio]').forEach(i => i.onchange = () => { r.servicio = i.value; r.hora = null; actualizarBoton(); pintarResumen(); });
     } else if (r.paso === 1) {
-      p.innerHTML = `<h3>¿De qué color?</h3><div class="fila claro-fondo" id="gotas-res" style="display:flex;flex-wrap:wrap;gap:10px"></div><p class="nota">Elegido: <b>${r.color || 'lo decido allí'}</b></p><div class="acciones">${atras()}<button class="boton claro" type="button" data-color="">Lo decido allí</button><button class="boton" type="button" data-ir="2">Seguir</button></div>`;
-      gotas($('#gotas-res'), c => { r.color = c[0]; pintar(c); pintarPaso(); });
-      document.querySelectorAll('#gotas-res .gota').forEach(b => b.setAttribute('aria-pressed', b.dataset.n === r.color));
-    } else if (r.paso === 2) {
       const dias = proximos();
-      const fmt = new Intl.DateTimeFormat('es-ES', { weekday: 'short' });
-      const elegido = dias.find(d => clave(d) === r.dia);
-      const hs = elegido ? huecos(elegido, s.min) : [];
-      p.innerHTML = `<h3>¿Cuándo?</h3><div class="dias" role="group" aria-label="Día">${dias.map(d => `<button type="button" class="dia" data-dia="${clave(d)}" aria-pressed="${clave(d) === r.dia}" ${abierto(d) ? '' : 'disabled'} aria-label="${fmtDia.format(d)}${abierto(d) ? '' : ', cerrado'}">${fmt.format(d)}<b>${d.getDate()}</b></button>`).join('')}</div>
-        ${elegido ? (hs.some(h => h.libre) ? `<div class="horas" role="group" aria-label="Hora">${hs.map(h => `<button type="button" class="hora" data-hora="${h.m}" aria-pressed="${h.m === r.hora}" ${h.libre ? '' : 'disabled'} aria-label="${hm(h.m)}${h.libre ? '' : ', ocupada'}">${hm(h.m)}</button>`).join('')}</div>` : '<p class="vacio">Ese día ya está completo. Prueba otro.</p>') : '<p class="vacio">Elige un día para ver las horas libres.</p>'}
-        <div class="acciones">${atras()}<button class="boton" type="button" data-ir="3" ${r.hora == null ? 'disabled' : ''}>Seguir</button></div>`;
-    } else if (r.paso === 3) {
-      p.innerHTML = `<h3>¿A nombre de quién?</h3><form class="campos" id="datos"><label>Nombre<input name="nombre" autocomplete="given-name" required value="${r.nombre}"></label><label>Móvil<input name="movil" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,}" value="${r.movil}"></label>
-        <div class="acciones">${atras()}<button class="boton" type="submit">Seguir</button></div></form>`;
-      $('#datos').onsubmit = e => { e.preventDefault(); const f = new FormData(e.target); r.nombre = f.get('nombre').trim(); r.movil = f.get('movil').trim(); r.paso = 4; pintarPaso(); };
-    } else if (r.paso === 4) {
-      const d = new Date(r.dia + 'T12:00');
-      p.innerHTML = `<h3>Guarda tu hora con ${SENAL} €</h3><div class="resumen"><dl><dt>Servicio</dt><dd>${s.n}</dd><dt>Color</dt><dd>${r.color || 'Lo decides allí'}</dd><dt>Cuándo</dt><dd>${fmtDia.format(d)}, ${hm(r.hora)}</dd><dt>Total</dt><dd>${s.p} € (pagas ${s.p - SENAL} € allí)</dd></dl></div>
-        <p class="nota" style="margin-top:0">La señal se descuenta del precio. Si cancelas con 24 horas, te la devolvemos.</p>
-        <div class="acciones">${atras()}<button class="boton" type="button" id="pagar">Pagar ${SENAL} € y reservar</button></div>
-        <p class="demo">En la web real se abriría el pago seguro de Stripe con tarjeta o Bizum. Aquí no se cobra nada.</p>`;
-      $('#pagar').onclick = reservar;
-    } else if (r.paso === 5) {
-      const d = new Date(r.dia + 'T12:00');
-      p.innerHTML = `<h3>Reservado. Te esperamos, ${r.nombre}.</h3><div class="resumen"><dl><dt>Cuándo</dt><dd>${fmtDia.format(d)}, ${hm(r.hora)}</dd><dt>Servicio</dt><dd>${s.n}</dd><dt>Color</dt><dd>${r.color || 'Lo decides allí'}</dd></dl></div>
-        <div class="acciones"><button class="boton" type="button" id="ics">Añadir a mi calendario</button><button class="boton claro" type="button" id="ver-panel">Ver cómo le llega a la dueña</button><button class="boton claro" type="button" data-ir="0" id="otra">Otra reserva</button></div>`;
-      $('#ics').onclick = calendario;
-      $('#ver-panel').onclick = () => abrirPanel(r.dia);
+      if (!r.dia || !huecos(deClave(r.dia), s.min).length) r.dia = clave(dias.find(d => huecos(d, s.min).length) || dias[0]);
+      const hs = huecos(deClave(r.dia), s.min);
+      const grupo = (t, lista) => lista.length ? `<p class="etiqueta">${t}</p><div class="horas">${lista.map(m => `<input type="radio" name="hora" id="h${m}" value="${m}"${m === r.hora ? ' checked' : ''}><label class="ficha" for="h${m}">${hm(m)}</label>`).join('')}</div>` : '';
+      p.innerHTML = `<div class="dias" role="radiogroup" aria-label="Día">${dias.map(d => { const k = clave(d), lleno = !huecos(d, s.min).length; return `<input type="radio" name="dia" id="d${k}" value="${k}"${k === r.dia ? ' checked' : ''}${lleno ? ' disabled' : ''}><label class="ficha" for="d${k}" aria-label="${fLarga.format(d)}${lleno ? ', completo' : ''}">${fDS.format(d).replace('.', '')}<b>${d.getDate()}</b>${lleno ? '<small>Completo</small>' : ''}</label>`; }).join('')}</div>
+        <div role="radiogroup" aria-label="Hora">${grupo('Mañana', hs.filter(m => m < 840))}${grupo('Tarde', hs.filter(m => m >= 840))}</div>`;
+      p.querySelectorAll('[name=dia]').forEach(i => i.onchange = () => { r.dia = i.value; r.hora = null; pintarPaso(); p.querySelector(`#d${r.dia}`).focus(); });
+      p.querySelectorAll('[name=hora]').forEach(i => i.onchange = () => { r.hora = +i.value; actualizarBoton(); pintarResumen(); });
+      const sel = p.querySelector('.dias input:checked'); if (sel) sel.nextElementSibling.scrollIntoView({ block: 'nearest', inline: 'center' });
+    } else if (r.paso === 2) {
+      p.innerHTML = `<form class="campos" id="datos" novalidate><label>Nombre<input name="nombre" autocomplete="name" required value="${r.nombre}"></label><label>Teléfono<input name="tel" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,}" value="${r.tel}"></label></form>
+        <div class="senal elige" role="radiogroup" aria-label="Señal"><input type="radio" name="senal" id="con" value="1"${r.senal ? ' checked' : ''}><label class="ficha" for="con"><b style="font-size:17px">Asegurar con ${SENAL} €</b><small>Se descuenta del precio</small></label><input type="radio" name="senal" id="sin" value="0"${r.senal ? '' : ' checked'}><label class="ficha" for="sin"><b style="font-size:17px">Sin señal</b><small>Pagas todo allí</small></label></div>
+        <p class="aviso-demo" id="aviso-senal"></p>`;
+      const aviso = () => { $('#aviso-senal').textContent = r.senal ? `En la web real se pagaría con tarjeta o Bizum. En este caso inventado no se cobra nada.` : 'Te lo recordamos por WhatsApp el día antes.'; };
+      p.querySelectorAll('[name=senal]').forEach(i => i.onchange = () => { r.senal = i.value === '1'; aviso(); actualizarBoton(); });
+      p.querySelectorAll('#datos input').forEach(i => i.oninput = () => { r[i.name] = i.value.trim(); actualizarBoton(); });
+      $('#datos').onsubmit = e => { e.preventDefault(); seguir.click(); };
+      aviso();
+    } else {
+      const d = deClave(r.dia);
+      p.innerHTML = `<div class="hecho"><p>Te esperamos, ${r.nombre.split(' ')[0]}.</p><p class="cuando">${may(fLarga.format(d))}, ${hm(r.hora)}</p><p>${s.n} con ${color.n}${r.senal ? ` · señal de ${SENAL} €` : ''}</p><p>Te lo recordamos por WhatsApp el día antes.</p>
+        <div class="acciones"><button class="boton" type="button" id="ics">Añadir al calendario</button><button class="boton contorno" type="button" id="ver-panel">Ver cómo le llega a Nerea</button></div>
+        <p class="aviso-demo">Caso inventado: no se ha reservado nada de verdad.</p></div>`;
+      $('#ics').onclick = calendario; $('#ver-panel').onclick = () => { hoja.close(); abrirPanel(r.dia); };
     }
-    p.querySelectorAll('[data-ir]').forEach(b => b.onclick = () => { const n = +b.dataset.ir; if (b.id === 'otra') Object.assign(r, { servicio: null, color: null, dia: null, hora: null }); r.paso = n; pintarPaso(); });
-    p.querySelectorAll('[data-serv]').forEach(b => b.onclick = () => { r.servicio = b.dataset.serv; r.hora = null; r.paso = 1; pintarPaso(); });
-    p.querySelectorAll('[data-color]').forEach(b => b.onclick = () => { r.color = null; r.paso = 2; pintarPaso(); });
-    p.querySelectorAll('[data-dia]').forEach(b => b.onclick = () => { r.dia = b.dataset.dia; r.hora = null; pintarPaso(); });
-    p.querySelectorAll('[data-hora]').forEach(b => b.onclick = () => { r.hora = +b.dataset.hora; pintarPaso(); });
+    actualizarBoton(); pintarResumen();
   };
-  const reservar = () => {
-    const s = servicios.find(x => x.id === r.servicio);
-    citas.push({ dia: r.dia, ini: r.hora, min: s.min, quien: r.nombre, serv: s.n, color: r.color, nueva: true, vino: true });
-    r.paso = 5; pintarPaso();
+  const actualizarBoton = () => {
+    const b = $('#seguir'), s = serv();
+    if (r.paso === 0) { b.textContent = 'Elegir día'; b.disabled = !s; }
+    else if (r.paso === 1) { b.textContent = r.hora != null ? `Seguir con ${corta(deClave(r.dia))}, ${hm(r.hora)}` : 'Elige una hora'; b.disabled = r.hora == null; }
+    else if (r.paso === 2) { const listo = r.nombre.length > 1 && /^[0-9 +]{9,}$/.test(r.tel); b.textContent = `${r.senal ? `Pagar ${SENAL} € y reservar` : 'Reservar'} ${corta(deClave(r.dia))}, ${hm(r.hora)}`; b.disabled = !listo; }
+  };
+  $('#seguir').onclick = () => {
+    if (r.paso === 2) { const s = serv(); citas.push({ dia: r.dia, ini: r.hora, min: s.min, serv: s.n, quien: r.nombre.split(' ')[0], color: color.id, nueva: true }); pintarHueco(); }
+    r.paso++; pintarPaso(); $('#t-hoja').focus();
   };
   const calendario = () => {
-    const s = servicios.find(x => x.id === r.servicio);
-    const f = (dia, m) => dia.replace(/-/g, '') + 'T' + hm(m).replace(':', '') + '00';
-    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Covalente//Mano Alzada demo//ES', 'BEGIN:VEVENT', `UID:${Date.now()}@demo`, `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`, `DTSTART:${f(r.dia, r.hora)}`, `DTEND:${f(r.dia, r.hora + s.min)}`, `SUMMARY:Mano Alzada · ${s.n}`, 'DESCRIPTION:Cita de ejemplo (caso inventado por Covalente)', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
-    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })); a.download = 'cita-mano-alzada.ics'; a.click(); URL.revokeObjectURL(a.href);
+    const s = serv(); const f = m => r.dia.replace(/-/g, '') + 'T' + String(Math.floor(m / 60)).padStart(2, '0') + String(m % 60).padStart(2, '0') + '00';
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Covalente//Mano Alzada caso inventado//ES', 'BEGIN:VEVENT', `UID:${Date.now()}@mano-alzada.demo`, `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`, `DTSTART:${f(r.hora)}`, `DTEND:${f(r.hora + s.min)}`, `SUMMARY:Mano Alzada · ${s.n} con ${color.n}`, 'DESCRIPTION:Cita de ejemplo de un caso inventado por Covalente', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })); a.download = 'cita-mano-alzada.ics'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   };
 
-  // Panel de la dueña
-  const panel = $('#panel');
-  let diaPanel = null;
+  /* ---------- Panel de la dueña ---------- */
+  const panel = $('#panel'); let diaPanel = null;
   const pintarPanel = () => {
-    const d = new Date(diaPanel + 'T12:00');
-    $('#dia-panel').textContent = fmtDia.format(d);
-    const lista = citasEjemplo(d).concat(citas.filter(x => x.dia === diaPanel)).sort((a, b) => a.ini - b.ini);
-    $('#citas').innerHTML = abierto(d) ? lista.map((c, i) => { const hex = (ESMALTES.find(e => e[0] === c.color) || [0, '#DAD6D2'])[1]; return `<li class="${c.nueva ? 'nueva' : ''}"><span class="h">${hm(c.ini)}</span><span><b>${c.quien}</b>${c.nueva ? ' · nueva' : ''}<br><small><span class="c" style="--c:${hex}"></span>${c.serv}</small></span><button type="button" aria-pressed="${!c.vino}" data-novino="${i}">No vino</button></li>`; }).join('') : '<li>Este día está cerrado.</li>';
-    $('#citas').querySelectorAll('[data-novino]').forEach(b => b.onclick = () => b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'));
-    $('#precios').innerHTML = servicios.map(s => `<label>${s.n}<input type="number" min="0" step="1" inputmode="numeric" value="${s.p}" data-precio="${s.id}" aria-label="Precio de ${s.n} en euros"></label>`).join('');
-    $('#precios').querySelectorAll('[data-precio]').forEach(i => i.oninput = () => { const s = servicios.find(x => x.id === i.dataset.precio); s.p = Math.max(0, Math.round(+i.value || 0)); if (r.paso < 5) pintarPaso(); });
-    $('#cerrar-dia').innerHTML = '<option value="">Ninguno</option>' + proximos().filter(x => HORARIO[x.getDay()]).map(x => `<option value="${clave(x)}" ${cerrados.has(clave(x)) ? 'selected' : ''}>${fmtDia.format(x)}</option>`).join('');
-    $('#cerrar-dia').onchange = e => { cerrados.clear(); if (e.target.value) cerrados.add(e.target.value); if (r.dia && cerrados.has(r.dia)) { r.dia = null; r.hora = null; } if (r.paso === 2) pintarPaso(); pintarPanel(); };
+    const d = deClave(diaPanel);
+    $('#dia-panel').textContent = fLarga.format(d);
+    const lista = abierto(d) ? todas(d).sort((a, b) => a.ini - b.ini) : [];
+    $('#citas').innerHTML = abierto(d) ? lista.map(c => { const u = (COLORES.find(x => x.id === c.color) || COLORES[0]).u; return `<li class="${c.nueva ? 'nueva' : ''}"><b>${hm(c.ini)}</b><span>${c.quien}${c.nueva ? ' (nueva)' : ''}<br><small><span class="p" style="--u:${u}"></span>${c.serv}</small></span><button type="button" aria-pressed="false">No vino</button></li>`; }).join('') : '<li>Este día está cerrado.</li>';
+    $('#citas').querySelectorAll('button').forEach(b => b.onclick = () => b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'));
+    $('#precios').innerHTML = SERVICIOS.map(s => `<label>${s.n}<input type="number" min="0" step="1" inputmode="numeric" value="${s.p}" data-precio="${s.id}" aria-label="Precio de ${s.n}, en euros"></label>`).join('');
+    $('#precios').querySelectorAll('[data-precio]').forEach(i => i.oninput = () => { SERVICIOS.find(x => x.id === i.dataset.precio).p = Math.max(0, Math.round(+i.value || 0)); pintarServicios(); });
+    $('#cerrar-dia').innerHTML = '<option value="">Ninguno</option>' + proximos().map(x => `<option value="${clave(x)}"${cerrados.has(clave(x)) ? ' selected' : ''}>${may(fLarga.format(x))}</option>`).join('');
+    $('#cerrar-dia').onchange = e => { cerrados.clear(); if (e.target.value) cerrados.add(e.target.value); pintarHueco(); pintarPanel(); };
   };
-  const abrirPanel = (dia) => { diaPanel = dia || clave(proximos().find(abierto) || new Date()); pintarPanel(); panel.showModal(); };
+  const abrirPanel = (dia) => { diaPanel = dia || clave(proximos().find(abierto) || new Date()); pintarPanel(); panel.showModal(); $('#t-panel').focus(); };
   $('#abrir-panel').onclick = () => abrirPanel();
   $('#cerrar-panel').onclick = () => panel.close();
+  panel.addEventListener('click', e => { if (e.target === panel) panel.close(); });
 
-  pintarHorario(); pintarPaso(); pintar(ESMALTES[0]);
+  pintarServicios(); pintarHueco();
 })();
 </script>
 </body>
