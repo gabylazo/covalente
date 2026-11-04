@@ -1,0 +1,396 @@
+<!doctype html>
+<!--
+  Caso 3 de Covalente: «Cubo», floristería INVENTADA. Versión 3 (04/11/2026): arma tu ramo.
+  La foto del suelo con los cubos es la tienda: tocas un cubo y su tallo salta al cucurucho; el ramo crece y el precio con él;
+  al final se envuelve y te lo apartan para recoger. Lo que queda en cada cubo lo cambia la dueña desde su panel.
+  Tallos y cucurucho: recortes de fotos de Gemini sobre azul croma (herramientas/ramo/recortar.py, y WebP con cwebp), en img/tallos/.
+  Mientras no estén, la página dibuja tallos provisionales. Fuentes: Newsreader e IBM Plex Mono (OFL), en fuentes/.
+  Todo funciona en el navegador: no se guarda, no se aparta y no se cobra nada.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cubo · caso inventado por Covalente</title>
+<meta name="description" content="Caso inventado por Covalente: la web de una floristería de Madrid donde armas tu ramo tocando los cubos y te lo apartan para recoger.">
+<meta name="robots" content="noindex">
+<link rel="preload" href="fuentes/Newsreader.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Newsreader"; src:url(fuentes/Newsreader.woff2) format("woff2"); font-weight:300 600; font-display:swap}
+@font-face{font-family:"Plex Mono"; src:url(fuentes/PlexMono-500.woff2) format("woff2"); font-weight:500; font-display:swap}
+
+/* La tienda es verde puerta (la de la fachada) y las flores ponen el resto del color; el botón, del crisantemo */
+:root{--papel:#1F3B32; --tinta:#F4EEDF; --dalia:#6E1A2C; --quedan:#2F6B4F; --pocas:#8A5A00; --agotado:#6B6B6B; --zinc:#8A9297; --puerta:#1F3B32; --linea:rgba(244,238,223,.2);
+  --crisantemo:#E9A23B; --oscuro:#1D1F1C}
+*{box-sizing:border-box}
+html{scrollbar-gutter:stable}
+body{margin:0; background:var(--papel); color:var(--tinta); font:400 17px/1.45 "Newsreader", Georgia, serif; font-optical-sizing:auto; font-variant-numeric:tabular-nums}
+a{color:inherit}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--crisantemo); outline-offset:3px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+img{display:block; max-width:100%; height:auto}
+.mono{font:500 14px/1.2 "Plex Mono", ui-monospace, monospace; letter-spacing:.02em}
+
+.cab{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px max(16px,4vw)}
+.marca{margin:0; font:500 30px/1 "Newsreader", Georgia, serif; letter-spacing:-.02em}
+.inventado{font:500 13px/1 "Plex Mono", monospace; padding:8px 12px; border-radius:999px; text-decoration:none; box-shadow:inset 0 0 0 1px var(--linea)}
+
+/* El taller: el suelo con los cubos y, al lado, el ramo que se va armando */
+.taller{display:grid; gap:0}
+.suelo{position:relative; display:grid}
+.suelo > *{grid-area:1/1}
+.suelo img{width:100%; height:auto}
+.cubo{position:absolute; left:var(--x); top:var(--y); width:var(--w); height:var(--h); translate:-50% -50%; border:0; padding:0; background:none; border-radius:50%; cursor:pointer;
+  -webkit-tap-highlight-color:transparent}
+.cubo::before{content:""; position:absolute; inset:0; border-radius:50%; box-shadow:0 0 0 2px rgba(255,255,255,0); transition:box-shadow .2s, background-color .2s}
+.cubo:hover::before{box-shadow:0 0 0 2px rgba(255,255,255,.85); background:rgba(255,255,255,.08)}
+.cubo:focus-visible{outline:none}
+.cubo:focus-visible::before{box-shadow:0 0 0 3px #fff, 0 0 0 5px var(--tinta)}
+.cubo.agotado{cursor:not-allowed}
+.cubo.agotado::before{backdrop-filter:grayscale(1) brightness(.8); -webkit-backdrop-filter:grayscale(1) brightness(.8)}
+.cubo .tag{position:absolute; left:50%; bottom:-6px; translate:-50% 0; white-space:nowrap; padding:5px 8px 4px; border-radius:3px; background:#F4EEDF; color:var(--quedan);
+  box-shadow:0 1px 3px rgba(0,0,0,.28); font:500 13px/1 "Plex Mono", monospace; pointer-events:none; transition:transform .2s}
+.cubo.pocas .tag{color:var(--pocas)}
+.cubo.agotado .tag{color:var(--agotado)}
+.cubo.toca .tag{transform:scale(1.12)}
+
+.ramo{position:relative; height:min(118vw,560px); margin-top:8px; overflow:visible; touch-action:manipulation; transition:height .5s cubic-bezier(.3,.7,.2,1)}
+.ramo:not(.lleno){height:min(66vw,330px)}
+.ramo .cono{position:absolute; left:50%; bottom:6%; height:50%; width:auto; translate:-50% 0; z-index:200; pointer-events:none; filter:drop-shadow(0 10px 14px rgba(40,30,20,.18));
+  transition:scale .45s cubic-bezier(.3,.7,.2,1)}
+.tallo{position:absolute; left:50%; bottom:var(--b,30%); height:var(--l,78%); width:auto; translate:-50% 0; transform-origin:50% 100%; rotate:var(--a,0deg);
+  border:0; padding:0; background:none; cursor:pointer; transition:rotate .5s cubic-bezier(.3,.7,.2,1)}
+.tallo img{height:100%; width:auto; max-width:none; pointer-events:none; filter:drop-shadow(0 4px 5px rgba(30,25,20,.22))}
+.ramo.atado .tallo{rotate:calc(var(--a,0deg) * .55)}
+.ramo.atado .cono{scale:1.06}
+.lazo{position:absolute; left:50%; bottom:calc(6% + 8%); width:30%; translate:-50% 0; z-index:210; pointer-events:none; overflow:visible}
+.lazo path{fill:none; stroke:#D8CDB6; stroke-width:3; stroke-linecap:round; stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset .7s ease .25s}
+.ramo.atado .lazo path{stroke-dashoffset:0}
+.vacio{position:absolute; inset:16% 10% auto; margin:0; text-align:center; font:italic 400 clamp(26px,6.4vw,38px)/1.1 "Newsreader", Georgia, serif; color:color-mix(in srgb, var(--tinta) 55%, var(--papel)); transition:opacity .3s}
+.ramo.lleno .vacio{opacity:0}
+
+.cuenta{position:sticky; bottom:0; z-index:300; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px max(16px,4vw) calc(12px + env(safe-area-inset-bottom));
+  background:color-mix(in srgb, var(--papel) 92%, transparent); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:1px solid var(--linea)}
+.cuenta .que{font-size:19px; line-height:1.2}
+.cuenta .que small{display:block; font:500 13px/1.3 "Plex Mono", monospace; color:color-mix(in srgb, var(--tinta) 78%, var(--papel))}
+.listo{display:inline-flex; align-items:center; gap:8px; min-height:32px; margin-top:2px; padding:0; border:0; background:none; cursor:pointer; font:500 14px/1.2 "Plex Mono", monospace; color:var(--crisantemo); text-decoration:underline; text-underline-offset:3px}
+.listo i{width:8px; height:8px; border-radius:50%; background:#7BD88F; box-shadow:0 0 0 3px rgba(123,216,143,.25)}
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:54px; padding:0 24px; border:0; border-radius:999px; background:var(--crisantemo); color:var(--oscuro);
+  font:500 18px/1 "Newsreader", Georgia, serif; text-decoration:none; cursor:pointer; white-space:nowrap}
+.boton:disabled{opacity:.35; cursor:not-allowed}
+.boton.contorno{background:none; color:inherit; box-shadow:inset 0 0 0 1.5px currentColor; min-height:46px; font-size:16px}
+
+.tienda{display:grid; gap:12px; margin-top:40px; padding:0 max(16px,4vw)}
+.tienda .foto img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:6px}
+.tienda h2{margin:0; font:500 44px/1 "Newsreader", Georgia, serif; letter-spacing:-.02em}
+.tienda .datos{margin:4px 0 0; font-size:18px}
+.tienda .datos b{display:block; font-size:21px; font-weight:500}
+.tienda .llegar{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.atrib{margin:8px 0 0; font:500 12px/1.3 "Plex Mono", monospace; color:color-mix(in srgb, var(--tinta) 72%, var(--papel))}
+.mapa{position:relative; display:block; width:100%; height:230px; padding:0; border:0; border-radius:6px; overflow:hidden; cursor:pointer; background:#E9E1CF; color:var(--oscuro); transition:height .6s cubic-bezier(.3,.7,.2,1)}
+.mapa.grande{height:min(460px, 80vw)}
+.mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -52%}
+.m-borde path{fill:none; stroke:#D6CBB3; stroke-linecap:round; stroke-linejoin:round}
+.m-calle path{fill:none; stroke:#FBF8F1; stroke-linecap:round; stroke-linejoin:round}
+.m-plaza{fill:#FBF8F1; stroke:#D6CBB3; stroke-width:2}
+.m-parque{fill:#BFD9A8}
+.m-etiquetas text{font:500 11px "Plex Mono", monospace; fill:#6A6355}
+.m-ruta{fill:none; stroke:var(--dalia); stroke-width:6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:0}
+.mapa.dibuja .m-ruta{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+@keyframes ruta{from{stroke-dashoffset:1}}
+.m-metro circle{fill:#1E3FA8; stroke:#fff; stroke-width:3}
+.m-metro text{fill:#fff; font:700 16px "Newsreader", Georgia, serif; text-anchor:middle}
+.m-pin path{fill:var(--puerta); stroke:#fff; stroke-width:2.5}
+.m-pin circle{fill:var(--crisantemo)}
+.m-nombre-pin,.m-nombre-origen{font:600 17px "Newsreader", Georgia, serif; fill:var(--oscuro); paint-order:stroke; stroke:#FBF8F1; stroke-width:5px; stroke-linejoin:round}
+.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:6px 10px; border-radius:999px; background:#fff; font:500 12px/1 "Plex Mono", monospace}
+footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; margin-top:40px; padding:26px max(16px,4vw) 36px; border-top:1px solid var(--linea); color:var(--tinta); font-size:15px}
+
+@media (min-width:900px){
+  .taller{grid-template-columns:minmax(0,1.55fr) minmax(360px,1fr); align-items:center; min-height:calc(100vh - 64px); padding:0 0 0 max(16px,2vw)}
+  .suelo{border-radius:4px; overflow:visible}
+  .suelo img{border-radius:4px}
+  .ramo,.ramo:not(.lleno){height:min(70vh,640px); align-self:end}
+  .cuenta{grid-column:1 / -1}
+  .tienda{grid-template-columns:1.2fr 1fr; grid-template-rows:auto 1fr; column-gap:16px; margin-top:56px; padding:0 max(16px,2vw)}
+  .tienda .foto{grid-row:1 / span 2}
+  .tienda .foto img{height:100%; aspect-ratio:auto; min-height:420px}
+  .tienda h2{font-size:64px}
+  .mapa{height:100%; min-height:300px}
+  .mapa.grande{height:100%}
+}
+
+/* La hoja para apartar (y el panel de la dueña) */
+dialog.hoja{--tinta:#1D1F1C; --linea:#D9D3C8; position:fixed; inset:auto 0 0 0; margin:0; width:100%; max-width:100%; max-height:92dvh; border:0; padding:0; border-radius:22px 22px 0 0; background:#FBF9F4; color:var(--tinta);
+  display:flex; flex-direction:column; transition:transform .26s ease-out, opacity .26s ease-out, overlay .26s allow-discrete, display .26s allow-discrete}
+dialog.hoja:not([open]){display:none; transform:translateY(28px); opacity:0}
+@starting-style{dialog.hoja[open]{transform:translateY(28px); opacity:0}}
+dialog.hoja::backdrop{background:rgba(18,22,20,.45)}
+@media (min-width:900px){dialog.hoja{inset:0 0 0 auto; width:460px; height:100dvh; max-height:100dvh; border-radius:0}}
+.hoja .arriba{display:flex; justify-content:space-between; padding:14px 20px 4px}
+.hoja .arriba button{background:none; border:0; min-height:44px; padding:0 4px; cursor:pointer; text-decoration:underline; text-underline-offset:3px; font-size:16px}
+.hoja h2{font:500 34px/1.05 "Newsreader", Georgia, serif; margin:0; padding:0 20px 14px}
+.hoja h2:focus{outline:none}
+.hoja .cuerpo{overflow:auto; padding:0 20px 20px; flex:1}
+.hoja .pie{border-top:1px solid var(--linea); padding:14px 20px calc(14px + env(safe-area-inset-bottom)); display:grid; gap:12px}
+.hoja .pie[hidden]{display:none}
+.hoja .boton{width:100%}
+.etiqueta{margin:18px 0 10px; font:500 13px/1.2 "Plex Mono", monospace; text-transform:none}
+.etiqueta:first-child{margin-top:0}
+.hoja input[type=radio]{position:absolute; opacity:0; width:1px; height:1px}
+.fichas{display:flex; flex-wrap:wrap; gap:8px}
+.ficha{display:grid; align-content:center; min-width:76px; min-height:50px; padding:8px 14px; border-radius:14px; border:1.5px solid var(--linea); background:#fff; cursor:pointer; line-height:1.2; font-size:17px; text-align:center}
+.ficha small{font:500 13px/1.3 "Plex Mono", monospace}
+input:checked + .ficha{background:var(--puerta); color:#F4F0E6; border-color:var(--puerta)}
+input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
+.campos{display:grid; gap:14px; margin-top:6px}
+.campos label{display:grid; gap:6px; font-size:16px}
+.campos input{font:inherit; min-height:50px; padding:0 14px; border-radius:12px; border:1.5px solid #B9B2A6; background:#fff}
+.lista{list-style:none; margin:0; padding:0}
+.lista li{display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--linea)}
+.lista li:last-child{border:0; font-weight:600}
+.hecho .numero{font:400 88px/1 "Newsreader", Georgia, serif; margin:6px 0 10px; letter-spacing:-.03em}
+.hecho img{width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:6px; margin-top:16px}
+.aviso-demo{font:500 13px/1.4 "Plex Mono", monospace; margin:12px 0 0}
+.stock{list-style:none; margin:0; padding:0}
+.stock li{display:grid; grid-template-columns:1fr auto auto; gap:10px; align-items:center; padding:8px 0; border-bottom:1px solid var(--linea)}
+.stock .menos,.stock .mas{width:44px; height:44px; border-radius:50%; border:1.5px solid var(--linea); background:#fff; cursor:pointer; font-size:20px; line-height:1}
+.stock .n{display:inline-block; min-width:2.2ch; text-align:center; font:500 16px/1 "Plex Mono", monospace}
+.stock .agota{min-height:40px; padding:0 12px; border-radius:999px; border:1.5px solid var(--linea); background:#fff; cursor:pointer; font-size:15px}
+.stock .agota[aria-pressed=true]{background:var(--agotado); color:#fff; border-color:var(--agotado)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important} @starting-style{dialog.hoja[open]{transform:none}}}
+</style>
+</head>
+<body>
+<header class="cab">
+  <h1 class="marca">Cubo</h1>
+  <a class="inventado" href="https://covalente.eu">Caso inventado</a>
+</header>
+
+<main>
+  <section class="taller" aria-label="Arma tu ramo">
+    <div class="suelo" id="suelo">
+      <picture>
+        <source type="image/avif" srcset="img/cubos-640.avif 640w, img/cubos-1280.avif 1280w" sizes="(min-width: 900px) 60vw, 100vw">
+        <img src="img/cubos-1280.jpg" srcset="img/cubos-640.jpg 640w, img/cubos-1280.jpg 1280w" sizes="(min-width: 900px) 60vw, 100vw" width="1280" height="956" fetchpriority="high"
+          alt="Siete cubos de zinc con flores sobre el suelo de terrazo de la tienda, vistos desde arriba">
+      </picture>
+    </div>
+    <div class="ramo" id="ramo" aria-live="polite">
+      <p class="vacio" id="vacio">Toca un cubo</p>
+      <div id="tallos"></div>
+      <img class="cono" id="cono" src="img/tallos/cucurucho.webp" alt="" width="409" height="1009">
+      <svg class="lazo" viewBox="0 0 120 40" aria-hidden="true"><path pathLength="1" d="M6 20 C30 30, 90 30, 114 20 M60 24 c-14 -16 -30 -8 -18 2 c8 6 18 2 18 -2 c0 4 10 8 18 2 c12 -10 -4 -18 -18 -2 M58 26 l-10 14 M62 26 l10 14"/></svg>
+    </div>
+    <div class="cuenta">
+      <div><p class="que" id="que" style="margin:0">Tu ramo<small>Sin pagar nada en la web</small></p><button class="listo" type="button" id="listo"><i></i><span></span></button></div>
+      <button class="boton" type="button" id="envolver" disabled>Envolver</button>
+    </div>
+  </section>
+
+  <section class="tienda" aria-labelledby="t-tienda">
+    <div class="foto"><picture><source type="image/avif" srcset="img/fachada-640.avif 640w, img/fachada-1280.avif 1280w" sizes="(min-width: 900px) 52vw, 92vw"><img src="img/fachada-1280.jpg" srcset="img/fachada-640.jpg 640w, img/fachada-1280.jpg 1280w" sizes="(min-width: 900px) 52vw, 92vw" alt="La fachada verde de la floristería, con cubos de flores en la acera de una calle empedrada" width="1280" height="956" loading="lazy"></picture></div>
+    <div>
+      <h2 id="t-tienda">En Santa María</h2>
+      <p class="datos"><b>3 minutos andando desde el metro de Antón Martín</b>Calle de Santa María, barrio de las Letras<br>Lunes a sábado, 10:00–20:00</p>
+      <div class="llegar"><a class="boton contorno" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760" rel="noopener">Cómo llegar</a></div>
+    </div>
+    <div>
+      <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de Santa María, a 3 minutos andando del metro de Antón Martín. Toca para agrandarlo."><p class="crece" aria-hidden="true">Ampliar</p></button>
+      <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Caso inventado por <a href="https://covalente.eu">Covalente</a>. Fotos generadas con IA.</span>
+  <button class="boton contorno" type="button" id="abrir-panel">Ver el panel de Lola</button>
+</footer>
+
+<dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
+  <div class="arriba"><span></span><button type="button" id="cerrar">Cerrar</button></div>
+  <h2 id="t-hoja" tabindex="-1">¿Cuándo lo recoges?</h2>
+  <div class="cuerpo" id="paso"></div>
+  <div class="pie" id="pie"><button class="boton" type="button" id="apartar" disabled>Apártamelo</button></div>
+</dialog>
+
+<dialog class="hoja" id="panel" aria-labelledby="t-panel">
+  <div class="arriba"><span></span><button type="button" id="cerrar-panel">Cerrar</button></div>
+  <h2 id="t-panel" tabindex="-1">Panel de Lola</h2>
+  <div class="cuerpo">
+    <p class="etiqueta" id="actualizado"></p>
+    <ul class="stock" id="stock"></ul>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  // x, y: centro del cubo en la foto (%); w, h: tamaño de la zona que se toca (%); color: el del tallo provisional
+  const TALLOS = [
+    { id: 'dalia', n: 'Dalia', pl: 'dalias', p: 4, queda: 9, x: 13, y: 60, w: 22, h: 36, color: '#5E1424', hojas: '#3E5A2A' },
+    { id: 'anemona', n: 'Anémona', pl: 'anémonas', p: 3.5, queda: 4, x: 30, y: 41, w: 19, h: 28, color: '#F4F1EA', centro: '#1B1B2A', hojas: '#4D6B3A' },
+    { id: 'crisantemo', n: 'Crisantemo', pl: 'crisantemos', p: 2.5, queda: 12, x: 50.5, y: 36, w: 21, h: 30, color: '#C9772A', hojas: '#4A6233' },
+    { id: 'eucalipto', n: 'Eucalipto', pl: 'ramas de eucalipto', p: 2, queda: 14, x: 74, y: 36, w: 24, h: 38, color: '#9DB3AE', hojas: '#9DB3AE' },
+    { id: 'olivo', n: 'Olivo', pl: 'ramas de olivo', p: 2.5, queda: 10, x: 40, y: 66, w: 24, h: 34, color: '#8E9A80', hojas: '#8E9A80' },
+    { id: 'ranunculo', n: 'Ranúnculo', pl: 'ranúnculos', p: 3.5, queda: 3, x: 71, y: 68, w: 19, h: 28, color: '#F2A07E', hojas: '#4F6E38' },
+    { id: 'pampa', n: 'Pampa', pl: 'pampas', p: 3, queda: 0, x: 92, y: 52, w: 16, h: 48, color: '#E3D3B8', hojas: '#CDBB9C' }
+  ];
+  const MAX = 15;
+  const $ = s => document.querySelector(s);
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)');
+  const euros = n => n.toLocaleString('es-ES', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
+  const ramo = []; // { t: tallo, el: elemento }
+  let actualizado = new Date(Date.now() - 23 * 60000);
+  const hora = d => d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+  /* ---------- Tallos provisionales (hasta que estén los recortes reales) ---------- */
+  const provisional = (t) => {
+    const flor = t.id === 'eucalipto' || t.id === 'olivo'
+      ? Array.from({ length: 9 }, (_, i) => `<ellipse cx="${50 + (i % 2 ? 13 : -13) + Math.sin(i) * 4}" cy="${30 + i * 16}" rx="12" ry="7" fill="${t.color}" transform="rotate(${i % 2 ? 30 : -30} ${50 + (i % 2 ? 13 : -13)} ${30 + i * 16})"/>`).join('')
+      : t.id === 'pampa' ? `<ellipse cx="50" cy="70" rx="17" ry="64" fill="${t.color}"/>`
+      : `<circle cx="50" cy="44" r="${t.id === 'dalia' ? 34 : 28}" fill="${t.color}"/>${t.centro ? `<circle cx="50" cy="44" r="9" fill="${t.centro}"/>` : `<circle cx="50" cy="44" r="${t.id === 'dalia' ? 20 : 14}" fill="rgba(0,0,0,.18)"/>`}`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 400"><path d="M50 60 C48 200, 53 300, 50 400" stroke="${t.hojas}" stroke-width="5" fill="none"/><path d="M50 210 c-18 -10 -28 -2 -30 8 c14 2 22 -2 30 -8" fill="${t.hojas}"/>${flor}</svg>`;
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
+  };
+  const conoProvisional = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><path d="M30 60 L300 790 L570 60 Q300 120 30 60Z" fill="#F7F4EE"/><path d="M30 60 L300 790 L330 150 Q180 130 30 60Z" fill="#ECE7DD"/><path d="M220 600 Q300 620 380 600" stroke="#D8CDB6" stroke-width="6" fill="none"/></svg>`);
+  TALLOS.forEach(t => { t.src = `img/tallos/${t.id}.webp`; const i = new Image(); i.onerror = () => { t.src = provisional(t); }; i.src = t.src; });
+  $('#cono').onerror = function () { this.onerror = null; this.src = conoProvisional; };
+
+  /* ---------- Los cubos ---------- */
+  const suelo = $('#suelo');
+  const etiqueta = t => t.queda === 0 ? 'Agotado' : t.queda <= 4 ? `Quedan ${t.queda}` : `${euros(t.p)}`;
+  const pintarCubos = () => {
+    TALLOS.forEach(t => {
+      let b = suelo.querySelector(`[data-t="${t.id}"]`);
+      if (!b) { b = document.createElement('button'); b.type = 'button'; b.className = 'cubo'; b.dataset.t = t.id; b.style.cssText = `--x:${t.x}%;--y:${t.y}%;--w:${t.w}%;--h:${t.h}%`; b.innerHTML = '<span class="tag"></span>'; b.onclick = () => coger(t, b); suelo.append(b); }
+      b.classList.toggle('agotado', t.queda === 0); b.classList.toggle('pocas', t.queda > 0 && t.queda <= 4);
+      b.querySelector('.tag').textContent = etiqueta(t);
+      b.setAttribute('aria-label', `${t.n}, ${euros(t.p)} el tallo, ${t.queda === 0 ? 'agotado' : `quedan ${t.queda}`}`);
+      b.setAttribute('aria-disabled', t.queda === 0);
+    });
+  };
+
+  /* ---------- El ramo ---------- */
+  const ANGULOS = [0, -13, 12, -25, 24, -6, 7, -19, 18, -32, 31, -2, 3, -27, 27];
+  const colocar = () => {
+    ramo.forEach((r, i) => {
+      const a = ANGULOS[i % ANGULOS.length] + (r.j || 0);
+      r.el.style.setProperty('--a', `${a}deg`);
+      r.el.style.setProperty('--l', `${(r.t.id === 'pampa' ? 86 : r.t.id === 'eucalipto' || r.t.id === 'olivo' ? 80 : 74) - Math.abs(a) * .25}%`);
+      r.el.style.zIndex = 100 - Math.round(Math.abs(a));
+    });
+    const total = ramo.reduce((s, r) => s + r.t.p, 0);
+    $('#ramo').classList.toggle('lleno', ramo.length > 0);
+    $('#que').innerHTML = ramo.length ? `${ramo.length} ${ramo.length === 1 ? 'tallo' : 'tallos'} · <b>${euros(total)}</b><small>${resumen()}</small>` : 'Tu ramo<small>Sin pagar nada en la web</small>';
+    $('#envolver').disabled = !ramo.length;
+  };
+  const resumen = () => { const c = new Map(); ramo.forEach(r => c.set(r.t, (c.get(r.t) || 0) + 1)); return [...c].map(([t, k]) => k === 1 ? `1 ${t.n.toLowerCase().replace(/^(eucalipto|olivo)$/, 'rama de $1')}` : `${k} ${t.pl}`).join(', '); };
+
+  // Coger un tallo: sale del cubo y vuela en arco hasta el cucurucho
+  function coger(t, boton) {
+    if (t.queda === 0 || ramo.length >= MAX) { boton.animate([{ translate: '-50% -50%' }, { translate: 'calc(-50% - 6px) -50%' }, { translate: 'calc(-50% + 6px) -50%' }, { translate: '-50% -50%' }], { duration: 260 }); return; }
+    $('#ramo').classList.remove('atado');
+    t.queda--; pintarCubos(); boton.classList.add('toca'); setTimeout(() => boton.classList.remove('toca'), 200);
+    const el = document.createElement('button'); el.type = 'button'; el.className = 'tallo';
+    el.innerHTML = `<img src="${t.src}" alt="">`; el.setAttribute('aria-label', `Quitar ${t.n.toLowerCase()} del ramo`);
+    const r = { t, el, j: Math.round((Math.random() - .5) * 6) }; ramo.push(r);
+    $('#tallos').append(el); colocar();
+    el.onclick = () => soltar(r);
+    if (quieto.matches) return;
+    // FLIP: del cubo a su sitio en el ramo
+    const de = boton.getBoundingClientRect(), a = el.getBoundingClientRect();
+    const dx = de.left + de.width / 2 - (a.left + a.width / 2), dy = de.top + de.height / 2 - (a.top + a.height / 2);
+    el.animate([
+      { transform: `translate(${dx}px, ${dy}px) scale(.35)`, opacity: .4 },
+      { transform: `translate(${dx * .45}px, ${dy * .45 - 90}px) scale(.8)`, opacity: 1, offset: .55 },
+      { transform: 'none', opacity: 1 }
+    ], { duration: 620, easing: 'cubic-bezier(.3,.6,.25,1)' });
+  }
+  function soltar(r) {
+    const i = ramo.indexOf(r); if (i < 0) return;
+    ramo.splice(i, 1); r.t.queda++; pintarCubos();
+    $('#ramo').classList.remove('atado');
+    const fin = () => { r.el.remove(); colocar(); };
+    if (quieto.matches) return fin();
+    r.el.animate([{ transform: 'none', opacity: 1 }, { transform: 'translateY(-60px)', opacity: 0 }], { duration: 260, easing: 'ease-in' }).onfinish = fin;
+  }
+
+  /* ---------- Recogida: la primera hora, siempre a la vista; todas, en la hoja ---------- */
+  const ABRE = 600, CIERRA = 1200, PREPARAR = 20; // minutos; lunes a sábado
+  const hm = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+  const horas = () => {
+    const ahora = new Date(), min = ahora.getHours() * 60 + ahora.getMinutes(), abre = d => d.getDay() !== 0;
+    const desde = Math.max(ABRE, Math.ceil((min + PREPARAR) / 5) * 5);
+    const hoy = abre(ahora) && desde <= CIERRA - 15 ? [desde, ...Array.from({ length: 20 }, (_, i) => (Math.floor(desde / 30) + 1 + i) * 30).filter(m => m <= CIERRA - 30)] : [];
+    const otro = new Date(ahora); do otro.setDate(otro.getDate() + 1); while (!abre(otro));
+    const manana = new Date(ahora); manana.setDate(ahora.getDate() + 1);
+    const dia = otro.toDateString() === manana.toDateString() ? 'Mañana' : 'El ' + otro.toLocaleDateString('es-ES', { weekday: 'long' });
+    return { hoy, otro: { dia, h: [600, 630, 660, 690, 720, 750, 780, 810] } };
+  };
+  const pintarListo = () => {
+    const h = horas(); $('#listo span').textContent = h.hoy.length ? `Listo hoy a las ${hm(h.hoy[0])}` : `Listo ${h.otro.dia.toLowerCase()} a las 10:00`;
+  };
+  $('#listo').onclick = () => { if (ramo.length) $('#envolver').click(); else $('#suelo').querySelector('.cubo:not(.agotado)').focus(); };
+
+  /* ---------- Envolver y apartar ---------- */
+  const hoja = $('#hoja'); const a = { cuando: null, nombre: '', tel: '', numero: null };
+  $('#envolver').onclick = () => {
+    $('#ramo').classList.add('atado');
+    setTimeout(() => { a.cuando = null; a.numero = null; pintarHoja(); hoja.showModal(); $('#t-hoja').focus(); }, quieto.matches ? 0 : 900);
+  };
+  const pintarHoja = () => {
+    const total = ramo.reduce((s, r) => s + r.t.p, 0), p = $('#paso');
+    if (a.numero) {
+      $('#t-hoja').textContent = 'Te lo apartamos';
+      p.innerHTML = `<div class="hecho"><p class="etiqueta">Tu número</p><p class="numero">${a.numero}</p><p>${a.cuando}. Calle de Santa María, a 3 minutos de Antón Martín. Pagas al recoger: ${euros(total)}.</p>
+        <img src="img/ramo-1280.jpg" alt="Un ramo como el tuyo, envuelto en papel blanco" width="1280" height="1714" onerror="this.remove()"><p class="aviso-demo">Caso inventado: no se ha apartado nada de verdad.</p></div>`;
+      $('#pie').hidden = true; return;
+    }
+    $('#pie').hidden = false; $('#t-hoja').textContent = '¿Cuándo lo recoges?';
+    const c = {}; ramo.forEach(r => c[r.t.id] = c[r.t.id] || { t: r.t, k: 0 }); ramo.forEach(r => c[r.t.id].k++);
+    const h = horas(), grupo = (titulo, lista, k) => lista.length ? `<p class="etiqueta">${titulo}</p><div class="fichas" role="radiogroup" aria-label="${titulo}">${lista.map(m => { const v = `${titulo}, a las ${hm(m)}`; return `<input type="radio" name="cuando" id="${k}${m}" value="${v}"${a.cuando === v ? ' checked' : ''}><label class="ficha" for="${k}${m}">${hm(m)}</label>`; }).join('')}</div>` : '';
+    p.innerHTML = `${grupo('Hoy', h.hoy, 'h')}${grupo(h.otro.dia, h.otro.h, 'm')}
+      <form class="campos" id="datos" novalidate><label>Nombre<input name="nombre" autocomplete="name" value="${a.nombre}"></label><label>Teléfono<input name="tel" type="tel" inputmode="tel" autocomplete="tel" value="${a.tel}"></label></form>
+      <p class="etiqueta" style="margin-top:22px">Tu ramo</p><ul class="lista">${Object.values(c).map(x => `<li><span>${x.k} × ${x.t.n.toLowerCase()}</span><span>${euros(x.k * x.t.p)}</span></li>`).join('')}<li><span>Pagas al recoger</span><span>${euros(total)}</span></li></ul>`;
+    if (!a.cuando) { const i = p.querySelector('[name=cuando]'); if (i) { i.checked = true; a.cuando = i.value; } }
+    p.querySelectorAll('[name=cuando]').forEach(i => i.onchange = () => { a.cuando = i.value; boton(); });
+    p.querySelectorAll('#datos input').forEach(i => i.oninput = () => { a[i.name] = i.value.trim(); boton(); });
+    $('#datos').onsubmit = e => { e.preventDefault(); $('#apartar').click(); };
+    boton();
+  };
+  const boton = () => { const ok = a.cuando && a.nombre.length > 1 && /^[0-9 +]{9,}$/.test(a.tel); const b = $('#apartar'); b.disabled = !ok; b.textContent = a.cuando ? `Apártamelo: ${a.cuando.replace(', a las', ',').toLowerCase()}` : 'Apártamelo'; };
+  $('#apartar').onclick = () => { a.numero = 20 + Math.floor(Math.random() * 60); pintarHoja(); $('#t-hoja').focus(); };
+  $('#cerrar').onclick = () => hoja.close();
+  hoja.addEventListener('close', () => { if (a.numero) { ramo.splice(0).forEach(r => r.el.remove()); $('#ramo').classList.remove('atado'); colocar(); } else $('#ramo').classList.remove('atado'); });
+  hoja.addEventListener('click', e => { if (e.target === hoja) hoja.close(); });
+
+  /* ---------- Panel de Lola: lo que queda en cada cubo ---------- */
+  const panel = $('#panel');
+  const pintarPanel = () => {
+    $('#actualizado').textContent = `Actualizado a las ${hora(actualizado)}`;
+    $('#stock').innerHTML = TALLOS.map(t => `<li><span>${t.n}</span><span><button class="menos" type="button" data-t="${t.id}" aria-label="Uno menos de ${t.n}">−</button> <span class="n">${t.queda}</span> <button class="mas" type="button" data-t="${t.id}" aria-label="Uno más de ${t.n}">+</button></span><button class="agota" type="button" data-t="${t.id}" aria-pressed="${t.queda === 0}">Agotado</button></li>`).join('');
+    $('#stock').querySelectorAll('button').forEach(b => b.onclick = () => {
+      const t = TALLOS.find(x => x.id === b.dataset.t);
+      if (b.classList.contains('menos')) t.queda = Math.max(0, t.queda - 1); else if (b.classList.contains('mas')) t.queda++; else t.queda = t.queda === 0 ? 6 : 0;
+      actualizado = new Date(); pintarCubos(); pintarPanel(); $('#stock').querySelector(`.${b.className}[data-t="${t.id}"]`).focus();
+    });
+  };
+  $('#abrir-panel').onclick = () => { pintarPanel(); panel.showModal(); $('#t-panel').focus(); };
+  $('#cerrar-panel').onclick = () => panel.close();
+  panel.addEventListener('click', e => { if (e.target === panel) panel.close(); });
+
+  /* ---------- El mapa: pequeño siempre; al tocarlo crece y dibuja el camino desde el metro ---------- */
+  fetch('img/mapa.svg').then(r => r.text()).then(t => { $('#mapa').insertAdjacentHTML('afterbegin', t.replace(/<title[^>]*>.*?<\/title>/, '')); $('#mapa svg').setAttribute('aria-hidden', 'true'); }).catch(() => {});
+  $('#mapa').onclick = () => {
+    const m = $('#mapa'), g = !m.classList.contains('grande'); m.classList.toggle('grande', g); m.setAttribute('aria-expanded', g);
+    m.querySelector('.crece').textContent = g ? 'Reducir' : 'Ampliar';
+    if (g && !quieto.matches) { m.classList.remove('dibuja'); void m.offsetWidth; m.classList.add('dibuja'); }
+  };
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !quieto.matches) { $('#mapa').classList.add('dibuja'); o.disconnect(); } }), { threshold: .6 }).observe($('#mapa'));
+
+  pintarCubos(); colocar(); pintarListo(); setInterval(pintarListo, 60000);
+})();
+</script>
+</body>
+</html>
