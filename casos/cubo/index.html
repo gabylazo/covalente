@@ -13,14 +13,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cubo · caso inventado por Covalente</title>
 <meta name="description" content="Caso inventado por Covalente: la web de una floristería de Madrid donde armas tu ramo tocando los cubos y te lo apartan para recoger.">
-<meta name="robots" content="noindex">
 <link rel="preload" href="fuentes/Newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Newsreader"; src:url(fuentes/Newsreader.woff2) format("woff2"); font-weight:300 600; font-display:swap}
 @font-face{font-family:"Plex Mono"; src:url(fuentes/PlexMono-500.woff2) format("woff2"); font-weight:500; font-display:swap}
 
-/* La tienda es verde puerta (la de la fachada) y las flores ponen el resto del color; el botón, del crisantemo */
-:root{--papel:#1F3B32; --tinta:#F4EEDF; --dalia:#6E1A2C; --quedan:#2F6B4F; --pocas:#8A5A00; --agotado:#6B6B6B; --zinc:#8A9297; --puerta:#1F3B32; --linea:rgba(244,238,223,.2);
+/* La tienda es vino de dalia (el verde ya lo llevan la taberna de noche y Covalente) y las flores ponen el resto del color; el botón, del crisantemo */
+:root{--papel:#4A1A2C; --tinta:#F4EEDF; --dalia:#6E1A2C; --quedan:#2F6B4F; --pocas:#8A5A00; --agotado:#6B6B6B; --zinc:#8A9297; --puerta:#4A1A2C; --linea:rgba(244,238,223,.2);
   --crisantemo:#E9A23B; --oscuro:#1D1F1C}
 *{box-sizing:border-box}
 html{scrollbar-gutter:stable}
@@ -57,14 +56,21 @@ img{display:block; max-width:100%; height:auto}
 
 .ramo{position:relative; height:min(118vw,560px); margin-top:8px; overflow:visible; touch-action:manipulation; transition:height .5s cubic-bezier(.3,.7,.2,1)}
 .ramo:not(.lleno){height:min(66vw,330px)}
-.ramo .cono{position:absolute; left:50%; bottom:6%; height:50%; width:auto; translate:-50% 0; z-index:200; pointer-events:none; filter:drop-shadow(0 10px 14px rgba(40,30,20,.18));
+/* El cucurucho va en dos capas de la misma foto: la solapa de atrás detrás de los tallos y la cara de delante, recortada por el borde de la boca, encima;
+   entre las dos, la sombra de dentro. Así los tallos entran en el papel y las flores salen por la boca. Ensanchado un 30 %, para que quepa un ramo. */
+.ramo .cono{position:absolute; left:50%; bottom:4%; height:58%; width:auto; aspect-ratio:.527; translate:-50% 0; transform-origin:50% 100%; pointer-events:none;
   transition:scale .45s cubic-bezier(.3,.7,.2,1)}
-.tallo{position:absolute; left:50%; bottom:var(--b,30%); height:var(--l,78%); width:auto; translate:-50% 0; transform-origin:50% 100%; rotate:var(--a,0deg);
+.ramo .cono.atras{z-index:5; filter:drop-shadow(0 12px 16px rgba(20,16,10,.28))}
+.ramo .cono.delante{z-index:200; clip-path:polygon(0 24.3%, 5% 26%, 10% 27.5%, 20% 29.2%, 30% 30.5%, 40% 31.7%, 50% 32.3%, 60% 32.8%, 70% 33%, 80% 31.7%, 90% 30%, 96% 27%, 100% 24%, 100% 100%, 0 100%)}
+.ramo .boca{position:absolute; left:50%; bottom:38.5%; height:10%; aspect-ratio:3.06; translate:-50% 0; z-index:150; pointer-events:none; mix-blend-mode:multiply; opacity:0;
+  background:radial-gradient(closest-side, rgba(58,42,26,.95), rgba(58,42,26,.5) 55%, transparent); transition:opacity .4s}
+.ramo.lleno .boca{opacity:1}
+.tallo{position:absolute; left:50%; bottom:var(--b,36%); height:var(--l,40%); width:auto; translate:-50% 0; transform-origin:50% 100%; rotate:var(--a,0deg);
   border:0; padding:0; background:none; cursor:pointer; transition:rotate .5s cubic-bezier(.3,.7,.2,1)}
 .tallo img{height:100%; width:auto; max-width:none; pointer-events:none; filter:drop-shadow(0 4px 5px rgba(30,25,20,.22))}
 .ramo.atado .tallo{rotate:calc(var(--a,0deg) * .55)}
 .ramo.atado .cono{scale:1.06}
-.lazo{position:absolute; left:50%; bottom:calc(6% + 8%); width:30%; translate:-50% 0; z-index:210; pointer-events:none; overflow:visible}
+.lazo{display:none; position:absolute; left:50%; bottom:calc(6% + 8%); width:30%; translate:-50% 0; z-index:210; pointer-events:none; overflow:visible}
 .lazo path{fill:none; stroke:#D8CDB6; stroke-width:3; stroke-linecap:round; stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset .7s ease .25s}
 .ramo.atado .lazo path{stroke-dashoffset:0}
 .vacio{position:absolute; inset:16% 10% auto; margin:0; text-align:center; font:italic 400 clamp(26px,6.4vw,38px)/1.1 "Newsreader", Georgia, serif; color:color-mix(in srgb, var(--tinta) 55%, var(--papel)); transition:opacity .3s}
@@ -179,8 +185,10 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
     </div>
     <div class="ramo" id="ramo" aria-live="polite">
       <p class="vacio" id="vacio">Toca un cubo</p>
+      <img class="cono atras" src="img/tallos/cucurucho.webp" alt="" width="409" height="1009">
       <div id="tallos"></div>
-      <img class="cono" id="cono" src="img/tallos/cucurucho.webp" alt="" width="409" height="1009">
+      <div class="boca"></div>
+      <img class="cono delante" src="img/tallos/cucurucho.webp" alt="" width="409" height="1009">
       <svg class="lazo" viewBox="0 0 120 40" aria-hidden="true"><path pathLength="1" d="M6 20 C30 30, 90 30, 114 20 M60 24 c-14 -16 -30 -8 -18 2 c8 6 18 2 18 -2 c0 4 10 8 18 2 c12 -10 -4 -18 -18 -2 M58 26 l-10 14 M62 26 l10 14"/></svg>
     </div>
     <div class="cuenta">
@@ -255,7 +263,7 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
   };
   const conoProvisional = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><path d="M30 60 L300 790 L570 60 Q300 120 30 60Z" fill="#F7F4EE"/><path d="M30 60 L300 790 L330 150 Q180 130 30 60Z" fill="#ECE7DD"/><path d="M220 600 Q300 620 380 600" stroke="#D8CDB6" stroke-width="6" fill="none"/></svg>`);
   TALLOS.forEach(t => { t.src = `img/tallos/${t.id}.webp`; const i = new Image(); i.onerror = () => { t.src = provisional(t); }; i.src = t.src; });
-  $('#cono').onerror = function () { this.onerror = null; this.src = conoProvisional; };
+  document.querySelectorAll('.cono').forEach(c => c.onerror = function () { this.onerror = null; this.src = conoProvisional; });
 
   /* ---------- Los cubos ---------- */
   const suelo = $('#suelo');
@@ -272,13 +280,17 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
   };
 
   /* ---------- El ramo ---------- */
-  const ANGULOS = [0, -13, 12, -25, 24, -6, 7, -19, 18, -32, 31, -2, 3, -27, 27];
+  // Los tallos nacen dentro del cucurucho (bottom por debajo de la boca) y se abren poco, como en un ramo de verdad: las flores en cúpula sobre la boca,
+  // el verde más alto y detrás. --l y --b, en % del alto del ramo.
+  const ANGULOS = [0, -11, 11, -19, 18, -5, 6, -14, 14, -24, 23, -2, 3, -17, 17];
+  const VERDE = { pampa: [62, 31], eucalipto: [55, 31], olivo: [55, 31] };
   const colocar = () => {
     ramo.forEach((r, i) => {
-      const a = ANGULOS[i % ANGULOS.length] + (r.j || 0);
+      const a = ANGULOS[i % ANGULOS.length] + (r.j || 0), verde = VERDE[r.t.id], [l, b] = verde || [45, 33];
       r.el.style.setProperty('--a', `${a}deg`);
-      r.el.style.setProperty('--l', `${(r.t.id === 'pampa' ? 86 : r.t.id === 'eucalipto' || r.t.id === 'olivo' ? 80 : 74) - Math.abs(a) * .25}%`);
-      r.el.style.zIndex = 100 - Math.round(Math.abs(a));
+      r.el.style.setProperty('--l', `${l - Math.abs(a) * .12}%`);
+      r.el.style.setProperty('--b', `${b + (i % 3) * 1.2}%`);
+      r.el.style.zIndex = (verde ? 40 : 100) - Math.round(Math.abs(a));
     });
     const total = ramo.reduce((s, r) => s + r.t.p, 0);
     $('#ramo').classList.toggle('lleno', ramo.length > 0);

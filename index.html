@@ -249,6 +249,17 @@ p{margin:0}
   .pantalla .horario{margin:auto 10px 10px; font-size:10px}
 }
 
+/* Webs para tocar: los tres casos, cada uno con la foto de su portada */
+.casos{padding-block:clamp(72px, 10vw, 128px) 0}
+.casos .nota{margin-top:14px; max-width:46ch; color:var(--tinta-2)}
+.lista-casos{list-style:none; margin:clamp(28px, 4vw, 44px) 0 0; padding:0; display:grid; gap:clamp(20px, 2.4vw, 32px); grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr))}
+.caso a{display:block; color:inherit; text-decoration:none; border-radius:10px}
+.caso img{display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top left; border-radius:10px; box-shadow:0 0 0 1px var(--raya), 0 18px 34px -22px rgba(26,26,26,.45); transition:transform .35s cubic-bezier(.3,.7,.2,1)}
+.caso a:hover img{transform:translateY(-5px)}
+.caso h3{margin:16px 0 2px; font:600 clamp(22px, 2vw, 26px)/1.15 var(--f-marca)}
+.caso p{margin:0; color:var(--tinta-2)}
+@media (prefers-reduced-motion: reduce){ .caso img{transition:none} .caso a:hover img{transform:none} }
+
 /* Qué hacemos: cada paquete es el producto de una reacción, escrita con sus elementos */
 .servicios{padding-block:clamp(72px, 10vw, 128px) clamp(56px, 8vw, 96px)}
 .servicios .lanzamiento{margin-top:14px; color:var(--tinta-2)}
@@ -434,6 +445,25 @@ p{margin:0}
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="caja casos" id="casos" aria-labelledby="t-casos">
+    <h2 id="t-casos">Webs para tocar</h2>
+    <p class="nota">Tres negocios inventados para enseñar lo que hacemos. Las webs funcionan de verdad.</p>
+    <ul class="lista-casos">
+      <li class="caso"><a href="casos/mano-alzada/">
+        <picture><source type="image/webp" srcset="img/casos/mano-600.webp 600w, img/casos/mano-1200.webp 1200w" sizes="(min-width:1000px) 31vw, (min-width:700px) 46vw, 100vw">
+        <img src="img/casos/mano-1200.jpg" srcset="img/casos/mano-600.jpg 600w, img/casos/mano-1200.jpg 1200w" sizes="(min-width:1000px) 31vw, (min-width:700px) 46vw, 100vw" width="1200" height="750" loading="lazy" decoding="async" alt="La web de Mano Alzada: una mano con las uñas rojas, la pared de esmaltes y los huecos libres de la semana."></picture>
+        <h3>Mano Alzada</h3><p>Estudio de uñas. Te pruebas el esmalte en una mano.</p></a></li>
+      <li class="caso"><a href="casos/casa-palotes/">
+        <picture><source type="image/webp" srcset="img/casos/palotes-600.webp 600w, img/casos/palotes-1200.webp 1200w" sizes="(min-width:1000px) 31vw, (min-width:700px) 46vw, 100vw">
+        <img src="img/casos/palotes-1200.jpg" srcset="img/casos/palotes-600.jpg 600w, img/casos/palotes-1200.jpg 1200w" sizes="(min-width:1000px) 31vw, (min-width:700px) 46vw, 100vw" width="1200" height="750" loading="lazy" decoding="async" alt="La web de Casa Palotes a la hora del vermut: la barra con vermut y gildas, el sol y la cuenta."></picture>
+        <h3>Casa Palotes</h3><p>Taberna. La barra cambia con la hora y se pide tocándola.</p></a></li>
+      <li class="caso"><a href="casos/cubo/">
+        <picture><source type="image/webp" srcset="img/casos/cubo-600.webp 600w, img/casos/cubo-1200.webp 1200w" sizes="(min-width:1000px) 31vw, (min-width:700px) 46vw, 100vw">
+        <img src="img/casos/cubo-1200.jpg" srcset="img/casos/cubo-600.jpg 600w, img/casos/cubo-1200.jpg 1200w" sizes="(min-width:1000px) 31vw, (min-width:700px) 46vw, 100vw" width="1200" height="750" loading="lazy" decoding="async" alt="La web de Cubo: los cubos de flores en el suelo de la tienda y un ramo en su cucurucho."></picture>
+        <h3>Cubo</h3><p>Floristería. Armas el ramo tocando los cubos.</p></a></li>
+    </ul>
   </section>
 
   <section class="caja servicios" id="que-hacemos" aria-labelledby="t-servicios">
