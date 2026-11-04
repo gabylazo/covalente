@@ -57,12 +57,14 @@ button{cursor:pointer}
 .tocable:focus-visible{outline:3px dashed var(--papel);outline-offset:4px}
 /* La pegatina está encima del objeto, invisible: al pasar o al tocar, se despega. */
 .despega{position:absolute;pointer-events:none;left:calc(var(--mx)*-100%);top:calc(var(--my)*-100%);width:calc((1 + 2*var(--mx))*100%);height:calc((1 + 2*var(--my))*100%);opacity:0;transform-origin:50% 90%;transition:opacity .15s,transform .62s var(--muelle),filter .3s}
-@media (hover:hover){.tocable:hover .despega{opacity:1;transform:translateY(-4%) rotate(-2deg) scale(1.05);filter:drop-shadow(0 10px 12px rgb(0 0 0/.35))}}
+@media (hover:hover){button.tocable:hover .despega{opacity:1;transform:translateY(-4%) rotate(-2deg) scale(1.05);filter:drop-shadow(0 10px 12px rgb(0 0 0/.35))}}
 .tocable:focus-visible .despega{opacity:1;transform:translateY(-4%) rotate(-2deg) scale(1.05);filter:drop-shadow(0 10px 12px rgb(0 0 0/.35))}
 .etiqueta{position:absolute;left:50%;bottom:calc(100% + .35rem);translate:calc(-50% + var(--dx,0px)) var(--dy,0px);rotate:var(--giro,-2deg);display:flex;gap:.4em;align-items:baseline;padding:.22rem .55rem .26rem;background:var(--papel);color:var(--grafito);font-size:.82rem;font-weight:600;line-height:1.1;white-space:nowrap;border-radius:2px;box-shadow:0 2px 0 rgb(0 0 0/.12),0 6px 14px rgb(0 0 0/.25);transition:rotate .62s var(--muelle),translate .62s var(--muelle)}
 .etiqueta b{font-family:Kalam,cursive;font-weight:700;font-size:1.05em;color:var(--boli)}
-@media (hover:hover){.tocable:hover .etiqueta{rotate:0deg;translate:calc(-50% + var(--dx,0px)) calc(var(--dy,0px) - 3px)}}
+@media (hover:hover){button.tocable:hover .etiqueta{rotate:0deg;translate:calc(-50% + var(--dx,0px)) calc(var(--dy,0px) - 3px)}}
 .etiqueta .corto{display:none}
+.etiqueta .mas{display:inline-grid;place-items:center;width:1.15em;height:1.15em;margin-left:.1em;border-radius:50%;background:var(--boli);color:var(--papel);font:700 .85em/1 system-ui,sans-serif;font-style:normal}
+.tocable.solo-barra{pointer-events:none}
 @media (max-width:599.98px){.etiqueta{font-size:.74rem;padding:.18rem .45rem .2rem}.etiqueta .largo{display:none}.etiqueta .corto{display:inline}}
 .tocable.acabado .etiqueta{color:#6b6b70}
 .tocable.acabado .etiqueta span{text-decoration:line-through 2px var(--grafito)}
@@ -129,7 +131,7 @@ button{cursor:pointer}
 .total{display:flex;justify-content:space-between;align-items:baseline;margin:.6rem 0 0;padding-top:.6rem;border-top:2px solid var(--grafito);font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem}
 .total output{font:700 1.7rem/1 Kalam,cursive;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums;display:inline-block}
 .nota{min-height:1.4em;margin:.5rem 0 0;font:400 1rem/1.3 Kalam,cursive;color:var(--boli)}
-.salidas{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.8rem}
+.salidas{display:grid;grid-template-columns:1fr;gap:.5rem;margin-top:.8rem}
 .salidas button{min-height:3rem;padding:.6rem .5rem;border:2px solid var(--grafito);border-radius:3px;background:none;font-weight:700;font-stretch:90%;transition:transform .5s var(--muelle)}
 .salidas button.principal{background:var(--pared);color:var(--tinta);border-color:var(--pared)}
 .salidas button:active{transform:scale(.96)}
@@ -139,7 +141,8 @@ button{cursor:pointer}
 
 /* ── Pizarra (la carta en texto) ── */
 .pizarra{margin:2.5rem 1rem 0;padding:1.6rem 1.3rem 1.8rem;background:var(--pizarra);color:var(--tiza);border:12px solid var(--marco);border-radius:4px;box-shadow:inset 0 0 40px rgb(0 0 0/.45),0 14px 30px rgb(0 0 0/.25);font-family:Kalam,cursive}
-.pizarra h2{margin:0 0 1rem;font:700 1.9rem/1 Kalam,cursive}
+.pizarra h2{margin:0 0 .3rem;font:700 1.9rem/1 Kalam,cursive}
+.pizarra-nota{margin:0 0 1rem;font:400 1rem/1.3 Kalam,cursive;opacity:.8}
 .pizarra section+section{margin-top:1.2rem}
 .pizarra h3{margin:0 0 .3rem;font:400 1.15rem/1.2 Kalam,cursive;color:#F4D27A}
 .pizarra ul{list-style:none;margin:0;padding:0}
@@ -165,22 +168,21 @@ button{cursor:pointer}
 .donde .datos b{display:block;font-size:1.15rem}
 .llegar{display:inline-grid;place-items:center;min-height:3rem;padding:0 1.2rem;border:2px solid currentColor;border-radius:3px;font-weight:700;text-decoration:none}
 .atrib{margin:.5rem 0 0;font-size:.8rem}
-.mapa{position:relative;display:block;width:100%;height:230px;padding:0;border:0;border-radius:4px;overflow:hidden;background:#EFE8D8;color:var(--grafito);transition:height .6s var(--muelle)}
+.mapa{position:relative;display:block;width:100%;height:230px;padding:0;border:0;border-radius:4px;overflow:hidden;background:#F1EEE8;color:var(--grafito);transition:height .6s var(--muelle)}
 .mapa.grande{height:min(460px,80vw)}
 .mapa svg{position:absolute;left:50%;top:50%;width:max(100%,620px);height:auto;translate:-52% -42%}
-.m-borde path{fill:none;stroke:#D9CDB2;stroke-linecap:round;stroke-linejoin:round}
-.m-calle path{fill:none;stroke:#FCF9F2;stroke-linecap:round;stroke-linejoin:round}
-.m-plaza{fill:#FCF9F2;stroke:#D9CDB2;stroke-width:2}
-.m-parque{fill:#C2DDAB}
-.m-etiquetas text{font:600 11px Bricolage,system-ui,sans-serif;fill:#6E6656}
-.m-ruta{fill:none;stroke:#A3241B;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
-.mapa.dibuja .m-ruta{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+.m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
+.m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
+.m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
+.m-etiquetas text{font:500 9.5px Bricolage, system-ui, sans-serif;fill:#6A655D;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;letter-spacing:.01em}
+.m-etiquetas .m-lugar{font-style:italic;fill:#7C766C}
+.m-ruta-fondo{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.m-ruta{fill:none;stroke:#2F6FDB;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+.m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
 @keyframes ruta{from{stroke-dashoffset:1}}
-.m-metro circle{fill:#1E3FA8;stroke:#fff;stroke-width:3}
-.m-metro text{fill:#fff;font:800 16px Bricolage,system-ui,sans-serif;text-anchor:middle}
-.m-pin path{fill:#A3241B;stroke:#fff;stroke-width:2.5}
-.m-pin circle{fill:#F4B81C}
-.m-nombre-pin,.m-nombre-origen{font:800 16px Bricolage,system-ui,sans-serif;fill:#2B2B30;paint-order:stroke;stroke:#FCF9F2;stroke-width:5px;stroke-linejoin:round}
+.m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px Bricolage, system-ui, sans-serif;text-anchor:middle}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:#A3241B;stroke:#fff;stroke-width:2.5} .m-pin circle{fill:#F4B81C}
+.m-nombre-pin,.m-nombre-origen{font:700 15px Bricolage, system-ui, sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
 .mapa .crece{position:absolute;right:.6rem;top:.6rem;padding:.3rem .6rem;border-radius:999px;background:#fff;font-size:.8rem;font-weight:600}
 .pie{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:space-between;align-items:center;padding:1.2rem 1rem calc(6rem + env(safe-area-inset-bottom));font-size:.85rem}
 .pie a{color:inherit}
@@ -314,31 +316,31 @@ dialog .principal{width:100%;min-height:3.2rem;margin-top:.4rem;border:0;border-
     <p class="franja" id="franja" aria-live="polite"><span id="franja-nombre">La hora del vermut</span> <time id="franja-hora">13:00</time></p>
   </div>
 
-  <aside class="cuenta" id="cuenta" data-vacia aria-label="Tu cuenta">
+  <aside class="cuenta" id="cuenta" data-vacia aria-label="Tu pedido para llevar">
     <div class="ticket">
-      <button class="resumen" id="resumen" type="button" aria-expanded="false" aria-controls="cuenta-cuerpo"><span class="que" id="resumen-que">Toca lo que hay en la barra</span><output id="resumen-total"></output><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      <button class="resumen" id="resumen" type="button" aria-expanded="false" aria-controls="cuenta-cuerpo"><span class="que" id="resumen-que">Toca lo que te quieras llevar</span><output id="resumen-total"></output><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
       <div id="cuenta-cuerpo">
-        <header><span>Casa Palotes</span><time id="cuenta-hora"></time></header>
+        <header><span>Para llevar</span><time id="cuenta-hora"></time></header>
         <svg class="lapiz" id="lapiz" viewBox="0 0 60 12" aria-hidden="true"><rect x="8" y="1" width="44" height="10" rx="1.5" fill="#F4B81C"/><rect x="48" y="1" width="8" height="10" rx="1.5" fill="#E58C8C"/><rect x="45" y="1" width="3" height="10" fill="#B9B3A6"/><path d="M8 1 L0 6 L8 11Z" fill="#E9D3A8"/><path d="M2.6 4.4 L0 6 L2.6 7.6Z" fill="#2B2B30"/></svg>
-        <p class="vacia" id="vacia">Toca lo que hay en la barra.</p>
+        <p class="vacia" id="vacia">Toca lo que te quieras llevar.</p>
         <ul class="ahora" id="ahora" aria-label="Lo que se sirve ahora"></ul>
         <ol class="lineas" id="lineas"></ol>
         <p class="total">Total <output id="total">0,00 €</output></p>
         <p class="nota" id="nota" aria-live="polite"></p>
         <div class="salidas">
-          <button type="button" data-salida="llevar">Para llevar</button>
-          <button type="button" class="principal" data-salida="sitio">Guárdame mesa</button>
+          <button type="button" class="principal" data-salida="llevar">Pedir para llevar</button>
         </div>
       </div>
     </div>
   </aside>
   <section class="mesas" aria-labelledby="mesas-titulo">
     <h2 id="mesas-titulo">Mesas libres</h2>
-    <p class="mesas-nota">Para comer y para cenar. La barra no se reserva: ahí cabe quien llegue.</p>
+    <p class="mesas-nota">Para desayunar, comer y cenar. La barra, sin reserva.</p>
     <div class="turnos" id="turnos"></div>
   </section>
   <section class="pizarra" aria-labelledby="carta-titulo">
     <h2 id="carta-titulo">La pizarra</h2>
+    <p class="pizarra-nota">Lo que lleva + también es para llevar.</p>
     <div id="carta"></div>
   </section>
 </div>
@@ -435,7 +437,9 @@ const CARTA = {
   ],
 };
 const TITULOS = { manana: ['Por la mañana', '8:00-12:00'], vermut: ['Al vermut', '12:00-14:30'], comida: ['A mediodía', '14:30-16:30'], noche: ['Por la noche', '20:00-0:00'] };
-const PLATOS = Object.fromEntries(Object.entries(CARTA).flatMap(([f, l]) => l.map(p => [p.id, Object.assign(p, { franja: f })])));
+// En un bar, lo que se toma ahí se pide en la barra; desde la web solo se pide lo que tiene sentido llevarse (nada de cañas, vermut ni la tapa de regalo)
+const LLEVAR = new Set(['cafe', 'porras', 'tostada', 'tortilla', 'mejillones', 'menu', 'cocido', 'croquetas', 'bravas', 'torreznos', 'boquerones']);
+const PLATOS = Object.fromEntries(Object.entries(CARTA).flatMap(([f, l]) => l.map(p => [p.id, Object.assign(p, { franja: f, llevar: LLEVAR.has(p.id) })])));
 
 const hhmm = m => `${Math.floor(m / 60) % 24}:${String(m % 60).padStart(2, '0')}`;
 const aMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + (m || 0); };
@@ -506,11 +510,11 @@ function ponerTocables(f) {
   const lista = (ESCENA?.franjas[f.id]) || [];
   lista.forEach((o, n) => {
     const p = PLATOS[o.id]; if (!p) return;
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'tocable' + (p.agotado ? ' acabado' : ''); b.dataset.id = o.id;
+    const b = document.createElement(p.llevar ? 'button' : 'span');
+    if (p.llevar) b.type = 'button'; b.className = 'tocable' + (p.agotado ? ' acabado' : '') + (p.llevar ? '' : ' solo-barra'); b.dataset.id = o.id;
     b.style.cssText = `--x:${o.x};--y:${o.y};--w:${o.w};--h:${o.h};--giro:${n % 2 ? 3 : -3}deg`;
-    b.setAttribute('aria-label', p.agotado ? `${p.nombre}: se acabó` : `${p.nombre}, ${precioTexto(p)}. Apuntar en la cuenta`);
-    b.innerHTML = `<img class="despega" src="img/pegatinas/${o.img}" alt="" style="--mx:${o.mx};--my:${o.my}"><span class="etiqueta"><span><span class="largo">${p.nombre}</span><span class="corto">${p.corto || p.nombre}</span></span> <b>${p.precio ? euros(p.precio).replace(' €', '') : 'gratis'}</b></span>`;
+    if (p.llevar) b.setAttribute('aria-label', p.agotado ? `${p.nombre}: se acabó` : `${p.nombre}, ${precioTexto(p)}. Añadir al pedido para llevar`); else b.setAttribute('aria-hidden', 'true');
+    b.innerHTML = `<img class="despega" src="img/pegatinas/${o.img}" alt="" style="--mx:${o.mx};--my:${o.my}"><span class="etiqueta"><span><span class="largo">${p.nombre}</span><span class="corto">${p.corto || p.nombre}</span></span> <b>${p.precio ? euros(p.precio).replace(' €', '') : 'gratis'}</b>${p.llevar && !p.agotado ? '<i class="mas">+</i>' : ''}</span>`;
     capa.append(b);
   });
   requestAnimationFrame(encajarEtiquetas);
@@ -579,15 +583,15 @@ function ponerHora(m, primera) {
 }
 // Con la cuenta vacía, lo que se sirve a esta hora ya está escrito en el papel: se apunta tocándolo aquí o en la barra
 function pintarAhora() {
-  $('#ahora').innerHTML = (CARTA[actual?.id] || []).filter(p => !p.agotado).map(p =>
-    `<li><button type="button" data-id="${p.id}" aria-label="Apuntar ${p.nombre.toLowerCase()}, ${precioTexto(p)}">${p.nombre}<span>${precioTexto(p)}</span></button></li>`).join('');
+  $('#ahora').innerHTML = (CARTA[actual?.id] || []).filter(p => p.llevar && !p.agotado).map(p =>
+    `<li><button type="button" data-id="${p.id}" aria-label="Añadir ${p.nombre.toLowerCase()}, ${precioTexto(p)}, para llevar">${p.nombre}<span>${precioTexto(p)}</span></button></li>`).join('');
 }
 $('#ahora').addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) apuntar(b.dataset.id, null); });
 hora.addEventListener('input', () => { ponerHora(+hora.value); $('#pista').classList.add('fuera'); });
 function ponerPista() { const [x, y] = enArco(solObj); const p = $('#pista'); p.style.left = `${Math.min(80, Math.max(22, x / 4))}%`; p.style.top = `${(y + 30) / 1.36}%`; p.style.translate = '-50% 0'; }
 
 /* ── La cuenta, con palotes a lápiz ── */
-const pideTexto = () => actual?.cerrado ? `Cerrado: se pide desde las ${hhmm(actual.abre || 480)}` : 'Toca lo que hay en la barra';
+const pideTexto = () => actual?.cerrado ? `Cerrado: se pide desde las ${hhmm(actual.abre || 480)}` : 'Toca lo que te quieras llevar';
 const cuenta = new Map(); let horaCuenta = null;
 const lineas = $('#lineas'), caja = $('#cuenta');
 function azar(sem) { return () => { sem |= 0; sem = sem + 0x6D2B79F5 | 0; let t = Math.imul(sem ^ sem >>> 15, 1 | sem); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -634,7 +638,7 @@ function totales(rodar) {
   const total = [...cuenta].reduce((s, [id, n]) => s + PLATOS[id].precio * n, 0), cosas = [...cuenta.values()].reduce((a, b) => a + b, 0);
   const vacia = cosas === 0; caja.toggleAttribute('data-vacia', vacia); $('#vacia').hidden = !vacia;
   $('#total').textContent = euros(total); $('#resumen-total').textContent = vacia ? '' : euros(total);
-  $('#resumen-que').textContent = vacia ? pideTexto() : `${cosas} ${cosas === 1 ? 'cosa' : 'cosas'} en la cuenta`;
+  $('#resumen-que').textContent = vacia ? pideTexto() : `${cosas} ${cosas === 1 ? 'cosa' : 'cosas'} para llevar`;
   $('#resumen').setAttribute('aria-label', vacia ? 'La cuenta está vacía' : `Ver la cuenta: ${cosas} ${cosas === 1 ? 'cosa' : 'cosas'}, ${euros(total)}`);
   $('#cuenta-hora').textContent = horaCuenta == null ? '' : hhmm(horaCuenta);
   if (vacia) cerrarCuenta();
@@ -644,7 +648,10 @@ let notaReloj;
 function nota(texto) { const n = $('#nota'); n.textContent = texto; clearTimeout(notaReloj); notaReloj = setTimeout(() => n.textContent = '', 3200); if (movil.matches) { $('#resumen-que').textContent = texto; } }
 function apuntar(id, img) {
   const p = PLATOS[id];
+  if (!p.llevar) { nota(`${p.nombre}: eso, en la barra.`); return; }
   if (p.agotado) { nota(p.acabo || `Se acabó ${p.nombre.toLowerCase()}. Mañana, más.`); return; }
+  const otra = [...cuenta.keys()].find(k => PLATOS[k].franja !== p.franja);
+  if (otra) { nota('Para llevar, todo de la misma hora: acaba este pedido y haz otro.'); return; }
   cuenta.set(id, (cuenta.get(id) || 0) + 1); horaCuenta = +hora.value;
   const n = cuenta.get(id), li = lineaDe(id);
   const destino = movil.matches && !caja.classList.contains('abierta') ? $('#resumen') : li.querySelector('.palotes');
@@ -701,26 +708,25 @@ $('#resumen').addEventListener('click', () => {
 });
 function medirAsoma() { if (movil.matches) caja.style.setProperty('--asoma', $('#resumen').offsetHeight + 28 + 'px'); }
 
-/* ── La pizarra: la carta entera en texto, con + para apuntar ── */
+/* ── La pizarra: la carta entera en texto; el + solo en lo que se puede llevar ── */
 function pintarCarta() {
   $('#carta').innerHTML = Object.entries(CARTA).map(([f, l]) => `<section aria-labelledby="t-${f}"><h3 id="t-${f}">${TITULOS[f][0]} · ${TITULOS[f][1]}</h3><ul>${l.map(p =>
-    `<li class="${p.agotado ? 'acabado' : ''}"><span class="plato">${p.nombre}</span><span class="precio">${p.precio ? euros(p.precio) : 'gratis'}</span><button type="button" data-id="${p.id}" aria-label="Apuntar ${p.nombre.toLowerCase()}" ${p.agotado ? 'disabled' : ''}>+</button></li>`).join('')}</ul></section>`).join('');
+    `<li class="${p.agotado ? 'acabado' : ''}"><span class="plato">${p.nombre}</span><span class="precio">${p.precio ? euros(p.precio) : 'gratis'}</span>${p.llevar ? `<button type="button" data-id="${p.id}" aria-label="Añadir ${p.nombre.toLowerCase()} para llevar" ${p.agotado ? 'disabled' : ''}>+</button>` : '<span></span>'}</li>`).join('')}</ul></section>`).join('');
 }
 $('#carta').addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) apuntar(b.dataset.id, null); });
 
-/* ── Para llevar y Guárdame sitio ── */
+/* ── Para llevar y Guárdame mesa ── */
 const hoja = $('#hoja'); let salida = 'llevar';
 function fichas(cont, nombre, valores, marcado) { cont.innerHTML = valores.map(([v, t]) => `<label><input type="radio" name="${nombre}" value="${v}" ${v === marcado ? 'checked' : ''} required><span>${t}</span></label>`).join(''); }
-function huecos(desde, cuantos) {
-  const out = []; let m = Math.ceil(desde / 15) * 15, dia = '';
-  for (let vueltas = 0; out.length < cuantos && vueltas < 200; vueltas++, m += 15) {
-    if (m >= 1440) { m = 480; dia = 'Mañana '; }
-    if (!franjaDe(m).cerrado) out.push([dia + hhmm(m), dia + hhmm(m)]);
-  }
+// Para llevar se recoge mientras se sirve lo pedido: hoy, desde dentro de 20 minutos; si ya no da tiempo, mañana a la misma hora
+function recogidas() {
+  const f = FRANJAS.find(x => x.id === PLATOS[cuenta.keys().next().value]?.franja) || actual, out = [];
+  for (let m = Math.max(f.de + 15, Math.ceil((ahora + 20) / 15) * 15); m <= f.a - 15 && out.length < 8; m += 15) out.push([hhmm(m), hhmm(m)]);
+  if (!out.length) for (let m = f.de + 15; m <= f.a - 15 && out.length < 8; m += 15) out.push(['Mañana ' + hhmm(m), 'Mañana ' + hhmm(m)]);
   return out;
 }
-// Las mesas: solo para comer (13:30-15:30) y cenar (20:30-23:00), cada media hora; las libres salen siempre igual para cada hora
-const TURNOS = [['Comida', [810, 840, 870, 900, 930]], ['Cena', [1230, 1260, 1290, 1320, 1350, 1380]]];
+// Las mesas: para desayunar (8:30-11:00), comer (14:30-16:00) y cenar (20:30-23:00), cada media hora; las libres salen siempre igual para cada hora
+const TURNOS = [['Desayuno', [510, 540, 570, 600, 630, 660]], ['Comida', [870, 900, 930, 960]], ['Cena', [1230, 1260, 1290, 1320, 1350, 1380]]];
 const libres = (m, manana) => [0, 1, 3, 2, 1, 4, 0, 2, 3, 1, 2][(m / 30) % 11] - (!manana && m < ahora + 30 ? 99 : 0);
 const quedanHoy = () => TURNOS.some(([, l]) => l.some(m => libres(m) > 0));
 function mesasLibres(desde) {
@@ -731,7 +737,8 @@ function mesasLibres(desde) {
 function pintarTurnos() {
   const man = !quedanHoy(), pre = man ? 'Mañana ' : '';
   $('#mesas-titulo').textContent = man ? 'Mesas libres mañana' : 'Mesas libres hoy';
-  $('#turnos').innerHTML = TURNOS.map(([t, l]) => `<div class="turno"><b>${t}</b><div>${l.map(m => { const n = libres(m, man); return `<button type="button" data-mesa="${pre}${hhmm(m)}" ${n > 0 ? '' : 'disabled'} aria-label="${hhmm(m)}: ${n > 0 ? `${n} ${n === 1 ? 'mesa libre' : 'mesas libres'}` : 'sin mesas'}">${hhmm(m)}<small>${n > 0 ? `${n} ${n === 1 ? 'mesa' : 'mesas'}` : 'llenas'}</small></button>`; }).join('')}</div></div>`).join('');
+  // hoy, solo las horas que aún no han pasado (una hora pasada no está «llena»); el turno que ya pasó entero, fuera
+  $('#turnos').innerHTML = TURNOS.map(([t, l]) => [t, man ? l : l.filter(m => m >= ahora + 30)]).filter(([, l]) => l.length).map(([t, l]) => `<div class="turno"><b>${t}</b><div>${l.map(m => { const n = libres(m, man); return `<button type="button" data-mesa="${pre}${hhmm(m)}" ${n > 0 ? '' : 'disabled'} aria-label="${hhmm(m)}: ${n > 0 ? `${n} ${n === 1 ? 'mesa libre' : 'mesas libres'}` : 'sin mesas'}">${hhmm(m)}<small>${n > 0 ? `${n} ${n === 1 ? 'mesa' : 'mesas'}` : 'llenas'}</small></button>`; }).join('')}</div></div>`).join('');
 }
 $('#turnos').addEventListener('click', e => { const b = e.target.closest('button[data-mesa]'); if (b) abrirHoja('sitio', b.dataset.mesa); });
 function abrirHoja(cual, horaElegida) {
@@ -740,9 +747,9 @@ function abrirHoja(cual, horaElegida) {
   $('#hoja-titulo').textContent = sitio ? 'Guárdame mesa' : 'Para llevar';
   $('#horas-titulo').textContent = sitio ? '¿A qué hora venís?' : '¿A qué hora lo recoges?';
   $('#hoja-ok').textContent = sitio ? 'Guárdame la mesa' : 'Apártamelo';
-  $('#hoja-lleva').textContent = cuenta.size ? [...cuenta].map(([id, n]) => `${PLATOS[id].nombre}${n > 1 ? ' × ' + n : ''}`).join(', ') + ' · ' + $('#total').textContent : 'Lo pedís al llegar.';
+  $('#hoja-lleva').textContent = sitio ? 'Lo pedís en la mesa.' : [...cuenta].map(([id, n]) => `${PLATOS[id].nombre}${n > 1 ? ' × ' + n : ''}`).join(', ') + ' · ' + $('#total').textContent;
   fichas($('#personas'), 'personas', [1, 2, 3, 4, 5, 6].map(n => [String(n), String(n)]), '2');
-  const h = sitio ? mesasLibres(Math.max(horaCuenta ?? ahora, ahora + 30)) : huecos(ahora + 30, 8);
+  const h = sitio ? mesasLibres(ahora + 30) : recogidas();
   if (horaElegida && !h.some(x => x[0] === horaElegida)) h.unshift([horaElegida, horaElegida]);
   fichas($('#horas'), 'hora', h, horaElegida || h[0]?.[0]);
   $('#hoja-form').hidden = false; $('#hecho').hidden = true; hoja.showModal();
@@ -754,7 +761,8 @@ $('#hoja-form').addEventListener('submit', e => {
   const datos = new FormData(e.target), h = datos.get('hora');
   if (salida === 'sitio') {
     $('#hecho-numero').textContent = h.replace('Mañana ', ''); $('#hecho-texto').textContent = `Os guardamos mesa a las ${h.replace('Mañana ', '')}${h.startsWith('Mañana') ? ', mañana' : ''}.`;
-    $('#hecho-mas').textContent = `${datos.get('personas')} ${datos.get('personas') === '1' ? 'persona' : 'personas'}. ${cuenta.size ? 'Lo apuntado os lo sacamos al llegar. ' : ''}Si no llegáis en 15 minutos, la mesa se libera.`;
+    $('#hecho-mas').textContent = `${datos.get('personas')} ${datos.get('personas') === '1' ? 'persona' : 'personas'}. Si no llegáis en 15 minutos, la mesa se libera.`;
+    $('#hoja-form').hidden = true; $('#hecho').hidden = false; $('#hecho-volver').focus(); return;
   } else {
     $('#hecho-numero').textContent = 'Nº ' + (20 + Math.floor(Math.random() * 70)); $('#hecho-texto').textContent = `Te lo tenemos a las ${h.replace('Mañana ', '')}${h.startsWith('Mañana') ? ', mañana' : ''}.`;
     $('#hecho-mas').textContent = 'Pagas al recoger. Si se te hace tarde, llámanos.';

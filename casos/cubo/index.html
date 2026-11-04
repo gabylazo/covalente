@@ -56,15 +56,15 @@ img{display:block; max-width:100%; height:auto}
 
 .ramo{position:relative; height:min(118vw,560px); margin-top:8px; overflow:visible; touch-action:manipulation; transition:height .5s cubic-bezier(.3,.7,.2,1)}
 .ramo:not(.lleno){height:min(66vw,330px)}
-/* El cucurucho va en dos capas de la misma foto: la solapa de atrás detrás de los tallos y la cara de delante, recortada por el borde de la boca, encima;
-   entre las dos, la sombra de dentro. Así los tallos entran en el papel y las flores salen por la boca. Ensanchado un 30 %, para que quepa un ramo. */
-.ramo .cono{position:absolute; left:50%; bottom:4%; height:58%; width:auto; aspect-ratio:.527; translate:-50% 0; transform-origin:50% 100%; pointer-events:none;
+/* El envoltorio (papel kraft con seda crema y cordel, foto de Gemini) va en dos capas de la misma foto: entera detrás de los tallos y, encima,
+   solo las solapas de delante, recortadas por la V en que se cruzan. Así los tallos entran en el papel y las flores asoman por la boca. */
+.ramo .cono{position:absolute; left:50%; bottom:3%; height:60%; width:auto; aspect-ratio:.725; translate:-50% 0; transform-origin:50% 100%; pointer-events:none;
   transition:scale .45s cubic-bezier(.3,.7,.2,1)}
 .ramo .cono.atras{z-index:5; filter:drop-shadow(0 12px 16px rgba(20,16,10,.28))}
-.ramo .cono.delante{z-index:200; clip-path:polygon(0 24.3%, 5% 26%, 10% 27.5%, 20% 29.2%, 30% 30.5%, 40% 31.7%, 50% 32.3%, 60% 32.8%, 70% 33%, 80% 31.7%, 90% 30%, 96% 27%, 100% 24%, 100% 100%, 0 100%)}
-.ramo .boca{position:absolute; left:50%; bottom:38.5%; height:10%; aspect-ratio:3.06; translate:-50% 0; z-index:150; pointer-events:none; mix-blend-mode:multiply; opacity:0;
+.ramo .cono.delante{z-index:200; filter:none; clip-path:polygon(0 18%, 19% 20.5%, 27% 30%, 33% 40%, 42% 50%, 50% 57%, 58% 50%, 68% 40%, 75% 30%, 83% 20.5%, 100% 16%, 100% 100%, 0 100%)}
+.ramo .boca{position:absolute; left:50%; bottom:25%; height:17%; aspect-ratio:1.3; translate:-50% 0; z-index:150; pointer-events:none; mix-blend-mode:multiply; opacity:0;
   background:radial-gradient(closest-side, rgba(58,42,26,.95), rgba(58,42,26,.5) 55%, transparent); transition:opacity .4s}
-.ramo.lleno .boca{opacity:1}
+.ramo.lleno .boca{opacity:.55}
 .tallo{position:absolute; left:50%; bottom:var(--b,36%); height:var(--l,40%); width:auto; translate:-50% 0; transform-origin:50% 100%; rotate:var(--a,0deg);
   border:0; padding:0; background:none; cursor:pointer; transition:rotate .5s cubic-bezier(.3,.7,.2,1)}
 .tallo img{height:100%; width:auto; max-width:none; pointer-events:none; filter:drop-shadow(0 4px 5px rgba(30,25,20,.22))}
@@ -94,22 +94,21 @@ img{display:block; max-width:100%; height:auto}
 .tienda .datos b{display:block; font-size:21px; font-weight:500}
 .tienda .llegar{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 .atrib{margin:8px 0 0; font:500 12px/1.3 "Plex Mono", monospace; color:color-mix(in srgb, var(--tinta) 72%, var(--papel))}
-.mapa{position:relative; display:block; width:100%; height:230px; padding:0; border:0; border-radius:6px; overflow:hidden; cursor:pointer; background:#E9E1CF; color:var(--oscuro); transition:height .6s cubic-bezier(.3,.7,.2,1)}
+.mapa{position:relative; display:block; width:100%; height:230px; padding:0; border:0; border-radius:6px; overflow:hidden; cursor:pointer; background:#F1EEE8; color:var(--oscuro); transition:height .6s cubic-bezier(.3,.7,.2,1)}
 .mapa.grande{height:min(460px, 80vw)}
 .mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -52%}
-.m-borde path{fill:none; stroke:#D6CBB3; stroke-linecap:round; stroke-linejoin:round}
-.m-calle path{fill:none; stroke:#FBF8F1; stroke-linecap:round; stroke-linejoin:round}
-.m-plaza{fill:#FBF8F1; stroke:#D6CBB3; stroke-width:2}
-.m-parque{fill:#BFD9A8}
-.m-etiquetas text{font:500 11px "Plex Mono", monospace; fill:#6A6355}
-.m-ruta{fill:none; stroke:var(--dalia); stroke-width:6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:0}
-.mapa.dibuja .m-ruta{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+.m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
+.m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
+.m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
+.m-etiquetas text{font:500 9.5px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#6A655D;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;letter-spacing:.01em}
+.m-etiquetas .m-lugar{font-style:italic;fill:#7C766C}
+.m-ruta-fondo{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.m-ruta{fill:none;stroke:#2F6FDB;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+.m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
 @keyframes ruta{from{stroke-dashoffset:1}}
-.m-metro circle{fill:#1E3FA8; stroke:#fff; stroke-width:3}
-.m-metro text{fill:#fff; font:700 16px "Newsreader", Georgia, serif; text-anchor:middle}
-.m-pin path{fill:var(--puerta); stroke:#fff; stroke-width:2.5}
-.m-pin circle{fill:var(--crisantemo)}
-.m-nombre-pin,.m-nombre-origen{font:600 17px "Newsreader", Georgia, serif; fill:var(--oscuro); paint-order:stroke; stroke:#FBF8F1; stroke-width:5px; stroke-linejoin:round}
+.m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px system-ui, -apple-system, "Segoe UI", sans-serif;text-anchor:middle}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--puerta);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:var(--crisantemo)}
+.m-nombre-pin,.m-nombre-origen{font:700 15px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
 .mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:6px 10px; border-radius:999px; background:#fff; font:500 12px/1 "Plex Mono", monospace}
 footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; margin-top:40px; padding:26px max(16px,4vw) 36px; border-top:1px solid var(--linea); color:var(--tinta); font-size:15px}
 
@@ -185,10 +184,10 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
     </div>
     <div class="ramo" id="ramo" aria-live="polite">
       <p class="vacio" id="vacio">Toca un cubo</p>
-      <img class="cono atras" src="img/tallos/cucurucho.webp" alt="" width="409" height="1009">
+      <img class="cono atras" src="img/tallos/envoltorio.webp" alt="" width="540" height="745">
       <div id="tallos"></div>
       <div class="boca"></div>
-      <img class="cono delante" src="img/tallos/cucurucho.webp" alt="" width="409" height="1009">
+      <img class="cono delante" src="img/tallos/envoltorio.webp" alt="" width="540" height="745">
       <svg class="lazo" viewBox="0 0 120 40" aria-hidden="true"><path pathLength="1" d="M6 20 C30 30, 90 30, 114 20 M60 24 c-14 -16 -30 -8 -18 2 c8 6 18 2 18 -2 c0 4 10 8 18 2 c12 -10 -4 -18 -18 -2 M58 26 l-10 14 M62 26 l10 14"/></svg>
     </div>
     <div class="cuenta">
@@ -282,13 +281,13 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
   /* ---------- El ramo ---------- */
   // Los tallos nacen dentro del cucurucho (bottom por debajo de la boca) y se abren poco, como en un ramo de verdad: las flores en cúpula sobre la boca,
   // el verde más alto y detrás. --l y --b, en % del alto del ramo.
-  const ANGULOS = [0, -11, 11, -19, 18, -5, 6, -14, 14, -24, 23, -2, 3, -17, 17];
-  const VERDE = { pampa: [62, 31], eucalipto: [55, 31], olivo: [55, 31] };
+  const ANGULOS = [0, -14, 14, -24, 23, -6, 7, -19, 18, -30, 29, -3, 4, -22, 21];
+  const VERDE = { pampa: [68, 22], eucalipto: [62, 22], olivo: [62, 22] };
   const colocar = () => {
     ramo.forEach((r, i) => {
-      const a = ANGULOS[i % ANGULOS.length] + (r.j || 0), verde = VERDE[r.t.id], [l, b] = verde || [45, 33];
+      const a = ANGULOS[i % ANGULOS.length] + (r.j || 0), verde = VERDE[r.t.id], [l, b] = verde || [55, 23];
       r.el.style.setProperty('--a', `${a}deg`);
-      r.el.style.setProperty('--l', `${l - Math.abs(a) * .12}%`);
+      r.el.style.setProperty('--l', `${l - Math.abs(a) * .1}%`);
       r.el.style.setProperty('--b', `${b + (i % 3) * 1.2}%`);
       r.el.style.zIndex = (verde ? 40 : 100) - Math.round(Math.abs(a));
     });
@@ -356,7 +355,7 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
     if (a.numero) {
       $('#t-hoja').textContent = 'Te lo apartamos';
       p.innerHTML = `<div class="hecho"><p class="etiqueta">Tu número</p><p class="numero">${a.numero}</p><p>${a.cuando}. Calle de Santa María, a 3 minutos de Antón Martín. Pagas al recoger: ${euros(total)}.</p>
-        <img src="img/ramo-1280.jpg" alt="Un ramo como el tuyo, envuelto en papel blanco" width="1280" height="1714" onerror="this.remove()"><p class="aviso-demo">Caso inventado: no se ha apartado nada de verdad.</p></div>`;
+        <img src="img/ramo-1280.jpg" alt="Un ramo como el tuyo, envuelto en papel" width="1280" height="1714" onerror="this.remove()"><p class="aviso-demo">Caso inventado: no se ha apartado nada de verdad.</p></div>`;
       $('#pie').hidden = true; return;
     }
     $('#pie').hidden = false; $('#t-hoja').textContent = '¿Cuándo lo recoges?';

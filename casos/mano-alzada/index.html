@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mano Alzada · caso inventado por Covalente</title>
 <meta name="description" content="Caso inventado por Covalente: la web de un estudio de uñas en el barrio de las Letras donde te pruebas cualquier esmalte en una mano de verdad y reservas con quien quieras.">
-<meta name="theme-color" content="#FFD3DF">
+<meta name="theme-color" content="#F6EEEC">
 <link rel="preload" href="fuentes/InstrumentSerif-cursiva.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fuentes/HankenGrotesk.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js')</script>
@@ -24,11 +24,10 @@
 @font-face{font-family:"Hanken Grotesk"; src:url(fuentes/HankenGrotesk.woff2) format("woff2"); font-weight:400 700; font-display:swap}
 @property --r{syntax:'<percentage>'; inherits:false; initial-value:0%}
 
-/* --una es el esmalte elegido; --papel, el papel de la foto teñido con él (siempre claro, para que el texto oscuro se lea);
+/* --una es el esmalte elegido; --papel, el papel de la foto con un reflejo apenas visible del esmalte (casi blanco);
    --vivo, el mismo esmalte con fuerza para los acentos. Los calcula el probador en cada cambio. */
-:root{--una:#C8102E; --papel:#FFD3DF; --vivo:#C8102E; --texto:#1D1418; --suave:color-mix(in srgb, var(--texto) 66%, var(--papel));
+:root{--una:#A8102B; --papel:#F6EEEC; --vivo:#A8102B; --texto:#1D1418; --suave:color-mix(in srgb, var(--texto) 66%, var(--papel));
   --carta:#FFFFFF; --linea:color-mix(in srgb, var(--texto) 16%, transparent); --hoja:#FFFBFC; --linea-hoja:#EBDDE2;
-  --chicle:#FF5FA2; --lima:#B8E62E; --lila:#B9A2FF;
   --muelle:linear(0, 0.03, 0.101, 0.199, 0.313, 0.431, 0.548, 0.657, 0.755, 0.839, 0.91, 0.966, 1.01, 1.041, 1.062, 1.075, 1.08, 1.08, 1.076, 1.069, 1.06, 1.051, 1.041, 1.032, 1.024, 1.016, 1.01, 1.005, 1.001, 0.998, 0.996, 0.994, 0.994, 0.994, 0.994, 0.994, 0.995, 0.996, 0.996, 0.997, 0.998, 0.998, 1)}
 *{box-sizing:border-box}
 html{scrollbar-gutter:stable}
@@ -152,24 +151,23 @@ section{padding:26px max(16px,4vw)}
 /* ===== Dónde: el salón y el mapa ===== */
 .donde .foto{border-radius:24px; overflow:hidden}
 .donde .foto img{width:100%; aspect-ratio:4/3; object-fit:cover}
-.mapa{display:block; width:100%; margin-top:10px; padding:0; border:0; border-radius:24px; overflow:hidden; cursor:pointer; position:relative; background:color-mix(in srgb, var(--papel) 70%, #fff);
+.mapa{display:block; width:100%; margin-top:10px; padding:0; border:0; border-radius:24px; overflow:hidden; cursor:pointer; position:relative; background:#F1EEE8;
   height:220px; transition:height .6s var(--muelle)}
 .mapa.grande{height:min(440px, 72vw)}
 .mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -55%}
-.m-borde path{fill:none; stroke:color-mix(in srgb, var(--vivo) 22%, #fff); stroke-linecap:round; stroke-linejoin:round}
-.m-calle path{fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round}
-.m-plaza{fill:#fff; stroke:color-mix(in srgb, var(--vivo) 22%, #fff); stroke-width:2}
-.m-parque{fill:#C9EBB8}
-.m-etiquetas text{font:600 11px "Hanken Grotesk", sans-serif; fill:color-mix(in srgb, var(--texto) 62%, transparent); letter-spacing:.03em}
-.m-ruta{fill:none; stroke:var(--vivo); stroke-width:6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:0}
-.mapa.dibuja .m-ruta{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+.m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
+.m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
+.m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
+.m-etiquetas text{font:500 9.5px "Hanken Grotesk", system-ui, sans-serif;fill:#6A655D;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;letter-spacing:.01em}
+.m-etiquetas .m-lugar{font-style:italic;fill:#7C766C}
+.m-ruta-fondo{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.m-ruta{fill:none;stroke:#2F6FDB;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+.m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
 @keyframes ruta{from{stroke-dashoffset:1}}
-.m-metro circle{fill:#1E3FA8; stroke:#fff; stroke-width:3}
-.m-metro text{fill:#fff; font:800 16px "Hanken Grotesk", sans-serif; text-anchor:middle}
+.m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px "Hanken Grotesk", system-ui, sans-serif;text-anchor:middle}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--vivo);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:#fff}
+.m-nombre-pin,.m-nombre-origen{font:700 15px "Hanken Grotesk", system-ui, sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
 .m-pin{transition:transform .6s var(--muelle)}
-.m-pin path{fill:var(--vivo); stroke:#fff; stroke-width:2.5}
-.m-pin circle{fill:#fff}
-.m-nombre-pin,.m-nombre-origen{font:700 16px "Hanken Grotesk", sans-serif; fill:var(--texto); paint-order:stroke; stroke:#fff; stroke-width:5px; stroke-linejoin:round}
 .mapa .crece{position:absolute; right:12px; top:12px; margin:0; padding:6px 10px; border-radius:999px; background:#fff; font-size:13px}
 .datos-sitio{display:grid; gap:2px; margin:14px 0 0}
 .datos-sitio b{font-size:18px}
@@ -184,7 +182,7 @@ footer .boton{min-height:44px; font-size:15px; padding:0 18px}
   body{display:grid; grid-template-columns:minmax(0, 46vw) minmax(0, 1fr)}
   .cab{grid-column:1 / -1}
   main,.probador{display:contents}
-  .mano{grid-column:1; grid-row:2 / span 6; position:sticky; top:62px; align-self:start; height:calc(100dvh - 62px)}
+  .mano{grid-column:1; grid-row:2 / span 6; position:sticky; top:62px; align-self:start; height:calc(100dvh - 62px); clip-path:inset(0 2px 0 0)} /* sin el hilo oscuro del borde de la foto */
   .mano img,.mano canvas{height:100%; object-fit:cover}
   .mano img,.mano canvas{object-position:50% 100%}
   .mano::after{content:""; grid-area:1/1; z-index:1; pointer-events:none; background:linear-gradient(to left, var(--papel), transparent 110px), linear-gradient(var(--papel), transparent 48px)} /* la foto se funde con la página: sin corte */
@@ -362,17 +360,18 @@ input:focus-visible + .referencia{outline:3px solid var(--texto); outline-offset
 <script>
 (() => {
   /* =================== Datos del salón =================== */
-  // La pared: 42 de los «más de 300» tonos, por familias, como están en el estante del salón
+  // La pared: 42 de los «más de 300» tonos, por familias, como están en el estante del salón.
+  // Tonos de esmalte de verdad (más hondos y menos chillones que un color de pantalla): así se ven en el bote y en la uña.
   const ESMALTES = [
-    ['cereza', 'Cereza', '#C8102E'], ['amapola', 'Amapola', '#E0301E'], ['clavel', 'Clavel', '#B5172E'], ['granate', 'Granate', '#6E1423'], ['vermut', 'Vermut', '#5A1622'],
-    ['chicle', 'Chicle', '#FF5FA2'], ['fresa', 'Fresa', '#E8456B'], ['flamenco', 'Flamenco', '#FF7FA8'], ['algodon', 'Algodón', '#F7B6C8'], ['fucsia', 'Fucsia', '#D6207C'], ['buganvilla', 'Buganvilla', '#B0186B'],
-    ['coral', 'Coral', '#FF6F59'], ['mandarina', 'Mandarina', '#F08A24'], ['melocoton', 'Melocotón', '#F6A782'], ['salmon', 'Salmón', '#F28C7A'],
-    ['limon', 'Limón', '#F5D63D'], ['mostaza', 'Mostaza', '#D4A017'], ['vainilla', 'Vainilla', '#F3E5AB'],
-    ['lima', 'Lima', '#8CD23C'], ['pistacho', 'Pistacho', '#B8D68A'], ['menta', 'Menta', '#9EE0C4'], ['turquesa', 'Turquesa', '#18B5B0'], ['botella', 'Botella', '#155E46'], ['aceituna', 'Aceituna', '#5E6534'],
-    ['cielo', 'Cielo', '#8EC5F0'], ['azulejo', 'Azulejo', '#1F4FA6'], ['cobalto', 'Cobalto', '#0047AB'], ['tinta', 'Tinta', '#18244A'],
-    ['lavanda', 'Lavanda', '#C9B6E8'], ['lila', 'Lila', '#B79CFF'], ['violeta', 'Violeta', '#6A2C91'], ['berenjena', 'Berenjena', '#3E1F47'],
-    ['piel', 'Piel', '#E3B9A3'], ['arena', 'Arena', '#D8C3A5'], ['cafe', 'Café con leche', '#CDB091'], ['canela', 'Canela', '#A8674A'], ['chocolate', 'Chocolate', '#4E2A1E'],
-    ['merengue', 'Merengue', '#F1EAE2'], ['perla', 'Gris perla', '#BFC1C2'], ['humo', 'Humo', '#6B6E74'], ['regaliz', 'Regaliz', '#141414'], ['oro', 'Oro viejo', '#B8913A']
+    ['cereza', 'Cereza', '#A8102B'], ['amapola', 'Amapola', '#C3301F'], ['clavel', 'Clavel', '#99192E'], ['granate', 'Granate', '#5C1424'], ['vermut', 'Vermut', '#481420'],
+    ['chicle', 'Chicle', '#DC6990'], ['fresa', 'Fresa', '#C9475F'], ['flamenco', 'Flamenco', '#E3879C'], ['algodon', 'Algodón', '#E9C3C6'], ['fucsia', 'Fucsia', '#B0246A'], ['buganvilla', 'Buganvilla', '#8A2155'],
+    ['coral', 'Coral', '#DC6656'], ['mandarina', 'Mandarina', '#D2742F'], ['melocoton', 'Melocotón', '#E4A68B'], ['salmon', 'Salmón', '#D68979'],
+    ['limon', 'Limón', '#E3C657'], ['mostaza', 'Mostaza', '#B4871F'], ['vainilla', 'Vainilla', '#EADDB8'],
+    ['lima', 'Lima', '#98B84A'], ['pistacho', 'Pistacho', '#B1C08D'], ['menta', 'Menta', '#A6D2BF'], ['turquesa', 'Turquesa', '#2B9593'], ['botella', 'Botella', '#1F4B3B'], ['aceituna', 'Aceituna', '#595C36'],
+    ['cielo', 'Cielo', '#9BBBD8'], ['azulejo', 'Azulejo', '#2D4C8E'], ['cobalto', 'Cobalto', '#1F3C86'], ['tinta', 'Tinta', '#1B233F'],
+    ['lavanda', 'Lavanda', '#C2B4D6'], ['lila', 'Lila', '#A692D1'], ['violeta', 'Violeta', '#5A2D7C'], ['berenjena', 'Berenjena', '#3A1F3F'],
+    ['piel', 'Piel', '#DBB5A1'], ['arena', 'Arena', '#CBB79E'], ['cafe', 'Café con leche', '#BDA087'], ['canela', 'Canela', '#975E44'], ['chocolate', 'Chocolate', '#45281E'],
+    ['merengue', 'Merengue', '#ECE5DD'], ['perla', 'Gris perla', '#B8BABB'], ['humo', 'Humo', '#65676C'], ['regaliz', 'Regaliz', '#171516'], ['oro', 'Oro viejo', '#A68538']
   ].map(([id, n, u]) => ({ id, n, u }));
   const ACABADOS = [
     ['brillo', 'Brillo'], ['mate', 'Mate'], ['gelatina', 'Gelatina'], ['francesa', 'Francesa'], ['baby', 'Baby boomer'], ['cromado', 'Cromado'], ['gato', 'Ojo de gato'], ['purpurina', 'Purpurina']
@@ -390,7 +389,7 @@ input:focus-visible + .referencia{outline:3px solid var(--texto); outline-offset
     { id: 'semi', n: 'Semipermanente', min: 45, p: 28 }, { id: 'rusa', n: 'Manicura rusa', min: 75, p: 38 },
     { id: 'retirada', n: 'Retirada y semi', min: 60, p: 32 }, { id: 'pedi', n: 'Pedicura semi', min: 60, p: 34 }
   ];
-  const EQUIPO = [{ id: 'nerea', n: 'Nerea', que: 'nail art y diseños', c: '#FFB5CF' }, { id: 'yaiza', n: 'Yaiza', que: 'manicura rusa', c: '#D9F27A' }];
+  const EQUIPO = [{ id: 'nerea', n: 'Nerea', que: 'nail art y diseños', c: '#E9C3C6' }, { id: 'yaiza', n: 'Yaiza', que: 'manicura rusa', c: '#C9D2A6' }];
   const SENAL = 5;
   const HORARIO = { 2: [600, 1200], 3: [600, 1200], 4: [600, 1200], 5: [600, 1200], 6: [600, 900] }; // minutos; 0 = domingo
 
@@ -428,7 +427,8 @@ input:focus-visible + .referencia{outline:3px solid var(--texto); outline-offset
   const TEXTO = [29, 20, 24];
   const tonos = (c) => {
     const [L, C, h] = aOklch(rgb(c.u)); const neutro = C < .035;
-    const papel = deOklch([.9, neutro ? .045 : Math.min(C * .42, .085), neutro ? 0 : h]); // los neutros, sobre rosa
+    // El papel: casi blanco, con el reflejo del esmalte apenas insinuado (como un folio junto a un bote de color), no un pastel
+    const papel = deOklch([.95, neutro ? .006 : Math.min(C * .09, .016), neutro ? 1.2 : h]);
     const titulo = contraste(rgb(c.u), papel) >= 3 ? c.u : hex(TEXTO);
     const vivo = contraste(rgb(c.u), [255, 255, 255]) >= 3 ? c.u : hex(deOklch([Math.min(L, .5), Math.max(C, .12), neutro ? 0 : h]));
     return { papel, titulo, vivo };
@@ -477,11 +477,13 @@ input:focus-visible + .referencia{outline:3px solid var(--texto); outline-offset
     if (CON_LUSTRE.has(ac)) lustre(ax, la, o);
   };
   // El esmalte con brillo tiene volumen: los lados se oscurecen con la curva de la uña y la luz de la ventana deja un reflejo alargado a un lado (otro más débil enfrente)
+  // El volumen del esmalte con brillo: los lados más hondos (la capa es más gruesa y la uña se curva) y el reflejo de una
+  // ventana, alargado y de bordes nítidos, más uno fino al otro lado y un toque en la punta, como en una foto de verdad
   const lustre = (ax, la, o) => {
-    const curva = 1 - .2 * Math.pow(Math.min(1, Math.abs(la)), 3);
-    const fuera = ax < .16 ? (.16 - ax) / .08 : ax > .8 ? (ax - .8) / .12 : 0, d1 = (la + .36) / .2, d2 = (la - .5) / .24;
-    const k = Math.min(.8, Math.exp(-d1 * d1 - fuera * fuera) * .5 + Math.exp(-d2 * d2 - fuera * fuera) * .12);
-    for (let q = 0; q < 3; q++) o[q] = o[q] * curva + (255 - o[q] * curva) * k;
+    const a = Math.min(1, Math.abs(la)), curva = 1 - .34 * Math.pow(a, 2.2);
+    const largo = suave(.1, .2, ax) * suave(.82, .7, ax), d1 = (la + .34) / .12, d2 = (la - .56) / .05, d3 = (ax - .9) / .04;
+    const k = Math.min(.92, Math.exp(-d1 * d1 * d1 * d1) * .82 * largo + Math.exp(-d2 * d2) * .3 * largo + Math.exp(-d3 * d3 - la * la * 4) * .22);
+    for (let q = 0; q < 3; q++) { const c = o[q] * curva; o[q] = c + (255 - c) * k; }
   };
   const CON_LUSTRE = new Set(['brillo', 'gelatina', 'francesa', 'baby']);
   const VIVOS = new Set(['cromado', 'gato', 'purpurina']); // los que cambian con la luz (el dedo, el ratón o el móvil al inclinarlo)
