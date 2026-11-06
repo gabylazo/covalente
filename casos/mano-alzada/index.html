@@ -96,7 +96,7 @@ html:not(.botes) .pared label i{width:22px; height:52px; border-radius:5px 5px 7
 /* ===== Huecos libres: siempre a la vista; al tocar un día, crece ===== */
 section{padding:26px max(16px,4vw)}
 .agenda{padding-top:20px}
-.tarjeta{background:var(--carta); border-radius:24px; padding:16px; box-shadow:0 1px 0 var(--linea)}
+.tarjeta{background:var(--carta); border-radius:12px; padding:16px; box-shadow:0 1px 0 var(--linea)}
 .agenda h2{font-size:clamp(32px,7vw,44px); margin:0}
 .agenda .cab-ag{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:12px; flex-wrap:wrap}
 .quien{display:flex; gap:6px; flex-wrap:wrap}
@@ -105,7 +105,7 @@ section{padding:26px max(16px,4vw)}
 .quien input:checked + label{background:var(--vivo); color:var(--sobre-vivo,#fff); box-shadow:none}
 .quien input:focus-visible + label{outline:3px solid var(--texto); outline-offset:2px}
 .semana{display:grid; grid-template-columns:repeat(7, 1fr); gap:5px}
-.dia{display:grid; justify-items:center; align-content:start; gap:3px; min-height:84px; padding:8px 2px 6px; border:0; border-radius:16px; background:color-mix(in srgb, var(--papel) 55%, #fff); cursor:pointer;
+.dia{display:grid; justify-items:center; align-content:start; gap:3px; min-height:84px; padding:8px 2px 6px; border:0; border-radius:12px; background:color-mix(in srgb, var(--papel) 55%, #fff); cursor:pointer;
   transition:min-height .5s var(--muelle), background-color .3s}
 .dia small{font-size:12px; font-weight:600; text-transform:lowercase}
 .dia b{font-size:22px; line-height:1}
@@ -119,11 +119,11 @@ section{padding:26px max(16px,4vw)}
 #horas-ag > *{animation:crece .5s var(--muelle)}
 @keyframes crece{from{opacity:0; translate:0 -6px}}
 .horas{display:flex; flex-wrap:wrap; gap:8px; padding-top:14px}
-.hora{min-height:46px; min-width:72px; padding:0 14px; border:0; border-radius:14px; background:color-mix(in srgb, var(--vivo) 14%, #fff); font-weight:700; font-size:16px; cursor:pointer}
+.hora{min-height:46px; min-width:72px; padding:0 14px; border:0; border-radius:10px; background:color-mix(in srgb, var(--vivo) 14%, #fff); font-weight:700; font-size:16px; cursor:pointer}
 .hora small{display:block; font-weight:400; font-size:12px}
 .hora:hover{background:var(--vivo); color:var(--sobre-vivo,#fff)}
 .vacio{margin:14px 0 0; color:var(--suave)}
-.primero{display:flex; align-items:center; gap:10px; width:100%; margin-top:10px; min-height:52px; padding:0 16px; border:0; border-radius:16px; background:color-mix(in srgb, var(--vivo) 12%, #fff); cursor:pointer; text-align:left; font-size:15px}
+.primero{display:flex; align-items:center; gap:10px; width:100%; margin-top:10px; min-height:52px; padding:0 16px; border:0; border-radius:12px; background:color-mix(in srgb, var(--vivo) 12%, #fff); cursor:pointer; text-align:left; font-size:15px}
 .primero b{margin-left:auto; font-size:15px; white-space:nowrap}
 .primero i{width:10px; height:10px; border-radius:50%; background:var(--vivo); flex:none}
 
@@ -131,7 +131,7 @@ section{padding:26px max(16px,4vw)}
 .disenos{display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; list-style:none; margin:0; padding:0}
 .disenos li{position:relative}
 .disenos button{display:grid; width:100%; padding:0; border:0; background:none; cursor:pointer; text-align:left; gap:6px}
-.disenos img{width:100%; aspect-ratio:176/220; object-fit:cover; border-radius:18px; transition:transform .55s var(--muelle)}
+.disenos img{width:100%; aspect-ratio:176/220; object-fit:cover; border-radius:12px; transition:transform .55s var(--muelle)}
 .disenos button:hover img{transform:rotate(-2deg) scale(1.03)}
 .disenos span{font-size:14px; line-height:1.25; font-weight:600}
 .disenos small{display:block; font-weight:400; color:var(--suave)}
@@ -139,19 +139,20 @@ section{padding:26px max(16px,4vw)}
 
 /* ===== Servicios y equipo ===== */
 .servicios{list-style:none; margin:0; padding:0; display:grid; gap:8px}
-.servicios button{width:100%; display:grid; grid-template-columns:1fr auto; align-items:center; gap:4px 12px; min-height:64px; padding:10px 18px; border:0; border-radius:18px; background:var(--carta); cursor:pointer; text-align:left; box-shadow:0 1px 0 var(--linea)}
+.servicios button{width:100%; display:grid; grid-template-columns:1fr auto; align-items:center; gap:4px 12px; min-height:64px; padding:10px 18px; border:0; border-radius:12px; background:var(--carta); cursor:pointer; text-align:left; box-shadow:0 1px 0 var(--linea)}
 .servicios b{font-size:17px}
 .servicios small{grid-column:1; color:var(--suave); font-size:14px}
 .servicios .precio{grid-row:1 / span 2; grid-column:2; font:italic 400 34px/1 "Instrument Serif", Georgia, serif}
 .equipo{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:16px}
-.persona{border-radius:18px; padding:14px; background:var(--persona); color:#1D1418}
-.persona b{display:block; font:italic 400 30px/1 "Instrument Serif", Georgia, serif}
+.persona{border-radius:12px; padding:14px 16px; background:#fff; border:1px solid color-mix(in srgb, var(--texto) 12%, transparent); color:#1D1418}
+.persona b{display:flex; align-items:center; gap:10px; font:italic 400 30px/1 "Instrument Serif", Georgia, serif}
+.persona b::before{content:""; width:10px; height:10px; border-radius:50%; background:var(--persona); flex:none}
 .persona span{font-size:14px}
 
 /* ===== Dónde: el salón y el mapa ===== */
-.donde .foto{border-radius:24px; overflow:hidden}
+.donde .foto{border-radius:12px; overflow:hidden}
 .donde .foto img{width:100%; aspect-ratio:4/3; object-fit:cover}
-.mapa{display:block; width:100%; margin-top:10px; padding:0; border:0; border-radius:24px; overflow:hidden; cursor:pointer; position:relative; background:#F1EEE8;
+.mapa{display:block; width:100%; margin-top:10px; padding:0; border:0; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; background:#F1EEE8;
   height:220px; transition:height .6s var(--muelle)}
 .mapa.grande{height:min(440px, 72vw)}
 .mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -55%}
@@ -204,7 +205,7 @@ footer .boton{min-height:44px; font-size:15px; padding:0 18px}
 
 /* ===== Hoja de reserva y panel ===== */
 dialog.hoja{position:fixed; inset:auto 0 0 0; margin:0; width:100%; max-width:100%; max-height:92dvh; border:0; padding:0;
-  border-radius:24px 24px 0 0; background:var(--hoja); color:var(--texto); display:flex; flex-direction:column;
+  border-radius:12px 24px 0 0; background:var(--hoja); color:var(--texto); display:flex; flex-direction:column;
   transition:transform .3s ease-out, opacity .3s ease-out, overlay .3s allow-discrete, display .3s allow-discrete}
 dialog.hoja:not([open]){display:none; transform:translateY(28px); opacity:0}
 @starting-style{dialog.hoja[open]{transform:translateY(28px); opacity:0}}
@@ -226,7 +227,7 @@ dialog.hoja::backdrop{background:rgba(29,20,24,.45)}
 .etiqueta:first-child{margin-top:0}
 .elige{display:grid; gap:8px}
 .hoja input[type=radio],.hoja input[type=checkbox]{position:absolute; opacity:0; width:1px; height:1px}
-.fila{display:grid; grid-template-columns:1fr auto; gap:2px 14px; align-items:center; min-height:60px; padding:10px 16px; border-radius:16px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
+.fila{display:grid; grid-template-columns:1fr auto; gap:2px 14px; align-items:center; min-height:60px; padding:10px 16px; border-radius:12px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
 .fila small{grid-column:1; font-size:14px; color:var(--suave)}
 .fila b{grid-row:1 / span 2; grid-column:2}
 .fila.con-foto{grid-template-columns:52px 1fr auto}
@@ -237,7 +238,7 @@ input:checked + .fila{border-color:var(--texto); box-shadow:inset 0 0 0 1px var(
 input:focus-visible + .fila,input:focus-visible + .ficha{outline:3px solid var(--texto); outline-offset:2px}
 .fichas{display:flex; flex-wrap:wrap; gap:8px}
 .dias-h{display:flex; gap:8px; overflow-x:auto; padding:2px 2px 8px; margin:0 -2px}
-.ficha{display:grid; place-items:center; min-width:62px; min-height:48px; padding:6px 12px; border-radius:14px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer; line-height:1.15; text-align:center; font-size:15px}
+.ficha{display:grid; place-items:center; min-width:62px; min-height:48px; padding:6px 12px; border-radius:10px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer; line-height:1.15; text-align:center; font-size:15px}
 .dias-h .ficha{min-height:64px}
 .ficha b{font-size:20px; display:block}
 .ficha small{font-size:12px}
@@ -245,8 +246,8 @@ input:checked + .ficha{background:var(--texto); color:#fff; border-color:var(--t
 input:disabled + .ficha{opacity:.45; cursor:not-allowed}
 .campos{display:grid; gap:14px}
 .campos label{display:grid; gap:6px; font-weight:600; font-size:15px}
-.campos input{font:inherit; font-weight:400; min-height:50px; padding:0 14px; border-radius:14px; border:1.5px solid #BCAEB4; background:#fff; color:inherit}
-.referencia{display:grid; grid-template-columns:48px 1fr; gap:12px; align-items:center; margin-top:16px; padding:12px; border-radius:16px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
+.campos input{font:inherit; font-weight:400; min-height:50px; padding:0 14px; border-radius:10px; border:1.5px solid #BCAEB4; background:#fff; color:inherit}
+.referencia{display:grid; grid-template-columns:48px 1fr; gap:12px; align-items:center; margin-top:16px; padding:12px; border-radius:12px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
 .referencia i{width:48px; height:48px; border-radius:50%; background:var(--una); box-shadow:inset 0 0 0 3px #fff, 0 0 0 1px var(--linea-hoja)}
 .referencia small{display:block; color:var(--suave); font-size:13px}
 input:checked + .referencia{border-color:var(--texto); box-shadow:inset 0 0 0 1px var(--texto)}

@@ -7,7 +7,6 @@
 <meta name="description" content="Taberna de toda la vida en el barrio de las Letras: café con porras, vermut de grifo, cocido los jueves y cañas con raciones. Caso inventado por Covalente.">
 <meta name="theme-color" content="#203F91">
 <link rel="preload" href="fuentes/Bricolage-taberna.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fuentes/Kalam.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:Bricolage;src:url(fuentes/Bricolage-taberna.woff2) format('woff2');font-weight:400 800;font-stretch:75% 100%;font-display:swap}
 @font-face{font-family:Kalam;src:url(fuentes/Kalam.woff2) format('woff2');font-weight:400;font-display:swap}
@@ -19,7 +18,7 @@
 /* La pared de detrás de la barra manda: cambia con la franja y la página entera la sigue. */
 :root{
   --pared:#203F91;--tinta:#FBF7EE;--acento:#F4B81C;
-  --papel:#FBF7EE;--grafito:#2B2B30;--boli:#1F3FA8;--pizarra:#1F2B26;--tiza:#F2EEE3;--marco:#5A3B22;
+  --papel:#FBF7EE;--grafito:#2B2B30;--boli:#1F1F24;--pizarra:#1F2B26;--tiza:#F2EEE3;--marco:#5A3B22;
   --muelle:linear(0, 0.03, 0.101, 0.199, 0.313, 0.431, 0.548, 0.657, 0.755, 0.839, 0.91, 0.966, 1.01, 1.041, 1.062, 1.075, 1.08, 1.08, 1.076, 1.069, 1.06, 1.051, 1.041, 1.032, 1.024, 1.016, 1.01, 1.005, 1.001, 0.998, 0.996, 0.994, 0.994, 0.994, 0.994, 0.994, 0.995, 0.996, 0.996, 0.997, 0.998, 0.998, 1);
   --aviso:2rem;
   color-scheme:light;
@@ -59,14 +58,15 @@ button{cursor:pointer}
 .despega{position:absolute;pointer-events:none;left:calc(var(--mx)*-100%);top:calc(var(--my)*-100%);width:calc((1 + 2*var(--mx))*100%);height:calc((1 + 2*var(--my))*100%);opacity:0;transform-origin:50% 90%;transition:opacity .15s,transform .62s var(--muelle),filter .3s}
 @media (hover:hover){button.tocable:hover .despega{opacity:1;transform:translateY(-4%) rotate(-2deg) scale(1.05);filter:drop-shadow(0 10px 12px rgb(0 0 0/.35))}}
 .tocable:focus-visible .despega{opacity:1;transform:translateY(-4%) rotate(-2deg) scale(1.05);filter:drop-shadow(0 10px 12px rgb(0 0 0/.35))}
-.etiqueta{position:absolute;left:50%;bottom:calc(100% + .35rem);translate:calc(-50% + var(--dx,0px)) var(--dy,0px);rotate:var(--giro,-2deg);display:flex;gap:.4em;align-items:baseline;padding:.22rem .55rem .26rem;background:var(--papel);color:var(--grafito);font-size:.82rem;font-weight:600;line-height:1.1;white-space:nowrap;border-radius:2px;box-shadow:0 2px 0 rgb(0 0 0/.12),0 6px 14px rgb(0 0 0/.25);transition:rotate .62s var(--muelle),translate .62s var(--muelle)}
-.etiqueta b{font-family:Kalam,cursive;font-weight:700;font-size:1.05em;color:var(--boli)}
-@media (hover:hover){button.tocable:hover .etiqueta{rotate:0deg;translate:calc(-50% + var(--dx,0px)) calc(var(--dy,0px) - 3px)}}
+.etiqueta{position:absolute;left:50%;bottom:calc(100% + .35rem);translate:calc(-50% + var(--dx,0px)) var(--dy,0px);rotate:0deg;display:flex;gap:.4em;align-items:baseline;padding:.22rem .55rem .26rem;background:var(--papel);color:var(--grafito);font-size:.82rem;font-weight:600;line-height:1.1;white-space:nowrap;border-radius:2px;box-shadow:0 2px 0 rgb(0 0 0/.12),0 6px 14px rgb(0 0 0/.25);transition:rotate .62s var(--muelle),translate .62s var(--muelle)}
+.etiqueta b{font-family:Bricolage,sans-serif;font-weight:700;font-size:1.05em;color:var(--boli)}
+@media (hover:hover){button.tocable:hover .etiqueta{translate:calc(-50% + var(--dx,0px)) calc(var(--dy,0px) - 3px)}}
 .etiqueta .corto{display:none}
 .etiqueta .mas{display:inline-grid;place-items:center;width:1.15em;height:1.15em;margin-left:.1em;border-radius:50%;background:var(--boli);color:var(--papel);font:700 .85em/1 system-ui,sans-serif;font-style:normal}
 .tocable.solo-barra{pointer-events:none}
 @media (max-width:599.98px){.etiqueta{font-size:.74rem;padding:.18rem .45rem .2rem}.etiqueta .largo{display:none}.etiqueta .corto{display:inline}}
 .tocable.acabado .etiqueta{color:#6b6b70}
+.tocable.repetido .etiqueta{display:none} /* dos vasos del mismo plato: una sola etiqueta */
 .tocable.acabado .etiqueta span{text-decoration:line-through 2px var(--grafito)}
 .tocable.acabado .etiqueta b{color:#6b6b70}
 
@@ -82,11 +82,11 @@ button{cursor:pointer}
 .dia{position:relative;padding:.6rem 1rem 1rem}
 .arco{position:relative;max-width:30rem;margin:0 auto}
 .arco svg{display:block;width:100%;height:auto;overflow:visible}
-.arco .camino{fill:none;stroke:currentColor;stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;opacity:.55}
+.arco .camino{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;opacity:.35}
 .arco .marca text{font:600 13px Bricolage,sans-serif;fill:currentColor;text-anchor:middle}
 .arco .marca line{stroke:currentColor;stroke-width:2;opacity:.6}
 .sol .disco{fill:var(--acento);stroke:var(--tinta);stroke-width:0}
-.sol .rayos{stroke:var(--acento);stroke-width:3;stroke-linecap:round}
+.sol .rayos{display:none}
 .sol .luna{fill:var(--papel);display:none}
 .sol .luna .mordisco{fill:var(--pared)}
 .arco.noche .sol .luna{display:block}
@@ -100,37 +100,37 @@ button{cursor:pointer}
 .arco input::-webkit-slider-thumb{-webkit-appearance:none;width:56px;height:120px}
 .arco input::-moz-range-thumb{width:56px;height:120px;border:0}
 .arco input::-moz-range-track{height:100%}
-.pista{position:absolute;font:400 .95rem Kalam,cursive;white-space:nowrap;pointer-events:none;transition:opacity .4s}
+.pista{position:absolute;font:400 .95rem Bricolage,sans-serif;white-space:nowrap;pointer-events:none;transition:opacity .4s}
 .pista.fuera{opacity:0}
 .franja{display:flex;justify-content:center;align-items:baseline;gap:.6rem;margin:.2rem 0 0;font-size:clamp(1.3rem,5vw,1.9rem);font-weight:700;font-stretch:85%;line-height:1.1;text-align:center}
-.franja time{font-family:Kalam,cursive;font-weight:400;font-size:.8em;font-variant-numeric:tabular-nums;color:var(--acento)}
+.franja time{font-family:Bricolage,sans-serif;font-weight:400;font-size:.8em;font-variant-numeric:tabular-nums;color:var(--acento)}
 
 /* ── La cuenta ── */
 .cuenta{color:var(--grafito);filter:drop-shadow(0 12px 18px rgb(0 0 0/.28))}
 .ticket{position:relative;background:var(--papel);padding:1.4rem 1.2rem 1.5rem;
   mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/14px 51% repeat-x,conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/14px 51% repeat-x}
 .ticket header{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;padding-bottom:.6rem;border-bottom:1px dashed #b9b3a6;font-size:.78rem;font-weight:700;font-stretch:80%;letter-spacing:.05em;text-transform:uppercase}
-.ticket header time{font-family:Kalam,cursive;font-size:1.05rem;letter-spacing:0;text-transform:none;font-weight:400;color:var(--boli)}
+.ticket header time{font-family:Bricolage,sans-serif;font-size:1.05rem;letter-spacing:0;text-transform:none;font-weight:400;color:var(--boli)}
 .lapiz{position:absolute;right:.7rem;top:-.6rem;width:46px;rotate:28deg;transform-origin:85% 85%}
-.vacia{margin:1rem 0 .4rem;font:400 1.15rem/1.3 Kalam,cursive;color:var(--boli)}
+.vacia{margin:1rem 0 .4rem;font:400 1rem/1.35 Bricolage,sans-serif;color:var(--boli)}
 .ahora{list-style:none;margin:.3rem 0 0;padding:0}
-.ahora button{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;width:100%;min-height:2.6rem;padding:.35rem 0;border:0;border-bottom:1px dashed #d3ccbc;background:none;color:var(--grafito);font:400 1.1rem/1.2 Kalam,cursive;text-align:left;cursor:pointer}
+.ahora button{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;width:100%;min-height:2.6rem;padding:.35rem 0;border:0;border-bottom:1px dashed #d3ccbc;background:none;color:var(--grafito);font:400 1rem/1.25 Bricolage,sans-serif;text-align:left;cursor:pointer}
 .ahora button span{color:#5f5a50;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ahora button span::after{content:"+";display:inline-grid;place-items:center;width:1.6rem;height:1.6rem;margin-left:.5rem;border:1.5px solid currentColor;border-radius:50%;font-weight:700;line-height:1}
 .ahora button:hover span{color:var(--boli)}
 .cuenta:not([data-vacia]) .ahora{display:none}
 .lineas{list-style:none;margin:.5rem 0 0;padding:0}
-.linea{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:.4rem .6rem;padding:.35rem 0;font:400 1.1rem/1.2 Kalam,cursive}
+.linea{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:.4rem .6rem;padding:.35rem 0;font:400 1rem/1.25 Bricolage,sans-serif}
 .linea .que{grid-column:1/-1;display:flex;justify-content:space-between;gap:.5rem}
 .linea .cuanto{font-variant-numeric:tabular-nums}
 .linea .palotes{height:32px;color:#3a3a42;overflow:visible}
 .linea .palotes path{fill:currentColor}
-.linea .menos{width:2rem;height:2rem;border:0;border-radius:50%;background:none;color:var(--boli);font:700 1.3rem/1 Kalam,cursive}
+.linea .menos{width:2rem;height:2rem;border:0;border-radius:50%;background:none;color:var(--boli);font:700 1.3rem/1 Bricolage,sans-serif}
 .linea .menos:hover{background:#ece6d8}
 .linea .menos:focus-visible{outline-color:var(--boli)}
 .total{display:flex;justify-content:space-between;align-items:baseline;margin:.6rem 0 0;padding-top:.6rem;border-top:2px solid var(--grafito);font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem}
-.total output{font:700 1.7rem/1 Kalam,cursive;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums;display:inline-block}
-.nota{min-height:1.4em;margin:.5rem 0 0;font:400 1rem/1.3 Kalam,cursive;color:var(--boli)}
+.total output{font:700 1.7rem/1 Bricolage,sans-serif;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums;display:inline-block}
+.nota{min-height:1.4em;margin:.5rem 0 0;font:400 1rem/1.3 Bricolage,sans-serif;color:var(--boli)}
 .salidas{display:grid;grid-template-columns:1fr;gap:.5rem;margin-top:.8rem}
 .salidas button{min-height:3rem;padding:.6rem .5rem;border:2px solid var(--grafito);border-radius:3px;background:none;font-weight:700;font-stretch:90%;transition:transform .5s var(--muelle)}
 .salidas button.principal{background:var(--pared);color:var(--tinta);border-color:var(--pared)}
@@ -157,7 +157,7 @@ button{cursor:pointer}
 .mesas h2,.donde h2{margin:0;font-size:clamp(2.2rem,8vw,3.4rem);font-weight:800;font-stretch:78%;line-height:.95;letter-spacing:-.01em}
 .mesas-nota{margin:.4rem 0 .9rem;max-width:34ch}
 .turnos{display:grid;gap:.9rem}
-.turno b{display:block;margin-bottom:.4rem;font:400 1.15rem/1 Kalam,cursive;color:var(--acento)}
+.turno b{display:block;margin-bottom:.4rem;font:400 1.15rem/1 Bricolage,sans-serif;color:var(--acento)}
 .turno div{display:flex;flex-wrap:wrap;gap:.4rem}
 .turno button{display:grid;place-items:center;min-width:4.4rem;min-height:3.2rem;padding:.3rem .7rem;border:2px solid color-mix(in srgb,var(--tinta) 45%,transparent);border-radius:3px;background:none;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.05;transition:transform .5s var(--muelle)}
 .turno button small{font-weight:400;font-size:.75rem}
@@ -196,7 +196,7 @@ dialog h2{margin:0 2.5rem .6rem 0;font-size:1.6rem;font-weight:800;font-stretch:
 .cerrar{position:absolute;right:.6rem;top:.6rem;width:2.6rem;height:2.6rem;border:0;border-radius:50%;background:none;font-size:1.6rem;line-height:1}
 .cerrar:hover{background:#ece6d8}
 dialog :focus-visible{outline-color:var(--boli)}
-.lleva{margin:0 0 1rem;font:400 1.05rem/1.35 Kalam,cursive;color:var(--boli)}
+.lleva{margin:0 0 1rem;font:400 1.05rem/1.35 Bricolage,sans-serif;color:var(--boli)}
 dialog fieldset{margin:0 0 1rem;padding:0;border:0}
 dialog legend{margin-bottom:.4rem;font-weight:700;font-size:.95rem}
 .fichas{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -210,7 +210,7 @@ dialog .campo input{min-height:2.9rem;padding:.5rem .7rem;border:2px solid #cfc8
 dialog .campo input:focus{border-color:var(--grafito);outline:none}
 dialog .principal{width:100%;min-height:3.2rem;margin-top:.4rem;border:0;border-radius:3px;background:var(--pared);color:var(--tinta);font-weight:800;font-size:1.05rem;font-stretch:90%}
 .hecho{text-align:center}
-.hecho .numero{display:block;margin:.6rem 0 .2rem;font:700 4.5rem/1 Kalam,cursive;color:var(--boli)}
+.hecho .numero{display:block;margin:.6rem 0 .2rem;font:700 4.5rem/1 Bricolage,sans-serif;color:var(--boli)}
 .hecho p{margin:.3rem 0;font-size:1.05rem}
 .hecho button{margin-top:1rem;min-height:3rem;padding:.6rem 1.2rem;border:2px solid var(--grafito);border-radius:3px;background:none;font-weight:700}
 .panel-lista{list-style:none;margin:0 0 1rem;padding:0}
@@ -228,8 +228,8 @@ dialog .principal{width:100%;min-height:3.2rem;margin-top:.4rem;border:0;border-
   .cuenta.abierta{transform:none}
   .ticket{overflow:auto;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
   .resumen{display:flex;align-items:center;justify-content:space-between;gap:.6rem;width:100%;min-height:3rem;margin:-.4rem 0 .4rem;padding:0;border:0;background:none;color:var(--grafito);text-align:left}
-  .resumen .que{font:400 1.08rem/1.2 Kalam,cursive;color:var(--boli)}
-  .resumen output{font:700 1.35rem/1 Kalam,cursive;font-variant-numeric:tabular-nums}
+  .resumen .que{font:400 1.08rem/1.2 Bricolage,sans-serif;color:var(--boli)}
+  .resumen output{font:700 1.35rem/1 Bricolage,sans-serif;font-variant-numeric:tabular-nums}
   .resumen svg{flex:none;transition:rotate .4s}
   .cuenta.abierta .resumen svg{rotate:180deg}
   .cuenta[data-vacia] .resumen svg{display:none}
@@ -311,7 +311,7 @@ dialog .principal{width:100%;min-height:3.2rem;margin-top:.4rem;border:0;border-
         </g>
       </svg>
       <input type="range" id="hora" min="480" max="1425" step="15" value="780" aria-label="Hora del día">
-      <span class="pista" id="pista">← arrastra el sol →</span>
+      <span class="pista" id="pista">Desliza para ver otra hora</span>
     </div>
     <p class="franja" id="franja" aria-live="polite"><span id="franja-nombre">La hora del vermut</span> <time id="franja-hora">13:00</time></p>
   </div>
@@ -507,11 +507,11 @@ async function mostrarFoto(f) {
 /* ── Lo que hay en la barra se toca ── */
 function ponerTocables(f) {
   capa.replaceChildren();
-  const lista = (ESCENA?.franjas[f.id]) || [];
+  const lista = (ESCENA?.franjas[f.id]) || [], vistos = new Set();
   lista.forEach((o, n) => {
     const p = PLATOS[o.id]; if (!p) return;
     const b = document.createElement(p.llevar ? 'button' : 'span');
-    if (p.llevar) b.type = 'button'; b.className = 'tocable' + (p.agotado ? ' acabado' : '') + (p.llevar ? '' : ' solo-barra'); b.dataset.id = o.id;
+    if (p.llevar) b.type = 'button'; b.className = 'tocable' + (p.agotado ? ' acabado' : '') + (p.llevar ? '' : ' solo-barra') + (vistos.has(o.id) ? ' repetido' : ''); b.dataset.id = o.id; vistos.add(o.id);
     b.style.cssText = `--x:${o.x};--y:${o.y};--w:${o.w};--h:${o.h};--giro:${n % 2 ? 3 : -3}deg`;
     if (p.llevar) b.setAttribute('aria-label', p.agotado ? `${p.nombre}: se acabó` : `${p.nombre}, ${precioTexto(p)}. Añadir al pedido para llevar`); else b.setAttribute('aria-hidden', 'true');
     b.innerHTML = `<img class="despega" src="img/pegatinas/${o.img}" alt="" style="--mx:${o.mx};--my:${o.my}"><span class="etiqueta"><span><span class="largo">${p.nombre}</span><span class="corto">${p.corto || p.nombre}</span></span> <b>${p.precio ? euros(p.precio).replace(' €', '') : 'gratis'}</b>${p.llevar && !p.agotado ? '<i class="mas">+</i>' : ''}</span>`;
@@ -525,7 +525,7 @@ function ponerTocables(f) {
 // Ninguna etiqueta se sale de la foto ni pisa a otra: si asoma por un lado, se corre hacia dentro; si choca, sube.
 function encajarEtiquetas() {
   const b = barra.getBoundingClientRect(), puestas = [];
-  capa.querySelectorAll('.etiqueta').forEach(e => {
+  capa.querySelectorAll('.tocable:not(.repetido) .etiqueta').forEach(e => {
     e.style.removeProperty('--dx'); e.style.removeProperty('--dy'); const r = e.getBoundingClientRect();
     const dx = Math.max(0, b.left + 6 - r.left) - Math.max(0, r.right - (b.right - 6));
     let t = r.top, dy = 0;
