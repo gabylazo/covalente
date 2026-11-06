@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Esqueje · caso inventado por Covalente</title>
+<meta name="description" content="Esqueje, floristería en la calle de Santa María (Madrid): el ramo de hoy en tres tamaños, para recoger o en casa. Caso inventado por Covalente.">
+<meta name="theme-color" content="#F5F4F1">
+<link rel="canonical" href="https://covalente.eu/casos/esqueje/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E1D1B'/%3E%3Cpath d='M16 26V12M16 17c-4 0-6-3-6-6 4 0 6 3 6 6Zm0-2c4 0 6-3 6-6-4 0-6 3-6 6Z' fill='none' stroke='%23F5F4F1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fuentes/InstrumentSans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/YoungSerif.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Young Serif"; src:url(fuentes/YoungSerif.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Instrument Sans"; src:url(fuentes/InstrumentSans.woff2) format("woff2"); font-weight:400 700; font-stretch:75% 100%; font-display:swap}
+
+/* Esqueje: papel neutro, tinta casi negra y el color lo ponen las flores. Un solo acento, el coral de la dalia, para lo elegido. */
+:root{--papel:#F5F4F1; --blanco:#FFFFFF; --tinta:#1E1D1B; --suave:#64605A; --linea:#E1DED8; --coral:#C8462B; --coral-claro:#FBE9E4;
+  --serif:"Young Serif", Georgia, serif; --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --margen:max(16px, 4vw)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--papel); color:var(--tinta); font:400 16px/1.5 var(--sans); font-variant-numeric:tabular-nums; -webkit-tap-highlight-color:transparent}
+img{display:block; max-width:100%}
+h1, h2, h3, p, fieldset, legend{margin:0; padding:0}
+fieldset{border:0; min-width:0}
+a{color:inherit}
+button, input, textarea{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--tinta); outline-offset:3px; border-radius:6px}
+[hidden]{display:none !important}
+[tabindex="-1"]:focus{outline:none}
+.oculto{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:12px 22px; border:0; border-radius:8px; background:var(--tinta); color:var(--papel); font-weight:600; font-size:16px; text-decoration:none; cursor:pointer}
+.boton:hover{background:#000}
+.boton[disabled]{background:#B9B5AE; cursor:not-allowed}
+.boton.claro{background:none; color:var(--tinta); box-shadow:inset 0 0 0 1.5px var(--tinta)}
+.boton.claro:hover{background:var(--blanco)}
+
+/* ——— Cabecera ——— */
+.cab{display:flex; align-items:center; gap:12px 20px; flex-wrap:wrap; padding:14px var(--margen); border-bottom:1px solid var(--linea)}
+.marca{font:400 30px/1 var(--serif); letter-spacing:-.01em}
+.lema{font-size:14px; color:var(--suave)}
+.cab .abierto{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px}
+.abierto i{width:8px; height:8px; border-radius:50%; background:#2E8B57}
+.abierto.cerrado i{background:#B9B5AE}
+.inventado{font-size:13px; padding:6px 10px; border-radius:999px; box-shadow:inset 0 0 0 1px var(--linea); text-decoration:none; color:var(--suave)}
+.inventado:hover{color:var(--tinta)}
+@media (max-width:640px){ .lema{display:none} .cab .abierto{margin-left:auto} }
+
+/* ——— El ramo de hoy: la foto cambia con el tamaño ——— */
+.hoy{display:grid; gap:0}
+.fotos{position:relative; aspect-ratio:4/3; background:#E9E7E2; overflow:hidden}
+.fotos picture, .fotos img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.fotos picture{opacity:0; transition:opacity .45s ease}
+.fotos picture.vista{opacity:1}
+.fotos .medida{position:absolute; left:var(--margen); bottom:16px; margin:0; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.92); font-size:14px; font-weight:600}
+@media (prefers-reduced-motion:reduce){ .fotos picture{transition:none} }
+
+.pedido{display:grid; gap:22px; align-content:start; padding:28px var(--margen) 36px; background:var(--blanco)}
+.pedido h1{font:400 clamp(34px, 3.4vw, 46px)/1.05 var(--serif); letter-spacing:-.015em}
+.fecha{margin-top:6px; color:var(--suave); font-size:15px}
+.lleva{font-size:17px; line-height:1.45; max-width:36ch}
+.lleva b{font-weight:600}
+legend{font-size:14px; font-weight:600; color:var(--suave); margin-bottom:10px}
+.tamanos{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.opcion{position:relative; display:grid; gap:2px; padding:12px 12px 13px; border-radius:10px; box-shadow:inset 0 0 0 1px var(--linea); cursor:pointer; background:var(--blanco)}
+.opcion input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
+.opcion b{font-weight:600; font-size:15px}
+.opcion .p{font:400 22px/1.15 var(--serif)}
+.opcion small{font-size:13px; color:var(--suave)}
+.opcion:has(input:checked){box-shadow:inset 0 0 0 2px var(--coral); background:var(--coral-claro)}
+.opcion:has(input:focus-visible){outline:2px solid var(--tinta); outline-offset:2px}
+.entregas{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.entregas .opcion{grid-template-columns:1fr; align-content:center; min-height:62px}
+.horas{display:flex; flex-wrap:wrap; gap:6px}
+.hora{position:relative}
+.hora input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
+.hora span{display:grid; place-items:center; min-width:64px; min-height:44px; padding:0 10px; border-radius:8px; box-shadow:inset 0 0 0 1px var(--linea); font-weight:600; font-size:15px}
+.hora input:checked + span{background:var(--tinta); color:var(--papel); box-shadow:none}
+.hora input:focus-visible + span{outline:2px solid var(--tinta); outline-offset:2px}
+.dia-horas{font-size:14px; color:var(--suave); margin:-4px 0 8px}
+.cierre{display:grid; gap:10px}
+.cierre .boton{width:100%; font-size:17px}
+.quedan{font-size:14px; color:var(--suave); text-align:center}
+.quedan b{color:var(--coral)}
+@media (min-width:1000px){
+  .hoy{grid-template-columns:minmax(0, 7fr) minmax(380px, 5fr); min-height:calc(100dvh - 63px)}
+  .fotos{aspect-ratio:auto; min-height:560px}
+  .pedido{padding:36px 44px 40px; border-left:1px solid var(--linea)}
+}
+
+/* ——— Cada semana y eventos ——— */
+.mas{display:grid; gap:1px; background:var(--linea); border-block:1px solid var(--linea)}
+.bloque{display:grid; background:var(--papel)}
+.bloque picture img{width:100%; aspect-ratio:16/10; object-fit:cover}
+.bloque .texto{display:grid; gap:12px; align-content:center; padding:28px var(--margen) 36px}
+.bloque h2{font:400 clamp(28px, 2.6vw, 36px)/1.1 var(--serif)}
+.bloque p{color:var(--suave); font-size:17px; max-width:34ch}
+.bloque .boton{justify-self:start; margin-top:6px}
+.precio-desde{color:var(--tinta) !important; font-weight:600}
+@media (min-width:900px){
+  .mas{grid-template-columns:1fr 1fr}
+  .bloque .texto{padding:32px 36px 40px}
+}
+
+/* ——— La tienda ——— */
+.tienda{display:grid; gap:24px; padding:56px var(--margen) 48px}
+.tienda .foto img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px}
+.tienda h2{font:400 clamp(32px, 3vw, 44px)/1.05 var(--serif)}
+.datos{display:grid; gap:4px; margin-top:12px; font-size:17px}
+.datos b{font-weight:600}
+.horario{display:grid; grid-template-columns:auto auto; justify-content:start; gap:4px 18px; margin-top:16px; font-size:15px; color:var(--suave)}
+.horario .hoy-dia{color:var(--tinta); font-weight:600}
+.llegar{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+.atrib{margin-top:8px; font-size:12px; color:var(--suave)}
+@media (min-width:1000px){ .tienda{grid-template-columns:minmax(0, 6fr) minmax(0, 6fr); gap:40px; align-items:start} }
+
+.mapa{position:relative; display:block; width:100%; height:240px; margin-top:20px; padding:0; border:0; border-radius:8px; overflow:hidden; cursor:pointer; background:#F1EEE8; transition:height .6s cubic-bezier(.3,.7,.2,1)}
+.mapa.grande{height:min(460px, 80vw)}
+.mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -52%}
+.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:6px 10px; border-radius:999px; background:#fff; font-size:12px; font-weight:600}
+.m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
+.m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
+.m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
+.m-etiquetas text{font:500 9.5px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#6A655D;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;letter-spacing:.01em}
+.m-etiquetas .m-lugar{font-style:italic;fill:#7C766C}
+.m-ruta-fondo{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.m-ruta{fill:none;stroke:#2F6FDB;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+.m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+@keyframes ruta{from{stroke-dashoffset:1}}
+.m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px system-ui, -apple-system, "Segoe UI", sans-serif;text-anchor:middle}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--tinta);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:var(--coral)}
+.m-nombre-pin,.m-nombre-origen{font:700 15px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+
+/* ——— Pie, hojas y aviso ——— */
+footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:24px var(--margen) calc(28px + env(safe-area-inset-bottom)); border-top:1px solid var(--linea); font-size:14px; color:var(--suave)}
+footer .boton{min-height:44px; font-size:14px}
+dialog.hoja{width:min(100%, 480px); max-height:92dvh; margin:auto auto 0; padding:26px var(--margen) calc(26px + env(safe-area-inset-bottom)); border:0; border-radius:16px 16px 0 0; background:var(--blanco); color:var(--tinta)}
+dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
+@media (min-width:640px){ dialog.hoja{margin:auto; border-radius:14px; padding:30px 32px} }
+.hoja h2{font:400 30px/1.1 var(--serif); margin-bottom:6px}
+.hoja .resumen{color:var(--suave); margin-bottom:20px}
+.campo{display:grid; gap:6px; margin-bottom:14px}
+.campo label{font-size:14px; font-weight:600}
+.campo input, .campo textarea{width:100%; min-height:48px; padding:10px 12px; border:1px solid var(--linea); border-radius:8px; background:var(--blanco); font-size:16px}
+.campo textarea{min-height:80px; resize:vertical}
+.campo small{color:var(--suave); font-size:13px}
+.hoja .acciones{display:grid; gap:8px; margin-top:8px}
+.hoja .pago{font-size:14px; color:var(--suave); text-align:center}
+.hecho{text-align:center}
+.hecho .numero{display:block; margin:6px 0 2px; font:400 64px/1 var(--serif)}
+.hecho p{color:var(--suave); margin:8px auto 20px; max-width:30ch}
+.panel .campo input[type=number]{max-width:120px}
+.panel .fila{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.panel .marca-check{display:flex; gap:10px; align-items:center; min-height:44px; margin-bottom:14px}
+.panel .marca-check input{width:20px; height:20px}
+.panel .act{font-size:13px; color:var(--suave); margin-top:4px}
+.aviso{position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom)); translate:-50% 20px; max-width:calc(100% - 32px); padding:12px 16px; border-radius:8px; background:var(--tinta); color:var(--papel); font-size:15px; opacity:0; pointer-events:none; transition:opacity .25s, translate .25s}
+.aviso.ver{opacity:1; translate:-50% 0}
+</style>
+</head>
+<body>
+<header class="cab">
+  <p class="marca">esqueje</p>
+  <p class="lema">Flores y plantas en Santa María</p>
+  <p class="abierto" id="abierto"><i></i><span>Abierto</span></p>
+  <a class="inventado" href="https://covalente.eu">Caso inventado</a>
+</header>
+
+<main>
+  <section class="hoy" aria-labelledby="t-hoy">
+    <div class="fotos" id="fotos">
+      <picture data-t="s"><source type="image/avif" srcset="img/ramo-s-640.avif 640w, img/ramo-s-1024.avif 1024w" sizes="(min-width:1000px) 58vw, 100vw"><img src="img/ramo-s-1024.jpg" srcset="img/ramo-s-640.jpg 640w, img/ramo-s-1024.jpg 1024w" sizes="(min-width:1000px) 58vw, 100vw" alt="El ramo de hoy en tamaño pequeño, en un jarrón de cristal" width="1024" height="768"></picture>
+      <picture data-t="m" class="vista"><source type="image/avif" srcset="img/ramo-m-640.avif 640w, img/ramo-m-1024.avif 1024w" sizes="(min-width:1000px) 58vw, 100vw"><img src="img/ramo-m-1024.jpg" srcset="img/ramo-m-640.jpg 640w, img/ramo-m-1024.jpg 1024w" sizes="(min-width:1000px) 58vw, 100vw" alt="El ramo de hoy en tamaño mediano, en un jarrón de cristal" width="1024" height="768" fetchpriority="high"></picture>
+      <picture data-t="l"><source type="image/avif" srcset="img/ramo-l-640.avif 640w, img/ramo-l-1024.avif 1024w" sizes="(min-width:1000px) 58vw, 100vw"><img src="img/ramo-l-1024.jpg" srcset="img/ramo-l-640.jpg 640w, img/ramo-l-1024.jpg 1024w" sizes="(min-width:1000px) 58vw, 100vw" alt="El ramo de hoy en tamaño grande, en un jarrón de cristal" width="1024" height="768"></picture>
+      <p class="medida" id="medida" aria-hidden="true">Mediano, unos 20 tallos</p>
+    </div>
+
+    <form class="pedido" id="pedido">
+      <div>
+        <h1 id="t-hoy">El ramo de hoy</h1>
+        <p class="fecha" id="fecha">Hecho esta mañana con lo que llegó del mercado</p>
+      </div>
+      <p class="lleva" id="lleva"><b>Lleva</b> dalias, rosas de jardín, crisantemos, hipérico y eucalipto.</p>
+
+      <fieldset>
+        <legend>Tamaño</legend>
+        <div class="tamanos" id="tamanos"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Cómo lo quieres</legend>
+        <div class="entregas">
+          <label class="opcion"><input type="radio" name="entrega" value="tienda" checked><b>Lo recojo</b><small>En la tienda</small></label>
+          <label class="opcion" id="op-casa"><input type="radio" name="entrega" value="casa"><b>Me lo traéis</b><small id="reparto-texto">Barrio de las Letras, +6 €</small></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend id="t-horas">Hora</legend>
+        <p class="dia-horas" id="dia-horas"></p>
+        <div class="horas" id="horas" role="radiogroup" aria-labelledby="t-horas dia-horas"></div>
+      </fieldset>
+
+      <div class="cierre">
+        <button class="boton" id="encargar" type="submit">Encargar</button>
+        <p class="quedan" id="quedan"></p>
+      </div>
+    </form>
+  </section>
+
+  <div class="mas">
+    <section class="bloque" aria-labelledby="t-semana">
+      <picture><source type="image/avif" srcset="img/semana-640.avif 640w, img/semana-1280.avif 1280w" sizes="(min-width:900px) 50vw, 100vw"><img src="img/semana-1280.jpg" srcset="img/semana-640.jpg 640w, img/semana-1280.jpg 1280w" sizes="(min-width:900px) 50vw, 100vw" alt="Un ramo de temporada en una jarra blanca sobre la mesa de una cocina" width="1280" height="714" loading="lazy"></picture>
+      <div class="texto">
+        <h2 id="t-semana">Flores cada viernes</h2>
+        <p>Un ramo de temporada en tu casa todas las semanas, sin permanencia.</p>
+        <p class="precio-desde">Desde 25 € a la semana</p>
+        <button class="boton claro" type="button" data-demo="Apuntarse a las flores de los viernes">Apuntarme</button>
+      </div>
+    </section>
+    <section class="bloque" aria-labelledby="t-eventos">
+      <picture><source type="image/avif" srcset="img/eventos-640.avif 640w, img/eventos-1280.avif 1280w" sizes="(min-width:900px) 50vw, 100vw"><img src="img/eventos-1280.jpg" srcset="img/eventos-640.jpg 640w, img/eventos-1280.jpg 1280w" sizes="(min-width:900px) 50vw, 100vw" alt="Una mesa de boda en un patio de Madrid con flores blancas y rosas en el centro" width="1280" height="714" loading="lazy"></picture>
+      <div class="texto">
+        <h2 id="t-eventos">Bodas y celebraciones</h2>
+        <p>Ramo de novia, mesas y centros. Dinos la fecha y cuántos sois.</p>
+        <button class="boton claro" type="button" data-demo="Pedir presupuesto para un evento">Pedir presupuesto</button>
+      </div>
+    </section>
+  </div>
+
+  <section class="tienda" aria-labelledby="t-tienda">
+    <div class="foto"><picture><source type="image/avif" srcset="img/fachada-640.avif 640w, img/fachada-1280.avif 1280w" sizes="(min-width:1000px) 50vw, 100vw"><img src="img/fachada-1280.jpg" srcset="img/fachada-640.jpg 640w, img/fachada-1280.jpg 1280w" sizes="(min-width:1000px) 50vw, 100vw" alt="La fachada de Esqueje, con cubos de flores en la acera" width="1280" height="714" loading="lazy"></picture></div>
+    <div>
+      <h2 id="t-tienda">En la calle de Santa María</h2>
+      <div class="datos"><b>A 3 minutos andando del metro de Antón Martín</b><span>Barrio de las Letras, Madrid</span></div>
+      <dl class="horario" id="horario"></dl>
+      <div class="llegar"><a class="boton claro" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760">Cómo llegar</a></div>
+      <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de Santa María, a 3 minutos andando del metro de Antón Martín. Toca para agrandarlo."><p class="crece" aria-hidden="true">Ampliar</p></button>
+      <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Caso inventado por <a href="https://covalente.eu">Covalente</a>. Esqueje no existe. Fotos generadas con IA.</p>
+  <button class="boton claro" type="button" id="abrir-panel">Ver el panel de Inés</button>
+</footer>
+
+<dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
+  <form method="dialog" id="hoja-form">
+    <h2 id="t-hoja" tabindex="-1">Tus datos</h2>
+    <p class="resumen" id="resumen"></p>
+    <div class="campo"><label for="c-nombre">Nombre</label><input id="c-nombre" name="nombre" autocomplete="name" required></div>
+    <div class="campo"><label for="c-tel">Teléfono</label><input id="c-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required><small>Te avisamos por WhatsApp cuando esté listo.</small></div>
+    <div class="campo" id="campo-dir" hidden><label for="c-dir">Dirección</label><input id="c-dir" name="dir" autocomplete="street-address"></div>
+    <div class="campo"><label for="c-tarjeta">Tarjeta, si es un regalo</label><textarea id="c-tarjeta" name="tarjeta" maxlength="140" placeholder="Lo escribimos a mano"></textarea></div>
+    <div class="acciones">
+      <button class="boton" value="ok" id="confirmar">Confirmar</button>
+      <p class="pago" id="pago">Pagas al recogerlo, con tarjeta o en efectivo.</p>
+      <button class="boton claro" value="cancelar" formnovalidate>Volver</button>
+    </div>
+  </form>
+  <div class="hecho" id="hecho" hidden>
+    <h2 tabindex="-1" id="t-hecho">Encargado</h2>
+    <span class="numero" id="numero">0</span>
+    <p id="hecho-texto"></p>
+    <button class="boton" type="button" id="cerrar-hecho">Hecho</button>
+  </div>
+</dialog>
+
+<dialog class="hoja panel" id="panel" aria-labelledby="t-panel">
+  <form method="dialog" id="panel-form">
+    <h2 id="t-panel" tabindex="-1">Panel de Inés</h2>
+    <p class="resumen">Lo que cambies aquí se ve al momento en la web. En este ejemplo no se guarda.</p>
+    <div class="campo"><label for="p-lleva">El ramo de hoy lleva</label><textarea id="p-lleva" name="lleva"></textarea></div>
+    <div class="fila">
+      <div class="campo"><label for="p-s">Pequeño, €</label><input id="p-s" name="s" type="number" min="1" inputmode="numeric"></div>
+      <div class="campo"><label for="p-m">Mediano, €</label><input id="p-m" name="m" type="number" min="1" inputmode="numeric"></div>
+      <div class="campo"><label for="p-l">Grande, €</label><input id="p-l" name="l" type="number" min="1" inputmode="numeric"></div>
+    </div>
+    <div class="campo"><label for="p-quedan">Ramos que quedan hoy</label><input id="p-quedan" name="quedan" type="number" min="0" inputmode="numeric"></div>
+    <label class="marca-check"><input type="checkbox" id="p-reparto" name="reparto"> Hoy hay reparto</label>
+    <p class="act" id="p-act" aria-live="polite"></p>
+    <div class="acciones"><button class="boton" value="ok">Cerrar el panel</button></div>
+  </form>
+</dialog>
+
+<p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)');
+  const RAMO = { s: { n: 'Pequeño', precio: 25, tallos: 10 }, m: { n: 'Mediano', precio: 35, tallos: 20 }, l: { n: 'Grande', precio: 50, tallos: 35 } };
+  const est = { t: 'm', entrega: 'tienda', hora: null, quedan: 4, reparto: true, envio: 6, lleva: 'dalias, rosas de jardín, crisantemos, hipérico y eucalipto' };
+  const euros = n => `${n} €`;
+  const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const ABRE = 10 * 60, CIERRA = 20 * 60; // de lunes a sábado; el domingo, cerrado
+
+  // La hora de Madrid (o la de ?hora=HH:MM, para enseñar otro momento)
+  function ahora() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    const d = new Date(Date.UTC(+p.year, +p.month - 1, +p.day));
+    let min = +p.hour * 60 + +p.minute;
+    const h = new URLSearchParams(location.search).get('hora');
+    if (/^\d{1,2}:\d{2}$/.test(h || '')) { const [a, b] = h.split(':'); min = +a * 60 + +b; }
+    return { d, min };
+  }
+  const abreEse = d => d.getUTCDay() !== 0;
+  const fechaTexto = d => `${DIAS[d.getUTCDay()]} ${d.getUTCDate()} de ${MESES[d.getUTCMonth()]}`;
+  const hhmm = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+
+  // Horas: cada media hora, desde dentro de una hora (o de hora y media si lo llevamos) hasta media hora antes de cerrar
+  function horas() {
+    const { d, min } = ahora(), margen = est.entrega === 'casa' ? 90 : 60, fin = CIERRA - (est.entrega === 'casa' ? 60 : 30);
+    let dia = new Date(d), desde = Math.ceil((min + margen) / 30) * 30, cuando = 'Hoy';
+    if (!abreEse(dia) || desde > fin || est.quedan === 0) {
+      do { dia.setUTCDate(dia.getUTCDate() + 1); } while (!abreEse(dia));
+      const dif = Math.round((dia - d) / 864e5);
+      cuando = dif === 1 ? 'Mañana' : DIAS[dia.getUTCDay()][0].toUpperCase() + DIAS[dia.getUTCDay()].slice(1);
+      desde = ABRE + 30;
+    }
+    desde = Math.max(desde, ABRE + 30);
+    const lista = []; for (let m = desde; m <= fin; m += 30) lista.push(m);
+    return { cuando, dia, lista };
+  }
+
+  function pintarAbierto() {
+    const { d, min } = ahora(), abierto = abreEse(d) && min >= ABRE && min < CIERRA;
+    const a = $('#abierto'); a.classList.toggle('cerrado', !abierto);
+    a.querySelector('span').textContent = abierto ? `Abierto hasta las ${hhmm(CIERRA)}` : (abreEse(d) && min < ABRE ? `Abrimos a las ${hhmm(ABRE)}` : 'Cerrado ahora');
+    $('#fecha').textContent = `${fechaTexto(d)[0].toUpperCase() + fechaTexto(d).slice(1)}. Hecho con lo que llegó esta mañana del mercado.`;
+    const filas = [['Lunes a sábado', '10:00 a 20:00'], ['Domingo', 'Cerrado']];
+    $('#horario').innerHTML = filas.map(([a, b], i) => { const hoy = (i === 0) === abreEse(d); return `<dt${hoy ? ' class="hoy-dia"' : ''}>${a}</dt><dd style="margin:0"${hoy ? ' class="hoy-dia"' : ''}>${b}</dd>`; }).join('');
+  }
+
+  function pintarTamanos() {
+    $('#tamanos').innerHTML = Object.entries(RAMO).map(([k, r]) => `<label class="opcion"><input type="radio" name="t" value="${k}"${k === est.t ? ' checked' : ''}><b>${r.n}</b><span class="p">${euros(r.precio)}</span><small>unos ${r.tallos} tallos</small></label>`).join('');
+  }
+  function pintarHoras() {
+    const { cuando, dia, lista } = horas();
+    if (!lista.includes(est.hora)) est.hora = lista[0] ?? null;
+    $('#dia-horas').textContent = cuando === 'Hoy' ? `Hoy, ${fechaTexto(dia)}` : `${cuando}, ${fechaTexto(dia)}`;
+    $('#horas').innerHTML = lista.map(m => `<label class="hora"><input type="radio" name="hora" value="${m}"${m === est.hora ? ' checked' : ''}><span>${hhmm(m)}</span></label>`).join('');
+    est.cuando = cuando; est.dia = dia;
+  }
+  function pintarResto() {
+    const r = RAMO[est.t], total = r.precio + (est.entrega === 'casa' ? est.envio : 0);
+    document.querySelectorAll('#fotos picture').forEach(p => p.classList.toggle('vista', p.dataset.t === est.t));
+    $('#medida').textContent = `${r.n}, unos ${r.tallos} tallos`;
+    $('#lleva').innerHTML = `<b>Lleva</b> ${est.lleva.replace(/[<>&]/g, '')}.`;
+    const casa = $('#op-casa'), sinReparto = !est.reparto;
+    casa.querySelector('input').disabled = sinReparto; casa.style.opacity = sinReparto ? .5 : 1;
+    $('#reparto-texto').textContent = sinReparto ? 'Hoy no hay reparto' : `Barrio de las Letras, +${euros(est.envio)}`;
+    const b = $('#encargar'); b.disabled = est.hora == null;
+    b.textContent = `Encargar · ${euros(total)}`;
+    $('#quedan').innerHTML = est.quedan > 0 ? `Quedan <b>${est.quedan}</b> ramos de hoy` : 'Los de hoy se han acabado: te lo preparamos para el siguiente día';
+  }
+  function pintar() { pintarAbierto(); pintarHoras(); pintarResto(); }
+
+  $('#pedido').addEventListener('change', e => {
+    const { name, value } = e.target;
+    if (name === 't') est.t = value;
+    if (name === 'entrega') { est.entrega = value; pintarHoras(); }
+    if (name === 'hora') est.hora = +value;
+    pintarResto();
+  });
+
+  // ——— Encargar ———
+  const hoja = $('#hoja');
+  $('#pedido').addEventListener('submit', e => {
+    e.preventDefault(); if (est.hora == null) return;
+    const r = RAMO[est.t], casa = est.entrega === 'casa';
+    $('#resumen').textContent = `${r.n}, ${euros(r.precio + (casa ? est.envio : 0))}. ${casa ? 'Te lo llevamos' : 'Lo recoges'} ${est.cuando === 'Hoy' ? 'hoy' : est.cuando.toLowerCase()} a las ${hhmm(est.hora)}.`;
+    $('#campo-dir').hidden = !casa; $('#c-dir').required = casa;
+    $('#pago').textContent = casa ? 'Pagas al recibirlo, con tarjeta o en efectivo.' : 'Pagas al recogerlo, con tarjeta o en efectivo.';
+    $('#hoja-form').hidden = false; $('#hecho').hidden = true;
+    hoja.showModal(); $('#c-nombre').focus();
+  });
+  $('#hoja-form').addEventListener('submit', e => {
+    if (e.submitter?.value === 'cancelar') return;
+    e.preventDefault();
+    const casa = est.entrega === 'casa', n = 1040 + Math.floor(Math.random() * 60);
+    $('#numero').textContent = n;
+    $('#hecho-texto').textContent = `${casa ? 'Te lo llevamos' : 'Te esperamos'} ${est.cuando === 'Hoy' ? 'hoy' : est.cuando.toLowerCase()} a las ${hhmm(est.hora)}. Te escribimos por WhatsApp cuando esté listo. Es una demostración: no se ha enviado nada.`;
+    $('#hoja-form').hidden = true; $('#hecho').hidden = false; $('#t-hecho').focus();
+    if (est.quedan > 0) { est.quedan--; pintar(); }
+  });
+  $('#cerrar-hecho').onclick = () => hoja.close();
+
+  // ——— Panel de Inés ———
+  const panel = $('#panel');
+  $('#abrir-panel').onclick = () => {
+    $('#p-lleva').value = est.lleva; $('#p-s').value = RAMO.s.precio; $('#p-m').value = RAMO.m.precio; $('#p-l').value = RAMO.l.precio;
+    $('#p-quedan').value = est.quedan; $('#p-reparto').checked = est.reparto; $('#p-act').textContent = '';
+    panel.showModal(); $('#t-panel').focus();
+  };
+  $('#panel-form').addEventListener('input', () => {
+    est.lleva = $('#p-lleva').value.trim() || est.lleva;
+    for (const k of ['s', 'm', 'l']) { const v = Math.round(+$('#p-' + k).value); if (v > 0) RAMO[k].precio = v; }
+    est.quedan = Math.max(0, Math.round(+$('#p-quedan').value || 0));
+    est.reparto = $('#p-reparto').checked; if (!est.reparto && est.entrega === 'casa') { est.entrega = 'tienda'; document.querySelector('input[name=entrega][value=tienda]').checked = true; }
+    pintarTamanos(); pintar();
+    $('#p-act').textContent = `Actualizado a las ${hhmm(ahora().min)}`;
+  });
+
+  // ——— Lo que en la web real abre WhatsApp ———
+  let avisoT;
+  document.querySelectorAll('[data-demo]').forEach(b => b.onclick = () => {
+    const a = $('#aviso'); a.textContent = `En la web real, «${b.dataset.demo}» abre WhatsApp con la tienda.`;
+    a.classList.add('ver'); clearTimeout(avisoT); avisoT = setTimeout(() => a.classList.remove('ver'), 3200);
+  });
+
+  // ——— El mapa: pequeño siempre; al tocarlo crece y dibuja el camino desde el metro ———
+  fetch('img/mapa.svg').then(r => r.text()).then(t => { $('#mapa').insertAdjacentHTML('afterbegin', t.replace(/<title[^>]*>.*?<\/title>/, '')); $('#mapa svg').setAttribute('aria-hidden', 'true'); }).catch(() => {});
+  $('#mapa').onclick = () => {
+    const m = $('#mapa'), g = !m.classList.contains('grande'); m.classList.toggle('grande', g); m.setAttribute('aria-expanded', g);
+    m.querySelector('.crece').textContent = g ? 'Reducir' : 'Ampliar';
+    if (g && !quieto.matches) { m.classList.remove('dibuja'); void m.offsetWidth; m.classList.add('dibuja'); }
+  };
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !quieto.matches) { $('#mapa').classList.add('dibuja'); o.disconnect(); } }), { threshold: .6 }).observe($('#mapa'));
+
+  pintarTamanos(); pintar(); setInterval(pintar, 60000);
+})();
+</script>
+<script>
+// Si la visita llega con ?o= (la red de origen), la vuelta a covalente.eu lo conserva. No se guarda nada
+(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
+</script>
+</body>
+</html>
