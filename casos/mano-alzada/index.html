@@ -854,5 +854,9 @@ input:focus-visible + .referencia{outline:3px solid var(--texto); outline-offset
   iniciar().then(() => setTimeout(() => { if (tocado) return; $('#pista').hidden = false; setTimeout(() => $('#pista').hidden = true, 4000); }, 2600)).catch(err => console.warn('probador', err));
 })();
 </script>
+<script>
+// Si la visita llega con ?o= (la red de origen), la vuelta a covalente.eu lo conserva. No se guarda nada
+(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
+</script>
 </body>
 </html>

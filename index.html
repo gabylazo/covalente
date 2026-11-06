@@ -689,6 +689,17 @@ p{margin:0}
 // Los botones de cada paquete y de cada extra abren WhatsApp con lo elegido ya escrito
 const WA = 'https://wa.me/34613912752?text=';
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.wa); });
+
+// De qué red llega la visita (?o=ig, tt, pin, g o cartel): se añade al mensaje de WhatsApp y pasa a los casos. No se guarda nada
+const ORIGEN = { ig: 'Os he visto en Instagram.', tt: 'Os he visto en TikTok.', pin: 'Os he visto en Pinterest.', g: 'Os he encontrado en Google.', cartel: 'Vengo por el cartel.' };
+const origen = new URLSearchParams(location.search).get('o');
+if (ORIGEN[origen]) {
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
+    const u = new URL(a.href);
+    a.href = u.origin + u.pathname + '?text=' + encodeURIComponent(((u.searchParams.get('text') || '') + ' ' + ORIGEN[origen]).trim());
+  });
+  document.querySelectorAll('a[href^="casos/"]').forEach(a => { a.href = a.getAttribute('href') + '?o=' + origen; });
+}
 </script>
 </body>
 </html>

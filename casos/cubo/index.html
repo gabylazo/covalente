@@ -403,5 +403,9 @@ input:focus-visible + .ficha{outline:3px solid var(--tinta); outline-offset:2px}
   pintarCubos(); colocar(); pintarListo(); setInterval(pintarListo, 60000);
 })();
 </script>
+<script>
+// Si la visita llega con ?o= (la red de origen), la vuelta a covalente.eu lo conserva. No se guarda nada
+(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
+</script>
 </body>
 </html>
