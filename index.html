@@ -82,7 +82,7 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
 .garantias b{display:block; color:var(--marfil); font-size:17px}
 @media (max-width:420px){ .garantias li{padding-right:14px; margin-right:14px} .garantias b{white-space:nowrap} }
 @media (min-width:1000px){
-  .portada{grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); padding-block:56px 96px; gap:56px}
+  .portada{grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); padding-block:84px 96px; gap:56px}
 }
 
 /* Escaparate: la web de un caso en un navegador y otras dos en móviles */
@@ -111,19 +111,16 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
   @keyframes subir{from{opacity:0; transform:translateY(28px)}}
 }
 
-/* ——— La reacción: al llegar, el polvo de oro llena la pantalla y se junta en la molécula del logo; el puntero lo aparta ——— */
-.reaccion{position:relative; overflow:hidden; isolation:isolate; display:grid; place-items:center; margin-top:-1px; /* sin la raya de un píxel entre la portada y la banda */ min-height:82vh; min-height:82svh; padding:48px var(--margen) 72px;
-  background:radial-gradient(ellipse 60% 55% at 70% 40%, rgba(201,163,92,.13), transparent 70%), var(--verde); color:var(--marfil)}
-.reaccion .polvo{position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none}
-.molecula{position:relative; width:min(900px, 100%); aspect-ratio:3 / 2}
-.mol-fija{position:absolute; inset:0; width:100%; height:100%}
+/* ——— La reacción, en la portada: al cargar, el polvo de oro llena la portada y se junta en la molécula del logo, que cruza el escaparate y sube hasta «brilla»; el puntero lo aparta ——— */
+.con-polvo{position:relative; isolation:isolate; overflow:hidden}
+.con-polvo .polvo{position:absolute; inset:0; width:100%; height:100%; z-index:3; pointer-events:none}
+.escaparate .molecula{position:absolute; left:-2.6%; top:-13.6%; width:98.5%; height:117.7%; z-index:4; pointer-events:none} /* el primer átomo, abajo a la izquierda; la punta, arriba a la derecha */
+@media (min-width:1000px){ .escaparate .molecula{left:-6.2%; top:-12.5%; width:110.8%; height:116.5%} }
+.mol-fija{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
 .con-canvas .mol-fija{display:none}
-.molecula .rot{position:absolute; font-size:clamp(14px, 1.35vw, 19px); font-weight:600; white-space:nowrap; color:var(--marfil); transition:opacity .8s}
-.molecula .r-negocio{left:4.7%; top:88%; transform:translate(-30%, 22px)}
-.molecula .r-covalente{left:52%; top:56%; color:var(--oro)}
-.molecula .r-brilla{left:97%; top:4.5%; transform:translate(calc(-100% - 34px), -50%); color:var(--oro)}
+.molecula .rot{position:absolute; left:97%; top:4.5%; transform:translate(calc(-100% - 30px), -50%); font-size:clamp(14px, 1.3vw, 18px); font-weight:600; color:var(--oro); white-space:nowrap; transition:opacity .8s}
 .esperando .rot{opacity:0}
-@media (max-width:640px){ .reaccion{min-height:0; padding-block:72px 88px} .molecula .r-negocio{transform:translate(-20%, 16px)} }
+@media (max-width:999px){ .molecula .rot{display:none} }
 
 /* ——— Trabajos ——— */
 .seccion{padding-block:88px}
@@ -146,6 +143,23 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
   .trabajo:nth-child(even){grid-template-columns:minmax(0, 4fr) minmax(0, 7fr)}
   .trabajo:nth-child(even) .vista{order:2}
   .trabajo:nth-child(even) .vista .movil{right:auto; left:-3%}
+}
+/* Paneles vivos: cada web pasa sola por sus momentos al aparecer (menos de 5 s) y, con el ratón encima, sigue y se inclina */
+.pantalla{display:grid}
+.pantalla > img{grid-area:1 / 1}
+.vivo .pantalla > img{opacity:0}
+.vivo .pantalla > img.antes{opacity:1; z-index:1}
+.vivo .pantalla > img.ver{opacity:1; z-index:2; transition:opacity .7s ease}
+.estado-nombre{position:absolute; z-index:3; left:14px; bottom:calc(6% - 18px); display:flex; align-items:center; gap:10px; padding:7px 13px; border-radius:999px; background:rgba(26,26,26,.82); color:#FFF; font-size:13px; font-weight:600; line-height:1.2; box-shadow:0 8px 20px -8px rgba(0,0,0,.5); pointer-events:none}
+.estado-nombre:has(.puntos:empty){display:none}
+.puntos{display:flex; gap:4px}
+.puntos i{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.35); transition:background .3s}
+.puntos i.si{background:var(--oro)}
+@media (min-width:1000px){ .trabajo:nth-child(even) .estado-nombre{left:auto; right:14px} }
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .trabajo .vista{transform:perspective(1600px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style:preserve-3d; transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .trabajo .vista .movil{transform:translateZ(60px)}
+  .trabajo .vista .estado-nombre{transform:translateZ(80px)}
 }
 
 /* ——— Precios ——— */
@@ -236,7 +250,8 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
 </header>
 
 <main id="inicio">
-  <section class="oscuro" aria-labelledby="t-portada">
+  <section class="oscuro con-polvo" aria-labelledby="t-portada">
+    <canvas class="polvo" aria-hidden="true"></canvas>
     <div class="caja portada">
       <div>
         <h1 id="t-portada">Tenemos química</h1>
@@ -260,21 +275,16 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
         </a>
         <a class="movil uno" href="casos/nerea-nails/" aria-label="Abrir la web de Nerea Nails"><img src="img/trabajos/nerea-movil-600.webp" alt="" width="600" height="1298"></a>
         <a class="movil dos" href="casos/flores-santa-maria/" aria-label="Abrir la web de Flores Santa María"><img src="img/trabajos/flores-movil-600.webp" alt="" width="600" height="1298"></a>
+        <div class="molecula" aria-hidden="true">
+          <svg class="mol-fija" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#C9A35C" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"><path d="M14 176 64 112 106 140 156 68 198 96 282 18"/><path d="M121.6 131.6 153.6 85.5"/><path d="M260.2 21 282 18 277.4 39.5"/></g><g fill="#C9A35C"><circle cx="14" cy="176" r="8"/><circle cx="64" cy="112" r="8"/><circle cx="106" cy="140" r="8"/><circle cx="156" cy="68" r="8"/><circle cx="198" cy="96" r="8"/></g></svg>
+          <span class="rot">brilla</span>
+        </div>
         </div>
         <figcaption>Taberna La Jarra, Nerea Nails y Flores Santa María: negocios inventados para enseñar lo que hacemos.</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="reaccion" aria-label="La fórmula de Covalente">
-    <canvas class="polvo" aria-hidden="true"></canvas>
-    <div class="molecula" role="img" aria-label="Tu negocio y Covalente se unen en un enlace, y la línea sube hasta un negocio que brilla.">
-      <svg class="mol-fija" viewBox="0 0 300 200" aria-hidden="true"><g fill="none" stroke="#C9A35C" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 176 64 112 106 140 156 68 198 96 282 18"/><path d="M121.6 131.6 153.6 85.5"/><path d="M260.2 21 282 18 277.4 39.5"/></g><g fill="#C9A35C"><circle cx="14" cy="176" r="8"/><circle cx="64" cy="112" r="8"/><circle cx="106" cy="140" r="8"/><circle cx="156" cy="68" r="8"/><circle cx="198" cy="96" r="8"/></g></svg>
-      <span class="rot r-negocio" aria-hidden="true">tu negocio</span>
-      <span class="rot r-covalente" aria-hidden="true">covalente</span>
-      <span class="rot r-brilla" aria-hidden="true">brilla</span>
-    </div>
-  </section>
 
 <section class="caja seccion" id="trabajos" aria-labelledby="t-trabajos">
   <div class="cabeza">
@@ -283,9 +293,10 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
   </div>
   <ol class="trabajos">
     <li class="trabajo">
-      <div class="vista">
-        <a class="navegador" href="casos/nerea-nails/" tabindex="-1" aria-hidden="true"><span class="direccion"><i></i><span>covalente.eu/casos/nerea-nails</span></span><img src="img/trabajos/nerea-escritorio-1440.webp" srcset="img/trabajos/nerea-escritorio-800.webp 800w, img/trabajos/nerea-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"></a>
-        <span class="movil" aria-hidden="true"><img src="img/trabajos/nerea-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span>
+      <div class="vista" data-estados="Cereza con brillo|Fucsia, ojo de gato|Turquesa con brillo">
+        <a class="navegador" href="casos/nerea-nails/" tabindex="-1" aria-hidden="true"><span class="direccion"><i></i><span>covalente.eu/casos/nerea-nails</span></span><span class="pantalla"><img src="img/trabajos/nerea-escritorio-1440.webp" srcset="img/trabajos/nerea-escritorio-800.webp 800w, img/trabajos/nerea-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"><img src="img/trabajos/nerea-e2-escritorio-1440.webp" srcset="img/trabajos/nerea-e2-escritorio-800.webp 800w, img/trabajos/nerea-e2-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"><img src="img/trabajos/nerea-e3-escritorio-1440.webp" srcset="img/trabajos/nerea-e3-escritorio-800.webp 800w, img/trabajos/nerea-e3-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"></span></a>
+        <span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span></span>
+        <span class="estado-nombre" aria-hidden="true"><span class="puntos"></span><span class="txt">Cereza con brillo</span></span>
       </div>
       <div>
         <p class="sector">Salón de uñas en Huertas</p>
@@ -300,9 +311,10 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
       </div>
     </li>
     <li class="trabajo">
-      <div class="vista">
-        <a class="navegador" href="casos/taberna-la-jarra/" tabindex="-1" aria-hidden="true"><span class="direccion"><i></i><span>covalente.eu/casos/taberna-la-jarra</span></span><img src="img/trabajos/jarra-escritorio-1440.webp" srcset="img/trabajos/jarra-escritorio-800.webp 800w, img/trabajos/jarra-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"></a>
-        <span class="movil" aria-hidden="true"><img src="img/trabajos/jarra-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span>
+      <div class="vista" data-estados="12:45, la hora del vermut|21:30, cañas y raciones|9:30, café y porras">
+        <a class="navegador" href="casos/taberna-la-jarra/" tabindex="-1" aria-hidden="true"><span class="direccion"><i></i><span>covalente.eu/casos/taberna-la-jarra</span></span><span class="pantalla"><img src="img/trabajos/jarra-escritorio-1440.webp" srcset="img/trabajos/jarra-escritorio-800.webp 800w, img/trabajos/jarra-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"><img src="img/trabajos/jarra-e2-escritorio-1440.webp" srcset="img/trabajos/jarra-e2-escritorio-800.webp 800w, img/trabajos/jarra-e2-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"><img src="img/trabajos/jarra-e3-escritorio-1440.webp" srcset="img/trabajos/jarra-e3-escritorio-800.webp 800w, img/trabajos/jarra-e3-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"></span></a>
+        <span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/jarra-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/jarra-e2-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/jarra-e3-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span></span>
+        <span class="estado-nombre" aria-hidden="true"><span class="puntos"></span><span class="txt">12:45, la hora del vermut</span></span>
       </div>
       <div>
         <p class="sector">Taberna en Echegaray</p>
@@ -317,9 +329,10 @@ h2{font-size:clamp(32px, 3.8vw, 54px)}
       </div>
     </li>
     <li class="trabajo">
-      <div class="vista">
-        <a class="navegador" href="casos/flores-santa-maria/" tabindex="-1" aria-hidden="true"><span class="direccion"><i></i><span>covalente.eu/casos/flores-santa-maria</span></span><img src="img/trabajos/flores-escritorio-1440.webp" srcset="img/trabajos/flores-escritorio-800.webp 800w, img/trabajos/flores-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"></a>
-        <span class="movil" aria-hidden="true"><img src="img/trabajos/flores-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span>
+      <div class="vista" data-estados="El ramo de hoy|Arma el tuyo|11 flores, 21,50 €">
+        <a class="navegador" href="casos/flores-santa-maria/" tabindex="-1" aria-hidden="true"><span class="direccion"><i></i><span>covalente.eu/casos/flores-santa-maria</span></span><span class="pantalla"><img src="img/trabajos/flores-escritorio-1440.webp" srcset="img/trabajos/flores-escritorio-800.webp 800w, img/trabajos/flores-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"><img src="img/trabajos/flores-e2-escritorio-1440.webp" srcset="img/trabajos/flores-e2-escritorio-800.webp 800w, img/trabajos/flores-e2-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"><img src="img/trabajos/flores-e3-escritorio-1440.webp" srcset="img/trabajos/flores-e3-escritorio-800.webp 800w, img/trabajos/flores-e3-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 58vw, 92vw" alt="" width="1440" height="900" loading="lazy"></span></a>
+        <span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/flores-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/flores-e2-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/flores-e3-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span></span>
+        <span class="estado-nombre" aria-hidden="true"><span class="puntos"></span><span class="txt">El ramo de hoy</span></span>
       </div>
       <div>
         <p class="sector">Floristería en Santa María</p>
@@ -478,11 +491,11 @@ if (ORIGEN[origen]) {
   document.querySelectorAll('a[href^="casos/"]').forEach(a => { a.href = a.getAttribute('href') + '?o=' + origen; });
 }
 
-// La reacción: al llegar a la banda, el polvo de oro la llena y se junta en la molécula del logo, de «tu negocio» a «brilla»; el puntero lo aparta.
+// La reacción, en la portada: al cargar, el polvo de oro la llena y se junta en la molécula del logo, que cruza el escaparate y sube hasta «brilla»; el puntero lo aparta.
 // Se mueve como mucho 5 s seguidos (WCAG 2.2.2) y vuelve a moverse con el puntero. Va por pasos fijos de 1/60 s, interpolados al pintar,
 // y pinta los granos por lotes de color y opacidad. Sin canvas o sin JavaScript queda la molécula fija en SVG.
 (() => {
-  const ini = document.querySelector('.reaccion'), cv = ini.querySelector('.polvo'), mol = ini.querySelector('.molecula');
+  const ini = document.querySelector('.con-polvo'), cv = ini.querySelector('.polvo'), mol = ini.querySelector('.molecula');
   const ctx = cv.getContext && cv.getContext('2d');
   if (!ctx) return;
   ini.classList.add('con-canvas');
@@ -500,8 +513,8 @@ if (ORIGEN[origen]) {
   const montar = (deCero) => {
     const dpr = Math.min(devicePixelRatio || 1, 2), r = ini.getBoundingClientRect(), m = mol.getBoundingClientRect();
     W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    esc = m.width / 300;
-    const ox = m.left - r.left, oy = m.top - r.top, P = (x, y) => [ox + x * esc, oy + y * esc], casas = [], denso = esc < 2 ? 1.7 : 1; // en el móvil, más granos para que se lea
+    const ex = m.width / 300, ey = m.height / 200; esc = Math.min(ex, ey); // la caja de la molécula se estira con el escaparate
+    const ox = m.left - r.left, oy = m.top - r.top, P = (x, y) => [ox + x * ex, oy + y * ey], casas = [], denso = esc < 2 ? 1.7 : 1; // en el móvil, más granos para que se lea
     for (const [x1, y1, x2, y2] of TRAMOS) {
       const [a, b] = P(x1, y1), [c, d] = P(x2, y2), L = Math.hypot(c - a, d - b), n = Math.max(2, Math.round(L / 1.7 * denso)), nx = (b - d) / L, ny = (c - a) / L;
       for (let i = 0; i <= n; i++) { const k = i / n, j = (Math.random() - .5) * 2.6 * Math.max(1, esc / 1.6); casas.push([a + (c - a) * k + nx * j, b + (d - b) * k + ny * j, 0]); }
@@ -511,12 +524,12 @@ if (ORIGEN[origen]) {
       for (let i = 0; i < n; i++) { const a = Math.random() * 6.2832, d = R * Math.sqrt(Math.random()); casas.push([cx + Math.cos(a) * d, cy + Math.sin(a) * d, 1]); }
     }
     brillo = P(291, 9);
-    const suelto = deCero && !quieto; // empieza esparcido por toda la banda
+    const suelto = deCero && !quieto; // empieza esparcido por toda la portada
     granos = casas.map(([hx, hy, at]) => {
       const x = suelto ? Math.random() * W : hx, y = suelto ? Math.random() * H : hy;
       return { hx, hy, at, x, y, px: x, py: y, vx: 0, vy: 0, r: at ? .8 + Math.random() * 1.1 : .7 + Math.random(),
         t: Math.random() < .12 ? 2 : Math.random() < .45 ? 1 : 0, f: Math.random() * 6.2832, v: 1.5 + Math.random() * 3,
-        espera: suelto ? 350 + (hx - ox) / (300 * esc) * 1000 : 0 };
+        espera: suelto ? 350 + (hx - ox) / m.width * 1000 : 0 };
     });
     burbujas = Array.from({ length: Math.round(W * H / 8000) }, () => { const x = Math.random() * W, y = Math.random() * H; return { x, y, px: x, py: y, r: .5 + Math.random(), f: Math.random() * 6.2832, s: .1 + Math.random() * .3 }; });
     if (deCero) { ts = suelto ? 0 : CHISPA + 1000; estallo = !suelto; chispas = []; }
@@ -566,7 +579,7 @@ if (ORIGEN[origen]) {
     const e = Math.min(1, Math.max(0, (ts - CHISPA) / 600));
     if (e > 0) {
       const R = (10 + 5 * esc) * (1 - Math.pow(1 - e, 3)) * (quieto ? 1 : .88 + .12 * Math.sin(ahora / 700));
-      ctx.globalAlpha = 1; ctx.save(); ctx.translate(brillo[0], brillo[1]); ctx.scale(R * 4, R * 4); ctx.fillStyle = HALO; ctx.beginPath(); ctx.arc(0, 0, 1, 0, 6.2832); ctx.fill(); ctx.restore();
+      ctx.globalAlpha = 1; ctx.save(); ctx.translate(brillo[0], brillo[1]); ctx.scale(R * 2.6, R * 2.6); ctx.fillStyle = HALO; ctx.beginPath(); ctx.arc(0, 0, 1, 0, 6.2832); ctx.fill(); ctx.restore();
       ctx.fillStyle = '#F7E9C4'; estrella(brillo[0], brillo[1], R, quieto ? 0 : ahora / 5000);
     }
     if (chispas.length) {
@@ -578,7 +591,7 @@ if (ORIGEN[origen]) {
   const bucle = (ahora) => { pintar(ahora); raf = enVista && pestana && ts < hasta ? requestAnimationFrame(bucle) : 0; };
   const arrancar = () => { if (quieto) pintar(performance.now()); else if (empezado && !raf) { ultimo = 0; raf = requestAnimationFrame(bucle); } };
   const despertar = () => { if (!empezado) return; hasta = ts + VIVO; if (enVista && pestana) arrancar(); };
-  // La reacción empieza cuando se ve casi media banda, para que se vea la pantalla llena de brillo y cómo se junta
+  // La reacción empieza en cuanto se ve casi media portada (al cargar, casi siempre)
   new IntersectionObserver(([e]) => {
     enVista = e.isIntersecting;
     if (!empezado && e.intersectionRatio >= .45) { empezado = true; despertar(); }
@@ -593,6 +606,34 @@ if (ORIGEN[origen]) {
   let ancho = innerWidth;
   addEventListener('resize', () => { if (innerWidth !== ancho) { ancho = innerWidth; montar(!empezado); empezado ? arrancar() : pintar(performance.now(), false); } });
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { montar(true); pintar(performance.now(), false); });
+})();
+// Paneles vivos: al aparecer, cada web pasa por sus momentos una vez (menos de 5 s, WCAG 2.2.2) y vuelve al primero;
+// con el ratón encima sigue pasando y el panel se inclina hacia el puntero. Con movimiento reducido, quietos.
+(() => {
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches, PASO = 1600;
+  document.querySelectorAll('.vista[data-estados]').forEach((v, n) => {
+    const nombres = v.dataset.estados.split('|'), total = nombres.length;
+    if (total < 2 || quieto) return;
+    const txt = v.querySelector('.estado-nombre .txt'), puntos = v.querySelector('.puntos');
+    puntos.innerHTML = '<i></i>'.repeat(total);
+    const capas = [...v.querySelectorAll('.pantalla')].map(p => [...p.children]);
+    let i = 0, reloj = 0, vueltas = 0, encima = false;
+    const ver = k => {
+      for (const imgs of capas) imgs.forEach((im, j) => { im.classList.toggle('antes', j === i && k !== i); im.classList.toggle('ver', j === k); if (j !== i && j !== k) im.classList.remove('antes'); });
+      i = k; txt.textContent = nombres[k]; [...puntos.children].forEach((p, j) => p.classList.toggle('si', j === k));
+    };
+    v.classList.add('vivo'); ver(0);
+    const tic = () => { const k = (i + 1) % total; ver(k); if (k === 0 && !encima) parar(); };
+    const andar = () => { if (!reloj) reloj = setInterval(tic, PASO); };
+    const parar = () => { clearInterval(reloj); reloj = 0; };
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) setTimeout(andar, 300 + n * 150); else { parar(); ver(0); } }, { threshold: .5 }).observe(v);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) parar(); });
+    if (matchMedia('(hover: hover)').matches) {
+      v.addEventListener('pointerenter', () => { encima = true; andar(); });
+      v.addEventListener('pointermove', e => { const r = v.getBoundingClientRect(); v.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 7 + 'deg'); v.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -5 + 'deg'); });
+      v.addEventListener('pointerleave', () => { encima = false; v.style.setProperty('--ry', '0deg'); v.style.setProperty('--rx', '0deg'); });
+    }
+  });
 })();
 </script>
 </body>
