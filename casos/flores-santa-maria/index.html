@@ -4,24 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Flores Santa María · caso inventado por Covalente</title>
-<meta name="description" content="Flores Santa María, floristería en la calle de Santa María (Madrid): el ramo de hoy en tres tamaños o el tuyo, flor a flor, para recoger o en casa. Caso inventado por Covalente.">
-<meta name="theme-color" content="#F5F4F1">
+<meta name="description" content="Flores Santa María, floristería en la calle de Santa María (Madrid): eliges los colores y el tamaño, y te preparamos el ramo con las flores del día, para recoger o en casa. Caso inventado por Covalente.">
+<meta name="theme-color" content="#FBEFF1">
 <link rel="canonical" href="https://covalente.eu/casos/flores-santa-maria/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E1D1B'/%3E%3Cpath d='M16 26V12M16 17c-4 0-6-3-6-6 4 0 6 3 6 6Zm0-2c4 0 6-3 6-6-4 0-6 3-6 6Z' fill='none' stroke='%23F5F4F1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23231C19'/%3E%3Cpath d='M16 26V12M16 17c-4 0-6-3-6-6 4 0 6 3 6 6Zm0-2c4 0 6-3 6-6-4 0-6 3-6 6Z' fill='none' stroke='%23FBEFF1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preload" href="fuentes/InstrumentSans.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fuentes/YoungSerif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/mesa-1024.jpg" as="image" fetchpriority="high">
 <style>
-@font-face{font-family:"Young Serif"; src:url(fuentes/YoungSerif.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Fraunces"; src:url(fuentes/Fraunces.woff2) format("woff2"); font-weight:300 700; font-display:swap}
+@font-face{font-family:"Fraunces"; src:url(fuentes/Fraunces-cursiva.woff2) format("woff2"); font-weight:400 500; font-style:italic; font-display:swap}
 @font-face{font-family:"Instrument Sans"; src:url(fuentes/InstrumentSans.woff2) format("woff2"); font-weight:400 700; font-stretch:75% 100%; font-display:swap}
+@font-face{font-family:"Kalam"; src:url(fuentes/Kalam-700.woff2) format("woff2"); font-weight:700; font-display:swap}
 
-/* Flores Santa María: el color sale de los cubos de la puerta. Fucsia de las rosas para la marca, los botones y lo elegido; amarillo de los tulipanes donde se arma el ramo; papel cálido. */
-:root{--papel:#FFF5EC; --blanco:#FFFFFF; --tinta:#26161C; --suave:#6A5A57; --linea:#F0DCCF; --coral:#C2185B; --coral-claro:#FDE3EE; --sol:#FFD03F; --barro:#F3DCCB;
-  --serif:"Young Serif", Georgia, serif; --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --margen:max(16px, 4vw)}
+/* Flores Santa María: la mesa de la florista vista desde arriba. El color lo ponen las flores; la página solo toma un tinte suave
+   de los colores que eliges, y su tono hondo para lo que se pulsa. Madera, papel de estraza y cordel, de la foto. */
+:root{--fondo:#FBEFF1; --acento:#A3234F; --acento-claro:#F7DCE5; --blanco:#FFFFFF; --tinta:#231C19; --suave:#6B605A; --linea:rgba(35,28,25,.13); --madera:#C8AE86;
+  --serif:"Fraunces", Georgia, serif; --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --mano:"Kalam", "Bradley Hand", cursive; --margen:max(16px, 4vw); --cab:60px}
+body[data-paleta=amarillos]{--fondo:#FCF2DE; --acento:#9A470B; --acento-claro:#F6E0B9}
+body[data-paleta=blancos]{--fondo:#F1F2EC; --acento:#2F4A36; --acento-claro:#DCE6D8}
+body[data-paleta=rojos]{--fondo:#F9ECE7; --acento:#A11E1E; --acento-claro:#F3D2CC}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0; background:var(--papel); color:var(--tinta); font:400 16px/1.5 var(--sans); font-variant-numeric:tabular-nums; -webkit-tap-highlight-color:transparent}
+body{margin:0; background:var(--fondo); color:var(--tinta); font:400 16px/1.5 var(--sans); font-variant-numeric:tabular-nums; -webkit-tap-highlight-color:transparent; transition:background-color .7s ease}
 img{display:block; max-width:100%}
-h1, h2, h3, p, fieldset, legend{margin:0; padding:0}
+h1, h2, p, fieldset, legend, ul{margin:0; padding:0}
+ul{list-style:none}
 fieldset{border:0; min-width:0}
 a{color:inherit}
 button, input, textarea{font:inherit; color:inherit}
@@ -29,152 +37,146 @@ button, input, textarea{font:inherit; color:inherit}
 [hidden]{display:none !important}
 [tabindex="-1"]:focus{outline:none}
 .oculto{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+@media (prefers-reduced-motion:reduce){ body{transition:none} }
 
-.boton{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:12px 22px; border:0; border-radius:8px; background:var(--coral); color:#FFF; font-weight:600; font-size:16px; text-decoration:none; cursor:pointer}
-.boton:hover{background:#A3124B}
-.boton[disabled]{background:#B9B5AE; cursor:not-allowed}
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:12px 22px; border:0; border-radius:10px; background:var(--acento); color:#FFF; font-weight:600; font-size:16px; text-decoration:none; cursor:pointer; transition:background-color .7s ease, filter .15s}
+.boton:hover{filter:brightness(.9)}
+.boton[disabled]{background:#B4ADA6; cursor:not-allowed; filter:none}
 .boton.claro{background:none; color:var(--tinta); box-shadow:inset 0 0 0 1.5px var(--tinta)}
-.boton.claro:hover{background:var(--blanco)}
+.boton.claro:hover{background:var(--blanco); filter:none}
 
 /* ——— Cabecera ——— */
-.cab{display:flex; align-items:center; gap:12px 20px; flex-wrap:wrap; padding:14px var(--margen); background:var(--coral); color:#FFF}
-.cab :focus-visible{outline-color:#FFF}
-.marca{font:400 26px/1 var(--serif); letter-spacing:-.01em}
-.lema{font-size:14px; color:rgba(255,255,255,.86)}
-.cab .abierto{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px}
-.abierto i{width:8px; height:8px; border-radius:50%; background:#7CF0A8}
-.abierto.cerrado i{background:rgba(255,255,255,.5)}
-.inventado{font-size:13px; padding:6px 10px; border-radius:999px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.55); text-decoration:none; color:#FFF}
-.inventado:hover{background:rgba(255,255,255,.14)}
-@media (max-width:640px){ .lema{display:none} .cab .abierto{margin-left:auto} .marca{font-size:21px} }
+.cab{display:flex; align-items:center; gap:10px 18px; min-height:var(--cab); padding:10px var(--margen); border-bottom:1px solid var(--linea)}
+.marca{font:500 23px/1 var(--serif); letter-spacing:-.01em; font-variation-settings:"opsz" 36}
+.lema{font-size:14px; color:var(--suave)}
+.abierto{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px}
+.abierto i{width:8px; height:8px; border-radius:50%; background:#2E9A55}
+.abierto.cerrado i{background:#B4ADA6}
+.inventado{font-size:13px; padding:5px 10px; border-radius:999px; box-shadow:inset 0 0 0 1px var(--linea); text-decoration:none}
+.inventado:hover{background:var(--blanco)}
+.cab > *{white-space:nowrap}
+.inventado.movil{display:none}
+@media (max-width:700px){ .lema, .cab .inventado{display:none} .marca{font-size:20px} .abierto{font-size:13px}
+  .inventado.movil{display:block; position:absolute; right:14px; top:14px; z-index:500; background:rgba(255,255,255,.93); box-shadow:0 2px 10px rgba(40,25,10,.16)} }
 
-/* ——— El ramo de hoy: la foto cambia con el tamaño ——— */
-.hoy{display:grid; gap:0}
-.fotos{position:relative; aspect-ratio:4/3; background:var(--barro); overflow:hidden}
-.fotos picture, .fotos img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-.fotos picture{opacity:0; transition:opacity .45s ease}
-.fotos picture.vista{opacity:1}
-.fotos .medida{position:absolute; left:var(--margen); bottom:16px; margin:0; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.92); font-size:14px; font-weight:600}
-@media (prefers-reduced-motion:reduce){ .fotos picture{transition:none} }
+/* ——— La mesa: la foto de la mesa de trabajo y el ramo encima, flor a flor ——— */
+.taller{display:grid}
+.escena{position:relative; aspect-ratio:1; overflow:hidden; background:var(--madera); container-type:size}
+.lienzo{--z:1; --fx:.5; --fy:.5; --s:max(100cqw, 100cqh); position:absolute; width:calc(var(--s) * var(--z)); height:calc(var(--s) * var(--z));
+  left:calc(50cqw - var(--fx) * var(--z) * var(--s)); top:calc(50cqh - var(--fy) * var(--z) * var(--s)); container-type:inline-size}
+.lienzo > img{position:absolute; inset:0; width:100%; height:100%}
+.ramo{position:absolute; inset:0; pointer-events:none}
+.tallo{position:absolute; transform-origin:50% var(--f); transition:left .6s cubic-bezier(.3,.7,.2,1), top .6s cubic-bezier(.3,.7,.2,1), rotate .6s cubic-bezier(.3,.7,.2,1)}
+.tallo img{width:100%; height:auto; clip-path:inset(0 0 var(--corte, 0%) 0); filter:drop-shadow(var(--sx) var(--sy) 2.5px rgba(70,45,15,.42)) drop-shadow(calc(var(--sx) * 2.4) calc(var(--sy) * 2.4) 9px rgba(70,45,15,.16))}
+.cordel{position:absolute; left:var(--nx); top:var(--ny); width:12%; aspect-ratio:1; translate:-50% -50%; rotate:var(--giro); z-index:400; overflow:visible; filter:drop-shadow(2px 3px 2px rgba(60,38,12,.5))}
+.cordel path{fill:none; stroke-linecap:round}
+.cordel .v{stroke:#8F6E3F; stroke-width:6.5}
+.cordel .l{stroke:#D9BF8E; stroke-width:2.2; stroke-dasharray:.035 .02; opacity:.9}
+.cordel.dibuja path{stroke-dasharray:1; stroke-dashoffset:1; animation:cordel .9s .2s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes cordel{to{stroke-dashoffset:0}}
+.tarjeta{position:absolute; left:26%; top:73%; z-index:450; width:23%; padding:3.2% 3.6% 3.6%; background:#FFFDF8; rotate:-7deg; translate:-50% -50%;
+  box-shadow:4px 5px 4px rgba(70,45,15,.28), 9px 12px 18px rgba(70,45,15,.16); font:700 2.15cqw/1.25 var(--mano); color:#2C3A66; overflow-wrap:anywhere;
+  transition:opacity .35s, translate .5s cubic-bezier(.3,.7,.2,1)}
+.tarjeta.vacia{opacity:0; translate:-60% -30%}
+.chip{position:absolute; left:14px; top:14px; z-index:500; padding:7px 12px; border-radius:999px; background:rgba(255,255,255,.93); box-shadow:0 2px 10px rgba(40,25,10,.16); font-size:14px; font-weight:600}
+.chip span{font-weight:400; color:var(--suave)}
+@media (max-width:999px){ .lienzo{--z:1.34; --fx:.47; --fy:.47} }
+@media (prefers-reduced-motion:reduce){ .tallo, .tarjeta{transition:none} .cordel.dibuja path{animation:none; stroke-dashoffset:0} }
 
-.pedido{display:grid; gap:22px; align-content:start; padding:28px var(--margen) 36px; background:var(--blanco)}
-.pedido h1{font:400 clamp(34px, 3.4vw, 46px)/1.05 var(--serif); letter-spacing:-.015em}
-.fecha{margin-top:6px; color:var(--suave); font-size:15px}
-.lleva{font-size:17px; line-height:1.45; max-width:36ch}
-.lleva b{font-weight:600}
-legend{font-size:14px; font-weight:600; color:var(--suave); margin-bottom:10px}
+/* ——— El encargo ——— */
+.pedido{display:grid; gap:24px; align-content:start; padding:26px var(--margen) 0}
+.titulo h1{font:400 clamp(36px, 3.3vw, 46px)/1.02 var(--serif); letter-spacing:-.02em; font-variation-settings:"opsz" 96; text-wrap:balance}
+.fecha{margin-top:8px; color:var(--suave); font-size:15px}
+legend{display:flex; justify-content:space-between; width:100%; font-size:14px; font-weight:600; color:var(--suave); margin-bottom:10px}
+.colores{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:8px}
+.color{position:relative; display:grid; justify-items:center; gap:7px; padding:12px 4px 10px; border-radius:12px; cursor:pointer; background:var(--blanco); box-shadow:inset 0 0 0 1px var(--linea)}
+.color input, .opcion input, .hora input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
+.color b{font-size:14px; font-weight:600}
+.muestra{display:flex}
+.muestra i{width:30px; height:30px; border-radius:50%; background-repeat:no-repeat; background-color:#EFE6DA; box-shadow:0 0 0 2px var(--blanco); margin-left:-9px}
+.muestra i:first-child{margin-left:0}
+.color:has(input:checked){box-shadow:inset 0 0 0 2px var(--acento); background:var(--acento-claro)}
+.color:has(input:checked) .muestra i{box-shadow:0 0 0 2px var(--acento-claro)}
+.color:has(input:focus-visible), .opcion:has(input:focus-visible){outline:2px solid var(--tinta); outline-offset:2px}
+
 .tamanos{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
-.opcion{position:relative; display:grid; gap:2px; padding:12px 12px 13px; border-radius:10px; box-shadow:inset 0 0 0 1px var(--linea); cursor:pointer; background:var(--blanco)}
-.opcion input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
-.opcion b{font-weight:600; font-size:15px}
-.opcion .p{font:400 22px/1.15 var(--serif)}
+.opcion{position:relative; display:grid; gap:1px; padding:11px 12px 12px; border-radius:12px; box-shadow:inset 0 0 0 1px var(--linea); cursor:pointer; background:var(--blanco)}
+.opcion b{font-weight:600; font-size:14px}
+.opcion .p{font:400 24px/1.15 var(--serif); font-variation-settings:"opsz" 48}
 .opcion small{font-size:13px; color:var(--suave)}
-.opcion:has(input:checked){box-shadow:inset 0 0 0 2px var(--coral); background:var(--coral-claro)}
-.opcion:has(input:focus-visible){outline:2px solid var(--tinta); outline-offset:2px}
+.opcion:has(input:checked){box-shadow:inset 0 0 0 2px var(--acento); background:var(--acento-claro)}
+.medida{display:none; margin-top:8px; padding:10px 12px; border-radius:10px; background:var(--acento-claro); font-size:14px}
+.medida b{font-weight:600}
+.a-medida .medida{display:block}
+
+.lleva{display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; font-size:15px; line-height:1.45}
+.lleva p{flex:1 1 220px}
+.lleva b{font-weight:600}
+.enlace{padding:6px 0; min-height:32px; border:0; background:none; font-weight:600; text-decoration:underline; text-underline-offset:3px; cursor:pointer; color:var(--acento); transition:color .7s}
+.flores{display:grid; gap:2px; margin-top:12px; padding:6px; border-radius:12px; background:var(--blanco); box-shadow:inset 0 0 0 1px var(--linea)}
+.flor{display:grid; grid-template-columns:40px minmax(0, 1fr) auto; gap:12px; align-items:center; padding:6px 6px 6px 4px}
+.flor + .flor{border-top:1px solid var(--linea)}
+.flor.otra:first-of-type, .flor.primera-otra{border-top:1px dashed rgba(35,28,25,.25)}
+.cabeza{width:40px; height:40px; border-radius:50%; background-repeat:no-repeat; background-color:#EFE6DA}
+.flor .nom{display:grid; line-height:1.25; font-size:15px}
+.flor .nom b{font-weight:600}
+.flor .nom i{font:italic 400 13px/1.3 var(--serif); color:var(--suave)}
+.flor .nom small{font-size:13px; color:var(--suave)}
+.flor .nom small.pocas{color:var(--acento); font-weight:600}
+.flor.agotada .cabeza{filter:grayscale(1); opacity:.55}
+.paso{display:flex; align-items:center; gap:2px}
+.paso button{width:38px; height:38px; border:0; border-radius:50%; background:var(--fondo); font-size:20px; line-height:1; cursor:pointer; transition:background-color .7s}
+.paso button:hover{background:var(--acento-claro)}
+.paso button[disabled]{opacity:.35; cursor:not-allowed}
+.paso output{min-width:24px; text-align:center; font-weight:600}
+
 .entregas{display:grid; grid-template-columns:1fr 1fr; gap:8px}
-.entregas .opcion{grid-template-columns:1fr; align-content:center; min-height:62px}
+.entregas .opcion{align-content:center; min-height:60px}
+.dia-horas{font-size:14px; color:var(--suave); margin:-4px 0 8px}
 .horas{display:flex; flex-wrap:wrap; gap:6px}
 .hora{position:relative}
-.hora input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
-.hora span{display:grid; place-items:center; min-width:64px; min-height:44px; padding:0 10px; border-radius:8px; box-shadow:inset 0 0 0 1px var(--linea); font-weight:600; font-size:15px}
-.hora input:checked + span{background:var(--coral); color:#FFF; box-shadow:none}
+.hora span{display:grid; place-items:center; min-width:62px; min-height:42px; padding:0 10px; border-radius:9px; background:var(--blanco); box-shadow:inset 0 0 0 1px var(--linea); font-weight:600; font-size:15px}
+.hora input:checked + span{background:var(--acento); color:#FFF; box-shadow:none}
 .hora input:focus-visible + span{outline:2px solid var(--tinta); outline-offset:2px}
-.dia-horas{font-size:14px; color:var(--suave); margin:-4px 0 8px}
-.cierre{display:grid; gap:10px}
+.campo{display:grid; gap:6px}
+.campo label{font-size:14px; font-weight:600; color:var(--suave)}
+.campo input, .campo textarea{width:100%; min-height:48px; padding:10px 12px; border:1px solid var(--linea); border-radius:10px; background:var(--blanco); font-size:16px}
+.campo small{color:var(--suave); font-size:13px}
+.cierre{position:sticky; bottom:0; z-index:5; display:grid; gap:6px; margin-inline:calc(-1 * var(--margen)); padding:12px var(--margen) calc(14px + env(safe-area-inset-bottom)); background:var(--fondo); border-top:1px solid var(--linea); transition:background-color .7s ease}
 .cierre .boton{width:100%; font-size:17px}
-.quedan{font-size:14px; color:var(--suave); text-align:center}
-.quedan b{color:var(--coral)}
+.quedan{font-size:13px; color:var(--suave); text-align:center}
+.quedan b{color:var(--tinta)}
 @media (min-width:1000px){
-  .hoy{grid-template-columns:minmax(0, 6fr) minmax(400px, 5fr); min-height:calc(100dvh - 63px)}
-  .pedido{padding:36px 44px 40px; border-left:1px solid var(--linea)}
+  .taller{grid-template-columns:minmax(0, 1fr) 450px; height:calc(100dvh - var(--cab)); min-height:700px}
+  .escena{aspect-ratio:auto; height:100%}
+  .pedido{overflow:auto; padding:30px 36px 0; gap:22px; border-left:1px solid var(--linea); scrollbar-width:thin}
+  .cierre{margin-inline:-36px; padding-inline:36px}
 }
 
-/* ——— Dos maneras de pedir: el ramo de hoy o el tuyo, flor a flor ——— */
-[hidden]{display:none !important}
-.izq{position:relative; display:grid; align-content:start; background:var(--barro)}
-.modos{position:absolute; z-index:20; top:14px; left:var(--margen); display:flex; padding:4px; gap:2px; border-radius:999px; background:rgba(255,255,255,.94); box-shadow:0 2px 12px rgba(30,25,20,.14)}
-.modos input{position:absolute; opacity:0; width:1px; height:1px}
-.modos label{display:grid; place-items:center; min-height:40px; padding:0 16px; border-radius:999px; font-weight:600; font-size:15px; cursor:pointer; white-space:nowrap}
-.modos input:checked + label{background:var(--coral); color:#FFF}
-.modos input:focus-visible + label{outline:2px solid var(--tinta); outline-offset:2px}
-
-.taller{display:grid; align-content:start}
-.suelo{position:relative; display:grid}
-.suelo > *{grid-area:1/1}
-.suelo img{width:100%; height:auto}
-.cubo{position:absolute; left:var(--x); top:var(--y); width:var(--w); height:var(--h); translate:-50% -50%; border:0; padding:0; background:none; border-radius:50%; cursor:pointer}
-.cubo::before{content:""; position:absolute; inset:0; border-radius:50%; box-shadow:0 0 0 2px rgba(255,255,255,0); transition:box-shadow .2s, background-color .2s}
-.cubo:hover::before{box-shadow:0 0 0 2px rgba(255,255,255,.9); background:rgba(255,255,255,.08)}
-.cubo:focus-visible{outline:none}
-.cubo:focus-visible::before{box-shadow:0 0 0 3px #fff, 0 0 0 5px var(--tinta)}
-.cubo.agotado{cursor:not-allowed}
-.cubo.agotado::before{backdrop-filter:grayscale(1) brightness(.85); -webkit-backdrop-filter:grayscale(1) brightness(.85)}
-.cubo .tag{position:absolute; left:50%; bottom:-4px; translate:var(--tx,-50%) 0; display:grid; gap:1px; white-space:nowrap; padding:5px 9px; border-radius:6px; background:rgba(255,255,255,.95); box-shadow:0 1px 4px rgba(0,0,0,.25);
-  font-size:13px; line-height:1.15; text-align:center; pointer-events:none; transition:transform .2s}
-.cubo .tag b{font-weight:600}
-.cubo .tag small{font-size:11.5px; color:var(--suave)}
-.cubo.pocas .tag small{color:var(--coral); font-weight:600}
-.cubo.agotado .tag{color:var(--suave)}
-.cubo.toca .tag{transform:scale(1.1)}
-@media (max-width:640px){ .cubo .tag{padding:3px 7px; font-size:12px} .cubo .tag small{font-size:10.5px} }
-
-/* El ramo se arma en un cucurucho de papel kraft (foto) en dos capas: entera detrás de los tallos y, delante, solo las solapas recortadas en V */
-.ramo{position:relative; height:340px; background:var(--sol); touch-action:manipulation}
-.ramo .cono{position:absolute; left:50%; bottom:3%; height:62%; width:auto; aspect-ratio:.725; translate:-50% 0; transform-origin:50% 100%; pointer-events:none; transition:scale .45s cubic-bezier(.3,.7,.2,1)}
-.ramo .cono.atras{z-index:5; filter:drop-shadow(0 12px 16px rgba(20,16,10,.25))}
-.ramo .cono.delante{z-index:200; clip-path:polygon(0 18%, 19% 20.5%, 27% 30%, 33% 40%, 42% 50%, 50% 57%, 58% 50%, 68% 40%, 75% 30%, 83% 20.5%, 100% 16%, 100% 100%, 0 100%)}
-.ramo .boca{position:absolute; left:50%; bottom:26%; height:17%; aspect-ratio:1.3; translate:-50% 0; z-index:150; pointer-events:none; mix-blend-mode:multiply; opacity:0;
-  background:radial-gradient(closest-side, rgba(58,42,26,.95), rgba(58,42,26,.5) 55%, transparent); transition:opacity .4s}
-.ramo.lleno .boca{opacity:.55}
-.tallo{position:absolute; left:50%; bottom:var(--b,36%); height:var(--l,40%); width:auto; translate:-50% 0; transform-origin:50% 100%; rotate:var(--a,0deg);
-  border:0; padding:0; background:none; cursor:pointer; transition:rotate .5s cubic-bezier(.3,.7,.2,1)}
-.tallo img{height:100%; width:auto; max-width:none; pointer-events:none; filter:drop-shadow(0 4px 5px rgba(30,25,20,.22))}
-.ramo.atado .tallo{rotate:calc(var(--a,0deg) * .55)}
-.ramo.atado .cono{scale:1.06}
-.ramo .vacio{position:absolute; inset:30px 20px auto; text-align:center; font:400 24px/1.2 var(--serif); color:var(--tinta); transition:opacity .3s}
-.ramo.lleno .vacio{opacity:0}
-.ramo .suma{position:absolute; z-index:250; left:var(--margen); top:14px; padding:6px 12px; border-radius:999px; background:var(--blanco); font-size:14px; font-weight:600; opacity:0; transition:opacity .3s}
-.ramo .pista{position:absolute; z-index:250; right:var(--margen); top:20px; font-size:13px; color:var(--tinta); opacity:0; transition:opacity .3s}
-.ramo.lleno .suma, .ramo.lleno .pista{opacity:1}
-@media (prefers-reduced-motion:reduce){ .tallo, .ramo .cono{transition:none} }
-@media (min-width:1000px){
-  .izq{min-height:calc(100dvh - 63px); align-content:stretch}
-  .fotos{aspect-ratio:auto; min-height:560px}
-  .taller{grid-template-rows:auto minmax(280px, 1fr)}
-  .suelo{width:100%; max-width:calc((100dvh - 63px - 300px) * 1280 / 956); margin-inline:auto}
-  .ramo{height:auto}
-}
-
-/* ——— Cada semana y eventos ——— */
-.mas{display:grid; gap:1px; background:var(--linea); border-block:1px solid var(--linea)}
-.bloque{display:grid; background:var(--papel)}
-.bloque picture img{width:100%; aspect-ratio:16/10; object-fit:cover}
-.bloque .texto{display:grid; gap:12px; align-content:center; padding:28px var(--margen) 36px}
-.bloque h2{font:400 clamp(28px, 2.6vw, 36px)/1.1 var(--serif)}
-.bloque p{color:var(--suave); font-size:17px; max-width:34ch}
-.bloque .boton{justify-self:start; margin-top:6px}
-.precio-desde{color:var(--tinta) !important; font-weight:600}
-@media (min-width:900px){
-  .mas{grid-template-columns:1fr 1fr}
-  .bloque .texto{padding:32px 36px 40px}
-}
-
-/* ——— La tienda ——— */
-.tienda{display:grid; gap:24px; padding:56px var(--margen) 48px}
-.tienda .foto img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px}
-.tienda h2{font:400 clamp(32px, 3vw, 44px)/1.05 var(--serif)}
-.datos{display:grid; gap:4px; margin-top:12px; font-size:17px}
-.datos b{font-weight:600}
-.horario{display:grid; grid-template-columns:auto auto; justify-content:start; gap:4px 18px; margin-top:16px; font-size:15px; color:var(--suave)}
+/* ——— Lo demás: cada semana, celebraciones y la tienda, en una banda ——— */
+.mas{display:grid; gap:0; border-top:1px solid var(--linea)}
+.dato{display:grid; grid-template-columns:72px minmax(0, 1fr); gap:6px 18px; align-content:start; padding:28px var(--margen)}
+.dato + .dato{border-top:1px solid var(--linea)}
+.dato > img{grid-row:1 / span 3; width:72px; height:72px; border-radius:50%; object-fit:cover}
+.dato h2{font:400 26px/1.1 var(--serif); letter-spacing:-.01em; font-variation-settings:"opsz" 48}
+.dato p{color:var(--suave); font-size:15px; max-width:36ch}
+.dato .boton{justify-self:start; min-height:44px; margin-top:6px; font-size:15px}
+.dato.tienda{grid-template-columns:minmax(0, 1fr)}
+.horario{display:grid; grid-template-columns:auto auto; justify-content:start; gap:2px 16px; font-size:14px; color:var(--suave)}
 .horario .hoy-dia{color:var(--tinta); font-weight:600}
-.llegar{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
-.atrib{margin-top:8px; font-size:12px; color:var(--suave)}
-@media (min-width:1000px){ .tienda{grid-template-columns:minmax(0, 6fr) minmax(0, 6fr); gap:40px; align-items:start} }
-
-.mapa{position:relative; display:block; width:100%; height:240px; margin-top:20px; padding:0; border:0; border-radius:8px; overflow:hidden; cursor:pointer; background:#F1EEE8; transition:height .6s cubic-bezier(.3,.7,.2,1)}
-.mapa.grande{height:min(460px, 80vw)}
+.llegar{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.atrib{font-size:12px; color:var(--suave)}
+@media (min-width:1000px){
+  /* Las dos cosas pequeñas, una encima de otra; la tienda con su mapa al lado, a la misma altura */
+  .mas{grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); grid-template-rows:auto auto}
+  .dato{padding:32px 36px 34px var(--margen)}
+  .dato.tienda{grid-column:2; grid-row:1 / span 2; padding:32px var(--margen) 34px 36px; border-top:0; border-left:1px solid var(--linea)}
+  .mapa{height:200px}
+}
+.mapa{position:relative; display:block; width:100%; height:170px; margin:4px 0 2px; padding:0; border:0; border-radius:10px; overflow:hidden; cursor:pointer; background:#F1EEE8; transition:height .6s cubic-bezier(.3,.7,.2,1)}
+.mapa.grande{height:min(420px, 80vw)}
 .mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -52%}
-.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:6px 10px; border-radius:999px; background:#fff; font-size:12px; font-weight:600}
+.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:5px 10px; border-radius:999px; background:#fff; font-size:12px; font-weight:600}
 .m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
 .m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
 .m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
@@ -185,22 +187,18 @@ legend{font-size:14px; font-weight:600; color:var(--suave); margin-bottom:10px}
 .m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
 @keyframes ruta{from{stroke-dashoffset:1}}
 .m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px system-ui, -apple-system, "Segoe UI", sans-serif;text-anchor:middle}
-.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--tinta);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:var(--coral)}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--tinta);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:var(--acento)}
 .m-nombre-pin,.m-nombre-origen{font:700 15px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
 
 /* ——— Pie, hojas y aviso ——— */
-footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:24px var(--margen) calc(28px + env(safe-area-inset-bottom)); border-top:1px solid var(--linea); font-size:14px; color:var(--suave)}
+footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:22px var(--margen) calc(26px + env(safe-area-inset-bottom)); border-top:1px solid var(--linea); font-size:14px; color:var(--suave)}
 footer .boton{min-height:44px; font-size:14px}
 dialog.hoja{width:min(100%, 480px); max-height:92dvh; margin:auto auto 0; padding:26px var(--margen) calc(26px + env(safe-area-inset-bottom)); border:0; border-radius:16px 16px 0 0; background:var(--blanco); color:var(--tinta)}
 dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
 @media (min-width:640px){ dialog.hoja{margin:auto; border-radius:14px; padding:30px 32px} }
 .hoja h2{font:400 30px/1.1 var(--serif); margin-bottom:6px}
 .hoja .resumen{color:var(--suave); margin-bottom:20px}
-.campo{display:grid; gap:6px; margin-bottom:14px}
-.campo label{font-size:14px; font-weight:600}
-.campo input, .campo textarea{width:100%; min-height:48px; padding:10px 12px; border:1px solid var(--linea); border-radius:8px; background:var(--blanco); font-size:16px}
-.campo textarea{min-height:80px; resize:vertical}
-.campo small{color:var(--suave); font-size:13px}
+.hoja .campo{margin-bottom:14px}
 .hoja .acciones{display:grid; gap:8px; margin-top:8px}
 .hoja .pago{font-size:14px; color:var(--suave); text-align:center}
 .hecho{text-align:center}
@@ -208,14 +206,15 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
 .hecho p{color:var(--suave); margin:8px auto 20px; max-width:30ch}
 .panel .campo input[type=number]{max-width:120px}
 .panel .fila{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.panel .tallos-panel{display:grid; grid-template-columns:repeat(2, 1fr); gap:8px 12px}
 .panel .marca-check{display:flex; gap:10px; align-items:center; min-height:44px; margin-bottom:14px}
 .panel .marca-check input{width:20px; height:20px}
 .panel .act{font-size:13px; color:var(--suave); margin-top:4px}
-.aviso{position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom)); translate:-50% 20px; max-width:calc(100% - 32px); padding:12px 16px; border-radius:8px; background:var(--tinta); color:var(--papel); font-size:15px; opacity:0; pointer-events:none; transition:opacity .25s, translate .25s}
+.aviso{position:fixed; left:50%; bottom:calc(96px + env(safe-area-inset-bottom)); z-index:20; translate:-50% 20px; max-width:calc(100% - 32px); padding:12px 16px; border-radius:8px; background:var(--tinta); color:var(--fondo); font-size:15px; opacity:0; pointer-events:none; transition:opacity .25s, translate .25s}
 .aviso.ver{opacity:1; translate:-50% 0}
 </style>
 </head>
-<body>
+<body data-paleta="rosas">
 <header class="cab">
   <p class="marca">Flores Santa María</p>
   <p class="lema">Floristería en el barrio de las Letras</p>
@@ -224,47 +223,43 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
 </header>
 
 <main>
-  <section class="hoy" aria-labelledby="t-hoy">
-    <div class="izq">
-    <div class="modos" role="radiogroup" aria-label="Cómo quieres tu ramo">
-      <input type="radio" name="modo" id="m-hoy" value="hoy" checked><label for="m-hoy">El ramo de hoy</label>
-      <input type="radio" name="modo" id="m-arma" value="arma"><label for="m-arma">Arma el tuyo</label>
-    </div>
-    <div class="fotos" id="fotos">
-      <picture data-t="s"><source type="image/avif" srcset="img/ramo-s-640.avif 640w, img/ramo-s-1024.avif 1024w" sizes="(min-width:1000px) 58vw, 100vw"><img src="img/ramo-s-1024.jpg" srcset="img/ramo-s-640.jpg 640w, img/ramo-s-1024.jpg 1024w" sizes="(min-width:1000px) 58vw, 100vw" alt="El ramo de hoy en tamaño pequeño, en un jarrón de cristal" width="1024" height="768"></picture>
-      <picture data-t="m" class="vista"><source type="image/avif" srcset="img/ramo-m-640.avif 640w, img/ramo-m-1024.avif 1024w" sizes="(min-width:1000px) 58vw, 100vw"><img src="img/ramo-m-1024.jpg" srcset="img/ramo-m-640.jpg 640w, img/ramo-m-1024.jpg 1024w" sizes="(min-width:1000px) 58vw, 100vw" alt="El ramo de hoy en tamaño mediano, en un jarrón de cristal" width="1024" height="768" fetchpriority="high"></picture>
-      <picture data-t="l"><source type="image/avif" srcset="img/ramo-l-640.avif 640w, img/ramo-l-1024.avif 1024w" sizes="(min-width:1000px) 58vw, 100vw"><img src="img/ramo-l-1024.jpg" srcset="img/ramo-l-640.jpg 640w, img/ramo-l-1024.jpg 1024w" sizes="(min-width:1000px) 58vw, 100vw" alt="El ramo de hoy en tamaño grande, en un jarrón de cristal" width="1024" height="768"></picture>
-      <p class="medida" id="medida" aria-hidden="true">Mediano, unos 15 tallos</p>
-    </div>
-    <div class="taller" id="taller" hidden>
-      <div class="suelo" id="suelo">
-        <picture><source type="image/avif" srcset="img/cubos-640.avif 640w, img/cubos-1280.avif 1280w" sizes="(min-width:1000px) 54vw, 100vw"><img src="img/cubos-1280.jpg" srcset="img/cubos-640.jpg 640w, img/cubos-1280.jpg 1280w" sizes="(min-width:1000px) 54vw, 100vw" width="1280" height="956" loading="lazy"
-          alt="Siete cubos de zinc con flores sobre el suelo de la tienda, vistos desde arriba"></picture>
+  <section class="taller" aria-labelledby="t-ramo">
+    <div class="escena" id="escena">
+      <div class="lienzo" id="lienzo" role="img" aria-label="">
+        <img src="img/mesa-1024.jpg" srcset="img/mesa-640.jpg 640w, img/mesa-1024.jpg 1024w" sizes="(min-width:1000px) 70vw, 116vw" alt="" width="1024" height="1024" fetchpriority="high">
+        <div class="ramo" id="ramo" aria-hidden="true"></div>
+        <svg class="cordel" id="cordel" viewBox="0 0 100 100" aria-hidden="true">
+          <path class="v" pathLength="1" d="M28 40 C 40 34, 62 36, 72 44 M26 50 C 40 44, 62 46, 74 54 M28 60 C 40 54, 62 56, 72 64"/>
+          <path class="l" pathLength="1" d="M28 40 C 40 34, 62 36, 72 44 M26 50 C 40 44, 62 46, 74 54 M28 60 C 40 54, 62 56, 72 64"/>
+          <path class="v" pathLength="1" d="M50 50 C 40 30, 18 26, 22 40 C 25 50, 42 50, 50 50 C 60 30, 84 28, 80 42 C 77 52, 58 50, 50 50 M50 50 C 44 64, 36 78, 30 88 M50 50 C 58 66, 66 78, 76 86"/>
+        </svg>
+        <p class="tarjeta vacia" id="tarjeta-mesa" aria-hidden="true"></p>
       </div>
-      <div class="ramo" id="ramo" aria-live="polite">
-        <p class="vacio">Toca un cubo de la foto</p>
-        <p class="suma" id="suma"></p>
-        <img class="cono atras" src="img/tallos/envoltorio.webp" alt="" width="540" height="745">
-        <div id="tallos"></div>
-        <div class="boca"></div>
-        <img class="cono delante" src="img/tallos/envoltorio.webp" alt="" width="540" height="745">
-        <p class="pista">Toca una flor para quitarla</p>
-      </div>
-    </div>
+      <p class="chip" id="chip" aria-hidden="true"></p>
+      <a class="inventado movil" href="https://covalente.eu">Caso inventado</a>
     </div>
 
     <form class="pedido" id="pedido">
-      <div>
-        <h1 id="t-hoy">El ramo de hoy</h1>
-        <p class="fecha" id="fecha">Hecho esta mañana con lo que llegó del mercado</p>
+      <div class="titulo">
+        <h1 id="t-ramo">Tu ramo, hecho hoy</h1>
+        <p class="fecha" id="fecha">Con las flores que llegaron esta mañana del mercado</p>
       </div>
-      <p class="lleva" id="lleva" data-solo="hoy"><b>Lleva</b> rosas fucsia, tulipanes, ranúnculos, claveles, gerberas y eucalipto.</p>
-      <p class="lleva" id="llevas" data-solo="arma" hidden></p>
 
-      <fieldset data-solo="hoy">
+      <fieldset>
+        <legend>Colores</legend>
+        <div class="colores" id="colores"></div>
+      </fieldset>
+
+      <fieldset id="f-tamano">
         <legend>Tamaño</legend>
         <div class="tamanos" id="tamanos"></div>
+        <p class="medida" id="medida"></p>
       </fieldset>
+
+      <div>
+        <div class="lleva"><p id="lleva"></p><button class="enlace" type="button" id="cambiar" aria-expanded="false" aria-controls="flores">Cambiar flores</button></div>
+        <ul class="flores" id="flores" hidden></ul>
+      </div>
 
       <fieldset>
         <legend>Cómo lo quieres</legend>
@@ -280,6 +275,11 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
         <div class="horas" id="horas" role="radiogroup" aria-labelledby="t-horas dia-horas"></div>
       </fieldset>
 
+      <div class="campo">
+        <label for="c-tarjeta">Tarjeta, si es un regalo</label>
+        <input id="c-tarjeta" name="tarjeta" maxlength="90" autocomplete="off" placeholder="La escribimos a mano">
+      </div>
+
       <div class="cierre">
         <button class="boton" id="encargar" type="submit">Encargar</button>
         <p class="quedan" id="quedan"></p>
@@ -288,36 +288,26 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
   </section>
 
   <div class="mas">
-    <section class="bloque" aria-labelledby="t-semana">
-      <picture><source type="image/avif" srcset="img/semana-640.avif 640w, img/semana-1280.avif 1280w" sizes="(min-width:900px) 50vw, 100vw"><img src="img/semana-1280.jpg" srcset="img/semana-640.jpg 640w, img/semana-1280.jpg 1280w" sizes="(min-width:900px) 50vw, 100vw" alt="Un ramo de temporada en una jarra blanca sobre la mesa de una cocina" width="1280" height="714" loading="lazy"></picture>
-      <div class="texto">
-        <h2 id="t-semana">Flores cada viernes</h2>
-        <p>Un ramo de temporada en tu casa todas las semanas, sin permanencia.</p>
-        <p class="precio-desde">Desde 20 € a la semana, con la entrega</p>
-        <button class="boton claro" type="button" data-demo="Apuntarse a las flores de los viernes">Apuntarme</button>
-      </div>
+    <section class="dato" aria-labelledby="t-semana">
+      <img src="img/semana-640.jpg" alt="" width="640" height="357" loading="lazy">
+      <h2 id="t-semana">Flores cada viernes</h2>
+      <p>Un ramo de temporada en casa todas las semanas, sin permanencia. Desde 20 €.</p>
+      <button class="boton claro" type="button" data-demo="Apuntarse a las flores de los viernes">Apuntarme</button>
     </section>
-    <section class="bloque" aria-labelledby="t-eventos">
-      <picture><source type="image/avif" srcset="img/eventos-640.avif 640w, img/eventos-1280.avif 1280w" sizes="(min-width:900px) 50vw, 100vw"><img src="img/eventos-1280.jpg" srcset="img/eventos-640.jpg 640w, img/eventos-1280.jpg 1280w" sizes="(min-width:900px) 50vw, 100vw" alt="Una mesa de boda en un patio de Madrid con flores blancas y rosas en el centro" width="1280" height="714" loading="lazy"></picture>
-      <div class="texto">
-        <h2 id="t-eventos">Bodas y celebraciones</h2>
-        <p>Ramo de novia, mesas y centros. Dinos la fecha y cuántos sois.</p>
-        <button class="boton claro" type="button" data-demo="Pedir presupuesto para un evento">Pedir presupuesto</button>
-      </div>
+    <section class="dato" aria-labelledby="t-eventos">
+      <img src="img/eventos-640.jpg" alt="" width="640" height="357" loading="lazy">
+      <h2 id="t-eventos">Bodas y celebraciones</h2>
+      <p>Ramo de novia, mesas y centros. Dinos la fecha y cuántos sois.</p>
+      <button class="boton claro" type="button" data-demo="Pedir presupuesto para un evento">Pedir presupuesto</button>
+    </section>
+    <section class="dato tienda" aria-labelledby="t-tienda">
+      <h2 id="t-tienda">Calle de Santa María</h2>
+      <p>A 3 minutos andando del metro de Antón Martín.</p>
+      <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de Santa María, a 3 minutos andando del metro de Antón Martín. Toca para agrandarlo."><p class="crece" aria-hidden="true">Ampliar</p></button>
+      <div class="llegar"><dl class="horario" id="horario"></dl><a class="boton claro" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760">Cómo llegar</a></div>
+      <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
     </section>
   </div>
-
-  <section class="tienda" aria-labelledby="t-tienda">
-    <div class="foto"><picture><source type="image/avif" srcset="img/fachada-640.avif 640w, img/fachada-1280.avif 1280w" sizes="(min-width:1000px) 50vw, 100vw"><img src="img/fachada-1280.jpg" srcset="img/fachada-640.jpg 640w, img/fachada-1280.jpg 1280w" sizes="(min-width:1000px) 50vw, 100vw" alt="La fachada de Flores Santa María, con cubos de flores en la acera" width="1280" height="714" loading="lazy"></picture></div>
-    <div>
-      <h2 id="t-tienda">En la calle de Santa María</h2>
-      <div class="datos"><b>A 3 minutos andando del metro de Antón Martín</b><span>Barrio de las Letras, Madrid</span></div>
-      <dl class="horario" id="horario"></dl>
-      <div class="llegar"><a class="boton claro" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760">Cómo llegar</a></div>
-      <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de Santa María, a 3 minutos andando del metro de Antón Martín. Toca para agrandarlo."><p class="crece" aria-hidden="true">Ampliar</p></button>
-      <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
-    </div>
-  </section>
 </main>
 
 <footer>
@@ -332,7 +322,6 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
     <div class="campo"><label for="c-nombre">Nombre</label><input id="c-nombre" name="nombre" autocomplete="name" required></div>
     <div class="campo"><label for="c-tel">Teléfono</label><input id="c-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required><small>Te avisamos por WhatsApp cuando esté listo.</small></div>
     <div class="campo" id="campo-dir" hidden><label for="c-dir">Dirección</label><input id="c-dir" name="dir" autocomplete="street-address"></div>
-    <div class="campo"><label for="c-tarjeta">Tarjeta, si es un regalo</label><textarea id="c-tarjeta" name="tarjeta" maxlength="140" placeholder="Lo escribimos a mano"></textarea></div>
     <div class="acciones">
       <button class="boton" value="ok" id="confirmar">Confirmar</button>
       <p class="pago" id="pago">Pagas al recogerlo, con tarjeta o en efectivo.</p>
@@ -351,14 +340,13 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
   <form method="dialog" id="panel-form">
     <h2 id="t-panel" tabindex="-1">Panel de Inés</h2>
     <p class="resumen">Lo que cambies aquí se ve al momento en la web. En este ejemplo no se guarda.</p>
-    <div class="campo"><label for="p-lleva">El ramo de hoy lleva</label><textarea id="p-lleva" name="lleva"></textarea></div>
     <div class="fila">
       <div class="campo"><label for="p-s">Pequeño, €</label><input id="p-s" name="s" type="number" min="1" inputmode="numeric"></div>
       <div class="campo"><label for="p-m">Mediano, €</label><input id="p-m" name="m" type="number" min="1" inputmode="numeric"></div>
       <div class="campo"><label for="p-l">Grande, €</label><input id="p-l" name="l" type="number" min="1" inputmode="numeric"></div>
     </div>
-    <div class="campo"><label for="p-quedan">Ramos del día que quedan</label><input id="p-quedan" name="quedan" type="number" min="0" inputmode="numeric"></div>
-    <fieldset class="campo"><legend>Tallos sueltos que quedan</legend><div class="fila" id="p-tallos"></div></fieldset>
+    <div class="campo"><label for="p-quedan">Ramos que quedan hoy</label><input id="p-quedan" name="quedan" type="number" min="0" inputmode="numeric"></div>
+    <fieldset class="campo"><legend>Tallos que quedan</legend><div class="tallos-panel" id="p-tallos"></div></fieldset>
     <label class="marca-check"><input type="checkbox" id="p-reparto" name="reparto"> Hoy hay reparto</label>
     <p class="act" id="p-act" aria-live="polite"></p>
     <div class="acciones"><button class="boton" value="ok">Cerrar el panel</button></div>
@@ -371,45 +359,57 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
 (() => {
   const $ = s => document.querySelector(s);
   const quieto = matchMedia('(prefers-reduced-motion: reduce)');
-  // Precios de barrio en Madrid (07/11/2026): investigacion/17-precios-reales-casos.md
-  const RAMO = { s: { n: 'Pequeño', precio: 20, tallos: 10 }, m: { n: 'Mediano', precio: 30, tallos: 15 }, l: { n: 'Grande', precio: 45, tallos: 25 } };
-  const est = { modo: new URLSearchParams(location.search).get('modo') === 'arma' ? 'arma' : 'hoy', t: 'm', entrega: 'tienda', hora: null, quedan: 4, reparto: true, envio: 4, lleva: 'rosas fucsia, tulipanes, ranúnculos, claveles, gerberas y eucalipto' };
   const euros = n => n.toLocaleString('es-ES', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
-  // Flores sueltas. x, y: centro del cubo en la foto (%); w, h: la zona que se toca (%)
-  const TALLOS = [
-    { id: 'rosa', n: 'Rosa', pl: 'rosas', p: 2.5, queda: 18, x: 18, y: 37, w: 23, h: 33 },
-    { id: 'tulipan', n: 'Tulipán', pl: 'tulipanes', p: 2, queda: 4, x: 41, y: 36, w: 19, h: 31 },
-    { id: 'ranunculo', n: 'Ranúnculo', pl: 'ranúnculos', p: 2.5, queda: 9, x: 62, y: 36, w: 20, h: 30 },
-    { id: 'clavel', n: 'Clavel', pl: 'claveles', p: 1, queda: 20, x: 84, y: 35, w: 23, h: 29 },
-    { id: 'gerbera', n: 'Gerbera', pl: 'gerberas', p: 1.5, queda: 12, x: 25, y: 70, w: 24, h: 30 },
-    { id: 'paniculata', n: 'Paniculata', pl: 'ramas de paniculata', uno: 'rama de paniculata', p: 1.5, queda: 0, x: 52, y: 71, w: 25, h: 35 },
-    { id: 'eucalipto', n: 'Eucalipto', pl: 'ramas de eucalipto', uno: 'rama de eucalipto', p: 1.5, queda: 14, x: 80, y: 67, w: 30, h: 35 }
-  ];
-  const MIN = 3, MAX = 15;
-  const ramo = []; // { t, el, j }
-  let confirmado = false;
+
+  // Las flores de hoy. Precio por tallo de barrio en Madrid (investigacion/17-precios-reales-casos.md; los cuatro nuevos, estimados igual).
+  // w: ancho del recorte (alto 520); h: largo relativo; cy: altura del centro de la flor (fracción); cw: ancho de la flor (fracción del ancho)
+  const FLORES = {
+    'rosa-palo':    { n: 'Rosa palo', pl: 'rosas palo', lat: 'Rosa', p: 2.5, queda: 16, w: 262, h: 1, cy: .1, cw: .66, rol: 2 },
+    rosa:           { n: 'Rosa fucsia', pl: 'rosas fucsia', lat: 'Rosa', p: 2.5, queda: 18, w: 205, h: 1, cy: .1, cw: .8, rol: 2 },
+    lisianthus:     { n: 'Lisianthus', pl: 'lisianthus', uno: 'lisianthus', lat: 'Eustoma grandiflorum', p: 2.5, queda: 8, w: 232, h: 1.06, cy: .17, cw: .62, rol: 2 },
+    ranunculo:      { n: 'Ranúnculo', pl: 'ranúnculos', lat: 'Ranunculus asiaticus', p: 2.5, queda: 9, w: 172, h: .96, cy: .13, cw: .8, rol: 2 },
+    gerbera:        { n: 'Gerbera', pl: 'gerberas', lat: 'Gerbera jamesonii', p: 1.5, queda: 12, w: 172, h: 1, cy: .14, cw: .92, rol: 2 },
+    tulipan:        { n: 'Tulipán', pl: 'tulipanes', lat: 'Tulipa', p: 2, queda: 12, w: 164, h: .96, cy: .12, cw: .45, rol: 1 },
+    clavel:         { n: 'Clavel', pl: 'claveles', lat: 'Dianthus caryophyllus', p: 1, queda: 20, w: 157, h: .94, cy: .085, cw: .92, rol: 1 },
+    alstroemeria:   { n: 'Alstroemeria', pl: 'alstroemerias', lat: 'Alstroemeria', p: 1.5, queda: 10, w: 300, h: .96, cy: .13, cw: .72, rol: 1 },
+    paniculata:     { n: 'Paniculata', pl: 'ramas de paniculata', uno: 'rama de paniculata', lat: 'Gypsophila paniculata', p: 1.5, queda: 6, w: 251, h: .96, cy: .22, cw: .85, rol: 0 },
+    hypericum:      { n: 'Hypericum', pl: 'ramas de hypericum', uno: 'rama de hypericum', lat: 'Hypericum', p: 1.5, queda: 3, w: 279, h: .92, cy: .11, cw: .5, rol: 0 },
+    eucalipto:      { n: 'Eucalipto', pl: 'ramas de eucalipto', uno: 'rama de eucalipto', lat: 'Eucalyptus cinerea', p: 1.5, queda: 14, w: 117, h: 1.1, cy: .25, cw: .8, rol: 0 }
+  };
+  const PALETAS = {
+    rosas:     { n: 'Rosas', mezcla: { 'rosa-palo': .34, rosa: .2, alstroemeria: .26, eucalipto: .2 }, cara: ['rosa-palo', 'rosa', 'alstroemeria'] },
+    amarillos: { n: 'Amarillos', mezcla: { tulipan: .32, ranunculo: .26, gerbera: .22, eucalipto: .2 }, cara: ['tulipan', 'ranunculo', 'gerbera'] },
+    blancos:   { n: 'Blancos', mezcla: { lisianthus: .4, 'rosa-palo': .13, paniculata: .2, eucalipto: .27 }, cara: ['lisianthus', 'paniculata', 'eucalipto'] },
+    rojos:     { n: 'Rojos', mezcla: { clavel: .4, ranunculo: .2, hypericum: .13, eucalipto: .27 }, cara: ['clavel', 'hypericum', 'ranunculo'] }
+  };
+  const TAMANO = { s: { n: 'Pequeño', precio: 20, tallos: 10 }, m: { n: 'Mediano', precio: 30, tallos: 15 }, l: { n: 'Grande', precio: 45, tallos: 25 } };
+  const q = new URLSearchParams(location.search);
+  const est = { paleta: PALETAS[q.get('paleta')] ? q.get('paleta') : 'rosas', t: TAMANO[q.get('t')] ? q.get('t') : 'm', medida: false, cuenta: {}, entrega: 'tienda', hora: null, quedan: 4, reparto: true, envio: 4 };
+  const MAX = 30;
+
+  // ——— Dónde va el ramo en la foto de la mesa (en % del cuadrado): el nudo, hacia dónde miran las flores y cuánto tallo queda bajo el cordel ———
+  const MESA = { x: 57, y: 59, giro: -36, largo: 52, bajo: 13, luz: [4, 3] };
+  const lienzo = document.getElementById('lienzo');
+  lienzo.style.setProperty('--nx', MESA.x + '%'); lienzo.style.setProperty('--ny', MESA.y + '%'); lienzo.style.setProperty('--giro', MESA.giro + 'deg');
+
+  // ——— Hora de Madrid (o la de ?hora=HH:MM) ———
   const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
   const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const ABRE = 10 * 60, CIERRA = 20 * 60; // de lunes a sábado; el domingo, cerrado
-
-  // La hora de Madrid (o la de ?hora=HH:MM, para enseñar otro momento)
+  const ABRE = 10 * 60, CIERRA = 20 * 60;
   function ahora() {
-    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
     const d = new Date(Date.UTC(+p.year, +p.month - 1, +p.day));
     let min = +p.hour * 60 + +p.minute;
-    const h = new URLSearchParams(location.search).get('hora');
-    if (/^\d{1,2}:\d{2}$/.test(h || '')) { const [a, b] = h.split(':'); min = +a * 60 + +b; }
+    const h = q.get('hora'); if (/^\d{1,2}:\d{2}$/.test(h || '')) { const [a, b] = h.split(':'); min = +a * 60 + +b; }
     return { d, min };
   }
   const abreEse = d => d.getUTCDay() !== 0;
   const fechaTexto = d => `${DIAS[d.getUTCDay()]} ${d.getUTCDate()} de ${MESES[d.getUTCMonth()]}`;
   const hhmm = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-
-  // Horas: cada media hora, desde dentro de una hora (o de hora y media si lo llevamos) hasta media hora antes de cerrar
   function horas() {
     const { d, min } = ahora(), margen = est.entrega === 'casa' ? 90 : 60, fin = CIERRA - (est.entrega === 'casa' ? 60 : 30);
     let dia = new Date(d), desde = Math.ceil((min + margen) / 30) * 30, cuando = 'Hoy';
-    if (!abreEse(dia) || desde > fin || est.quedan === 0) {
+    if (!abreEse(dia) || desde > fin || (!est.medida && est.quedan === 0)) {
       do { dia.setUTCDate(dia.getUTCDate() + 1); } while (!abreEse(dia));
       const dif = Math.round((dia - d) / 864e5);
       cuando = dif === 1 ? 'Mañana' : DIAS[dia.getUTCDay()][0].toUpperCase() + DIAS[dia.getUTCDay()].slice(1);
@@ -420,160 +420,225 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
     return { cuando, dia, lista };
   }
 
+  // ——— Recortes de la cara de cada flor, para las muestras y la lista ———
+  function cara(el, id, d) {
+    const f = FLORES[id], ancho = d / f.cw, alto = ancho * 520 / f.w;
+    el.style.backgroundImage = `url(img/tallos/${id}.webp)`;
+    el.style.backgroundSize = `${ancho}px ${alto}px`;
+    el.style.backgroundPosition = `${(d - ancho) / 2}px ${d / 2 - f.cy * alto}px`;
+  }
+
+  // ——— Cuántas de cada: la mezcla de los colores repartida en los tallos del tamaño ———
+  function repartir(paleta, n) {
+    const m = Object.entries(PALETAS[paleta].mezcla), base = m.map(([id, k]) => [id, Math.floor(k * n), k * n % 1]);
+    let falta = n - base.reduce((s, x) => s + x[1], 0);
+    [...base].sort((a, b) => b[2] - a[2]).forEach(x => { if (falta > 0) { x[1]++; falta--; } });
+    return Object.fromEntries(base.map(([id, k]) => [id, k]));
+  }
+  const total = () => Object.values(est.cuenta).reduce((s, k) => s + k, 0);
+  const suma = () => Object.entries(est.cuenta).reduce((s, [id, k]) => s + k * FLORES[id].p, 0);
+  const precio = () => est.medida ? suma() : TAMANO[est.t].precio;
+  function listaTexto(c = est.cuenta) {
+    const l = Object.entries(c).filter(([, k]) => k > 0).sort((a, b) => b[1] - a[1]).map(([id, k]) => k === 1 ? `1 ${FLORES[id].uno || FLORES[id].n.toLowerCase()}` : `${k} ${FLORES[id].pl}`);
+    return l.length > 1 ? l.slice(0, -1).join(', ') + ' y ' + l.at(-1) : l.join('');
+  }
+
+  /* ——— El ramo sobre la mesa ———
+     Cada tallo se coloca por su nudo (el punto por donde lo ata el cordel) y se gira hacia arriba a la izquierda, como un ramo
+     tumbado en el papel: el verde y el relleno detrás y más abiertos, las flores grandes delante y más juntas. */
+  const ramo = $('#ramo'), tallos = []; // { id, el }
+  const sem = i => { const x = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); };
+  const FILAS = [{ r: 35, abre: 33 }, { r: 30, abre: 26 }, { r: 25, abre: 18 }, { r: 20, abre: 10 }];
+  function colocar(entrar) {
+    // Filas: 0 el verde y el relleno, 1 las flores medianas, 2 y 3 las grandes (alternando para que no se junten iguales)
+    const filas = [[], [], [], []];
+    const porRol = r => tallos.filter(t => FLORES[t.id].rol === r);
+    const alternar = l => { const g = {}; l.forEach(t => (g[t.id] ||= []).push(t)); const o = []; let hay = true; while (hay) { hay = false; Object.values(g).forEach(a => { if (a.length) { o.push(a.shift()); hay = true; } }); } return o; };
+    alternar(porRol(0)).forEach(t => filas[0].push(t));
+    alternar(porRol(1)).forEach(t => filas[1].push(t));
+    alternar(porRol(2)).forEach((t, i) => filas[i % 3 === 2 ? 3 : 2].push(t));
+    if (!filas[3].length && filas[2].length > 4) filas[3].push(filas[2].pop());
+    let z = 10, i = 0;
+    filas.forEach((fila, fi) => {
+      const { r, abre } = FILAS[fi], k = fila.length;
+      fila.forEach((t, j) => {
+        const f = FLORES[t.id], s = sem(i++);
+        const a = MESA.giro + (k === 1 ? 0 : (j / (k - 1) * 2 - 1) * abre) + (s - .5) * 6;
+        const R = r + (sem(i + 50) - .5) * 3;
+        const H = MESA.largo * f.h, W = H * f.w / 520;
+        const nudo = Math.min(.98, R / H + f.cy); // dónde cae el nudo en el tallo (fracción de arriba abajo)
+        const corte = Math.max(0, 1 - nudo - MESA.bajo / H);
+        const rad = a * Math.PI / 180, [lx, ly] = MESA.luz;
+        const el = t.el;
+        el.style.width = W + '%';
+        el.style.left = (MESA.x - W / 2) + '%';
+        el.style.top = (MESA.y - nudo * H) + '%';
+        el.style.setProperty('--f', (nudo * 100) + '%');
+        el.style.setProperty('--corte', (corte * 100) + '%');
+        el.style.rotate = a + 'deg';
+        el.style.setProperty('--sx', (lx * Math.cos(rad) + ly * Math.sin(rad)).toFixed(2) + 'px');
+        el.style.setProperty('--sy', (-lx * Math.sin(rad) + ly * Math.cos(rad)).toFixed(2) + 'px');
+        el.style.zIndex = z++;
+        t.orden = fi * 100 + j;
+      });
+    });
+    if (entrar && !quieto.matches) {
+      // Primero el verde y después las flores, de una en una, como cuando las pone la florista
+      [...tallos].filter(t => t.nuevo).sort((a, b) => a.orden - b.orden).forEach((t, n) => {
+        t.el.animate([
+          { opacity: 0, translate: '9% -6%', scale: 1.07 },
+          { opacity: 1, translate: '0 0', scale: 1 }
+        ], { duration: 520, delay: 60 + n * 42, easing: 'cubic-bezier(.25,.7,.25,1)', fill: 'backwards' });
+      });
+    }
+    tallos.forEach(t => { t.nuevo = false; });
+  }
+  function nuevoTallo(id) {
+    const el = document.createElement('span'); el.className = 'tallo';
+    el.innerHTML = `<img src="img/tallos/${id}.webp" alt="" width="${FLORES[id].w}" height="520">`;
+    ramo.append(el); const t = { id, el, nuevo: true }; tallos.push(t); return t;
+  }
+  function quitarTallo(t, n = 0) {
+    tallos.splice(tallos.indexOf(t), 1);
+    if (quieto.matches) return t.el.remove();
+    t.el.animate([{ opacity: 1, translate: '0 0' }, { opacity: 0, translate: '10% -5%' }], { duration: 300, delay: n * 14, easing: 'ease-in', fill: 'forwards' }).onfinish = () => t.el.remove();
+  }
+  // Ajusta los tallos de la mesa a la cuenta: quita los que sobran y añade los que faltan
+  function ajustar(todo) {
+    let n = 0;
+    if (todo) [...tallos].forEach(t => quitarTallo(t, n++));
+    Object.keys(FLORES).forEach(id => {
+      const quiero = est.cuenta[id] || 0, hay = tallos.filter(t => t.id === id);
+      hay.slice(quiero).forEach(t => quitarTallo(t, n++));
+      for (let k = hay.length; k < quiero; k++) nuevoTallo(id);
+    });
+    const espera = todo && !quieto.matches ? 160 : 0;
+    setTimeout(() => colocar(true), espera);
+    pintarResto();
+  }
+
+  // ——— Pintar el encargo ———
+  function pintarColores() {
+    $('#colores').innerHTML = Object.entries(PALETAS).map(([k, p]) => `<label class="color"><input type="radio" name="paleta" value="${k}"${k === est.paleta ? ' checked' : ''}><span class="muestra" aria-hidden="true">${p.cara.map(id => `<i data-id="${id}"></i>`).join('')}</span><b>${p.n}</b></label>`).join('');
+    document.querySelectorAll('.muestra i').forEach(i => cara(i, i.dataset.id, 30));
+  }
+  function pintarTamanos() {
+    $('#tamanos').innerHTML = Object.entries(TAMANO).map(([k, r]) => `<label class="opcion"><input type="radio" name="t" value="${k}"${!est.medida && k === est.t ? ' checked' : ''}><b>${r.n}</b><span class="p">${euros(r.precio)}</span><small>${r.tallos} tallos</small></label>`).join('');
+  }
+  function pintarFlores() {
+    const de = Object.keys(PALETAS[est.paleta].mezcla), orden = [...de, ...Object.keys(FLORES).filter(id => !de.includes(id))];
+    $('#flores').innerHTML = orden.map((id, i) => {
+      const f = FLORES[id], k = est.cuenta[id] || 0, libre = f.queda - k;
+      const nota = f.queda === 0 ? 'Agotada' : libre <= 3 ? `${euros(f.p)}, quedan ${libre}` : euros(f.p);
+      return `<li class="flor${f.queda === 0 ? ' agotada' : ''}${i === de.length ? ' primera-otra' : ''}" data-id="${id}"><span class="cabeza" aria-hidden="true"></span>
+        <span class="nom"><b>${f.n}</b><i lang="la">${f.lat}</i><small class="${libre <= 3 && f.queda ? 'pocas' : ''}">${nota}</small></span>
+        <span class="paso"><button type="button" data-d="-1" aria-label="Quitar ${f.uno || f.n.toLowerCase()}"${k === 0 ? ' disabled' : ''}>−</button><output aria-label="${f.pl}">${k}</output><button type="button" data-d="1" aria-label="Añadir ${f.uno || f.n.toLowerCase()}"${libre <= 0 || total() >= MAX ? ' disabled' : ''}>+</button></span></li>`;
+    }).join('');
+    document.querySelectorAll('.flor .cabeza').forEach(c => cara(c, c.closest('.flor').dataset.id, 40));
+  }
   function pintarAbierto() {
     const { d, min } = ahora(), abierto = abreEse(d) && min >= ABRE && min < CIERRA;
     const a = $('#abierto'); a.classList.toggle('cerrado', !abierto);
     a.querySelector('span').textContent = abierto ? `Abierto hasta las ${hhmm(CIERRA)}` : (abreEse(d) && min < ABRE ? `Abrimos a las ${hhmm(ABRE)}` : 'Cerrado ahora');
-    $('#fecha').textContent = `${fechaTexto(d)[0].toUpperCase() + fechaTexto(d).slice(1)}. Hecho con lo que llegó esta mañana del mercado.`;
+    const t = fechaTexto(d); $('#fecha').textContent = `${t[0].toUpperCase() + t.slice(1)}, con las flores que llegaron esta mañana.`;
     const filas = [['Lunes a sábado', '10:00 a 20:00'], ['Domingo', 'Cerrado']];
-    $('#horario').innerHTML = filas.map(([a, b], i) => { const hoy = (i === 0) === abreEse(d); return `<dt${hoy ? ' class="hoy-dia"' : ''}>${a}</dt><dd style="margin:0"${hoy ? ' class="hoy-dia"' : ''}>${b}</dd>`; }).join('');
-  }
-
-  function pintarTamanos() {
-    $('#tamanos').innerHTML = Object.entries(RAMO).map(([k, r]) => `<label class="opcion"><input type="radio" name="t" value="${k}"${k === est.t ? ' checked' : ''}><b>${r.n}</b><span class="p">${euros(r.precio)}</span><small>unos ${r.tallos} tallos</small></label>`).join('');
+    $('#horario').innerHTML = filas.map(([x, y], i) => { const hoy = (i === 0) === abreEse(d); return `<dt${hoy ? ' class="hoy-dia"' : ''}>${x}</dt><dd style="margin:0"${hoy ? ' class="hoy-dia"' : ''}>${y}</dd>`; }).join('');
   }
   function pintarHoras() {
     const { cuando, dia, lista } = horas();
     if (!lista.includes(est.hora)) est.hora = lista[0] ?? null;
-    $('#dia-horas').textContent = cuando === 'Hoy' ? `Hoy, ${fechaTexto(dia)}` : `${cuando}, ${fechaTexto(dia)}`;
+    $('#dia-horas').textContent = `${cuando}, ${fechaTexto(dia)}`;
     $('#horas').innerHTML = lista.map(m => `<label class="hora"><input type="radio" name="hora" value="${m}"${m === est.hora ? ' checked' : ''}><span>${hhmm(m)}</span></label>`).join('');
-    est.cuando = cuando; est.dia = dia;
+    est.cuando = cuando;
   }
   function pintarResto() {
-    const r = RAMO[est.t], arma = est.modo === 'arma', suma = ramo.reduce((s, x) => s + x.t.p, 0);
-    const total = (arma ? suma : r.precio) + (est.entrega === 'casa' ? est.envio : 0);
-    document.querySelectorAll('#fotos picture').forEach(p => p.classList.toggle('vista', p.dataset.t === est.t));
-    $('#medida').textContent = `${r.n}, unos ${r.tallos} tallos`;
-    $('#lleva').innerHTML = `<b>Lleva</b> ${est.lleva.replace(/[<>&]/g, '')}.`;
-    const casa = $('#op-casa'), sinReparto = !est.reparto;
-    casa.querySelector('input').disabled = sinReparto; casa.style.opacity = sinReparto ? .5 : 1;
-    $('#reparto-texto').textContent = sinReparto ? 'Hoy no hay reparto' : `Barrio de las Letras, +${euros(est.envio)}`;
-    const b = $('#encargar'), pocas = arma && ramo.length < MIN; b.disabled = est.hora == null || pocas;
-    b.textContent = pocas ? (ramo.length ? `Elige al menos ${MIN} flores` : 'Toca un cubo para empezar') : `Encargar · ${euros(total)}`;
-    $('#quedan').innerHTML = arma ? `Hasta ${MAX} flores. El papel y el cordel van incluidos.`
-      : est.quedan > 0 ? `Quedan <b>${est.quedan}</b> ramos de hoy` : 'Los de hoy se han acabado: te lo preparamos para el siguiente día';
-    $('#llevas').innerHTML = ramo.length ? `<b>Llevas</b> ${resumen()}.` : 'Toca los cubos de la foto: cada flor salta al ramo y el precio sube con ella.';
-    $('#suma').textContent = `${ramo.length} ${ramo.length === 1 ? 'flor' : 'flores'}, ${euros(suma)}`;
+    const n = total(), p = precio(), casa = est.entrega === 'casa';
+    $('#f-tamano').classList.toggle('a-medida', est.medida);
+    $('#medida').innerHTML = `<b>A tu medida:</b> ${n} ${n === 1 ? 'flor' : 'flores'}, ${euros(suma())}. Papel y cordel incluidos.`;
+    $('#lleva').innerHTML = n ? `<b>Lleva</b> ${listaTexto()}.` : 'Añade al menos tres flores.';
+    const nombre = PALETAS[est.paleta].n;
+    $('#chip').innerHTML = est.medida ? `A tu medida <span>${n} flores</span>` : `${nombre}, ${TAMANO[est.t].n.toLowerCase()} <span>${TAMANO[est.t].tallos} tallos</span>`;
+    $('#lienzo').setAttribute('aria-label', `Tu ramo sobre la mesa de la tienda, en papel de estraza: ${listaTexto() || 'todavía sin flores'}.`);
+    const casaL = $('#op-casa'); casaL.querySelector('input').disabled = !est.reparto; casaL.style.opacity = est.reparto ? 1 : .5;
+    $('#reparto-texto').textContent = est.reparto ? `Barrio de las Letras, +${euros(est.envio)}` : 'Hoy no hay reparto';
+    const b = $('#encargar'), pocas = n < 3; b.disabled = est.hora == null || pocas;
+    b.textContent = pocas ? 'Elige al menos tres flores' : `Encargar · ${euros(p + (casa ? est.envio : 0))}`;
+    $('#quedan').innerHTML = est.medida ? `Hasta ${MAX} flores. Pagas al ${casa ? 'recibirlo' : 'recogerlo'}.` : est.quedan > 0 ? `Quedan <b>${est.quedan}</b> ramos para hoy. Pagas al ${casa ? 'recibirlo' : 'recogerlo'}.` : 'Los de hoy se han acabado: te lo preparamos para el siguiente día.';
+    if (!$('#flores').hidden) pintarFlores();
   }
 
-  /* ---------- Arma el tuyo: los cubos de la foto y el cucurucho ---------- */
-  const suelo = $('#suelo');
-  const resumen = () => {
-    const c = new Map(); ramo.forEach(r => c.set(r.t, (c.get(r.t) || 0) + 1));
-    const l = [...c].map(([t, k]) => k === 1 ? `1 ${t.uno || t.n.toLowerCase()}` : `${k} ${t.pl}`);
-    return l.length > 1 ? l.slice(0, -1).join(', ') + ' y ' + l.at(-1) : l.join('');
+  // ——— Lo que toca la clienta ———
+  function elegirPaleta(k) {
+    est.paleta = k; est.medida = false; document.body.dataset.paleta = k;
+    document.querySelector('meta[name=theme-color]').content = getComputedStyle(document.body).getPropertyValue('--fondo').trim();
+    est.cuenta = repartir(k, TAMANO[est.t].tallos); pintarTamanos(); ajustar(true);
+  }
+  $('#colores').addEventListener('change', e => elegirPaleta(e.target.value));
+  $('#tamanos').addEventListener('change', e => { est.t = e.target.value; est.medida = false; est.cuenta = repartir(est.paleta, TAMANO[est.t].tallos); ajustar(false); });
+  $('#cambiar').onclick = () => {
+    const l = $('#flores'), abrir = l.hidden; l.hidden = !abrir; $('#cambiar').setAttribute('aria-expanded', abrir);
+    $('#cambiar').textContent = abrir ? 'Listo' : 'Cambiar flores'; if (abrir) pintarFlores();
   };
-  function pintarCubos() {
-    TALLOS.forEach(t => {
-      let b = suelo.querySelector(`[data-t="${t.id}"]`);
-      if (!b) { b = document.createElement('button'); b.type = 'button'; b.className = 'cubo'; b.dataset.t = t.id; b.style.cssText = `--x:${t.x}%;--y:${t.y}%;--w:${t.w}%;--h:${t.h}%` + (t.tx ? `;--tx:${t.tx}%` : ''); b.innerHTML = '<span class="tag"><b></b><small></small></span>'; b.onclick = () => coger(t, b); suelo.append(b); }
-      b.classList.toggle('agotado', t.queda === 0); b.classList.toggle('pocas', t.queda > 0 && t.queda <= 4);
-      b.querySelector('.tag b').textContent = t.n;
-      b.querySelector('.tag small').textContent = t.queda === 0 ? 'Agotado' : t.queda <= 4 ? `${euros(t.p)}, quedan ${t.queda}` : euros(t.p);
-      b.setAttribute('aria-label', `${t.n}, ${euros(t.p)}, ${t.queda === 0 ? 'agotado' : `quedan ${t.queda}`}. Añadir al ramo`);
-      b.setAttribute('aria-disabled', t.queda === 0);
-    });
-  }
-  // Los tallos nacen dentro del cucurucho y se abren poco, como en un ramo de verdad: las flores en cúpula y el verde más alto, detrás
-  const ANGULOS = [0, -14, 14, -24, 23, -6, 7, -19, 18, -30, 29, -3, 4, -22, 21];
-  const VERDE = { eucalipto: [62, 22], paniculata: [66, 22] };
-  function colocar() {
-    ramo.forEach((r, i) => {
-      const a = ANGULOS[i % ANGULOS.length] + r.j, verde = VERDE[r.t.id], [l, b] = verde || [55, 23];
-      r.el.style.setProperty('--a', `${a}deg`); r.el.style.setProperty('--l', `${l - Math.abs(a) * .1}%`); r.el.style.setProperty('--b', `${b + (i % 3) * 1.2}%`);
-      r.el.style.zIndex = (verde ? 40 : 100) - Math.round(Math.abs(a));
-    });
-    $('#ramo').classList.toggle('lleno', ramo.length > 0);
-    pintarResto();
-  }
-  function coger(t, boton) {
-    if (t.queda === 0 || ramo.length >= MAX) { boton.animate([{ translate: '-50% -50%' }, { translate: 'calc(-50% - 6px) -50%' }, { translate: 'calc(-50% + 6px) -50%' }, { translate: '-50% -50%' }], { duration: 260 }); return; }
-    $('#ramo').classList.remove('atado');
-    t.queda--; pintarCubos(); boton.classList.add('toca'); setTimeout(() => boton.classList.remove('toca'), 200);
-    const el = document.createElement('button'); el.type = 'button'; el.className = 'tallo';
-    el.innerHTML = `<img src="img/tallos/${t.id}.webp" alt="">`; el.setAttribute('aria-label', `Quitar ${t.uno || t.n.toLowerCase()} del ramo`);
-    const r = { t, el, j: Math.round((Math.random() - .5) * 6) }; ramo.push(r);
-    $('#tallos').append(el); colocar();
-    el.onclick = () => soltar(r);
-    if (quieto.matches) return;
-    // Del cubo a su sitio en el ramo, en arco
-    const de = boton.getBoundingClientRect(), a = el.getBoundingClientRect();
-    const dx = de.left + de.width / 2 - (a.left + a.width / 2), dy = de.top + de.height / 2 - (a.top + a.height / 2);
-    el.animate([
-      { transform: `translate(${dx}px, ${dy}px) scale(.35)`, opacity: .4 },
-      { transform: `translate(${dx * .45}px, ${dy * .45 - 90}px) scale(.8)`, opacity: 1, offset: .55 },
-      { transform: 'none', opacity: 1 }
-    ], { duration: 620, easing: 'cubic-bezier(.3,.6,.25,1)' });
-  }
-  function soltar(r) {
-    const i = ramo.indexOf(r); if (i < 0) return;
-    ramo.splice(i, 1); r.t.queda++; pintarCubos(); $('#ramo').classList.remove('atado');
-    const fin = () => { r.el.remove(); colocar(); };
-    if (quieto.matches) return fin();
-    r.el.animate([{ transform: 'none', opacity: 1 }, { transform: 'translateY(-60px)', opacity: 0 }], { duration: 260, easing: 'ease-in' }).onfinish = fin;
-  }
-  function pintarModo() {
-    const arma = est.modo === 'arma';
-    $('#fotos').hidden = arma; $('#taller').hidden = !arma;
-    document.querySelectorAll('[data-solo]').forEach(e => { e.hidden = e.dataset.solo !== est.modo; });
-    $('#t-hoy').textContent = arma ? 'Arma tu ramo' : 'El ramo de hoy';
-    if (arma) { pintarCubos(); TALLOS.forEach(t => { new Image().src = `img/tallos/${t.id}.webp`; }); }
-    pintarResto();
-  }
-  document.querySelectorAll('input[name=modo]').forEach(i => { i.checked = i.value === est.modo; i.addEventListener('change', () => { est.modo = i.value; pintarModo(); }); });
-  function pintar() { pintarAbierto(); pintarHoras(); pintarResto(); }
-
+  $('#flores').addEventListener('click', e => {
+    const b = e.target.closest('button[data-d]'); if (!b || b.disabled) return;
+    const id = b.closest('.flor').dataset.id, d = +b.dataset.d;
+    est.cuenta[id] = Math.max(0, (est.cuenta[id] || 0) + d);
+    if (!est.medida) { est.medida = true; pintarTamanos(); }
+    ajustar(false);
+    const otro = document.querySelector(`.flor[data-id="${id}"] button[data-d="${d}"]`);
+    (otro && !otro.disabled ? otro : document.querySelector(`.flor[data-id="${id}"] button:not([disabled])`))?.focus();
+  });
   $('#pedido').addEventListener('change', e => {
     const { name, value } = e.target;
-    if (name === 't') est.t = value;
     if (name === 'entrega') { est.entrega = value; pintarHoras(); }
     if (name === 'hora') est.hora = +value;
     pintarResto();
+  });
+  $('#c-tarjeta').addEventListener('input', e => {
+    const v = e.target.value.trim(), t = $('#tarjeta-mesa');
+    t.textContent = v; t.classList.toggle('vacia', !v);
   });
 
   // ——— Encargar ———
   const hoja = $('#hoja');
   $('#pedido').addEventListener('submit', e => {
     e.preventDefault(); if ($('#encargar').disabled) return;
-    const r = RAMO[est.t], casa = est.entrega === 'casa', arma = est.modo === 'arma';
-    const precio = arma ? ramo.reduce((s, x) => s + x.t.p, 0) : r.precio, que = arma ? `Tu ramo: ${resumen()}` : `El ramo de hoy, ${r.n.toLowerCase()}`;
-    $('#resumen').textContent = `${que}. ${euros(precio + (casa ? est.envio : 0))}. ${casa ? 'Te lo llevamos' : 'Lo recoges'} ${est.cuando === 'Hoy' ? 'hoy' : est.cuando.toLowerCase()} a las ${hhmm(est.hora)}.`;
+    const casa = est.entrega === 'casa', que = est.medida ? `Tu ramo a medida: ${listaTexto()}` : `Ramo ${PALETAS[est.paleta].n.toLowerCase()}, ${TAMANO[est.t].n.toLowerCase()}: ${listaTexto()}`;
+    const tarjeta = $('#c-tarjeta').value.trim();
+    $('#resumen').textContent = `${que}. ${euros(precio() + (casa ? est.envio : 0))}. ${casa ? 'Te lo llevamos' : 'Lo recoges'} ${est.cuando === 'Hoy' ? 'hoy' : est.cuando.toLowerCase()} a las ${hhmm(est.hora)}.${tarjeta ? ` Tarjeta: «${tarjeta}».` : ''}`;
     $('#campo-dir').hidden = !casa; $('#c-dir').required = casa;
     $('#pago').textContent = casa ? 'Pagas al recibirlo, con tarjeta o en efectivo.' : 'Pagas al recogerlo, con tarjeta o en efectivo.';
-    $('#hoja-form').hidden = false; $('#hecho').hidden = true; confirmado = false;
-    const abrir = () => { hoja.showModal(); $('#c-nombre').focus(); };
-    if (arma) { $('#ramo').classList.add('atado'); quieto.matches ? abrir() : setTimeout(abrir, 450); } else abrir();
-  });
-  hoja.addEventListener('close', () => {
-    if (est.modo === 'arma' && confirmado) { ramo.splice(0).forEach(r => r.el.remove()); colocar(); }
-    $('#ramo').classList.remove('atado'); confirmado = false;
+    $('#hoja-form').hidden = false; $('#hecho').hidden = true;
+    const c = $('#cordel'); c.classList.remove('dibuja'); void c.offsetWidth; c.classList.add('dibuja');
+    quieto.matches ? hoja.showModal() : setTimeout(() => hoja.showModal(), 700);
   });
   $('#hoja-form').addEventListener('submit', e => {
     if (e.submitter?.value === 'cancelar') return;
     e.preventDefault();
-    const casa = est.entrega === 'casa', n = 1040 + Math.floor(Math.random() * 60);
-    $('#numero').textContent = n;
+    const casa = est.entrega === 'casa';
+    $('#numero').textContent = 1040 + Math.floor(Math.random() * 60);
     $('#hecho-texto').textContent = `${casa ? 'Te lo llevamos' : 'Te esperamos'} ${est.cuando === 'Hoy' ? 'hoy' : est.cuando.toLowerCase()} a las ${hhmm(est.hora)}. Te escribimos por WhatsApp cuando esté listo. Es una demostración: no se ha enviado nada.`;
-    $('#hoja-form').hidden = true; $('#hecho').hidden = false; $('#t-hecho').focus(); confirmado = true;
-    if (est.modo === 'hoy' && est.quedan > 0) { est.quedan--; pintar(); }
+    $('#hoja-form').hidden = true; $('#hecho').hidden = false; $('#t-hecho').focus();
+    if (est.medida) Object.entries(est.cuenta).forEach(([id, k]) => { FLORES[id].queda = Math.max(0, FLORES[id].queda - k); });
+    else if (est.quedan > 0) est.quedan--;
+    pintarHoras(); pintarResto();
   });
   $('#cerrar-hecho').onclick = () => hoja.close();
 
   // ——— Panel de Inés ———
   const panel = $('#panel');
   $('#abrir-panel').onclick = () => {
-    $('#p-lleva').value = est.lleva; $('#p-s').value = RAMO.s.precio; $('#p-m').value = RAMO.m.precio; $('#p-l').value = RAMO.l.precio;
+    $('#p-s').value = TAMANO.s.precio; $('#p-m').value = TAMANO.m.precio; $('#p-l').value = TAMANO.l.precio;
     $('#p-quedan').value = est.quedan; $('#p-reparto').checked = est.reparto; $('#p-act').textContent = '';
-    $('#p-tallos').innerHTML = TALLOS.map(t => `<div class="campo"><label for="p-t-${t.id}">${t.n}</label><input id="p-t-${t.id}" type="number" min="0" inputmode="numeric" value="${t.queda}"></div>`).join('');
+    $('#p-tallos').innerHTML = Object.entries(FLORES).map(([id, f]) => `<div class="campo"><label for="p-t-${id}">${f.n}</label><input id="p-t-${id}" type="number" min="0" inputmode="numeric" value="${f.queda}"></div>`).join('');
     panel.showModal(); $('#t-panel').focus();
   };
   $('#panel-form').addEventListener('input', () => {
-    est.lleva = $('#p-lleva').value.trim() || est.lleva;
-    for (const k of ['s', 'm', 'l']) { const v = Math.round(+$('#p-' + k).value); if (v > 0) RAMO[k].precio = v; }
+    for (const k of ['s', 'm', 'l']) { const v = Math.round(+$('#p-' + k).value); if (v > 0) TAMANO[k].precio = v; }
     est.quedan = Math.max(0, Math.round(+$('#p-quedan').value || 0));
-    TALLOS.forEach(t => { const v = $('#p-t-' + t.id); if (v && v.value !== '') t.queda = Math.max(0, Math.round(+v.value)); }); pintarCubos();
+    Object.entries(FLORES).forEach(([id, f]) => { const v = $('#p-t-' + id); if (v && v.value !== '') f.queda = Math.max(0, Math.round(+v.value)); });
     est.reparto = $('#p-reparto').checked; if (!est.reparto && est.entrega === 'casa') { est.entrega = 'tienda'; document.querySelector('input[name=entrega][value=tienda]').checked = true; }
-    pintarTamanos(); pintar();
+    pintarTamanos(); pintarAbierto(); pintarHoras(); pintarResto();
     $('#p-act').textContent = `Actualizado a las ${hhmm(ahora().min)}`;
   });
 
@@ -593,7 +658,14 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.45)}
   };
   new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !quieto.matches) { $('#mapa').classList.add('dibuja'); o.disconnect(); } }), { threshold: .6 }).observe($('#mapa'));
 
-  pintarTamanos(); pintar(); pintarModo(); setInterval(pintar, 60000);
+  // ——— Arranque ———
+  document.body.dataset.paleta = est.paleta;
+  est.cuenta = repartir(est.paleta, TAMANO[est.t].tallos);
+  pintarColores(); pintarTamanos(); pintarAbierto(); pintarHoras();
+  const mesa = $('#lienzo img');
+  const empezar = () => { ajustar(false); if (!quieto.matches) $('#cordel').classList.add('dibuja'); };
+  mesa.complete ? empezar() : mesa.addEventListener('load', empezar, { once: true });
+  setInterval(() => { pintarAbierto(); pintarHoras(); pintarResto(); }, 60000);
 })();
 </script>
 <script>
