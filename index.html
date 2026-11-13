@@ -207,14 +207,31 @@ footer.oscuro{background:var(--verde-2)}
 .paquete.espera .barra i{width:100%; transition:none}
 .paquete.espera .compara s::after{scale:0 1; transition:none}
 .paquete.espera .total{opacity:0; transition:none}
-.paquete ul{margin:22px 0; display:grid; align-content:start; gap:13px; flex:1}
+/* 13/11 (ella: «deja lo esencial, y que lo que incluye lo despliegue cada usuario»): a la vista, una línea con lo esencial;
+   la lista de lo que incluye va plegada al pie de la tarjeta y la abre quien quiera */
+.esencia{margin-top:12px; font-size:15.5px; line-height:1.4; color:var(--suave)}
+.p-incluye{margin:18px -26px -22px; border-top:1px solid var(--linea); border-radius:0 0 13px 13px; overflow:hidden}
+.p-incluye summary{display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:54px; padding:0 26px; list-style:none; cursor:pointer; font-size:15px; font-weight:700; color:var(--verde)}
+.p-incluye summary::-webkit-details-marker{display:none}
+.p-incluye summary:hover{background:rgba(15,59,50,.05)}
+.p-incluye summary:focus-visible{outline-offset:-4px}
+.p-incluye summary svg{flex:none; width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; transition:rotate .2s}
+.p-incluye[open] summary svg{rotate:180deg}
+.p-incluye[open] ul{animation:despliega .25s ease-out}
+@keyframes despliega{ from{opacity:0; translate:0 -6px} }
+.destacado .p-incluye{border-top-color:var(--linea-oscura)}
+.destacado .p-incluye summary{color:var(--marfil)}
+.destacado .p-incluye summary svg{color:var(--oro)}
+.destacado .p-incluye summary:hover{background:rgba(243,236,221,.07)}
+.destacado .p-incluye summary:focus-visible{outline-color:var(--oro)}
+.paquete ul{margin:6px 26px 24px; display:grid; align-content:start; gap:13px}
 .paquete li{display:grid; grid-template-columns:18px 1fr; gap:10px; font-size:15.5px; line-height:1.4}
 .paquete li svg{width:18px; height:18px; margin-top:1px; color:var(--verde)}
 /* 12/11: cada cosa que incluye, con su nombre y para qué sirve */
 .paquete li b{display:block; font-weight:600}
 .paquete li small{display:block; margin-top:2px; font-size:14px; line-height:1.4; color:var(--gris)}
 .paquete.destacado li small{color:#D9D2C2}
-.paquete .plazo{font-size:14px; color:var(--suave); margin-bottom:14px}
+.paquete .plazo{font-size:14px; color:var(--suave); margin:16px 0 14px}
 .paquete .boton{width:100%}
 .paquete .luego{margin-top:12px; font-size:13px; color:var(--suave); text-align:center}
 .paquete.destacado{--nuestro:var(--oro); --dif:#FF8A7E; --suave:var(--marfil-suave); --raya:rgba(255,138,126,.4);
@@ -224,7 +241,7 @@ footer.oscuro{background:var(--verde-2)}
 .destacado .compara{background:rgba(243,236,221,.07)}
 .destacado .compara s{color:#CFC6B4}
 .paquete.destacado li svg{color:var(--oro)}
-@media (min-width:900px){ .paquetes{grid-template-columns:repeat(3, 1fr)} }
+@media (min-width:900px){ .paquetes{grid-template-columns:repeat(3, 1fr)} .paquetes:has(.p-incluye[open]){align-items:start} .esencia{min-height:2.8em} }
 @media (max-width:380px){ .precio b{font-size:56px} }
 
 /* Elegir: con JavaScript, cada paquete se elige (uno a la vez) y va al presupuesto; sin él, cada uno abre WhatsApp directamente */
@@ -293,7 +310,7 @@ footer.oscuro{background:var(--verde-2)}
   .p-pedir{width:100%}
 }
 .iva{margin-top:20px; font-size:14px; color:var(--gris)}
-@media (prefers-reduced-motion:reduce){ .x-marca, .paquete, .barra i{transition:none} .presupuesto.cambia .p-total b{animation:none} }
+@media (prefers-reduced-motion:reduce){ .x-marca, .paquete, .barra i, .p-incluye summary svg{transition:none} .p-incluye[open] ul{animation:none} .presupuesto.cambia .p-total b{animation:none} }
 
 /* ——— Cómo trabajamos: la molécula del logo es el camino. Cada átomo, un paso; la flecha sube hasta «brilla».
    Al verse la sección, el polvo de oro la llena y se junta en la molécula; el puntero lo aparta. ——— */
@@ -434,66 +451,78 @@ footer.oscuro{background:var(--verde-2)}
       <article class="paquete" data-k="kit" data-nombre="Kit de marca" data-precio="49">
         <div class="p-cab"><h3>Kit de marca</h3><span class="pct">−92 %</span></div>
         <p class="precio"><b>49 €</b></p>
+        <p class="esencia">Logotipo, colores, letras y plantillas para tus redes.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>590 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:8.3"><i></i></span>
           <p class="dif"><span>Diferencia</span> <b class="total" data-meta="541">−541 €</b></p>
         </div>
-        <ul>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Logotipo</b><small>En color, en blanco y negro y en icono pequeño: para el rótulo, las bolsas, las redes y la web.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tus colores y tus letras</b><small>Con sus códigos, para que todo lo que hagas parezca de la misma marca.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Guía de uso en PDF</b><small>Cómo usar el logo, los colores y las letras. Se la pasas a tu imprenta y acierta a la primera.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>6 plantillas para Instagram</b><small>En Canva: cambias el texto o la foto y publicas, sin saber diseño.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Foto de perfil</b><small>Lista para Instagram, WhatsApp y Google.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Todo es tuyo</b><small>Los archivos para imprimir y para pantalla, y los derechos por escrito.</small></span></li>
-        </ul>
         <p class="plazo">Listo en 7-10 días laborables</p>
         <a class="boton directo" data-wa="Hola, Covalente. Me interesa el Kit de marca para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit de marca">Pedir por WhatsApp</a>
         <button class="elegir" type="button" aria-pressed="false" aria-label="Elegir el Kit de marca"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8"/></svg>Elegir</button>
         <p class="luego">Después de las 5 plazas, 129 €</p>
+        <details class="p-incluye">
+          <summary><span>Qué incluye<span class="sr"> el Kit de marca</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary>
+          <ul>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Logotipo</b><small>En color, en blanco y negro y en icono pequeño: para el rótulo, las bolsas, las redes y la web.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tus colores y tus letras</b><small>Con sus códigos, para que todo lo que hagas parezca de la misma marca.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Guía de uso en PDF</b><small>Cómo usar el logo, los colores y las letras. Se la pasas a tu imprenta y acierta a la primera.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>6 plantillas para Instagram</b><small>En Canva: cambias el texto o la foto y publicas, sin saber diseño.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Foto de perfil</b><small>Lista para Instagram, WhatsApp y Google.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Todo es tuyo</b><small>Los archivos para imprimir y para pantalla, y los derechos por escrito.</small></span></li>
+          </ul>
+        </details>
       </article>
       <article class="paquete" data-k="web" data-nombre="Web de una página" data-precio="39">
         <div class="p-cab"><h3>Web de una página</h3><span class="pct">−90 %</span></div>
         <p class="precio"><b>39 €</b></p>
+        <p class="esencia">A medida, con tu dominio y tu botón de WhatsApp.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>400 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:9.75"><i></i></span>
           <p class="dif"><span>Diferencia</span> <b class="total" data-meta="361">−361 €</b></p>
         </div>
-        <ul>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Hecha para tu negocio</b><small>Sin plantilla y pensada para el móvil, que es desde donde te buscan.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Lo que tu cliente quiere saber</b><small>Qué haces, precios, horario, fotos y un mapa para llegar.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Te escriben con un toque</b><small>Botón de WhatsApp con el mensaje ya empezado.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Los textos, de nuestra parte</b><small>Cortos y claros. Tú solo nos cuentas tu negocio.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Preparada para Google</b><small>Para que te encuentre quien busca tu negocio por su nombre o por lo que haces.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tu dirección, sin cuotas</b><small>Con tu dominio (tunegocio.es) y conexión segura. El alojamiento es gratis y va a tu nombre.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Aviso legal y privacidad</b><small>Los textos que pide la ley, con tus datos.</small></span></li>
-        </ul>
         <p class="plazo">Lista en 5-7 días laborables</p>
         <a class="boton directo" data-wa="Hola, Covalente. Me interesa la Web de una página para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp la Web de una página">Pedir por WhatsApp</a>
         <button class="elegir" type="button" aria-pressed="false" aria-label="Elegir la Web de una página"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8"/></svg>Elegir</button>
         <p class="luego">Después de las 5 plazas, 99 €</p>
+        <details class="p-incluye">
+          <summary><span>Qué incluye<span class="sr"> la Web de una página</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary>
+          <ul>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Hecha para tu negocio</b><small>Sin plantilla y pensada para el móvil, que es desde donde te buscan.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Lo que tu cliente quiere saber</b><small>Qué haces, precios, horario, fotos y un mapa para llegar.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Te escriben con un toque</b><small>Botón de WhatsApp con el mensaje ya empezado.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Los textos, de nuestra parte</b><small>Cortos y claros. Tú solo nos cuentas tu negocio.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Preparada para Google</b><small>Para que te encuentre quien busca tu negocio por su nombre o por lo que haces.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tu dirección, sin cuotas</b><small>Con tu dominio (tunegocio.es) y conexión segura. El alojamiento es gratis y va a tu nombre.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Aviso legal y privacidad</b><small>Los textos que pide la ley, con tus datos.</small></span></li>
+          </ul>
+        </details>
       </article>
       <article class="paquete destacado" data-k="kitweb" data-nombre="Kit + web" data-precio="69">
         <div class="p-cab"><h3>Kit + web</h3><span class="pct">−94 %</span></div>
         <p class="precio"><b>69 €</b></p>
+        <p class="esencia">Marca y web a juego, 19 € menos que por separado.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>1.080 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:6.4"><i></i></span>
           <p class="dif"><span>Diferencia</span> <b class="total" data-meta="1011">−1.011 €</b></p>
         </div>
-        <ul>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Todo el Kit de marca</b><small>Logotipo, colores y letras, guía, plantillas y foto de perfil.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Toda la Web de una página</b><small>Con lo que tu cliente quiere saber y tu botón de WhatsApp.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Marca y web a juego</b><small>La web se diseña con tu marca nueva desde el primer día.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tus redes, iguales que tu web</b><small>La foto de perfil y las plantillas, con los mismos colores y letras.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Un solo encargo</b><small>Nos cuentas tu negocio una vez y te lo entregamos todo junto.</small></span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>19 € menos</b><small>Que comprando los dos por separado.</small></span></li>
-        </ul>
         <p class="plazo">Todo listo en 10-15 días laborables</p>
         <a class="boton oro directo" data-wa="Hola, Covalente. Me interesa el Kit + web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit + web">Pedir por WhatsApp</a>
         <button class="elegir" type="button" aria-pressed="false" aria-label="Elegir el Kit + web"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8"/></svg>Elegir</button>
         <p class="luego">Después de las 5 plazas, 199 €</p>
+        <details class="p-incluye">
+          <summary><span>Qué incluye<span class="sr"> el Kit + web</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary>
+          <ul>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Todo el Kit de marca</b><small>Logotipo, colores y letras, guía, plantillas y foto de perfil.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Toda la Web de una página</b><small>Con lo que tu cliente quiere saber y tu botón de WhatsApp.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Marca y web a juego</b><small>La web se diseña con tu marca nueva desde el primer día.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tus redes, iguales que tu web</b><small>La foto de perfil y las plantillas, con los mismos colores y letras.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Un solo encargo</b><small>Nos cuentas tu negocio una vez y te lo entregamos todo junto.</small></span></li>
+            <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>19 € menos</b><small>Que comprando los dos por separado.</small></span></li>
+          </ul>
+        </details>
       </article>
     </div>
 
