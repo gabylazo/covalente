@@ -1,0 +1,866 @@
+<!doctype html>
+<!--
+  Caso 1 de Covalente: «Nerea Nails», estudio de uñas de muestra. Versión 3 (04/11/2026), rehecha con las notas de Gabriela:
+  sin huecos muertos, el calendario siempre a la vista (crece al tocarlo), color de salón de uñas, un mapa del barrio y una
+  reserva con la lógica de verdad (servicio, con quién y cuándo; el esmalte se elige en el salón, el probador es para inspirarse).
+  El momento: una mano de verdad y una pared de esmaltes; tocas un bote y se pintan las uñas, con su acabado.
+  Fotos de Gemini preparadas con herramientas/probador/ (mano, máscaras, bote y muestrario). Mapa: herramientas/mapa/mapa.py,
+  con datos © colaboradores de OpenStreetMap. Fuentes: Instrument Serif y Hanken Grotesk (OFL). Versiones 1 y 2 en
+  casos/versiones-anteriores/. Todo funciona en el navegador: no se guarda, no se reserva y no se cobra nada.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nerea Nails · web de muestra de Covalente</title>
+<meta name="description" content="Web de muestra de Covalente: la web de un estudio de uñas en el barrio de las Letras donde te pruebas cualquier esmalte en una mano de verdad y reservas con quien quieras.">
+<meta name="theme-color" content="#F6EEEC">
+<link rel="preload" href="fuentes/InstrumentSerif-cursiva.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/HankenGrotesk.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
+<style>
+@font-face{font-family:"Instrument Serif"; src:url(fuentes/InstrumentSerif-cursiva.woff2) format("woff2"); font-weight:400; font-style:italic; font-display:swap}
+@font-face{font-family:"Instrument Serif"; src:url(fuentes/InstrumentSerif.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Hanken Grotesk"; src:url(fuentes/HankenGrotesk.woff2) format("woff2"); font-weight:400 700; font-display:swap}
+@property --r{syntax:'<percentage>'; inherits:false; initial-value:0%}
+
+/* --una es el esmalte elegido; --papel, el papel de la foto con un reflejo apenas visible del esmalte (casi blanco);
+   --vivo, el mismo esmalte con fuerza para los acentos. Los calcula el probador en cada cambio. */
+:root{--una:#A8102B; --papel:#F6EEEC; --vivo:#A8102B; --texto:#1D1418; --suave:color-mix(in srgb, var(--texto) 66%, var(--papel));
+  --carta:#FFFFFF; --linea:color-mix(in srgb, var(--texto) 16%, transparent); --hoja:#FFFBFC; --linea-hoja:#EBDDE2;
+  --muelle:linear(0, 0.03, 0.101, 0.199, 0.313, 0.431, 0.548, 0.657, 0.755, 0.839, 0.91, 0.966, 1.01, 1.041, 1.062, 1.075, 1.08, 1.08, 1.076, 1.069, 1.06, 1.051, 1.041, 1.032, 1.024, 1.016, 1.01, 1.005, 1.001, 0.998, 0.996, 0.994, 0.994, 0.994, 0.994, 0.994, 0.995, 0.996, 0.996, 0.997, 0.998, 0.998, 1)}
+*{box-sizing:border-box}
+html{scrollbar-gutter:stable}
+body{margin:0; background:var(--papel); color:var(--texto); font:400 17px/1.5 "Hanken Grotesk", system-ui, sans-serif; font-variant-numeric:tabular-nums;
+  transition:background-color .7s ease .25s}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--texto); outline-offset:3px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+img{display:block; max-width:100%; height:auto}
+button{font:inherit; color:inherit}
+h2{font:italic 400 clamp(38px,9vw,56px)/.95 "Instrument Serif", Georgia, serif; letter-spacing:-.015em; margin:0 0 14px}
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 24px; border:0; border-radius:999px;
+  background:var(--texto); color:#fff; font:600 17px/1 "Hanken Grotesk", sans-serif; text-decoration:none; cursor:pointer}
+.boton .punto{width:13px; height:13px; border-radius:50%; background:var(--una); box-shadow:0 0 0 2px #fff}
+.boton.contorno{background:transparent; color:inherit; box-shadow:inset 0 0 0 1.5px currentColor; min-height:46px}
+
+/* Cabecera */
+.cab{position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:10px max(16px,4vw);
+  background:color-mix(in srgb, var(--papel) 86%, transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); transition:background-color .7s ease .25s}
+.marca{margin:0 auto 0 0; font:italic 400 28px/1 "Instrument Serif", Georgia, serif; letter-spacing:-.01em; white-space:nowrap}
+.inventado{white-space:nowrap; font-size:13px; line-height:1; padding:8px 11px; border-radius:999px; text-decoration:none; box-shadow:inset 0 0 0 1px var(--linea)}
+.cab .boton{min-height:42px; padding:0 18px; font-size:15px}
+@media (max-width:420px){.marca{font-size:25px} .inventado{font-size:12px; padding:7px 9px} .cab .boton{padding:0 15px}}
+
+/* ===== El probador ===== */
+.probador{display:grid; position:relative}
+.mano{position:relative; display:grid; overflow:hidden; touch-action:pan-y}
+.mano > *{grid-area:1/1}
+.mano img,.mano canvas{width:100%; height:auto; display:block}
+#lienzo.sobre{cursor:crosshair}
+#lienzo.ola{mask-image:radial-gradient(circle at var(--cx,60%) var(--cy,62%), #000 calc(var(--r) - 14%), transparent var(--r)); -webkit-mask-image:radial-gradient(circle at var(--cx,60%) var(--cy,62%), #000 calc(var(--r) - 14%), transparent var(--r))}
+#lienzo.ola.va{--r:125%; transition:--r .85s cubic-bezier(.35,.55,.2,1)}
+.nombre{position:absolute; z-index:2; left:max(16px,4vw); top:14px; margin:0; pointer-events:none; color:var(--titulo, var(--texto));
+  font:italic 400 clamp(60px,17vw,150px)/.84 "Instrument Serif", Georgia, serif; letter-spacing:-.025em; transition:color .5s ease .2s}
+.nombre small{display:block; font:600 15px/1.2 "Hanken Grotesk", sans-serif; letter-spacing:0; margin-top:8px; color:var(--texto)}
+.nombre span{display:inline-block; transition:opacity .25s, transform .35s cubic-bezier(.2,.7,.2,1)}
+.nombre.cambia span{opacity:0; transform:translateY(.12em)}
+.pista{position:absolute; z-index:2; right:14px; bottom:14px; margin:0; font-size:14px; padding:7px 12px; border-radius:999px;
+  background:color-mix(in srgb, #fff 82%, transparent); transition:opacity .4s; pointer-events:none}
+.pista[hidden]{display:block; opacity:0}
+.mando{padding:14px max(16px,4vw) 6px; display:grid; gap:14px}
+.aviso-tono{margin:0; font-size:15px; color:var(--suave); max-width:36ch}
+
+/* Acabados: fichas con su propio mini esmalte */
+.acabados{min-inline-size:0; border:0; margin:0 -16px; padding:2px 16px 4px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none}
+.acabados::-webkit-scrollbar{display:none}
+.acabados input,.pared input,.disenos input{position:absolute; opacity:0; width:1px; height:1px}
+.acabados label{flex:none; min-height:40px; display:inline-flex; align-items:center; gap:8px; padding:0 14px 0 6px; border-radius:999px; background:var(--carta); cursor:pointer; font-weight:600; font-size:15px;
+  box-shadow:0 1px 0 var(--linea); transition:transform .5s var(--muelle)}
+.acabados label i{width:28px; height:28px; border-radius:50%; background:var(--ac); box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.acabados input:checked + label{background:var(--texto); color:#fff; transform:translateY(-2px)}
+.acabados input:focus-visible + label,.pared input:focus-visible + label,.disenos input:focus-visible + label{outline:3px solid var(--texto); outline-offset:2px}
+
+/* La pared de esmaltes: estantes con botes de verdad, recoloreados en canvas */
+.pared{min-inline-size:0; border:0; margin:0 -16px; padding:6px 16px 0; overflow-x:auto; scrollbar-width:thin; display:grid; grid-template-columns:repeat(14, 44px); gap:0 2px; justify-content:start}
+.pared legend{float:left}
+.pared label{position:relative; display:grid; place-items:end center; height:104px; padding-bottom:6px; cursor:pointer;
+  background:linear-gradient(transparent 94%, color-mix(in srgb, #fff 80%, var(--papel)) 94%, #fff)}
+.pared label i{width:min(34px, 100%); height:83px; background:var(--bote) center bottom/contain no-repeat; transition:transform .55s var(--muelle); filter:drop-shadow(0 3px 2px rgba(40,10,20,.22));
+  translate:var(--x,0) 0; rotate:var(--r,0deg); scale:var(--s,1); transform-origin:50% 100%}
+html:not(.botes) .pared label i{width:22px; height:52px; border-radius:5px 5px 7px 7px; background:linear-gradient(#141414 0 34%, var(--u) 34%)}
+.pared label:hover i{transform:translateY(-4px) rotate(-3deg)}
+.pared input:checked + label i{transform:translateY(-14px) scale(1.12)}
+.pared input:checked + label::after{content:""; position:absolute; bottom:1px; width:6px; height:6px; border-radius:50%; background:var(--texto)}
+
+/* ===== Huecos libres: siempre a la vista; al tocar un día, crece ===== */
+section{padding:26px max(16px,4vw)}
+.agenda{padding-top:20px}
+.tarjeta{background:var(--carta); border-radius:12px; padding:16px; box-shadow:0 1px 0 var(--linea)}
+.agenda h2{font-size:clamp(32px,7vw,44px); margin:0}
+.agenda .cab-ag{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:12px; flex-wrap:wrap}
+.quien{display:flex; gap:6px; flex-wrap:wrap}
+.quien input{position:absolute; opacity:0; width:1px; height:1px}
+.quien label{min-height:36px; display:inline-flex; align-items:center; padding:0 12px; border-radius:999px; box-shadow:inset 0 0 0 1.5px var(--linea-hoja); cursor:pointer; font-size:14px; font-weight:600}
+.quien input:checked + label{background:var(--vivo); color:var(--sobre-vivo,#fff); box-shadow:none}
+.quien input:focus-visible + label{outline:3px solid var(--texto); outline-offset:2px}
+.semana{display:grid; grid-template-columns:repeat(7, 1fr); gap:5px}
+.dia{display:grid; justify-items:center; align-content:start; gap:3px; min-height:84px; padding:8px 2px 6px; border:0; border-radius:12px; background:color-mix(in srgb, var(--papel) 55%, #fff); cursor:pointer;
+  transition:min-height .5s var(--muelle), background-color .3s}
+.dia small{font-size:12px; font-weight:600; text-transform:lowercase}
+.dia b{font-size:22px; line-height:1}
+.dia .puntos{display:flex; flex-wrap:wrap; justify-content:center; gap:3px; max-width:34px}
+.dia .puntos i{width:6px; height:6px; border-radius:50%; background:var(--vivo)}
+.dia[aria-pressed=true]{background:var(--texto); color:#fff}
+.dia[aria-pressed=true] .puntos i{background:#fff}
+.dia:disabled{opacity:.42; cursor:default}
+.dia .lleno{font-size:11px}
+.agenda.abierta .dia{min-height:96px}
+#horas-ag > *{animation:crece .5s var(--muelle)}
+@keyframes crece{from{opacity:0; translate:0 -6px}}
+.horas{display:flex; flex-wrap:wrap; gap:8px; padding-top:14px}
+.hora{min-height:46px; min-width:72px; padding:0 14px; border:0; border-radius:10px; background:color-mix(in srgb, var(--vivo) 14%, #fff); font-weight:700; font-size:16px; cursor:pointer}
+.hora small{display:block; font-weight:400; font-size:12px}
+.hora:hover{background:var(--vivo); color:var(--sobre-vivo,#fff)}
+.vacio{margin:14px 0 0; color:var(--suave)}
+.primero{display:flex; align-items:center; gap:10px; width:100%; margin-top:10px; min-height:52px; padding:0 16px; border:0; border-radius:12px; background:color-mix(in srgb, var(--vivo) 12%, #fff); cursor:pointer; text-align:left; font-size:15px}
+.primero b{margin-left:auto; font-size:15px; white-space:nowrap}
+.primero i{width:10px; height:10px; border-radius:50%; background:var(--vivo); flex:none}
+
+/* ===== Diseños: el muestrario del salón ===== */
+.disenos{display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; list-style:none; margin:0; padding:0}
+.disenos li{position:relative}
+.disenos button{display:grid; width:100%; padding:0; border:0; background:none; cursor:pointer; text-align:left; gap:6px}
+.disenos img{width:100%; aspect-ratio:176/220; object-fit:cover; border-radius:12px; transition:transform .55s var(--muelle)}
+.disenos button:hover img{transform:rotate(-2deg) scale(1.03)}
+.disenos span{font-size:14px; line-height:1.25; font-weight:600}
+.disenos small{display:block; font-weight:400; color:var(--suave)}
+.disenos .prueba{position:absolute; top:8px; right:8px; font-size:12px; font-weight:700; padding:4px 8px; border-radius:999px; background:#fff; pointer-events:none}
+
+/* ===== Servicios y equipo ===== */
+.servicios{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.servicios button{width:100%; display:grid; grid-template-columns:1fr auto; align-items:center; gap:4px 12px; min-height:64px; padding:10px 18px; border:0; border-radius:12px; background:var(--carta); cursor:pointer; text-align:left; box-shadow:0 1px 0 var(--linea)}
+.servicios b{font-size:17px}
+.servicios small{grid-column:1; color:var(--suave); font-size:14px}
+.servicios .precio{grid-row:1 / span 2; grid-column:2; font:italic 400 34px/1 "Instrument Serif", Georgia, serif}
+.retrato{display:block; width:100%; height:auto; aspect-ratio:16 / 9; object-fit:cover; border-radius:14px; margin-top:18px}
+.equipo{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:16px}
+.persona{border-radius:12px; padding:14px 16px; background:#fff; border:1px solid color-mix(in srgb, var(--texto) 12%, transparent); color:#1D1418}
+.persona b{display:flex; align-items:center; gap:10px; font:italic 400 30px/1 "Instrument Serif", Georgia, serif}
+.persona b::before{content:""; width:10px; height:10px; border-radius:50%; background:var(--persona); flex:none}
+.persona span{font-size:14px}
+
+/* ===== Dónde: el salón y el mapa ===== */
+.donde .foto{border-radius:12px; overflow:hidden}
+.donde .foto img{width:100%; aspect-ratio:4/3; object-fit:cover}
+.mapa{display:block; width:100%; margin-top:10px; padding:0; border:0; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; background:#F1EEE8;
+  height:220px; transition:height .6s var(--muelle)}
+.mapa.grande{height:min(440px, 72vw)}
+.mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -55%}
+.m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
+.m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
+.m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
+.m-etiquetas text{font:500 9.5px "Hanken Grotesk", system-ui, sans-serif;fill:#6A655D;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;letter-spacing:.01em}
+.m-etiquetas .m-lugar{font-style:italic;fill:#7C766C}
+.m-ruta-fondo{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.m-ruta{fill:none;stroke:#2F6FDB;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+.m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+@keyframes ruta{from{stroke-dashoffset:1}}
+.m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px "Hanken Grotesk", system-ui, sans-serif;text-anchor:middle}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--vivo);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:#fff}
+.m-nombre-pin,.m-nombre-origen{font:700 15px "Hanken Grotesk", system-ui, sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.m-pin{transition:transform .6s var(--muelle)}
+.mapa .crece{position:absolute; right:12px; top:12px; margin:0; padding:6px 10px; border-radius:999px; background:#fff; font-size:13px}
+.datos-sitio{display:grid; gap:2px; margin:14px 0 0}
+.datos-sitio b{font-size:18px}
+.atrib{font-size:12px; color:var(--suave); margin:8px 0 0}
+.llegar{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+
+footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:26px max(16px,4vw) calc(34px + env(safe-area-inset-bottom)); font-size:14px}
+footer .boton{min-height:44px; font-size:15px; padding:0 18px}
+
+/* ===== Escritorio: la mano a la izquierda, fija a toda altura; a la derecha, todo lo demás, sin huecos ===== */
+@media (min-width:900px){
+  body{display:grid; grid-template-columns:minmax(0, 46vw) minmax(0, 1fr)}
+  .cab{grid-column:1 / -1}
+  main,.probador{display:contents}
+  .mano{grid-column:1; grid-row:2 / span 6; position:sticky; top:62px; align-self:start; height:calc(100dvh - 62px); clip-path:inset(0 2px 0 0)} /* sin el hilo oscuro del borde de la foto */
+  .mano img,.mano canvas{height:100%; object-fit:cover}
+  .mano img,.mano canvas{object-position:50% 100%}
+  .mano::after{content:""; grid-area:1/1; z-index:1; pointer-events:none; background:linear-gradient(to left, var(--papel), transparent 110px), linear-gradient(var(--papel), transparent 48px)} /* la foto se funde con la página: sin corte */
+  .nombre{left:40px; top:30px; right:24px; font-size:clamp(84px,8.4vw,150px)}
+  .mando{grid-column:2; padding:28px 40px 8px}
+  .acabados,.pared{margin:0; padding-inline:0}
+  .acabados{flex-wrap:wrap; overflow:visible}
+  .pared{grid-template-columns:repeat(14, minmax(0, 1fr)); overflow:visible}
+  main > section,footer{grid-column:2; padding-inline:40px}
+  .disenos{grid-template-columns:repeat(4, 1fr)}
+  .servicios{grid-template-columns:1fr 1fr}
+  .donde .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:stretch}
+  .donde .foto img{height:100%; aspect-ratio:auto}
+  .mapa{margin-top:0; height:100%; min-height:340px}
+  .mapa.grande{height:100%}
+  .pista{bottom:24px; right:24px}
+}
+@media (min-width:1400px){ body{grid-template-columns:minmax(0, 44vw) minmax(0, 1fr)} .disenos{grid-template-columns:repeat(6, 1fr)} }
+
+/* ===== Hoja de reserva y panel ===== */
+dialog.hoja{position:fixed; inset:auto 0 0 0; margin:0; width:100%; max-width:100%; max-height:92dvh; border:0; padding:0;
+  border-radius:12px 24px 0 0; background:var(--hoja); color:var(--texto); display:flex; flex-direction:column;
+  transition:transform .3s ease-out, opacity .3s ease-out, overlay .3s allow-discrete, display .3s allow-discrete}
+dialog.hoja:not([open]){display:none; transform:translateY(28px); opacity:0}
+@starting-style{dialog.hoja[open]{transform:translateY(28px); opacity:0}}
+dialog.hoja::backdrop{background:rgba(29,20,24,.45)}
+@media (min-width:900px){dialog.hoja{inset:0 0 0 auto; width:460px; height:100dvh; max-height:100dvh; border-radius:0}}
+.hoja .arriba{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 20px 6px}
+.hoja .arriba button{font:600 15px/1 "Hanken Grotesk", sans-serif; background:none; border:0; min-height:44px; padding:0 4px; cursor:pointer; text-decoration:underline; text-underline-offset:3px}
+.hoja .arriba button[hidden]{display:inline-block; visibility:hidden}
+.hoja h2{font-size:36px; margin:0; padding:0 20px 14px}
+.hoja h2:focus{outline:none}
+.hoja .cuerpo{overflow:auto; padding:0 20px 20px; flex:1}
+.hoja .pie[hidden]{display:none}
+.hoja .pie{border-top:1px solid var(--linea-hoja); padding:14px 20px calc(14px + env(safe-area-inset-bottom)); display:grid; gap:12px; background:var(--hoja)}
+.resumen{display:flex; justify-content:space-between; align-items:baseline; gap:12px; min-height:24px; font-size:15px}
+.resumen b{font-size:18px}
+.hoja .boton{width:100%}
+.hoja .boton:disabled{opacity:.35; cursor:not-allowed}
+.etiqueta{margin:18px 0 10px; font-weight:700; font-size:15px}
+.etiqueta:first-child{margin-top:0}
+.elige{display:grid; gap:8px}
+.hoja input[type=radio],.hoja input[type=checkbox]{position:absolute; opacity:0; width:1px; height:1px}
+.fila{display:grid; grid-template-columns:1fr auto; gap:2px 14px; align-items:center; min-height:60px; padding:10px 16px; border-radius:12px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
+.fila small{grid-column:1; font-size:14px; color:var(--suave)}
+.fila b{grid-row:1 / span 2; grid-column:2}
+.fila.con-foto{grid-template-columns:52px 1fr auto}
+.fila.con-foto img{grid-row:1 / span 2; width:52px; height:52px; border-radius:12px; object-fit:cover}
+.fila.con-foto small{grid-column:2}
+.fila.con-foto b{grid-column:3}
+input:checked + .fila{border-color:var(--texto); box-shadow:inset 0 0 0 1px var(--texto)}
+input:focus-visible + .fila,input:focus-visible + .ficha{outline:3px solid var(--texto); outline-offset:2px}
+.fichas{display:flex; flex-wrap:wrap; gap:8px}
+.dias-h{display:flex; gap:8px; overflow-x:auto; padding:2px 2px 8px; margin:0 -2px}
+.ficha{display:grid; place-items:center; min-width:62px; min-height:48px; padding:6px 12px; border-radius:10px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer; line-height:1.15; text-align:center; font-size:15px}
+.dias-h .ficha{min-height:64px}
+.ficha b{font-size:20px; display:block}
+.ficha small{font-size:12px}
+input:checked + .ficha{background:var(--texto); color:#fff; border-color:var(--texto)}
+input:disabled + .ficha{opacity:.45; cursor:not-allowed}
+.campos{display:grid; gap:14px}
+.campos label{display:grid; gap:6px; font-weight:600; font-size:15px}
+.campos input{font:inherit; font-weight:400; min-height:50px; padding:0 14px; border-radius:10px; border:1.5px solid #BCAEB4; background:#fff; color:inherit}
+.referencia{display:grid; grid-template-columns:48px 1fr; gap:12px; align-items:center; margin-top:16px; padding:12px; border-radius:12px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
+.referencia i{width:48px; height:48px; border-radius:50%; background:var(--una); box-shadow:inset 0 0 0 3px #fff, 0 0 0 1px var(--linea-hoja)}
+.referencia small{display:block; color:var(--suave); font-size:13px}
+input:checked + .referencia{border-color:var(--texto); box-shadow:inset 0 0 0 1px var(--texto)}
+input:focus-visible + .referencia{outline:3px solid var(--texto); outline-offset:2px}
+.senal{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:16px}
+.senal .ficha{min-height:74px; text-align:left; place-items:start; align-content:center}
+.aviso-demo{font-size:14px; margin:12px 0 0; color:var(--suave)}
+.hecho .cuando{font:italic 400 44px/1 "Instrument Serif", Georgia, serif; margin:4px 0 8px}
+.hecho p{margin:0 0 6px}
+.hecho .acciones{display:grid; gap:10px; margin-top:22px}
+.citas{list-style:none; margin:0; padding:0}
+.citas li{display:grid; grid-template-columns:54px 1fr auto; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid var(--linea-hoja)}
+.citas .nueva{background:#FFF0B8; margin:0 -8px; padding-inline:8px; border-radius:8px}
+.citas .p{width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:6px; vertical-align:-1px; background:var(--u)}
+.citas button{font:600 14px/1 "Hanken Grotesk", sans-serif; min-height:36px; padding:0 12px; border-radius:999px; border:1.5px solid var(--linea-hoja); background:#fff; cursor:pointer}
+.citas button[aria-pressed=true]{background:var(--texto); color:#fff}
+.precios{display:grid; gap:8px}
+.precios label{display:grid; grid-template-columns:1fr 96px; align-items:center; gap:10px}
+.precios input,.hoja select{font:inherit; min-height:46px; padding:0 10px; border-radius:12px; border:1.5px solid #BCAEB4; width:100%; background:#fff; color:inherit}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important} @starting-style{dialog.hoja[open]{transform:none}}}
+</style>
+</head>
+<body>
+<header class="cab">
+  <h1 class="marca">Nerea Nails</h1>
+  <a class="inventado" href="https://covalente.eu">Muestra de Covalente</a>
+  <button class="boton" type="button" data-abrir>Reservar</button>
+</header>
+
+<main>
+  <section class="probador" aria-label="Prueba un esmalte" style="padding:0">
+    <div class="mano" id="mano">
+      <img id="foto" src="img/probador/mano-1280.jpg" srcset="img/probador/mano-640.jpg 640w, img/probador/mano-1280.jpg 1280w" sizes="(min-width: 900px) 46vw, 100vw"
+        width="1280" height="1714" fetchpriority="high" alt="Mano con las uñas sin pintar sobre papel">
+      <canvas id="antes" aria-hidden="true"></canvas>
+      <canvas id="lienzo" role="img" aria-label="Mano con las uñas sin pintar"></canvas>
+      <p class="nombre" id="nombre" aria-live="polite"><span id="nombre-color">Cereza</span><small id="nombre-acabado">Brillo</small></p>
+      <p class="pista" id="pista" hidden>O píntalas con el dedo</p>
+    </div>
+    <div class="mando">
+      <fieldset class="acabados" id="acabados"><legend class="sr">Acabado</legend></fieldset>
+      <fieldset class="pared" id="pared"><legend class="sr">Esmalte</legend></fieldset>
+      <p class="aviso-tono">Pruébate cualquiera: en el salón hay más de 300. El tuyo lo eliges allí.</p>
+    </div>
+  </section>
+
+  <section class="agenda" id="agenda" aria-labelledby="t-agenda">
+    <div class="tarjeta">
+      <div class="cab-ag">
+        <h2 id="t-agenda">Huecos libres</h2>
+        <div class="quien" role="radiogroup" aria-label="Con quién" id="quien-ag"></div>
+      </div>
+      <div class="semana" id="semana"></div>
+      <div class="cuerpo-ag"><div id="horas-ag" aria-live="polite"></div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-disenos">
+    <h2 id="t-disenos">Diseños</h2>
+    <ul class="disenos" id="disenos"></ul>
+  </section>
+
+  <section aria-labelledby="t-servicios">
+    <h2 id="t-servicios">Servicios</h2>
+    <ul class="servicios" id="servicios"></ul>
+    <img class="retrato" src="img/nerea-640.jpg" srcset="img/nerea-640.jpg 640w, img/nerea-1280.jpg 1280w" sizes="(min-width:1000px) 40vw, 100vw" alt="Nerea sonríe sentada en su mesa de manicura, con la pared de esmaltes detrás." width="1280" height="714" loading="lazy">
+    <div class="equipo" id="equipo"></div>
+  </section>
+
+  <section class="donde" aria-labelledby="t-donde">
+    <h2 id="t-donde">En Huertas</h2>
+    <div class="grid">
+      <div class="foto"><picture><source type="image/avif" srcset="img/salon-640.avif 640w, img/salon-1200.avif 1200w" sizes="(min-width: 900px) 26vw, 92vw"><img src="img/salon-1200.jpg" srcset="img/salon-640.jpg 640w, img/salon-1200.jpg 1200w" sizes="(min-width: 900px) 26vw, 92vw" width="1200" height="896" loading="lazy" alt="El salón: una pared entera de esmaltes ordenados como un arcoíris, dos mesas de terrazo rosa y un balcón a la calle"></picture></div>
+      <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de las Huertas, a 2 minutos andando del metro de Antón Martín. Toca para agrandarlo.">
+        <p class="crece" aria-hidden="true">Ampliar</p>
+      </button>
+    </div>
+    <p class="datos-sitio"><b>2 minutos andando desde el metro de Antón Martín</b><span>Calle de las Huertas, barrio de las Letras</span><span>Martes a viernes, 10:00–20:00 · sábados, 10:00–15:00</span></p>
+    <div class="llegar"><a class="boton contorno" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41350%2C-3.69835#map=18/40.41290/-3.69850" rel="noopener">Cómo llegar</a></div>
+    <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <span>Web de muestra diseñada por <a href="https://covalente.eu">Covalente</a>. Fotos creadas con IA. <a href="/legal.html">Aviso legal</a></span>
+  <button class="boton contorno" type="button" id="abrir-panel">Ver el panel de Nerea</button>
+</footer>
+
+<dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
+  <div class="arriba"><button type="button" id="atras">Atrás</button><button type="button" id="cerrar">Cerrar</button></div>
+  <h2 id="t-hoja" tabindex="-1">Reservar</h2>
+  <div class="cuerpo" id="paso"></div>
+  <div class="pie" id="pie-hoja">
+    <div class="resumen" aria-live="polite" id="resumen"></div>
+    <button class="boton" type="button" id="seguir">Seguir</button>
+  </div>
+</dialog>
+
+<dialog class="hoja" id="panel" aria-labelledby="t-panel">
+  <div class="arriba"><span></span><button type="button" id="cerrar-panel">Cerrar</button></div>
+  <h2 id="t-panel" tabindex="-1">Panel de Nerea</h2>
+  <div class="cuerpo">
+    <p class="etiqueta" id="t-citas">Citas del <span id="dia-panel"></span></p>
+    <ul class="citas" id="citas" aria-labelledby="t-citas"></ul>
+    <p class="etiqueta">Precios (cambian en la web al momento)</p>
+    <div class="precios" id="precios"></div>
+    <label class="etiqueta" for="cerrar-dia" style="display:block">Cerrar un día</label>
+    <select id="cerrar-dia"></select>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  /* =================== Datos del salón =================== */
+  // La pared: 42 de los «más de 300» tonos, por familias, como están en el estante del salón.
+  // Tonos de esmalte de verdad (más hondos y menos chillones que un color de pantalla): así se ven en el bote y en la uña.
+  const ESMALTES = [
+    ['cereza', 'Cereza', '#A8102B'], ['amapola', 'Amapola', '#C3301F'], ['clavel', 'Clavel', '#99192E'], ['granate', 'Granate', '#5C1424'], ['vermut', 'Vermut', '#481420'],
+    ['chicle', 'Chicle', '#DC6990'], ['fresa', 'Fresa', '#C9475F'], ['flamenco', 'Flamenco', '#E3879C'], ['algodon', 'Algodón', '#E9C3C6'], ['fucsia', 'Fucsia', '#B0246A'], ['buganvilla', 'Buganvilla', '#8A2155'],
+    ['coral', 'Coral', '#DC6656'], ['mandarina', 'Mandarina', '#D2742F'], ['melocoton', 'Melocotón', '#E4A68B'], ['salmon', 'Salmón', '#D68979'],
+    ['limon', 'Limón', '#E3C657'], ['mostaza', 'Mostaza', '#B4871F'], ['vainilla', 'Vainilla', '#EADDB8'],
+    ['lima', 'Lima', '#98B84A'], ['pistacho', 'Pistacho', '#B1C08D'], ['menta', 'Menta', '#A6D2BF'], ['turquesa', 'Turquesa', '#2B9593'], ['botella', 'Botella', '#1F4B3B'], ['aceituna', 'Aceituna', '#595C36'],
+    ['cielo', 'Cielo', '#9BBBD8'], ['azulejo', 'Azulejo', '#2D4C8E'], ['cobalto', 'Cobalto', '#1F3C86'], ['tinta', 'Tinta', '#1B233F'],
+    ['lavanda', 'Lavanda', '#C2B4D6'], ['lila', 'Lila', '#A692D1'], ['violeta', 'Violeta', '#5A2D7C'], ['berenjena', 'Berenjena', '#3A1F3F'],
+    ['piel', 'Piel', '#DBB5A1'], ['arena', 'Arena', '#CBB79E'], ['cafe', 'Café con leche', '#BDA087'], ['canela', 'Canela', '#975E44'], ['chocolate', 'Chocolate', '#45281E'],
+    ['merengue', 'Merengue', '#ECE5DD'], ['perla', 'Gris perla', '#B8BABB'], ['humo', 'Humo', '#65676C'], ['regaliz', 'Regaliz', '#171516'], ['oro', 'Oro viejo', '#A68538']
+  ].map(([id, n, u]) => ({ id, n, u }));
+  const ACABADOS = [
+    ['brillo', 'Brillo'], ['mate', 'Mate'], ['gelatina', 'Gelatina'], ['francesa', 'Francesa'], ['baby', 'Baby boomer'], ['cromado', 'Cromado'], ['gato', 'Ojo de gato'], ['purpurina', 'Purpurina']
+  ].map(([id, n]) => ({ id, n }));
+  // El muestrario del salón (la foto de la tabla de puntas, cortada en fichas); los que se pueden probar llevan su esmalte y acabado
+  const DISENOS = [
+    { n: 'Cereza', extra: 0, prueba: ['cereza', 'brillo'] }, { n: 'Cromado plata', extra: 4, prueba: ['perla', 'cromado'] },
+    { n: 'Ojo de gato', extra: 5, prueba: ['violeta', 'gato'] }, { n: 'Baby boomer', extra: 6, prueba: ['algodon', 'baby'] },
+    { n: 'Francesa', extra: 3, prueba: ['piel', 'francesa'] }, { n: 'Purpurina oro', extra: 3, prueba: ['oro', 'purpurina'] },
+    { n: 'Margaritas', extra: 5, arte: true }, { n: 'Lima', extra: 0, prueba: ['lima', 'brillo'] },
+    { n: 'Mármol fucsia', extra: 5, arte: true }, { n: 'Negro y oro', extra: 4, prueba: ['regaliz', 'brillo'] },
+    { n: 'Lila gelatina', extra: 3, prueba: ['lila', 'gelatina'] }, { n: 'Coral con perlas', extra: 5, arte: true }
+  ].map((d, i) => ({ ...d, id: `d${i + 1}`, img: `img/disenos/diseno-${i + 1}.webp` }));
+  const SERVICIOS = [
+    { id: 'semi', n: 'Semipermanente', min: 45, p: 25 }, { id: 'rusa', n: 'Manicura rusa', min: 75, p: 35 }, // precios de barrio en Madrid centro (Fresha y Treatwell, 07/11/2026): investigacion/17-precios-reales-casos.md
+    { id: 'retirada', n: 'Retirada y semi', min: 60, p: 29 }, { id: 'pedi', n: 'Pedicura semi', min: 60, p: 30 }
+  ];
+  const EQUIPO = [{ id: 'nerea', n: 'Nerea', que: 'nail art y diseños', c: '#E9C3C6' }, { id: 'yaiza', n: 'Yaiza', que: 'manicura rusa', c: '#C9D2A6' }];
+  const SENAL = 5;
+  const HORARIO = { 2: [600, 1200], 3: [600, 1200], 4: [600, 1200], 5: [600, 1200], 6: [600, 900] }; // minutos; 0 = domingo
+
+  const $ = s => document.querySelector(s);
+  const html = document.documentElement;
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)');
+  const hm = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+  const clave = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const deClave = k => new Date(k + 'T12:00');
+  const fDS = new Intl.DateTimeFormat('es-ES', { weekday: 'short' });
+  const corta = d => `${fDS.format(d).replace('.', '')} ${d.getDate()}`;
+  const fLarga = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  const may = t => t.charAt(0).toUpperCase() + t.slice(1);
+  const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const cerrados = new Set(); const citas = [];
+  let color = ESMALTES[0], acabado = ACABADOS[0], pintadas = new Set();
+
+  /* ---------- Color: OKLCH para teñir el papel de un tono claro del mismo esmalte, con contraste asegurado ---------- */
+  const lin = v => (v /= 255) <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4;
+  const gam = v => 255 * (v <= .0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - .055);
+  const aOklch = ([r, g, b]) => {
+    r = lin(r); g = lin(g); b = lin(b);
+    const l = Math.cbrt(.4122214708 * r + .5363325363 * g + .0514459929 * b), m = Math.cbrt(.2119034982 * r + .6806995451 * g + .1073969566 * b), s = Math.cbrt(.0883024619 * r + .2817188376 * g + .6299787005 * b);
+    const L = .2104542553 * l + .793617785 * m - .0040720468 * s, A = 1.9779984951 * l - 2.428592205 * m + .4505937099 * s, B = .0259040371 * l + .7827717662 * m - .808675766 * s;
+    return [L, Math.hypot(A, B), Math.atan2(B, A)];
+  };
+  const deOklch = ([L, C, h]) => {
+    const A = C * Math.cos(h), B = C * Math.sin(h);
+    const l = (L + .3963377774 * A + .2158037573 * B) ** 3, m = (L - .1055613458 * A - .0638541728 * B) ** 3, s = (L - .0894841775 * A - 1.291485548 * B) ** 3;
+    return [4.0767416621 * l - 3.3077115913 * m + .2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - .3413193965 * s, -.0041960863 * l - .7034186147 * m + 1.707614701 * s].map(v => Math.round(Math.min(255, Math.max(0, gam(v)))));
+  };
+  const lum = c => { const [r, g, b] = c.map(lin); return .2126 * r + .7152 * g + .0722 * b; };
+  const contraste = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+  const hex = c => '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
+  const TEXTO = [29, 20, 24];
+  const tonos = (c) => {
+    const [L, C, h] = aOklch(rgb(c.u)); const neutro = C < .035;
+    // El papel: casi blanco, con el reflejo del esmalte apenas insinuado (como un folio junto a un bote de color), no un pastel
+    const papel = deOklch([.95, neutro ? .006 : Math.min(C * .09, .016), neutro ? 1.2 : h]);
+    const titulo = contraste(rgb(c.u), papel) >= 3 ? c.u : hex(TEXTO);
+    const vivo = contraste(rgb(c.u), [255, 255, 255]) >= 3 ? c.u : hex(deOklch([Math.min(L, .5), Math.max(C, .12), neutro ? 0 : h]));
+    return { papel, titulo, vivo };
+  };
+
+  /* =================== El probador =================== */
+  const lienzo = $('#lienzo'), antes = $('#antes'), cx = lienzo.getContext('2d', { willReadFrequently: true });
+  let W = 0, H = 0, base, masc, peso, luz, marco, salida, unas = [], listo = false, turno = 0, brillo = .5;
+  const cargar = src => new Promise((ok, mal) => { const i = new Image(); i.onload = () => ok(i); i.onerror = mal; i.src = src; });
+  const pixeles = (img, w = W, h = H) => { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d'); x.drawImage(img, 0, 0, w, h); return x.getImageData(0, 0, w, h); };
+  const suave = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const BLANCO = [250, 247, 244];
+
+  // El esmalte liso sobre una superficie: el color del bote con la luz de debajo (sombras hacia el color, brillos hacia el blanco)
+  const esmalte = (C, s, o) => {
+    if (s <= 1) { const k = Math.pow(s, 1.25); o[0] = C[0] * k; o[1] = C[1] * k; o[2] = C[2] * k; }
+    else { const k = Math.min(1, (s - 1) * 1.7) * .92; o[0] = C[0] + (255 - C[0]) * k; o[1] = C[1] + (255 - C[1]) * k; o[2] = C[2] + (255 - C[2]) * k; }
+  };
+  const mezcla = (a, b, t, o) => { o[0] = a[0] + (b[0] - a[0]) * t; o[1] = a[1] + (b[1] - a[1]) * t; o[2] = a[2] + (b[2] - a[2]) * t; };
+  const azar = n => { n = (n ^ 61) ^ (n >>> 16); n = n + (n << 3); n ^= n >>> 4; n = Math.imul(n, 0x27d4eb2d); return ((n ^ (n >>> 15)) >>> 0) / 4294967296; };
+  const t1 = new Float32Array(3), t2 = new Float32Array(3);
+  // Cada acabado, píxel a píxel de la uña: s = su luz, ax = de la cutícula (0) a la punta (1), la = de lado a lado (−1…1)
+  const tono = (u, l, C, ac, o) => {
+    const s = u.sombra[l], ax = u.ax[l], la = u.lat[l], q = l * 3, bajo = [u.orig[q], u.orig[q + 1], u.orig[q + 2]];
+    switch (ac) {
+      case 'mate': { const k = Math.pow(Math.min(s, 1.05), 1.15) * .94 + .05; o[0] = Math.min(255, C[0] * k + 6); o[1] = Math.min(255, C[1] * k + 6); o[2] = Math.min(255, C[2] * k + 6); break; }
+      case 'gelatina': esmalte(C, s, t1); mezcla(bajo, t1, .55 + .25 * ax, o); if (s > 1.05) mezcla(o, [255, 255, 255], Math.min(1, (s - 1.05) * 2.2), o); break;
+      case 'francesa': { esmalte(C, s, t1); mezcla(bajo, t1, .5, t1); esmalte(BLANCO, s, t2); const borde = .7 + .12 * la * la; mezcla(t1, t2, suave(borde - .025, borde + .025, ax), o); break; }
+      case 'baby': mezcla(C, BLANCO, suave(.2, .92, ax), t1); esmalte(t1, s, o); break;
+      case 'cromado': {
+        const v = .5 + .5 * Math.sin(la * 3.6 + ax * 2.2 + brillo * 3), k = Math.min(1, Math.max(0, (s - .6) * 1.5));
+        mezcla(C, [255, 255, 255], .85, t2); mezcla([C[0] * .28, C[1] * .28, C[2] * .28], t2, Math.min(1, .15 + .55 * v + .4 * k), o); break;
+      }
+      case 'gato': {
+        const d = (la * .75 + (ax - .5) * .9) - (brillo * 2.4 - 1.2), banda = Math.exp(-d * d / .018);
+        esmalte([C[0] * .55, C[1] * .55, C[2] * .55], Math.min(s, 1.08), t1); mezcla(C, [255, 255, 255], .7, t2);
+        mezcla(t1, t2, banda * .92, o); if (azar(l + u.semilla) > .965) mezcla(o, [255, 255, 255], .35 * banda + .15, o); break;
+      }
+      case 'purpurina': { // escamas de 2 × 2 píxeles: unas oscuras, otras del color y algunas que destellan con la luz
+        const x = l % u.bw, y = (l / u.bw) | 0, h = azar(((x >> 1) + (y >> 1) * 7919) * 7 + u.semilla), tw = .5 + .5 * Math.sin(h * 90 + brillo * 9);
+        esmalte(C, Math.min(s, 1) * (.72 + .5 * h), o);
+        if (h > .74) mezcla(o, h > .95 ? [255, 255, 255] : [Math.min(255, C[0] + 110), Math.min(255, C[1] + 100), Math.min(255, C[2] + 80)], Math.min(1, (h - .74) * 4.2) * tw, o); break;
+      }
+      default: esmalte(C, s, o);
+    }
+    if (CON_LUSTRE.has(ac)) lustre(ax, la, o);
+  };
+  // El esmalte con brillo tiene volumen: los lados se oscurecen con la curva de la uña y la luz de la ventana deja un reflejo alargado a un lado (otro más débil enfrente)
+  // El volumen del esmalte con brillo: los lados más hondos (la capa es más gruesa y la uña se curva) y el reflejo de una
+  // ventana, alargado y de bordes nítidos, más uno fino al otro lado y un toque en la punta, como en una foto de verdad
+  const lustre = (ax, la, o) => {
+    const a = Math.min(1, Math.abs(la)), curva = 1 - .34 * Math.pow(a, 2.2);
+    const largo = suave(.1, .2, ax) * suave(.82, .7, ax), d1 = (la + .34) / .12, d2 = (la - .56) / .05, d3 = (ax - .9) / .04;
+    const k = Math.min(.92, Math.exp(-d1 * d1 * d1 * d1) * .82 * largo + Math.exp(-d2 * d2) * .3 * largo + Math.exp(-d3 * d3 - la * la * 4) * .22);
+    for (let q = 0; q < 3; q++) { const c = o[q] * curva; o[q] = c + (255 - c) * k; }
+  };
+  const CON_LUSTRE = new Set(['brillo', 'gelatina', 'francesa', 'baby']);
+  const VIVOS = new Set(['cromado', 'gato', 'purpurina']); // los que cambian con la luz (el dedo, el ratón o el móvil al inclinarlo)
+
+  async function iniciar() {
+    const datos = await (await fetch('img/probador/unas.json')).json();
+    const w = lienzo.clientWidth * devicePixelRatio > 760 ? 1280 : 640;
+    const [foto, mimg, pimg] = await Promise.all([cargar(`img/probador/mano-${w}.jpg`), cargar(`img/probador/unas-${w}.png`), cargar(`img/probador/papel-${w}.png`)]);
+    W = foto.naturalWidth; H = foto.naturalHeight;
+    for (const c of [lienzo, antes]) { c.width = W; c.height = H; }
+    base = pixeles(foto).data; const md = pixeles(mimg).data, pd = pixeles(pimg).data;
+    const n = W * H; masc = new Uint8Array(n); peso = new Uint8Array(n); luz = new Float32Array(n);
+    for (let i = 0; i < n; i++) masc[i] = md[i * 4];
+    let pr = 0, k = 0;
+    for (let i = 0, j = 0; i < n; i++, j += 4) if (pd[j] > 230 && (i % 7 === 0)) { pr += (base[j] + base[j + 1] + base[j + 2]) / 3; k++; }
+    const Lp = pr / (k || 1);
+    for (let i = 0, j = 0; i < n; i++, j += 4) { peso[i] = masc[i] > 8 ? 0 : pd[j]; luz[i] = (base[j] + base[j + 1] + base[j + 2]) / 3 / Lp; }
+    unas = datos.unas.map((u, ui) => {
+      const x0 = Math.max(0, Math.floor(u.caja[0] * W) - 3), y0 = Math.max(0, Math.floor(u.caja[1] * H) - 3);
+      const x1 = Math.min(W, Math.ceil(u.caja[2] * W) + 3), y1 = Math.min(H, Math.ceil(u.caja[3] * H) + 3);
+      const rx = u.raiz[0] * W, ry = u.raiz[1] * H, tx = u.punta[0] * W, ty = u.punta[1] * H;
+      const largo = Math.hypot(tx - rx, ty - ry), ux = (tx - rx) / largo, uy = (ty - ry) / largo, ancho = u.ancho * W;
+      const bw = x1 - x0, bh = y1 - y0; let suma = 0, cu = 0;
+      const orig = new Float32Array(bw * bh * 3), cubre = new Float32Array(bw * bh), sombra = new Float32Array(bw * bh), ax = new Float32Array(bw * bh), lat = new Float32Array(bw * bh);
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+        const i = y * W + x, l = (y - y0) * bw + (x - x0), j = i * 4;
+        orig[l * 3] = base[j]; orig[l * 3 + 1] = base[j + 1]; orig[l * 3 + 2] = base[j + 2];
+        const dx = x - rx, dy = y - ry; ax[l] = (dx * ux + dy * uy) / largo; lat[l] = (-dx * uy + dy * ux) / (ancho / 2);
+        if (masc[i] > 200) { suma += (base[j] + base[j + 1] + base[j + 2]) / 3; cu++; }
+      }
+      const media = suma / (cu || 1);
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) { const j = (y * W + x) * 4; sombra[(y - y0) * bw + (x - x0)] = ((base[j] + base[j + 1] + base[j + 2]) / 3) / media; }
+      return { x0, y0, x1, y1, bw, bh, rx, ry, ux, uy, largo, ancho, orig, cubre, sombra, ax, lat, semilla: ui * 9973, antes: null, ahora: null };
+    });
+    marco = new Uint8ClampedArray(base); salida = new ImageData(new Uint8ClampedArray(base), W, H);
+    cx.putImageData(salida, 0, 0);
+    const cm = unas.reduce((a, u) => [a[0] + u.rx / W / unas.length, a[1] + u.ry / H / unas.length], [0, 0]);
+    lienzo.style.setProperty('--cx', `${(cm[0] * 100).toFixed(1)}%`); lienzo.style.setProperty('--cy', `${(cm[1] * 100).toFixed(1)}%`);
+    listo = true;
+    setTimeout(() => elegir(color, acabado, true), quieto.matches ? 0 : 450);
+  }
+
+  // Pinta en «salida» una uña: lo de antes donde el pincel aún no ha pasado y lo nuevo donde sí
+  const o3 = new Float32Array(3), o4 = new Float32Array(3);
+  const pintarUna = (u, poner = true) => {
+    const d = salida.data;
+    for (let y = u.y0; y < u.y1; y++) for (let x = u.x0; x < u.x1; x++) {
+      const i = y * W + x, l = (y - u.y0) * u.bw + (x - u.x0), j = i * 4, m = masc[i] / 255;
+      if (m <= 0) continue;
+      if (u.antes) tono(u, l, u.antes[0], u.antes[1], o3); else { o3[0] = u.orig[l * 3]; o3[1] = u.orig[l * 3 + 1]; o3[2] = u.orig[l * 3 + 2]; }
+      const c = u.cubre[l];
+      if (u.ahora && c > 0) { tono(u, l, u.ahora[0], u.ahora[1], o4); mezcla(o3, o4, c, o3); }
+      d[j] = marco[j] + (o3[0] - marco[j]) * m; d[j + 1] = marco[j + 1] + (o3[1] - marco[j + 1]) * m; d[j + 2] = marco[j + 2] + (o3[2] - marco[j + 2]) * m;
+    }
+    if (poner) cx.putImageData(salida, 0, 0, u.x0, u.y0, u.bw, u.bh);
+  };
+  const asentar = u => { if (u.ahora) { u.antes = u.ahora; u.ahora = null; u.cubre.fill(0); } };
+  const PASADAS = [0, -.6, .6]; // tres pasadas de pincel: el centro y cada lado, de la cutícula a la punta
+  const pincel = (u, t) => {
+    for (let l = 0; l < u.bw * u.bh; l++) {
+      const a = u.ax[l] + .06, la = u.lat[l] / 2; let c = 0;
+      PASADAS.forEach((p, k) => { const tk = t * 3.4 - k * 1.05; if (tk <= 0) return; c = Math.max(c, suave(.34, .22, Math.abs(la - p / 2)) * suave(tk + .06, tk - .02, a)); });
+      if (t >= 1) c = 1; if (c > u.cubre[l]) u.cubre[l] = c;
+    }
+    pintarUna(u);
+  };
+  const teñir = (P) => {
+    for (let i = 0, j = 0; i < W * H; i++, j += 4) {
+      const w = peso[i] / 255; if (w <= 0) { marco[j] = base[j]; marco[j + 1] = base[j + 1]; marco[j + 2] = base[j + 2]; continue; }
+      const s = luz[i];
+      for (let q = 0; q < 3; q++) { const v = s <= 1 ? P[q] * s : P[q] + (255 - P[q]) * Math.min(1, (s - 1) * 1.4); marco[j + q] = base[j + q] + (v - base[j + q]) * w; }
+    }
+    salida.data.set(marco); unas.forEach(u => pintarUna(u, false)); cx.putImageData(salida, 0, 0);
+  };
+
+  // Elegir esmalte o acabado: se pinta uña a uña y después el papel (y la página) se tiñe desde la mano
+  function elegir(c, ac, primera) {
+    const nuevoColor = c !== color || primera; color = c; acabado = ac; const t = ++turno; pintadas.clear();
+    const tt = tonos(c);
+    html.style.setProperty('--una', c.u); html.style.setProperty('--vivo', tt.vivo); html.style.setProperty('--titulo', tt.titulo);
+    document.querySelectorAll(`input[name=esmalte][value="${c.id}"], input[name=acabado][value="${ac.id}"]`).forEach(i => i.checked = true);
+    const nombre = $('#nombre'); nombre.classList.add('cambia');
+    setTimeout(() => { $('#nombre-color').textContent = c.n; $('#nombre-acabado').textContent = ac.n; nombre.classList.remove('cambia'); }, quieto.matches ? 0 : 230);
+    pintarAcabados();
+    if (!listo) { ponerPapel(tt.papel); return; }
+    const C = rgb(c.u);
+    unas.forEach(u => { asentar(u); u.ahora = [C, ac.id]; });
+    const papel = () => {
+      if (t !== turno) return;
+      const final = () => { ponerPapel(tt.papel); lienzo.setAttribute('aria-label', `Mano con las uñas pintadas de ${c.n}, acabado ${ac.n.toLowerCase()}`); };
+      if (quieto.matches || !nuevoColor) { teñir(tt.papel); final(); return; }
+      const a = antes.getContext('2d'); a.clearRect(0, 0, W, H); a.drawImage(lienzo, 0, 0);
+      lienzo.classList.remove('va'); lienzo.classList.add('ola'); teñir(tt.papel); void lienzo.offsetWidth;
+      lienzo.classList.add('va'); final();
+      lienzo.addEventListener('transitionend', () => { if (t === turno) lienzo.classList.remove('ola', 'va'); }, { once: true });
+    };
+    if (quieto.matches) { unas.forEach(u => pincel(u, 1)); papel(); return; }
+    const DUR = 380, PASO = 150, t0 = performance.now();
+    const cuadro = (ahora) => {
+      if (t !== turno) return;
+      let fin = true;
+      unas.forEach((u, k) => { const p = (ahora - t0 - k * PASO) / DUR; if (p > 0) pincel(u, Math.min(1, p)); if (p < 1) fin = false; });
+      if (fin) setTimeout(papel, 80); else requestAnimationFrame(cuadro);
+    };
+    requestAnimationFrame(cuadro);
+    if (!primera) $('#pista').hidden = true;
+  }
+  const ponerPapel = p => { const h = hex(p); html.style.setProperty('--papel', h); document.querySelector('meta[name=theme-color]').content = h; };
+
+  // La luz: cromado, ojo de gato y purpurina se mueven con el dedo, el ratón o al inclinar el móvil
+  let pendiente = false;
+  const moverLuz = v => { brillo = Math.min(1, Math.max(0, v)); if (!listo || !VIVOS.has(acabado.id) || pendiente) return; pendiente = true; requestAnimationFrame(() => { pendiente = false; unas.forEach(u => pintarUna(u, false)); cx.putImageData(salida, 0, 0); }); };
+  $('#mano').addEventListener('pointermove', e => { if (trazo) return; const r = lienzo.getBoundingClientRect(); moverLuz((e.clientX - r.left) / r.width); });
+  addEventListener('deviceorientation', e => { if (e.gamma != null) moverLuz(.5 + e.gamma / 60); });
+
+  // Pintar con el dedo encima de una uña (y el detalle escondido: cinco uñas de cinco colores)
+  const unaEn = (x, y) => { const i = (y | 0) * W + (x | 0); if (masc[i] < 60) return null; return unas.find(u => x >= u.x0 && x < u.x1 && y >= u.y0 && y < u.y1); };
+  const aLienzo = e => {
+    const r = lienzo.getBoundingClientRect(), cs = getComputedStyle(lienzo);
+    if (cs.objectFit !== 'cover') return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height];
+    const k = Math.max(r.width / W, r.height / H), [px, py] = cs.objectPosition.split(' ').map(v => parseFloat(v) / 100);
+    return [(e.clientX - r.left - (r.width - W * k) * px) / k, (e.clientY - r.top - (r.height - H * k) * py) / k];
+  };
+  let trazo = null;
+  const mancha = (u, x, y) => {
+    const R = u.ancho * .3;
+    for (let yy = Math.max(u.y0, y - R | 0); yy < Math.min(u.y1, y + R + 1); yy++) for (let xx = Math.max(u.x0, x - R | 0); xx < Math.min(u.x1, x + R + 1); xx++) {
+      const l = (yy - u.y0) * u.bw + (xx - u.x0), c = suave(R, R * .55, Math.hypot(xx - x, yy - y)); if (c > u.cubre[l]) u.cubre[l] = c;
+    }
+  };
+  lienzo.addEventListener('touchstart', e => { if (!listo) return; const [x, y] = aLienzo(e.touches[0]); if (unaEn(x, y)) e.preventDefault(); }, { passive: false });
+  lienzo.addEventListener('pointerdown', e => {
+    if (!listo) return; const [x, y] = aLienzo(e); const u = unaEn(x, y); if (!u) return;
+    turno++; lienzo.classList.remove('ola', 'va');
+    const C = rgb(color.u); if (!u.ahora || u.ahora[0].join() !== C.join() || u.ahora[1] !== acabado.id) { asentar(u); u.ahora = [C, acabado.id]; }
+    trazo = { u, x, y }; mancha(u, x, y); pintarUna(u); lienzo.setPointerCapture(e.pointerId); $('#pista').hidden = true;
+    pintadas.add(u.semilla + ':' + color.id);
+    const distintas = new Set([...pintadas].map(p => p.split(':')[1])), cuales = new Set([...pintadas].map(p => p.split(':')[0]));
+    if (distintas.size >= 5 && cuales.size >= 5) { $('#nombre-color').textContent = 'Cada una de su padre y de su madre'; $('#nombre-acabado').textContent = 'Así también se puede'; }
+  });
+  lienzo.addEventListener('pointermove', e => {
+    if (!listo) return; const [x, y] = aLienzo(e);
+    if (!trazo) { lienzo.classList.toggle('sobre', !!unaEn(x, y)); return; }
+    const u = trazo.u, pasos = Math.ceil(Math.hypot(x - trazo.x, y - trazo.y) / 3) || 1;
+    for (let k = 1; k <= pasos; k++) mancha(u, trazo.x + (x - trazo.x) * k / pasos, trazo.y + (y - trazo.y) * k / pasos);
+    trazo.x = x; trazo.y = y; pintarUna(u);
+  });
+  const soltar = () => { trazo = null; };
+  lienzo.addEventListener('pointerup', soltar); lienzo.addEventListener('pointercancel', soltar);
+
+  /* ---------- La pared de esmaltes: un bote real recoloreado en canvas, uno por tono ---------- */
+  $('#pared').insertAdjacentHTML('beforeend', ESMALTES.map(c => `<input type="radio" name="esmalte" id="e-${c.id}" value="${c.id}"${c === color ? ' checked' : ''}><label for="e-${c.id}" title="${c.n}" style="--u:${c.u}"><i></i><span class="sr">${c.n}</span></label>`).join(''));
+  $('#pared').addEventListener('change', e => { const c = ESMALTES.find(x => x.id === e.target.value); if (c) elegir(c, acabado); });
+  (async () => {
+    try {
+      const [b, m] = await Promise.all([cargar('img/bote/bote.png'), cargar('img/bote/bote-masc.png')]);
+      const w = b.naturalWidth, h = b.naturalHeight, bd = pixeles(b, w, h), md = pixeles(m, w, h).data;
+      let s = 0, k = 0; for (let i = 0; i < w * h; i++) if (md[i * 4] > 200) { const j = i * 4; s += (bd.data[j] + bd.data[j + 1] + bd.data[j + 2]) / 3; k++; }
+      const Lm = s / k, c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d'), im = x.createImageData(w, h);
+      for (const col of ESMALTES) {
+        const C = rgb(col.u);
+        for (let i = 0; i < w * h; i++) {
+          const j = i * 4, a = md[j] / 255; im.data[j + 3] = bd.data[j + 3];
+          if (a <= 0) { im.data[j] = bd.data[j]; im.data[j + 1] = bd.data[j + 1]; im.data[j + 2] = bd.data[j + 2]; continue; }
+          esmalte(C, (bd.data[j] + bd.data[j + 1] + bd.data[j + 2]) / 3 / Lm, o3);
+          for (let q = 0; q < 3; q++) im.data[j + q] = bd.data[j + q] + (o3[q] - bd.data[j + q]) * a;
+        }
+        x.putImageData(im, 0, 0);
+        // Ningún bote queda clavado al de al lado: un poco más alto o más bajo, algo torcido, no todos en la misma raya
+        const et = document.querySelector(`label[for="e-${col.id}"]`), az = k => azar(col.u.length * 131 + k + [...col.id].reduce((a, ch) => a * 31 + ch.charCodeAt(0), 7));
+        et.style.setProperty('--bote', `url(${c.toDataURL('image/webp', .9)})`);
+        et.style.setProperty('--s', (.9 + az(1) * .13).toFixed(3)); et.style.setProperty('--r', `${((az(2) - .5) * 3.2).toFixed(1)}deg`); et.style.setProperty('--x', `${((az(3) - .5) * 4).toFixed(1)}px`);
+      }
+      html.classList.add('botes');
+    } catch (e) { console.warn('bote', e); }
+  })();
+
+  /* ---------- Acabados: cada ficha con una gota del esmalte elegido ---------- */
+  $('#acabados').insertAdjacentHTML('beforeend', ACABADOS.map(a => `<input type="radio" name="acabado" id="a-${a.id}" value="${a.id}"${a === acabado ? ' checked' : ''}><label for="a-${a.id}"><i id="gota-${a.id}"></i>${a.n}</label>`).join(''));
+  $('#acabados').addEventListener('change', e => { const a = ACABADOS.find(x => x.id === e.target.value); if (a) elegir(color, a); });
+  function pintarAcabados() {
+    const u = color.u, cl = `color-mix(in srgb, ${u}, #fff 70%)`;
+    const fondo = { brillo: `radial-gradient(circle at 35% 30%, #fff 0 8%, ${u} 30%)`, mate: u, gelatina: `radial-gradient(circle at 35% 30%, #fff 0 8%, color-mix(in srgb, ${u} 60%, transparent) 32%)`,
+      francesa: `linear-gradient(color-mix(in srgb, ${u} 45%, #F3E3DC) 62%, #FAF7F4 62%)`, baby: `linear-gradient(${u}, #FAF7F4)`, cromado: `linear-gradient(120deg, color-mix(in srgb, ${u}, #000 60%), ${cl} 45%, color-mix(in srgb, ${u}, #000 40%) 70%, ${cl})`,
+      gato: `linear-gradient(125deg, color-mix(in srgb, ${u}, #000 45%) 38%, ${cl} 50%, color-mix(in srgb, ${u}, #000 45%) 62%)`, purpurina: `radial-gradient(#fff 1px, transparent 1.5px) 0 0/5px 5px, radial-gradient(${cl} 1px, transparent 1.5px) 2px 3px/6px 6px, ${u}` };
+    ACABADOS.forEach(a => { const g = document.getElementById(`gota-${a.id}`); if (g) g.style.setProperty('--ac', fondo[a.id]); });
+  }
+
+  /* ---------- Diseños ---------- */
+  const pintarDisenos = () => {
+    $('#disenos').innerHTML = DISENOS.map(d => `<li><button type="button" data-diseno="${d.id}" aria-label="${d.n}${d.extra ? `, ${d.extra} euros más` : ', sin coste extra'}${d.prueba ? '. Pruébalo en la mano' : '. Reservar'}"><img src="${d.img}" width="176" height="220" loading="lazy" alt=""><span>${d.n}<small>${d.extra ? `+${d.extra} €` : 'Incluido'}</small></span></button>${d.prueba ? '<span class="prueba" aria-hidden="true">Pruébalo</span>' : ''}</li>`).join('');
+    $('#disenos').querySelectorAll('[data-diseno]').forEach(b => b.onclick = () => {
+      const d = DISENOS.find(x => x.id === b.dataset.diseno);
+      if (d.prueba) { elegir(ESMALTES.find(x => x.id === d.prueba[0]), ACABADOS.find(x => x.id === d.prueba[1])); $('#mano').scrollIntoView({ behavior: quieto.matches ? 'auto' : 'smooth', block: 'start' }); }
+      else abrir({ diseno: d.id });
+    });
+  };
+
+  /* ---------- Agenda de ejemplo, por persona (siempre la misma para cada día) ---------- */
+  const proximos = (n = 7) => { const out = [], hoy = new Date(); hoy.setHours(12, 0, 0, 0); for (let i = 0; out.length < n && i < 21; i++) { const d = new Date(hoy); d.setDate(hoy.getDate() + i); out.push(d); } return out; };
+  const abierto = d => !!HORARIO[d.getDay()] && !cerrados.has(clave(d));
+  const NOMBRES = ['Lucía', 'Marta', 'Inés', 'Ana', 'Sara', 'Paula', 'Elena', 'Carmen', 'Rocío', 'Julia'];
+  const deEjemplo = (d, p) => {
+    let s = [...(clave(d) + p)].reduce((a, ch) => a * 31 + ch.charCodeAt(0) >>> 0, 7); const rnd = () => ((s = (s * 1103515245 + 12345) >>> 0) >>> 16) % 100;
+    const [a, c] = HORARIO[d.getDay()] || [0, 0]; const out = [];
+    for (let m = a; m < c;) { if (rnd() < 46) { const sv = SERVICIOS[rnd() % SERVICIOS.length]; if (m + sv.min > c) break; out.push({ ini: m, min: sv.min, serv: sv.n, quien: NOMBRES[(out.length + p.length) % NOMBRES.length], con: p, color: ESMALTES[rnd() % ESMALTES.length].id }); m += Math.ceil(sv.min / 30) * 30; } else m += 30; }
+    return out;
+  };
+  const todas = (d, p) => deEjemplo(d, p).concat(citas.filter(x => x.dia === clave(d) && x.con === p));
+  const libresDe = (d, min, p) => {
+    if (!abierto(d)) return [];
+    const [a, c] = HORARIO[d.getDay()]; const oc = todas(d, p); const ahora = new Date();
+    const limite = clave(d) === clave(ahora) ? ahora.getHours() * 60 + ahora.getMinutes() + 30 : -1;
+    const out = []; for (let m = a; m + min <= c; m += 30) if (m >= limite && !oc.some(x => m < x.ini + x.min && x.ini < m + min)) out.push(m);
+    return out;
+  };
+  // «Me da igual»: cada hora con la primera persona libre
+  const huecos = (d, min, quien) => {
+    if (quien !== 'cualquiera') return libresDe(d, min, quien).map(m => ({ m, con: quien }));
+    const mapa = new Map(); EQUIPO.forEach(p => libresDe(d, min, p.id).forEach(m => { if (!mapa.has(m)) mapa.set(m, p.id); }));
+    return [...mapa].sort((a, b) => a[0] - b[0]).map(([m, con]) => ({ m, con }));
+  };
+  const nombreDe = id => (EQUIPO.find(p => p.id === id) || {}).n;
+
+  /* ---------- Huecos libres en la página: la semana siempre a la vista; al tocar un día, crece y enseña sus horas ---------- */
+  let quienAg = 'cualquiera', diaAg = null;
+  $('#quien-ag').innerHTML = [{ id: 'cualquiera', n: 'Me da igual' }, ...EQUIPO].map(p => `<input type="radio" name="quien-ag" id="qa-${p.id}" value="${p.id}"${p.id === quienAg ? ' checked' : ''}><label for="qa-${p.id}">${p.n}</label>`).join('');
+  $('#quien-ag').addEventListener('change', e => { quienAg = e.target.value; pintarAgenda(); });
+  const pintarAgenda = () => {
+    const min = SERVICIOS[0].min, dias = proximos(7);
+    $('#semana').innerHTML = dias.map(d => {
+      const k = clave(d), hs = huecos(d, min, quienAg), lleno = !hs.length, sel = k === diaAg;
+      return `<button type="button" class="dia" data-dia="${k}" aria-pressed="${sel}"${lleno ? ' disabled' : ''} aria-label="${may(fLarga.format(d))}: ${lleno ? (abierto(d) ? 'completo' : 'cerrado') : `${hs.length} huecos`}"><small>${fDS.format(d).replace('.', '')}</small><b>${d.getDate()}</b>${lleno ? `<span class="lleno">${abierto(d) ? 'Lleno' : 'Cerrado'}</span>` : `<span class="puntos">${'<i></i>'.repeat(Math.min(6, Math.ceil(hs.length / 2)))}</span>`}</button>`;
+    }).join('');
+    $('#semana').querySelectorAll('[data-dia]').forEach(b => b.onclick = () => { diaAg = diaAg === b.dataset.dia ? null : b.dataset.dia; pintarAgenda(); });
+    $('#agenda').classList.toggle('abierta', !!diaAg);
+    const caja = $('#horas-ag');
+    if (!diaAg) {
+      const d = proximos(7).find(d => huecos(d, min, quienAg).length);
+      if (!d) { caja.innerHTML = ''; return; }
+      const h = huecos(d, min, quienAg)[0], k = clave(d);
+      caja.innerHTML = `<button type="button" class="primero" id="primero"><i></i><span>Primer hueco: ${corta(d)}, ${hm(h.m)} con ${nombreDe(h.con)}</span><b>Reservar</b></button>`;
+      $('#primero').onclick = () => abrir({ dia: k, hora: h.m, quien: h.con });
+      return;
+    }
+    const hs = huecos(deClave(diaAg), min, quienAg);
+    caja.innerHTML = hs.length ? `<div class="horas">${hs.map(h => `<button type="button" class="hora" data-hora="${h.m}" data-con="${h.con}">${hm(h.m)}<small>${nombreDe(h.con)}</small></button>`).join('')}</div>` : '<p class="vacio">Ese día ya no queda ni un hueco.</p>';
+    caja.querySelectorAll('[data-hora]').forEach(b => b.onclick = () => abrir({ dia: diaAg, hora: +b.dataset.hora, quien: b.dataset.con }));
+  };
+  // En el escritorio hay sitio: la agenda sale abierta por el primer día con huecos
+  const primerDia = () => { const d = proximos(7).find(d => huecos(d, SERVICIOS[0].min, quienAg).length); return d ? clave(d) : null; };
+
+  /* ---------- Servicios y equipo ---------- */
+  const pintarServicios = () => {
+    $('#servicios').innerHTML = SERVICIOS.map(s => `<li><button type="button" data-servicio="${s.id}" aria-label="Reservar ${s.n}, ${s.min} minutos, ${s.p} euros"><b>${s.n}</b><small>${s.min} min</small><span class="precio">${s.p} €</span></button></li>`).join('');
+    $('#servicios').querySelectorAll('[data-servicio]').forEach(b => b.onclick = () => abrir({ servicio: b.dataset.servicio }));
+  };
+  $('#equipo').innerHTML = EQUIPO.map(p => `<div class="persona" style="--persona:${p.c}"><b>${p.n}</b><span>${p.que}</span></div>`).join('');
+
+  /* ---------- El mapa: pequeño siempre; al tocarlo crece y dibuja el camino desde el metro ---------- */
+  fetch('img/mapa.svg').then(r => r.text()).then(t => { $('#mapa').insertAdjacentHTML('afterbegin', t.replace(/<title[^>]*>.*?<\/title>/, '')); $('#mapa svg').setAttribute('aria-hidden', 'true'); }).catch(() => {});
+  $('#mapa').onclick = () => {
+    const m = $('#mapa'), g = !m.classList.contains('grande'); m.classList.toggle('grande', g); m.setAttribute('aria-expanded', g);
+    m.querySelector('.crece').textContent = g ? 'Reducir' : 'Ampliar';
+    if (g && !quieto.matches) { m.classList.remove('dibuja'); void m.offsetWidth; m.classList.add('dibuja'); }
+  };
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !quieto.matches) { $('#mapa').classList.add('dibuja'); o.disconnect(); } }), { threshold: .6 }).observe($('#mapa'));
+
+  /* ---------- La hoja de reserva: qué, con quién y cuándo, y al final el nombre ---------- */
+  const hoja = $('#hoja');
+  const r = { paso: 0, servicio: null, diseno: null, quien: 'cualquiera', dia: null, hora: null, con: null, nombre: '', tel: '', senal: true, referencia: false };
+  const TITULOS = ['¿Qué te hacemos?', '¿Con quién y cuándo?', '¿A nombre de quién?', 'Reservado'];
+  const serv = () => SERVICIOS.find(s => s.id === r.servicio);
+  const dis = () => DISENOS.find(d => d.id === r.diseno);
+  const total = () => (serv() ? serv().p : 0) + (dis() ? dis().extra : 0);
+  const abrir = (o = {}) => { Object.assign(r, { paso: 0, servicio: null, diseno: null, quien: 'cualquiera', dia: null, hora: null, con: null }, o); pintarPaso(); hoja.showModal(); $('#t-hoja').focus(); };
+  document.querySelectorAll('[data-abrir]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); abrir(); }));
+  $('#cerrar').onclick = () => hoja.close();
+  hoja.addEventListener('click', e => { if (e.target === hoja) hoja.close(); });
+  $('#atras').onclick = () => { if (r.paso > 0 && r.paso < 3) { r.paso--; pintarPaso(); $('#t-hoja').focus(); } };
+  const pintarResumen = () => {
+    const s = serv(), d = dis();
+    const izq = [s ? s.n + (d && d.extra ? ` + ${d.n.toLowerCase()}` : '') : '', r.hora != null && r.dia ? `${may(corta(deClave(r.dia)))}, ${hm(r.hora)}${r.con ? ` con ${nombreDe(r.con)}` : ''}` : ''].filter(Boolean).join('<br>');
+    $('#resumen').innerHTML = `<span>${izq || 'Elige un servicio'}</span>${s ? `<b>${total()} €</b>` : ''}`;
+  };
+  const pintarPaso = () => {
+    const p = $('#paso'), s = serv();
+    $('#t-hoja').textContent = TITULOS[r.paso];
+    $('#atras').hidden = !(r.paso === 1 || r.paso === 2);
+    $('#pie-hoja').hidden = r.paso === 3;
+    if (r.paso === 0) {
+      p.innerHTML = `<div class="elige" role="radiogroup" aria-label="Servicio">${SERVICIOS.map(x => `<input type="radio" name="servicio" id="s-${x.id}" value="${x.id}"${x.id === r.servicio ? ' checked' : ''}><label class="fila" for="s-${x.id}"><span>${x.n}</span><small>${x.min} min</small><b>${x.p} €</b></label>`).join('')}</div>
+        <p class="etiqueta">Diseño, si quieres</p><div class="elige" role="radiogroup" aria-label="Diseño">${[{ id: '', n: 'Liso, de un color', extra: 0 }, ...DISENOS.filter(d => d.extra)].map(d => `<input type="radio" name="diseno" id="ds-${d.id || 'liso'}" value="${d.id}"${(r.diseno || '') === d.id ? ' checked' : ''}><label class="fila${d.img ? ' con-foto' : ''}" for="ds-${d.id || 'liso'}">${d.img ? `<img src="${d.img}" alt="">` : ''}<span>${d.n}</span><small>${d.arte ? 'Lo pinta Nerea, a mano' : d.extra ? 'Diseño' : 'El tono lo eliges allí'}</small><b>${d.extra ? `+${d.extra} €` : '0 €'}</b></label>`).join('')}</div>`;
+      p.querySelectorAll('[name=servicio]').forEach(i => i.onchange = () => { r.servicio = i.value; actualizarBoton(); pintarResumen(); });
+      p.querySelectorAll('[name=diseno]').forEach(i => i.onchange = () => { r.diseno = i.value || null; pintarResumen(); });
+    } else if (r.paso === 1) {
+      const dias = proximos(10).filter(abierto);
+      const hueco = r.dia && r.hora != null && huecos(deClave(r.dia), s.min, r.quien).find(h => h.m === r.hora);
+      if (hueco) r.con = hueco.con; else { r.hora = null; r.con = null; }
+      if (!r.dia || !huecos(deClave(r.dia), s.min, r.quien).length) r.dia = clave(dias.find(d => huecos(d, s.min, r.quien).length) || dias[0]);
+      const hs = huecos(deClave(r.dia), s.min, r.quien);
+      p.innerHTML = `<div class="fichas" role="radiogroup" aria-label="Con quién">${[{ id: 'cualquiera', n: 'Me da igual' }, ...EQUIPO].map(q => `<input type="radio" name="quien" id="q-${q.id}" value="${q.id}"${q.id === r.quien ? ' checked' : ''}><label class="ficha" for="q-${q.id}">${q.n}${q.que ? `<small>${q.que}</small>` : '<small>la primera libre</small>'}</label>`).join('')}</div>
+        <p class="etiqueta">Día</p><div class="dias-h" role="radiogroup" aria-label="Día">${dias.map(d => { const k = clave(d), lleno = !huecos(d, s.min, r.quien).length; return `<input type="radio" name="dia" id="d${k}" value="${k}"${k === r.dia ? ' checked' : ''}${lleno ? ' disabled' : ''}><label class="ficha" for="d${k}" aria-label="${fLarga.format(d)}${lleno ? ', completo' : ''}">${fDS.format(d).replace('.', '')}<b>${d.getDate()}</b>${lleno ? '<small>Lleno</small>' : ''}</label>`; }).join('')}</div>
+        <p class="etiqueta">Hora</p><div class="fichas" role="radiogroup" aria-label="Hora">${hs.map(h => `<input type="radio" name="hora" id="h${h.m}" value="${h.m}" data-con="${h.con}"${h.m === r.hora ? ' checked' : ''}><label class="ficha" for="h${h.m}">${hm(h.m)}${r.quien === 'cualquiera' ? `<small>${nombreDe(h.con)}</small>` : ''}</label>`).join('')}</div>`;
+      p.querySelectorAll('[name=quien]').forEach(i => i.onchange = () => { r.quien = i.value; pintarPaso(); p.querySelector(`#q-${r.quien}`).focus(); });
+      p.querySelectorAll('[name=dia]').forEach(i => i.onchange = () => { r.dia = i.value; r.hora = null; pintarPaso(); p.querySelector(`#d${r.dia}`).focus(); });
+      p.querySelectorAll('[name=hora]').forEach(i => i.onchange = () => { r.hora = +i.value; r.con = i.dataset.con; actualizarBoton(); pintarResumen(); });
+      const sel = p.querySelector('.dias-h input:checked'); if (sel) sel.nextElementSibling.scrollIntoView({ block: 'nearest', inline: 'center' });
+    } else if (r.paso === 2) {
+      p.innerHTML = `<form class="campos" id="datos" novalidate><label>Nombre<input name="nombre" autocomplete="name" required value="${r.nombre}"></label><label>Teléfono<input name="tel" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,}" value="${r.tel}"></label></form>
+        <input type="checkbox" id="ref"${r.referencia ? ' checked' : ''}><label class="referencia" for="ref"><i style="--una:${color.u}"></i><span>Enséñale a ${nombreDe(r.con) || 'Nerea'} lo que has probado<small>${color.n}, ${acabado.n.toLowerCase()}. Solo como idea: el tono lo eliges allí.</small></span></label>
+        <div class="senal elige" role="radiogroup" aria-label="Señal"><input type="radio" name="senal" id="con" value="1"${r.senal ? ' checked' : ''}><label class="ficha" for="con"><b style="font-size:17px">Asegurar con ${SENAL} €</b><small>Se descuenta del precio</small></label><input type="radio" name="senal" id="sin" value="0"${r.senal ? '' : ' checked'}><label class="ficha" for="sin"><b style="font-size:17px">Sin señal</b><small>Pagas todo allí</small></label></div>
+        <p class="aviso-demo" id="aviso-senal"></p>`;
+      const aviso = () => { $('#aviso-senal').textContent = r.senal ? 'En la web real, con tarjeta o Bizum. Aquí no se cobra nada.' : 'Te lo recordamos por WhatsApp el día antes.'; };
+      $('#ref').onchange = e => { r.referencia = e.target.checked; };
+      p.querySelectorAll('[name=senal]').forEach(i => i.onchange = () => { r.senal = i.value === '1'; aviso(); actualizarBoton(); });
+      p.querySelectorAll('#datos input').forEach(i => i.oninput = () => { r[i.name] = i.value.trim(); actualizarBoton(); });
+      $('#datos').onsubmit = e => { e.preventDefault(); $('#seguir').click(); };
+      aviso();
+    } else {
+      const d = deClave(r.dia);
+      p.innerHTML = `<div class="hecho"><p>Hecho, ${r.nombre.split(' ')[0]}. Tus manos, en buenas manos.</p><p class="cuando">${may(fLarga.format(d))}, ${hm(r.hora)}</p><p>${s.n}${dis() ? ` · ${dis().n}` : ''} con ${nombreDe(r.con)}${r.senal ? ` · señal de ${SENAL} €` : ''}</p><p>Calle de las Huertas, a 2 minutos de Antón Martín.</p>
+        <div class="acciones"><button class="boton" type="button" id="ics">Añadir al calendario</button><button class="boton contorno" type="button" id="ver-panel">Ver cómo le llega a ${nombreDe(r.con)}</button></div>
+        <p class="aviso-demo">Web de muestra: no se ha reservado nada de verdad.</p></div>`;
+      $('#ics').onclick = calendario; $('#ver-panel').onclick = () => { hoja.close(); abrirPanel(r.dia); };
+    }
+    actualizarBoton(); pintarResumen();
+  };
+  const actualizarBoton = () => {
+    const b = $('#seguir'), s = serv();
+    if (r.paso === 0) { b.textContent = 'Elegir con quién y cuándo'; b.disabled = !s; }
+    else if (r.paso === 1) { b.textContent = r.hora != null ? `Seguir con ${corta(deClave(r.dia))}, ${hm(r.hora)}` : 'Elige una hora'; b.disabled = r.hora == null; }
+    else if (r.paso === 2) { const ok = r.nombre.length > 1 && /^[0-9 +]{9,}$/.test(r.tel); b.textContent = `${r.senal ? `Pagar ${SENAL} € y reservar` : 'Reservar'} ${corta(deClave(r.dia))}, ${hm(r.hora)}`; b.disabled = !ok; }
+  };
+  $('#seguir').onclick = () => {
+    if (r.paso === 0 && dis()?.arte && r.quien === 'cualquiera') r.quien = 'nerea';
+    if (r.paso === 2) { const s = serv(); citas.push({ dia: r.dia, ini: r.hora, min: s.min, serv: s.n + (dis() ? ` · ${dis().n}` : ''), quien: r.nombre.split(' ')[0], con: r.con, color: color.id, ref: r.referencia ? `${color.n}, ${acabado.n.toLowerCase()}` : '', nueva: true }); pintarAgenda(); }
+    r.paso++; pintarPaso(); $('#t-hoja').focus();
+  };
+  const calendario = () => {
+    const s = serv(); const f = m => r.dia.replace(/-/g, '') + 'T' + String(Math.floor(m / 60)).padStart(2, '0') + String(m % 60).padStart(2, '0') + '00';
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Covalente//Nerea Nails web de muestra//ES', 'BEGIN:VEVENT', `UID:${Date.now()}@nerea-nails.demo`, `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`, `DTSTART:${f(r.hora)}`, `DTEND:${f(r.hora + s.min)}`, `SUMMARY:Nerea Nails · ${s.n} con ${nombreDe(r.con)}`, 'LOCATION:Calle de las Huertas\\, Madrid (web de muestra)', 'DESCRIPTION:Cita de ejemplo de una web de muestra de Covalente', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })); a.download = 'cita-nerea-nails.ics'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+
+  /* ---------- Panel de la dueña ---------- */
+  const panel = $('#panel'); let diaPanel = null;
+  const pintarPanel = () => {
+    const d = deClave(diaPanel);
+    $('#dia-panel').textContent = fLarga.format(d);
+    const lista = abierto(d) ? EQUIPO.flatMap(p => todas(d, p.id)).sort((a, b) => a.ini - b.ini) : [];
+    $('#citas').innerHTML = abierto(d) ? lista.map(c => { const u = (ESMALTES.find(x => x.id === c.color) || ESMALTES[0]).u; return `<li class="${c.nueva ? 'nueva' : ''}"><b>${hm(c.ini)}</b><span>${c.quien}${c.nueva ? ' (nueva)' : ''} · con ${nombreDe(c.con)}<br><small>${c.ref ? `<span class="p" style="--u:${u}"></span>Trae idea: ${c.ref} · ` : ''}${c.serv}</small></span><button type="button" aria-pressed="false">No vino</button></li>`; }).join('') : '<li>Este día está cerrado.</li>';
+    $('#citas').querySelectorAll('button').forEach(b => b.onclick = () => b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'));
+    $('#precios').innerHTML = SERVICIOS.map(s => `<label>${s.n}<input type="number" min="0" step="1" inputmode="numeric" value="${s.p}" data-precio="${s.id}" aria-label="Precio de ${s.n}, en euros"></label>`).join('');
+    $('#precios').querySelectorAll('[data-precio]').forEach(i => i.oninput = () => { SERVICIOS.find(x => x.id === i.dataset.precio).p = Math.max(0, Math.round(+i.value || 0)); pintarServicios(); });
+    $('#cerrar-dia').innerHTML = '<option value="">Ninguno</option>' + proximos(10).filter(x => HORARIO[x.getDay()]).map(x => `<option value="${clave(x)}"${cerrados.has(clave(x)) ? ' selected' : ''}>${may(fLarga.format(x))}</option>`).join('');
+    $('#cerrar-dia').onchange = e => { cerrados.clear(); if (e.target.value) cerrados.add(e.target.value); pintarAgenda(); pintarPanel(); };
+  };
+  const abrirPanel = (dia) => { diaPanel = dia || clave(proximos(10).find(abierto) || new Date()); pintarPanel(); panel.showModal(); $('#t-panel').focus(); };
+  $('#abrir-panel').onclick = () => abrirPanel();
+  $('#cerrar-panel').onclick = () => panel.close();
+  panel.addEventListener('click', e => { if (e.target === panel) panel.close(); });
+
+  pintarDisenos(); pintarServicios();
+  if (matchMedia('(min-width: 900px)').matches) diaAg = primerDia();
+  pintarAgenda(); pintarAcabados(); ponerPapel(tonos(color).papel);
+  let tocado = false; ['pointerdown', 'keydown'].forEach(ev => addEventListener(ev, () => { tocado = true; $('#pista').hidden = true; }, { once: true }));
+  iniciar().then(() => setTimeout(() => { if (tocado) return; $('#pista').hidden = false; setTimeout(() => $('#pista').hidden = true, 4000); }, 2600)).catch(err => console.warn('probador', err));
+})();
+</script>
+<script>
+// Si la visita llega con ?o= (la red de origen), la vuelta a covalente.eu lo conserva. No se guarda nada
+(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
+</script>
+<script src="/contar.js" defer></script>
+</body>
+</html>

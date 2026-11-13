@@ -1,0 +1,175 @@
+{
+ "nota": "Fotos de Gemini (04/11, tarde): la base y tres ediciones alineadas. Recortes con Vision sobre la caja de cada plato.",
+ "franjas": {
+  "manana": [
+   {
+    "id": "cafe",
+    "x": 14.65,
+    "y": 65.89,
+    "w": 14.39,
+    "h": 9.72,
+    "img": "manana-cafe-0.webp",
+    "mx": 0.0299,
+    "my": 0.0356
+   },
+   {
+    "id": "porras",
+    "x": 31.2,
+    "y": 67.8,
+    "w": 19.56,
+    "h": 6.21,
+    "img": "manana-porras-1.webp",
+    "mx": 0.0278,
+    "my": 0.0704
+   },
+   {
+    "id": "tostada",
+    "x": 50.11,
+    "y": 70.53,
+    "w": 23.76,
+    "h": 6.6,
+    "img": "manana-tostada-2.webp",
+    "mx": 0.0278,
+    "my": 0.0806
+   },
+   {
+    "id": "tortilla",
+    "x": 75.86,
+    "y": 69.79,
+    "w": 17.94,
+    "h": 5.73,
+    "img": "manana-tortilla-3.webp",
+    "mx": 0.0269,
+    "my": 0.0677
+   }
+  ],
+  "vermut": [
+   {
+    "id": "vermut",
+    "x": 14.6,
+    "y": 65.23,
+    "w": 14.44,
+    "h": 10.42,
+    "img": "vermut-vermut-0.webp",
+    "mx": 0.0299,
+    "my": 0.0332
+   },
+   {
+    "id": "vermut",
+    "x": 34.16,
+    "y": 64.71,
+    "w": 13.52,
+    "h": 9.25,
+    "img": "vermut-vermut-1.webp",
+    "mx": 0.0279,
+    "my": 0.0327
+   },
+   {
+    "id": "gilda",
+    "x": 52.37,
+    "y": 69.44,
+    "w": 18.16,
+    "h": 7.68,
+    "img": "vermut-gilda-2.webp",
+    "mx": 0.0265,
+    "my": 0.0506
+   },
+   {
+    "id": "mejillones",
+    "x": 73.65,
+    "y": 67.14,
+    "w": 20.42,
+    "h": 8.42,
+    "img": "vermut-mejillones-3.webp",
+    "mx": 0.0278,
+    "my": 0.0538
+   }
+  ],
+  "comida": [
+   {
+    "id": "vino",
+    "x": 8.51,
+    "y": 60.37,
+    "w": 21.77,
+    "h": 16.02,
+    "img": "comida-vino-0.webp",
+    "mx": 0.0278,
+    "my": 0.0304
+   },
+   {
+    "id": "menu",
+    "x": 34.97,
+    "y": 64.19,
+    "w": 18.48,
+    "h": 10.24,
+    "img": "comida-menu-1.webp",
+    "mx": 0.0291,
+    "my": 0.0422
+   },
+   {
+    "id": "cocido",
+    "x": 57.11,
+    "y": 67.27,
+    "w": 31.9,
+    "h": 10.68,
+    "img": "comida-cocido-2.webp",
+    "mx": 0.0278,
+    "my": 0.0671
+   }
+  ],
+  "noche": [
+   {
+    "id": "cana",
+    "x": 5.28,
+    "y": 66.23,
+    "w": 7.87,
+    "h": 10.2,
+    "img": "noche-cana-0.webp",
+    "mx": 0.0476,
+    "my": 0.0295
+   },
+   {
+    "id": "croquetas",
+    "x": 16.38,
+    "y": 69.53,
+    "w": 20.85,
+    "h": 7.73,
+    "img": "noche-croquetas-1.webp",
+    "mx": 0.0278,
+    "my": 0.0599
+   },
+   {
+    "id": "bravas",
+    "x": 42.08,
+    "y": 64.8,
+    "w": 20.53,
+    "h": 12.59,
+    "img": "noche-bravas-2.webp",
+    "mx": 0.0278,
+    "my": 0.0365
+   },
+   {
+    "id": "torreznos",
+    "x": 60.18,
+    "y": 67.23,
+    "w": 15.41,
+    "h": 6.64,
+    "img": "noche-torreznos-3.webp",
+    "mx": 0.0278,
+    "my": 0.0516
+   },
+   {
+    "id": "boquerones",
+    "x": 75.43,
+    "y": 71.92,
+    "w": 20.96,
+    "h": 5.34,
+    "img": "noche-boquerones-4.webp",
+    "mx": 0.0278,
+    "my": 0.087
+   }
+  ]
+ },
+ "ancho": 1856,
+ "alto": 2304
+}

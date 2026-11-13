@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script>document.documentElement.classList.add('js')</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Covalente, estudio de diseño en Madrid</title>
+<meta name="description" content="Tenemos química para los negocios pequeños que quieren brillar. Estudio de diseño en Madrid: logo, colores, plantillas de Instagram y web con tu dominio, en paquetes cerrados.">
+<meta name="theme-color" content="#0F3B32">
+<link rel="canonical" href="https://covalente.eu/">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://covalente.eu/">
+<meta property="og:title" content="Covalente · Tenemos química">
+<meta property="og:description" content="Marca y web para los negocios pequeños que quieren brillar.">
+<meta property="og:image" content="https://covalente.eu/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fuentes/Figtree.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/trabajos/jarra-escritorio-1440.webp" as="image" type="image/webp" imagesrcset="img/trabajos/jarra-escritorio-800.webp 800w, img/trabajos/jarra-escritorio-1440.webp 1440w" imagesizes="(min-width:1000px) 52vw, 92vw">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Covalente","description":"Estudio de diseño en Madrid: marca y web para los negocios pequeños que quieren brillar.","url":"https://covalente.eu/","logo":"https://covalente.eu/img/apple-touch-icon.png","image":"https://covalente.eu/img/og.png","telephone":"+34613912752","email":"covalente.madrid@gmail.com","priceRange":"39-69 €","address":{"@type":"PostalAddress","addressLocality":"Madrid","addressRegion":"Madrid","addressCountry":"ES"},"areaServed":"ES","sameAs":["https://www.instagram.com/covalenteestudio/"]}
+</script>
+<style>
+/* Dos familias, alojadas aquí mismo (sin llamadas a terceros ni cookies): Bodoni Moda para los títulos, la letra de las etiquetas de botica, y Figtree para leer. El logo va en trazos. */
+@font-face{font-family:"Figtree"; src:url("fuentes/Figtree.woff2") format("woff2"); font-weight:400 700; font-display:swap}
+@font-face{font-family:"Bodoni Moda"; src:url("fuentes/BodoniModa.woff2") format("woff2"); font-weight:400 900; font-display:swap}
+
+:root{
+  --verde:#0F3B32; --verde-2:#0B2F28; --oro:#C9A35C; --marfil:#F3ECDD; --negro:#1A1A1A;
+  --papel:#F5F4F0; --blanco:#FFFFFF; --rojo:#C8102E; --linea:#DDD9D0; --gris:#5C5A54;
+  --marfil-suave:rgba(243,236,221,.74); --linea-oscura:rgba(243,236,221,.16);
+  --f:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --titulo:"Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
+  /* Grano de papel y de cristal: ruido en gris, sin peticiones */
+  --grano:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --ancho:1240px; --margen:max(16px, 4vw);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{margin:0; background:var(--papel); color:var(--negro); font:400 17px/1.55 var(--f); font-variant-numeric:tabular-nums}
+img{display:block; max-width:100%; height:auto}
+a{color:inherit}
+h1, h2, h3, p, ul, ol{margin:0}
+ul, ol{padding:0; list-style:none}
+h1, h2, h3{font-family:var(--titulo); font-weight:500; font-optical-sizing:auto; font-variant-numeric:lining-nums; letter-spacing:-.012em; line-height:1.02; text-wrap:balance}
+h3{font-weight:600}
+h2{font-size:clamp(38px, 4.6vw, 66px)}
+:focus-visible{outline:2px solid var(--negro); outline-offset:3px; border-radius:4px}
+.oscuro :focus-visible{outline-color:var(--oro)}
+.caja{max-width:var(--ancho); margin:0 auto; padding-inline:var(--margen)}
+@media (min-width:1340px){ .caja{padding-inline:48px} }
+.salto{position:absolute; left:-999px; top:8px; z-index:5; background:var(--blanco); padding:8px 14px; border-radius:6px}
+.salto:focus{left:8px}
+
+/* Botones: uno lleno por pantalla, el resto en texto */
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:50px; padding:12px 24px; border-radius:8px;
+  background:var(--negro); color:var(--blanco); font-weight:700; font-size:16px; text-decoration:none; transition:background-color .15s}
+.boton:hover{background:var(--verde)}
+.boton.oro{background:var(--oro); color:var(--negro)}
+.boton.oro:hover{background:#D9B771}
+.boton svg{width:20px; height:20px; flex:none}
+.enlace{font-weight:700; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:5px}
+.enlace:hover{text-decoration-thickness:2px}
+
+/* ——— Cabecera y portada (verde) ——— */
+.oscuro{position:relative; isolation:isolate; color:var(--marfil);
+  background:radial-gradient(55% 65% at 76% 42%, rgba(46,118,97,.55), transparent 72%), radial-gradient(40% 50% at 92% 8%, rgba(201,163,92,.12), transparent 70%),
+    radial-gradient(60% 70% at 0% 100%, rgba(4,22,18,.75), transparent 70%), var(--verde)}
+.oscuro::before{content:""; position:absolute; inset:0; z-index:-1; background:var(--grano); opacity:.2; mix-blend-mode:overlay; pointer-events:none}
+header.oscuro{position:absolute; inset:0 0 auto; z-index:5; background:none}
+header.oscuro::before{display:none}
+footer.oscuro{background:var(--verde-2)}
+#contacto{background:radial-gradient(50% 70% at 80% 30%, rgba(46,118,97,.5), transparent 72%), radial-gradient(60% 60% at 0% 100%, rgba(201,163,92,.1), transparent 70%), linear-gradient(180deg, var(--verde), var(--verde-2))}
+.cabecera{display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:76px}
+.cabecera .marca{padding-block:10px}
+.cabecera .marca img{width:150px}
+.cabecera nav{display:none; gap:32px; font-size:15px; font-weight:600}
+.cabecera nav a{text-decoration:none; color:var(--marfil-suave); padding-block:12px}
+.cabecera nav a:hover{color:var(--marfil)}
+.cabecera .boton{min-height:42px; padding:8px 16px; font-size:15px}
+@media (min-width:860px){ .cabecera nav{display:flex} }
+
+.portada{display:grid; gap:48px; padding-block:116px 72px; align-items:center}
+.portada h1{font-size:clamp(54px, 8vw, 118px); letter-spacing:-.02em; line-height:.92}
+.portada .lema{margin-top:18px; font-size:clamp(20px, 2vw, 26px); line-height:1.3; color:var(--marfil); max-width:20ch}
+.portada .oferta{margin-top:14px; color:var(--marfil-suave)}
+.portada .acciones{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px; margin-top:32px}
+.garantias{display:grid; grid-template-columns:repeat(3, auto); justify-content:start; gap:0; margin-top:40px; border-top:1px solid var(--linea-oscura); padding-top:20px}
+.garantias li{padding-right:22px; margin-right:22px; border-right:1px solid var(--linea-oscura); font-size:14px; line-height:1.35; color:var(--marfil-suave)}
+.garantias li:last-child{border:0; margin:0; padding:0}
+.garantias b{display:block; color:var(--marfil); font-size:17px}
+@media (max-width:420px){ .garantias li{padding-right:14px; margin-right:14px} .garantias b{white-space:nowrap} }
+@media (min-width:1000px){
+  .portada{grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); padding-block:150px 104px; gap:56px}
+}
+
+/* Escaparate: la web de un caso en un navegador y otras dos en móviles */
+.escaparate{margin:0}
+.escaparate .marco{position:relative; padding-bottom:9%}
+.escaparate .movil{position:absolute; bottom:0; width:24%}
+.escaparate .movil.uno{left:-4%}
+.escaparate .movil.dos{right:-2%; bottom:5%}
+@media (max-width:999px){ .escaparate .movil.uno{left:2%} .escaparate .movil.dos{right:2%} }
+
+.navegador{position:relative; display:block; border-radius:10px; overflow:hidden; background:var(--blanco); text-decoration:none;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.08)}
+.navegador .direccion{display:flex; align-items:center; gap:8px; height:32px; padding:0 14px; background:#EDEBE6; color:#67635B; font-size:12px; border-bottom:1px solid #DCD8D0}
+.navegador .direccion span{flex:1; max-width:340px; margin-inline:auto; text-align:center; background:var(--blanco); border-radius:5px; padding:2px 10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.navegador .direccion i{width:9px; height:9px; border-radius:50%; background:#CFCAC0; flex:none}
+.navegador img{width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top}
+.movil{position:relative; overflow:hidden; display:block; padding:6px; border-radius:30px; background:#121212; box-shadow:0 30px 60px -20px rgba(0,0,0,.6); text-decoration:none}
+.movil img{width:100%; aspect-ratio:390/844; object-fit:cover; object-position:top; border-radius:24px}
+
+/* La entrada del escaparate: suben las pantallas, cruza un brillo por el cristal y cada web enseña sus momentos (menos de 5 s); con el ratón encima, se inclina y sigue */
+.escaparate .movil.uno .pantalla > img.ver{transition-delay:.15s}
+.escaparate .movil.dos .pantalla > img.ver{transition-delay:.3s}
+@media (prefers-reduced-motion:no-preference){
+  .escaparate .marco > *{animation:subir .9s cubic-bezier(.2,.7,.2,1) both}
+  .escaparate .movil.uno{animation-delay:.25s}
+  .escaparate .movil.dos{animation-delay:.4s}
+  @keyframes subir{from{opacity:0; translate:0 28px}}
+  .escaparate .navegador::after, .escaparate .movil::after{content:""; position:absolute; z-index:3; inset:-10% -80%; pointer-events:none;
+    background:linear-gradient(105deg, transparent 42%, rgba(255,251,238,.2) 48%, rgba(255,247,226,.38) 50%, rgba(255,251,238,.2) 52%, transparent 58%);
+    translate:-70% 0; opacity:0; animation:brillo 1.5s 1.05s cubic-bezier(.35,.6,.2,1) both}
+  .escaparate .movil.uno::after{animation-delay:1.2s}
+  .escaparate .movil.dos::after{animation-delay:1.35s}
+  @keyframes brillo{0%{opacity:1} 100%{opacity:1; translate:70% 0}}
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .escaparate .marco{transform:perspective(1800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style:preserve-3d; transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .escaparate .movil{transform:translateZ(70px)}
+}
+
+
+/* ——— Trabajos ——— */
+.seccion{padding-block:88px}
+#trabajos, .preguntas{max-width:none; padding-inline:max(var(--margen), calc((100% - var(--ancho)) / 2 + var(--margen))); background:radial-gradient(70% 45% at 12% 0%, rgba(255,255,255,.9), transparent 70%), linear-gradient(180deg, transparent 60%, rgba(201,163,92,.07)), var(--papel)}
+@media (min-width:1340px){ #trabajos, .preguntas{padding-inline:calc((100% - var(--ancho)) / 2 + 48px)} }
+.cabeza{display:grid; gap:14px; max-width:640px; margin-bottom:48px}
+.cabeza p{color:var(--gris); font-size:18px}
+/* Trabajos: una ficha de color por web, con el móvil entero abajo (a la misma altura en las tres) y lo justo de texto */
+.muestras{display:grid; gap:20px; list-style:none; margin:0; padding:0}
+.muestra{position:relative; display:flex; flex-direction:column; height:100%; border-radius:18px; padding:32px 30px 40px;
+  background:radial-gradient(90% 60% at 80% 0%, rgba(255,255,255,.16), transparent 70%), var(--fondo); color:var(--tinta); text-decoration:none;
+  box-shadow:0 30px 60px -36px rgba(26,26,26,.55)}
+.muestra h3{font-size:clamp(30px, 2.6vw, 40px); font-weight:500}
+.muestra .linea{margin-top:10px; font-size:17px; line-height:1.4; max-width:26ch; opacity:.86}
+.muestra .abrir{align-self:flex-start; margin:20px 0 28px; padding:10px 18px; border-radius:999px; background:var(--tinta); color:var(--fondo); font-size:15px; font-weight:700}
+/* 12/11: la dueña de cada muestra, sonriendo en su local, y el móvil con su web por delante */
+.muestra .escena{position:relative; display:block; margin:auto 0 0; padding-top:8px}
+.muestra .retrato{display:block; width:74%; aspect-ratio:4 / 5; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 18px 36px -24px rgba(0,0,0,.6)}
+.muestra .escena .movil{position:absolute; right:0; bottom:-14px; width:44%; margin:0}
+.muestra .movil{width:min(70%, 230px); margin:auto auto 0; border-radius:34px; padding:7px;
+  box-shadow:0 22px 40px -22px rgba(0,0,0,.55); transition:translate .5s cubic-bezier(.2,.7,.2,1)}
+.muestra .movil img{border-radius:27px}
+.muestra:hover .movil{translate:0 -12px}
+.muestra:hover .abrir{text-decoration:underline; text-underline-offset:3px}
+.muestra:focus-visible{outline:3px solid var(--negro); outline-offset:4px}
+@media (max-width:899px){
+  .muestras{grid-auto-flow:column; grid-auto-columns:min(82%, 360px); overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:var(--margen);
+    margin-inline:calc(-1 * var(--margen)); padding:4px var(--margen) 40px; scrollbar-width:none}
+  .muestras::-webkit-scrollbar{display:none}
+  .muestras > li{scroll-snap-align:start}
+}
+@media (min-width:900px){ .muestras{grid-template-columns:repeat(3, 1fr)} }
+/* Paneles vivos: cada web pasa sola por sus momentos al aparecer (menos de 5 s) y, con el ratón encima, sigue y se inclina */
+.pantalla{display:grid; grid-template-columns:minmax(0, 1fr)}
+.pantalla > img{grid-area:1 / 1}
+.vivo .pantalla > img{opacity:0}
+.vivo .pantalla > img.antes{opacity:1; z-index:1}
+.vivo .pantalla > img.ver{opacity:1; z-index:2; transition:opacity .7s ease}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+}
+
+/* ——— Precios ——— */
+.precios{background:radial-gradient(60% 50% at 90% 0%, rgba(201,163,92,.1), transparent 70%), linear-gradient(180deg, var(--blanco), #F7F5EF); border-block:1px solid var(--linea)}
+.precios .cabeza{margin-bottom:40px}
+.plazas{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:6px; font-size:15px; color:var(--gris)}
+.plazas .barra{display:grid; grid-template-columns:repeat(5, 22px); gap:3px}
+.plazas .barra span{height:8px; border-radius:2px; background:var(--oro)}
+.plazas b{color:var(--negro)}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+/* Paquetes (12/11, v2; sin IVA en los precios por orden suya): el precio y, debajo, una sola barra que hace la resta. La barra entera es lo que cobran otros estudios;
+   la parte de color es lo nuestro y la rayada en rojo, la diferencia. Al verse, la barra llena se encoge hasta nuestro precio */
+.paquetes{display:grid; gap:16px}
+.paquete{--nuestro:#1E6B50; --dif:var(--rojo); --suave:var(--gris); --raya:rgba(200,16,46,.22);
+  display:flex; flex-direction:column; border:1px solid var(--linea); border-radius:14px; padding:26px 26px 22px; background:var(--blanco); box-shadow:0 1px 0 rgba(26,26,26,.03), 0 24px 48px -32px rgba(15,59,50,.35); transition:border-color .2s, box-shadow .2s}
+.p-cab{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.paquete h3{font-size:24px; letter-spacing:-.01em}
+.pct{padding:6px 10px; border-radius:99px; background:var(--rojo); color:#FFF; font-size:13.5px; font-weight:800; line-height:1; white-space:nowrap}
+.precio{display:flex; align-items:baseline; gap:8px; margin-top:18px}
+.precio b{font:600 64px/.9 var(--titulo); letter-spacing:-.02em; color:var(--nuestro); font-variant-numeric:lining-nums}
+.precio span{font-size:16px; font-weight:600; color:var(--suave)}
+.coniva{margin-top:8px; font-size:14.5px; color:var(--suave)}
+.compara{margin-top:22px; padding:14px 16px; border-radius:10px; background:rgba(26,26,26,.04)}
+.compara p{display:flex; align-items:baseline; justify-content:space-between; gap:10px; font-size:13.5px; font-weight:600; color:var(--suave)}
+.compara s{position:relative; font:600 20px/1 var(--titulo); color:#6E695F; text-decoration:none; font-variant-numeric:lining-nums; white-space:nowrap}
+.compara s::after{content:""; position:absolute; left:-3px; right:-3px; top:52%; height:2px; border-radius:2px; background:var(--rojo); rotate:-9deg; transform-origin:left; transition:scale .45s cubic-bezier(.6,0,.2,1) .2s}
+.barra{display:block; height:12px; margin:10px 0; border-radius:6px; overflow:hidden; background:repeating-linear-gradient(135deg, var(--raya) 0 3px, transparent 3px 7px); box-shadow:inset 0 0 0 1px var(--raya)}
+.barra i{display:block; height:100%; width:calc(var(--p) * 1%); min-width:8px; border-radius:6px; background:var(--nuestro); transition:width 1s cubic-bezier(.55,0,.15,1) .15s}
+.dif .total{font:600 30px/1 var(--titulo); color:var(--dif); letter-spacing:-.01em; font-variant-numeric:lining-nums; white-space:nowrap; transition:opacity .3s ease .5s}
+.paquete.espera .barra i{width:100%; transition:none}
+.paquete.espera .compara s::after{scale:0 1; transition:none}
+.paquete.espera .total{opacity:0; transition:none}
+.paquete ul{margin:22px 0; display:grid; align-content:start; gap:13px; flex:1}
+.paquete li{display:grid; grid-template-columns:18px 1fr; gap:10px; font-size:15.5px; line-height:1.4}
+.paquete li svg{width:18px; height:18px; margin-top:1px; color:var(--verde)}
+/* 12/11: cada cosa que incluye, con su nombre y para qué sirve */
+.paquete li b{display:block; font-weight:600}
+.paquete li small{display:block; margin-top:2px; font-size:14px; line-height:1.4; color:var(--gris)}
+.paquete.destacado li small{color:#D9D2C2}
+.paquete .plazo{font-size:14px; color:var(--suave); margin-bottom:14px}
+.paquete .boton{width:100%}
+.paquete .luego{margin-top:12px; font-size:13px; color:var(--suave); text-align:center}
+.paquete.destacado{--nuestro:var(--oro); --dif:#FF8A7E; --suave:var(--marfil-suave); --raya:rgba(255,138,126,.4);
+  position:relative; isolation:isolate; overflow:hidden; color:var(--marfil); border-color:var(--verde); box-shadow:0 30px 60px -30px rgba(11,47,40,.7);
+  background:radial-gradient(90% 60% at 100% 0%, rgba(201,163,92,.22), transparent 65%), linear-gradient(165deg, #164A3D, var(--verde-2))}
+.paquete.destacado::before{content:""; position:absolute; inset:0; z-index:-1; background:var(--grano); opacity:.18; mix-blend-mode:overlay}
+.destacado .compara{background:rgba(243,236,221,.07)}
+.destacado .compara s{color:#CFC6B4}
+.paquete.destacado li svg{color:var(--oro)}
+@media (min-width:900px){ .paquetes{grid-template-columns:repeat(3, 1fr)} }
+@media (max-width:380px){ .precio b{font-size:56px} }
+
+/* Elegir: con JavaScript, cada paquete se elige (uno a la vez) y va al presupuesto; sin él, cada uno abre WhatsApp directamente */
+.elegir{display:none}
+.js .paquete .directo{display:none}
+.js .elegir{display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:50px; padding:12px 24px; border-radius:8px; border:1.5px solid currentColor; background:none; color:inherit; font:700 16px/1 var(--f); cursor:pointer; transition:background-color .15s, color .15s, border-color .15s}
+.elegir svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; display:none}
+.elegir:hover{background:rgba(26,26,26,.06)}
+.destacado .elegir:hover{background:rgba(243,236,221,.1)}
+.elegir[aria-pressed="true"]{background:var(--verde); border-color:var(--verde); color:var(--blanco)}
+.elegir[aria-pressed="true"] svg{display:block}
+.destacado .elegir[aria-pressed="true"]{background:var(--oro); border-color:var(--oro); color:var(--negro)}
+.paquete:has(.elegir[aria-pressed="true"]){border-color:var(--verde); box-shadow:0 0 0 2px var(--verde), 0 24px 48px -32px rgba(15,59,50,.45)}
+.paquete.destacado:has(.elegir[aria-pressed="true"]){box-shadow:0 0 0 2px var(--oro), 0 30px 60px -30px rgba(11,47,40,.7)}
+
+/* Súmale (12/11, v2): lista compacta, una fila por pieza con su miniatura; a su lado, en el escritorio, el presupuesto */
+.sumale{margin-top:56px; display:grid; gap:24px}
+.extras h3{font-size:28px}
+.extras > p{margin-top:6px; color:var(--gris); font-size:15.5px}
+.x-lista{margin-top:18px; display:grid; gap:8px}
+.x-item{border:1px solid var(--linea); border-radius:10px; background:var(--blanco); transition:border-color .15s, background-color .15s}
+.x-item:hover{border-color:#BDB7AB}
+.x-item:has(.x-pieza[aria-pressed="true"]){border-color:var(--verde); background:#F1F6F3}
+.x-pieza{display:grid; grid-template-columns:88px minmax(0, 1fr) auto 32px; align-items:center; gap:14px; width:100%; padding:8px 14px 2px 8px; border:0; border-radius:10px 10px 0 0; background:none; font:inherit; color:var(--negro); text-align:left; cursor:pointer}
+.x-pieza img{width:88px; height:66px; border-radius:6px; object-fit:cover; background:#EFECE6}
+.x-texto{display:grid; gap:1px; min-width:0}
+.x-nom{font-weight:700; font-size:15.5px; line-height:1.25}
+.x-texto small{font-size:13.5px; line-height:1.3; color:var(--gris)}
+.x-precio{font:600 19px/1 var(--titulo); font-variant-numeric:lining-nums; white-space:nowrap}
+.x-precio small{font:600 12.5px var(--f); color:var(--gris)}
+.x-marca{display:grid; place-items:center; width:32px; height:32px; border-radius:50%; border:1.5px solid #BDB7AB; color:var(--negro); transition:background-color .15s, border-color .15s}
+.x-marca svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round}
+.x-marca .hecho{display:none}
+.x-pieza[aria-pressed="true"] .x-marca{background:var(--verde); border-color:var(--verde); color:#FFF}
+.x-pieza[aria-pressed="true"] .mas{display:none}
+.x-pieza[aria-pressed="true"] .hecho{display:inline}
+.x-info summary{display:grid; place-items:center; width:36px; height:26px; margin:-2px 0 4px 103px; border-radius:6px; list-style:none; color:var(--verde); cursor:pointer}
+.x-info summary::-webkit-details-marker{display:none}
+.x-info summary:hover{background:rgba(15,59,50,.07)}
+.x-info summary svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transition:rotate .2s}
+.x-info[open] summary svg{rotate:180deg}
+.x-info p{margin:0 16px 14px 110px; font-size:14px; line-height:1.5; color:#3F3D38; max-width:62ch; text-align:justify; hyphens:auto}
+@media (max-width:480px){ .x-pieza{grid-template-columns:64px minmax(0, 1fr) auto 30px; gap:10px; padding-right:10px} .x-pieza img{width:64px; height:48px} .x-texto small{font-size:12.5px} .x-marca{width:30px; height:30px} .x-info summary{margin-left:75px} .x-info p{margin:0 12px 12px 12px} }
+
+/* Tu presupuesto: en el móvil, una barra que se queda pegada abajo en cuanto eliges algo; en el escritorio, un panel al lado de la lista */
+.presupuesto{display:none}
+.js .presupuesto{position:relative; bottom:12px; z-index:3; display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:10px 20px; padding:14px 14px 14px 20px; border-radius:14px; background:var(--verde); color:var(--marfil); box-shadow:0 18px 40px -16px rgba(11,47,40,.6)}
+.js .presupuesto.activo{position:sticky}
+.p-titulo, .p-lineas{display:none}
+.p-que{font-weight:600; font-size:15.5px; line-height:1.35}
+.p-total{margin-top:2px; font-size:14.5px; color:var(--marfil-suave)}
+.p-total b{display:inline-block; font:600 26px/1 var(--titulo); font-variant-numeric:lining-nums; color:var(--marfil); margin-right:4px}
+.p-pedir{white-space:nowrap}
+.presupuesto.cambia .p-total b{animation:latido .35s ease}
+@keyframes latido{ 40%{scale:1.08} }
+@media (max-width:560px){ .js .presupuesto{grid-template-columns:minmax(0, 1fr); bottom:8px; padding:14px 14px 14px 16px} .p-pedir{width:100%} }
+@media (min-width:1000px){
+  .js .sumale{grid-template-columns:minmax(0, 1fr) 340px; gap:48px; align-items:start}
+  .js .presupuesto, .js .presupuesto.activo{position:sticky; top:24px; bottom:auto; grid-template-columns:minmax(0, 1fr); gap:16px; margin-top:62px; padding:24px}
+  .p-titulo{display:block; font:600 24px/1.1 var(--titulo); color:var(--marfil)}
+  .p-lineas:not([hidden]){display:grid; font-size:14.5px}
+  .p-lineas li{display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--linea-oscura)}
+  .p-lineas b{font-weight:600; white-space:nowrap}
+  .presupuesto.lleno .p-que{display:none}
+  .presupuesto.lleno .p-total{margin-top:12px}
+  .p-pedir{width:100%}
+}
+.iva{margin-top:20px; font-size:14px; color:var(--gris)}
+@media (prefers-reduced-motion:reduce){ .x-marca, .paquete, .barra i{transition:none} .presupuesto.cambia .p-total b{animation:none} }
+
+/* ——— Cómo trabajamos: la molécula del logo es el camino. Cada átomo, un paso; la flecha sube hasta «brilla».
+   Al verse la sección, el polvo de oro la llena y se junta en la molécula; el puntero lo aparta. ——— */
+.con-polvo{overflow:hidden}
+.con-polvo .polvo{position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none}
+.con-polvo .caja{position:relative; z-index:2}
+.reaccion{position:relative}
+.molecula{position:relative; height:clamp(190px, 52vw, 260px); margin:8px 4px 36px; pointer-events:none}
+.mol-fija{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.con-canvas .mol-fija{display:none}
+.molecula .rot{position:absolute; left:97%; top:4.5%; transform:translate(calc(-100% - 30px), -50%); font-family:var(--titulo); font-size:clamp(20px, 2vw, 28px); font-weight:500; color:var(--oro); white-space:nowrap; transition:opacity .8s}
+.molecula .num{position:absolute; left:calc(var(--x) * 1%); top:calc(var(--y) * 1%); translate:12px 8px; font-size:13px; font-weight:700; color:var(--oro); transition:opacity .6s}
+.esperando .rot, .esperando .num{opacity:0}
+.pasos{display:grid; gap:22px; counter-reset:paso}
+.paso{position:relative; padding-left:40px; transition:opacity .7s, translate .7s cubic-bezier(.2,.7,.2,1)}
+.paso::before{counter-increment:paso; content:counter(paso); position:absolute; left:0; top:2px; width:26px; height:26px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--oro); color:var(--oro); font-size:13px; font-weight:700}
+.paso h3{font-size:22px; line-height:1.15}
+.paso p{margin-top:4px; color:var(--marfil-suave); font-size:15.5px; line-height:1.4}
+.esperando:not(.en-marcha) .paso{opacity:0; translate:0 10px}
+.en-marcha .paso{transition-delay:calc(650ms + var(--x) * 11ms)}
+@media (min-width:1000px){
+  .reaccion{height:540px; margin-top:8px}
+  .molecula{position:absolute; inset:76px 0 96px; height:auto; margin:0}
+  .molecula .num{display:none}
+  .pasos{display:block}
+  .paso{position:absolute; left:calc(var(--x) * 1%); top:calc(76px + (100% - 172px) * var(--y) / 100); width:210px; padding:0; translate:-12px 26px}
+  .paso.arriba{translate:-12px calc(-100% - 24px)}
+  .paso::before{display:none}
+  .esperando:not(.en-marcha) .paso{opacity:0; translate:-12px 36px}
+  .esperando:not(.en-marcha) .paso.arriba{translate:-12px calc(-100% - 14px)}
+}
+
+/* ——— Preguntas ——— */
+.preguntas .lista{max-width:820px; border-top:1px solid var(--linea)}
+.preguntas details{border-bottom:1px solid var(--linea)}
+.preguntas summary{display:flex; justify-content:space-between; gap:20px; align-items:center; padding:20px 2px; cursor:pointer; font-weight:700; font-size:18px; list-style:none}
+.preguntas summary::-webkit-details-marker{display:none}
+.preguntas summary::after{content:""; flex:none; width:9px; height:9px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:translateY(-3px) rotate(45deg); transition:transform .2s}
+.preguntas details[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.preguntas details p{padding:0 2px 22px; color:var(--gris); max-width:62ch}
+
+/* ——— Contacto y pie ——— */
+.contacto{padding-block:96px 72px; display:grid; gap:28px}
+.contacto h2{font-size:clamp(52px, 7.6vw, 110px); letter-spacing:-.02em}
+.contacto p{color:var(--marfil-suave); font-size:19px; max-width:34ch}
+.contacto .acciones{display:flex; flex-wrap:wrap; gap:14px 28px; align-items:center}
+.pie{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px; padding-block:28px 40px; border-top:1px solid var(--linea-oscura); font-size:14px; color:var(--marfil-suave)}
+.pie img{width:130px}
+.pie p a{color:var(--marfil); text-underline-offset:3px}
+.pie nav{display:flex; gap:10px}
+.pie nav a{display:grid; place-items:center; width:44px; height:44px; border-radius:50%; border:1px solid var(--linea-oscura); color:var(--marfil)}
+.pie nav a:hover{border-color:var(--oro); color:var(--oro)}
+.pie nav svg{width:20px; height:20px}
+</style>
+<meta name="p:domain_verify" content="1d49ada69d3427aec2253d094f92c344">
+</head>
+<body>
+<a class="salto" href="#trabajos">Saltar a los trabajos</a>
+
+<header class="oscuro">
+  <div class="caja cabecera">
+    <a class="marca" href="./" aria-label="Covalente, inicio"><img src="img/covalente-horizontal-oscuro.svg" alt="" width="851" height="134"></a>
+    <nav aria-label="Secciones">
+      <a href="#trabajos">Trabajos</a>
+      <a href="#precios">Precios</a>
+      <a href="#como">Cómo trabajamos</a>
+    </nav>
+    <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Escríbenos</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="oscuro" aria-labelledby="t-portada">
+    <div class="caja portada">
+      <div>
+        <h1 id="t-portada">Tenemos química</h1>
+        <p class="lema">para los negocios pequeños que quieren brillar.</p>
+        <p class="oferta">Marca y web a medida, con precio cerrado.</p>
+        <div class="acciones">
+          <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio."><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Escríbenos por WhatsApp</a>
+          <a class="enlace" href="#trabajos">Ver trabajos</a>
+        </div>
+        <ul class="garantias">
+          <li><b>Desde 39 €</b>sin sorpresas</li>
+          <li><b>3 semanas</b>o menos</li>
+          <li><b>Tuyo</b>archivos y derechos</li>
+        </ul>
+      </div>
+      <figure class="escaparate">
+        <div class="marco" data-estados="1|2|3" data-espera="1900">
+        <a class="navegador" href="casos/taberna-la-jarra/" aria-label="Abrir la web de Taberna La Jarra">
+          <span class="direccion" aria-hidden="true"><i></i><span>covalente.eu/casos/taberna-la-jarra</span></span>
+          <span class="pantalla"><img src="img/trabajos/jarra-escritorio-1440.webp" srcset="img/trabajos/jarra-escritorio-800.webp 800w, img/trabajos/jarra-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 52vw, 92vw" alt="" width="1440" height="900" fetchpriority="high"><img src="img/trabajos/jarra-e2-escritorio-1440.webp" srcset="img/trabajos/jarra-e2-escritorio-800.webp 800w, img/trabajos/jarra-e2-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 52vw, 92vw" alt="" width="1440" height="900"><img src="img/trabajos/jarra-e3-escritorio-1440.webp" srcset="img/trabajos/jarra-e3-escritorio-800.webp 800w, img/trabajos/jarra-e3-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 52vw, 92vw" alt="" width="1440" height="900"></span>
+        </a>
+        <a class="movil uno" href="casos/nerea-nails/" aria-label="Abrir la web de Nerea Nails"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="" width="600" height="1298"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="" width="600" height="1298"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="" width="600" height="1298"></span></a>
+        <a class="movil dos" href="casos/flores-santa-maria/" aria-label="Abrir la web de Flores Santa María"><span class="pantalla"><img src="img/trabajos/flores-movil-600.webp" alt="" width="600" height="1298"><img src="img/trabajos/flores-e2-movil-600.webp" alt="" width="600" height="1298"><img src="img/trabajos/flores-e3-movil-600.webp" alt="" width="600" height="1298"></span></a>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+
+<section class="caja seccion" id="trabajos" aria-labelledby="t-trabajos">
+  <div class="cabeza">
+    <h2 id="t-trabajos">Trabajos</h2>
+    <p>Muestras de nuestro trabajo. Ábrelas y pruébalas.</p>
+  </div>
+  <ul class="muestras">
+    <li><a class="muestra" href="casos/nerea-nails/" style="--fondo:#F3D9DF; --tinta:#3B0E1C" data-estados="Cereza con brillo|Fucsia, ojo de gato|Turquesa con brillo">
+      <h3>Nerea Nails</h3>
+      <p class="linea">Pruebas el esmalte en tu mano antes de reservar.</p>
+      <span class="abrir">Ver la web</span>
+      <span class="escena"><img class="retrato" src="img/trabajos/nerea-retrato-360.webp" srcset="img/trabajos/nerea-retrato-360.webp 360w, img/trabajos/nerea-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span></span></span>
+    </a></li>
+    <li><a class="muestra" href="casos/taberna-la-jarra/" style="--fondo:#8E1D15; --tinta:#FCEFE2" data-estados="12:45, la hora del vermut|21:30, cañas y raciones|9:30, café y porras">
+      <h3>Taberna La Jarra</h3>
+      <p class="linea">La barra cambia con la hora del día.</p>
+      <span class="abrir">Ver la web</span>
+      <span class="escena"><img class="retrato" src="img/trabajos/charo-retrato-360.webp" srcset="img/trabajos/charo-retrato-360.webp 360w, img/trabajos/charo-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/jarra-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/jarra-e2-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/jarra-e3-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span></span></span>
+    </a></li>
+    <li><a class="muestra" href="casos/flores-santa-maria/" style="--fondo:#266699; --tinta:#FFF4E4" data-estados="Mandarina|Frambuesa|Azahar">
+      <h3>Flores Santa María</h3>
+      <p class="linea">La web se pinta del ramo que eliges.</p>
+      <span class="abrir">Ver la web</span>
+      <span class="escena"><img class="retrato" src="img/trabajos/ines-retrato-360.webp" srcset="img/trabajos/ines-retrato-360.webp 360w, img/trabajos/ines-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/flores-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/flores-e2-movil-600.webp" alt="" width="600" height="1298" loading="lazy"><img src="img/trabajos/flores-e3-movil-600.webp" alt="" width="600" height="1298" loading="lazy"></span></span></span>
+    </a></li>
+  </ul>
+</section>
+
+<section class="precios" id="precios" aria-labelledby="t-precios">
+  <div class="caja seccion">
+    <div class="cabeza">
+      <h2 id="t-precios">Precios</h2>
+      <p>Precio de lanzamiento para los cinco primeros negocios, a cambio de enseñar su proyecto.</p>
+      <p class="plazas"><span class="barra" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span><span><b>Quedan 5 plazas</b> de 5</span></p>
+    </div>
+    <div class="paquetes">
+      <article class="paquete" data-k="kit" data-nombre="Kit de marca" data-precio="49">
+        <div class="p-cab"><h3>Kit de marca</h3><span class="pct">−92 %</span></div>
+        <p class="precio"><b>49 €</b></p>
+        <div class="compara">
+          <p class="otro"><span>Otros estudios</span> <s>590 €</s></p>
+          <span class="barra" aria-hidden="true" style="--p:8.3"><i></i></span>
+          <p class="dif"><span>Diferencia</span> <b class="total" data-meta="541">−541 €</b></p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Logotipo</b><small>En color, en blanco y negro y en icono pequeño: para el rótulo, las bolsas, las redes y la web.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tus colores y tus letras</b><small>Con sus códigos, para que todo lo que hagas parezca de la misma marca.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Guía de uso en PDF</b><small>Cómo usar el logo, los colores y las letras. Se la pasas a tu imprenta y acierta a la primera.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>6 plantillas para Instagram</b><small>En Canva: cambias el texto o la foto y publicas, sin saber diseño.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Foto de perfil</b><small>Lista para Instagram, WhatsApp y Google.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Todo es tuyo</b><small>Los archivos para imprimir y para pantalla, y los derechos por escrito.</small></span></li>
+        </ul>
+        <p class="plazo">Listo en 7-10 días laborables</p>
+        <a class="boton directo" data-wa="Hola, Covalente. Me interesa el Kit de marca para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit de marca">Pedir por WhatsApp</a>
+        <button class="elegir" type="button" aria-pressed="false" aria-label="Elegir el Kit de marca"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8"/></svg>Elegir</button>
+        <p class="luego">Después de las 5 plazas, 129 €</p>
+      </article>
+      <article class="paquete" data-k="web" data-nombre="Web de una página" data-precio="39">
+        <div class="p-cab"><h3>Web de una página</h3><span class="pct">−90 %</span></div>
+        <p class="precio"><b>39 €</b></p>
+        <div class="compara">
+          <p class="otro"><span>Otros estudios</span> <s>400 €</s></p>
+          <span class="barra" aria-hidden="true" style="--p:9.75"><i></i></span>
+          <p class="dif"><span>Diferencia</span> <b class="total" data-meta="361">−361 €</b></p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Hecha para tu negocio</b><small>Sin plantilla y pensada para el móvil, que es desde donde te buscan.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Lo que tu cliente quiere saber</b><small>Qué haces, precios, horario, fotos y un mapa para llegar.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Te escriben con un toque</b><small>Botón de WhatsApp con el mensaje ya empezado.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Los textos, de nuestra parte</b><small>Cortos y claros. Tú solo nos cuentas tu negocio.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Preparada para Google</b><small>Para que te encuentre quien busca tu negocio por su nombre o por lo que haces.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tu dirección, sin cuotas</b><small>Con tu dominio (tunegocio.es) y conexión segura. El alojamiento es gratis y va a tu nombre.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Aviso legal y privacidad</b><small>Los textos que pide la ley, con tus datos.</small></span></li>
+        </ul>
+        <p class="plazo">Lista en 5-7 días laborables</p>
+        <a class="boton directo" data-wa="Hola, Covalente. Me interesa la Web de una página para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp la Web de una página">Pedir por WhatsApp</a>
+        <button class="elegir" type="button" aria-pressed="false" aria-label="Elegir la Web de una página"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8"/></svg>Elegir</button>
+        <p class="luego">Después de las 5 plazas, 99 €</p>
+      </article>
+      <article class="paquete destacado" data-k="kitweb" data-nombre="Kit + web" data-precio="69">
+        <div class="p-cab"><h3>Kit + web</h3><span class="pct">−94 %</span></div>
+        <p class="precio"><b>69 €</b></p>
+        <div class="compara">
+          <p class="otro"><span>Otros estudios</span> <s>1.080 €</s></p>
+          <span class="barra" aria-hidden="true" style="--p:6.4"><i></i></span>
+          <p class="dif"><span>Diferencia</span> <b class="total" data-meta="1011">−1.011 €</b></p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Todo el Kit de marca</b><small>Logotipo, colores y letras, guía, plantillas y foto de perfil.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Toda la Web de una página</b><small>Con lo que tu cliente quiere saber y tu botón de WhatsApp.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Marca y web a juego</b><small>La web se diseña con tu marca nueva desde el primer día.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Tus redes, iguales que tu web</b><small>La foto de perfil y las plantillas, con los mismos colores y letras.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Un solo encargo</b><small>Nos cuentas tu negocio una vez y te lo entregamos todo junto.</small></span></li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>19 € menos</b><small>Que comprando los dos por separado.</small></span></li>
+        </ul>
+        <p class="plazo">Todo listo en 10-15 días laborables</p>
+        <a class="boton oro directo" data-wa="Hola, Covalente. Me interesa el Kit + web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit + web">Pedir por WhatsApp</a>
+        <button class="elegir" type="button" aria-pressed="false" aria-label="Elegir el Kit + web"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8"/></svg>Elegir</button>
+        <p class="luego">Después de las 5 plazas, 199 €</p>
+      </article>
+    </div>
+
+    <div class="sumale">
+      <div class="extras">
+        <h3>Súmale lo que necesites</h3>
+        <p>Toca una pieza para sumarla a tu presupuesto.</p>
+        <ul class="x-lista">
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Tarjeta" data-precio="15"><img src="img/extras/tarjeta-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Tarjeta</span><small>Tarjeta de visita o de fidelidad, lista para imprimir</small></span><b class="x-precio">15 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Diseñamos tu tarjeta de visita o una de fidelidad (por ejemplo, de sellos: al décimo café, uno gratis), por las dos caras y con tu marca. Te la entregamos en PDF preparado para la imprenta. La impresión va aparte.</p></details></li>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Carta" data-precio="19"><img src="img/extras/carta-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Carta</span><small>Carta, menú o lista de precios con tu marca</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Una hoja con tu carta, el menú del día o la lista de precios de tus servicios. Te la damos en PDF para imprimir, en imagen para redes y WhatsApp, y editable para que cambies los precios cuando quieras.</p></details></li>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="6 plantillas más" data-precio="19"><img src="img/extras/plantillas-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">6 plantillas más</span><small>Seis diseños más para Instagram, editables</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Seis plantillas más para publicaciones e historias: ofertas, horarios, novedades o fechas especiales. Están en Canva: cambias el texto y la foto, y publicas. Se suman a las 6 que ya trae el Kit de marca.</p></details></li>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Otra página" data-precio="29"><img src="img/extras/pagina-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Otra página</span><small>Una sección más en tu web</small></span><b class="x-precio">29 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Una página más con el mismo diseño de tu web: la carta completa, el equipo, una galería de trabajos o bodas y eventos. Maquetamos tus textos y fotos, y la enlazamos desde el menú.</p></details></li>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Ficha en Google Maps" data-precio="19"><img src="img/extras/ficha-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Ficha en Google Maps</span><small>Tu negocio en Google Maps y en el buscador</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Creamos o ponemos a punto tu perfil de empresa de Google: categoría, horario, fotos, servicios y enlaces a tu web y a tu WhatsApp, para que te encuentren al buscar en Maps. Google pide verificar que el negocio es tuyo; ese paso lo haces tú y te guiamos.</p></details></li>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Mantenimiento" data-precio="12" data-cada="mes"><img src="img/extras/mantenimiento-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Mantenimiento</span><small>Actualizamos tu web cuando lo necesites</small></span><b class="x-precio">12 €<small>/mes</small></b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Nos escribes por WhatsApp y cambiamos lo que necesites: precios, horarios, fotos, textos o un aviso de vacaciones. Incluye hasta 4 cambios pequeños al mes, una revisión mensual de que todo funciona y el aviso antes de que caduque tu dominio. Sin permanencia: lo das de baja cuando quieras.</p></details></li>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Dominio" data-precio="19" data-cada="año"><img src="img/extras/dominio-240.webp" alt="" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Dominio</span><small>Tu dirección web, registrada a tu nombre</small></span><b class="x-precio">19 €<small>/año</small></b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+          <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Registramos tu dirección web (tunegocio.es o .com) a tu nombre y la renovamos cada año para que no caduque. Si un día te vas, te la pasamos sin coste. Si prefieres pagarla tú, cuesta unos 10-15 € al año y te explicamos cómo.</p></details></li>
+        </ul>
+      </div>
+      <div class="presupuesto" id="presupuesto" role="region" aria-labelledby="p-titulo">
+        <h4 class="p-titulo" id="p-titulo">Tu presupuesto</h4>
+        <div class="p-cuenta">
+          <p class="p-que" id="p-que">Elige un paquete y súmale lo que necesites.</p>
+          <ul class="p-lineas" id="p-lineas" hidden></ul>
+          <p class="p-total" id="p-total" hidden></p>
+        </div>
+        <a class="boton oro p-pedir" id="p-pedir" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Pedir por WhatsApp</a>
+        <p class="sr" id="p-voz" aria-live="polite"></p>
+      </div>
+    </div>
+    <p class="iva">Precios sin IVA.</p>
+  </div>
+</section>
+
+<section class="oscuro con-polvo" id="como" aria-labelledby="t-como">
+  <canvas class="polvo" aria-hidden="true"></canvas>
+  <div class="caja seccion">
+    <h2 id="t-como">Cómo trabajamos</h2>
+    <div class="reaccion">
+      <div class="molecula" aria-hidden="true">
+        <svg class="mol-fija" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#C9A35C" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"><path d="M14 176 64 112 106 140 156 68 198 96 282 18"/><path d="M121.6 131.6 153.6 85.5"/><path d="M260.2 21 282 18 277.4 39.5"/></g><g fill="#C9A35C"><circle cx="14" cy="176" r="8"/><circle cx="64" cy="112" r="8"/><circle cx="106" cy="140" r="8"/><circle cx="156" cy="68" r="8"/><circle cx="198" cy="96" r="8"/></g></svg>
+        <span class="rot">brilla</span><span class="num" style="--x:4.67; --y:88">1</span><span class="num" style="--x:21.33; --y:56">2</span><span class="num" style="--x:35.33; --y:70">3</span><span class="num" style="--x:52; --y:34">4</span><span class="num" style="--x:66; --y:48">5</span>
+      </div>
+      <ol class="pasos">
+      <li class="paso abajo" style="--x:4.67; --y:88"><h3>Nos cuentas tu negocio</h3><p>Por WhatsApp, sin preparar nada.</p></li>
+      <li class="paso arriba" style="--x:21.33; --y:56"><h3>Eliges entre dos ideas</h3><p>Te las enseñamos sobre piezas reales.</p></li>
+      <li class="paso abajo" style="--x:35.33; --y:70"><h3>Dos rondas de cambios</h3><p>Con una lista escrita en cada ronda.</p></li>
+      <li class="paso arriba" style="--x:52; --y:34"><h3>Te lo entregamos</h3><p>En 3 semanas o menos.</p></li>
+      <li class="paso abajo" style="--x:66; --y:48"><h3>Es tuyo</h3><p>Todos los archivos y los derechos.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="caja seccion preguntas" aria-labelledby="t-preguntas">
+  <div class="cabeza">
+    <h2 id="t-preguntas">Preguntas</h2>
+  </div>
+  <div class="lista">
+    <details>
+      <summary>¿Cómo se paga?</summary>
+      <p>La mitad al empezar y la mitad al terminar. En las cinco plazas de lanzamiento, si la primera propuesta no te convence, te devolvemos esa mitad.</p>
+    </details>
+    <details>
+      <summary>¿La marca y la web son mías?</summary>
+      <p>Sí. Te damos todos los archivos y los derechos, por escrito.</p>
+    </details>
+    <details>
+      <summary>¿Cuánto cuestan el dominio y el alojamiento?</summary>
+      <p>El alojamiento, nada. El dominio va a tu nombre: unos <span style="white-space:nowrap">10-15 €</span> al año si lo pagas tú, o <span style="white-space:nowrap">19 €</span> si nos encargamos nosotros. Si un día te vas, te lo pasamos sin coste.</p>
+    </details>
+    <details>
+      <summary>¿Y si mi negocio no está en Madrid?</summary>
+      <p>También. Lo hacemos todo por WhatsApp y, si hace falta, por videollamada.</p>
+    </details>
+  </div>
+</section>
+
+<section class="oscuro" id="contacto" aria-labelledby="t-contacto">
+  <div class="caja contacto">
+    <h2 id="t-contacto">¿Hablamos?</h2>
+    <p>Cuéntanos qué tienes y qué te falta. Te decimos qué haríamos y cuánto cuesta.</p>
+    <div class="acciones">
+      <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio."><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Escríbenos por WhatsApp</a>
+      <a class="enlace" href="mailto:covalente.madrid@gmail.com">covalente.madrid@gmail.com</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="oscuro">
+  <div class="caja pie">
+    <img src="img/covalente-horizontal-oscuro.svg" alt="Covalente" width="851" height="134">
+    <p>Estudio de diseño en Madrid. Las personas y fotos de las muestras están creadas con IA.<br><a href="legal.html">Aviso legal y privacidad</a></p>
+    <nav aria-label="Redes">
+      <a href="https://www.instagram.com/covalenteestudio/" aria-label="Instagram de Covalente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="mailto:covalente.madrid@gmail.com" aria-label="Correo de Covalente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6.2L20 7"/></svg></a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+// Los botones de WhatsApp llevan el mensaje ya escrito (sin JavaScript, cada paquete abre el suyo)
+const WA = 'https://wa.me/34613912752?text=';
+document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.wa); });
+
+// De qué red llega la visita (?o=ig, tt, pin, g o cartel): se añade al mensaje de WhatsApp y pasa a los casos. No se guarda nada
+const ORIGEN = { ig: 'Os he visto en Instagram.', tt: 'Os he visto en TikTok.', pin: 'Os he visto en Pinterest.', g: 'Os he encontrado en Google.', cartel: 'Vengo por el cartel.' };
+const origen = new URLSearchParams(location.search).get('o');
+if (ORIGEN[origen]) {
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
+    const u = new URL(a.href);
+    a.href = u.origin + u.pathname + '?text=' + encodeURIComponent(((u.searchParams.get('text') || '') + ' ' + ORIGEN[origen]).trim());
+  });
+  document.querySelectorAll('a[href^="casos/"]').forEach(a => { a.href = a.getAttribute('href') + '?o=' + origen; });
+}
+
+// La reacción, en «Cómo trabajamos»: al verse, el polvo de oro llena la sección y se junta en la molécula del logo, cuyos átomos son los pasos; sube hasta «brilla» y el puntero lo aparta.
+// Se mueve como mucho 5 s seguidos (WCAG 2.2.2) y vuelve a moverse con el puntero. Va por pasos fijos de 1/60 s, interpolados al pintar,
+// y pinta los granos por lotes de color y opacidad. Sin canvas o sin JavaScript queda la molécula fija en SVG.
+(() => {
+  const ini = document.querySelector('.con-polvo'), cv = ini.querySelector('.polvo'), mol = ini.querySelector('.molecula');
+  const ctx = cv.getContext && cv.getContext('2d');
+  if (!ctx) return;
+  ini.classList.add('con-canvas');
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // La molécula del logo, en su caja de 300 × 200: los enlaces (con el doble enlace y la flecha) y los átomos
+  const TRAMOS = [[14, 176, 64, 112], [64, 112, 106, 140], [106, 140, 156, 68], [156, 68, 198, 96], [198, 96, 282, 18], [121.6, 131.6, 153.6, 85.5], [260.2, 21, 282, 18], [282, 18, 277.4, 39.5]];
+  const ATOMOS = [[14, 176], [64, 112], [106, 140], [156, 68], [198, 96]];
+  const TONOS = ['#C9A35C', '#E2C27F', '#F3ECDD'], NIVELES = 5, PASO = 1000 / 60, CHISPA = 1700, VIVO = 5000;
+  const HALO = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+  HALO.addColorStop(0, 'rgba(241,215,156,.5)'); HALO.addColorStop(1, 'rgba(201,163,92,0)');
+  const cubos = Array.from({ length: TONOS.length * NIVELES }, () => []);
+  let W = 0, H = 0, esc = 1, granos = [], burbujas = [], chispas = [], brillo = [0, 0], ts = 0, ultimo = 0, acum = 0, raf = 0, hasta = 0;
+  let enVista = false, pestana = !document.hidden, ptr = null, estallo = false, empezado = false;
+  if (!quieto) ini.classList.add('esperando');
+  const montar = (deCero) => {
+    const dpr = Math.min(devicePixelRatio || 1, 2), r = ini.getBoundingClientRect(), m = mol.getBoundingClientRect();
+    W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const ex = m.width / 300, ey = m.height / 200; esc = Math.min(ex, ey); // la caja de la molécula se estira con el escaparate
+    const ox = m.left - r.left, oy = m.top - r.top, P = (x, y) => [ox + x * ex, oy + y * ey], casas = [], denso = esc < 2 ? 1.7 : 1; // en el móvil, más granos para que se lea
+    for (const [x1, y1, x2, y2] of TRAMOS) {
+      const [a, b] = P(x1, y1), [c, d] = P(x2, y2), L = Math.hypot(c - a, d - b), n = Math.max(2, Math.round(L / 1.7 * denso)), nx = (b - d) / L, ny = (c - a) / L;
+      for (let i = 0; i <= n; i++) { const k = i / n, j = (Math.random() - .5) * 2.6 * Math.max(1, esc / 1.6); casas.push([a + (c - a) * k + nx * j, b + (d - b) * k + ny * j, 0]); }
+    }
+    for (const [x, y] of ATOMOS) {
+      const [cx, cy] = P(x, y), R = 9.5 * esc, n = Math.round(R * R * .5 * denso);
+      for (let i = 0; i < n; i++) { const a = Math.random() * 6.2832, d = R * Math.sqrt(Math.random()); casas.push([cx + Math.cos(a) * d, cy + Math.sin(a) * d, 1]); }
+    }
+    brillo = P(291, 9);
+    const suelto = deCero && !quieto; // empieza esparcido por toda la portada
+    granos = casas.map(([hx, hy, at]) => {
+      const x = suelto ? Math.random() * W : hx, y = suelto ? Math.random() * H : hy;
+      return { hx, hy, at, x, y, px: x, py: y, vx: 0, vy: 0, r: at ? .8 + Math.random() * 1.1 : .7 + Math.random(),
+        t: Math.random() < .12 ? 2 : Math.random() < .45 ? 1 : 0, f: Math.random() * 6.2832, v: 1.5 + Math.random() * 3,
+        espera: suelto ? 350 + (hx - ox) / m.width * 1000 : 0 };
+    });
+    burbujas = Array.from({ length: Math.round(W * H / 8000) }, () => { const x = Math.random() * W, y = Math.random() * H; return { x, y, px: x, py: y, r: .5 + Math.random(), f: Math.random() * 6.2832, s: .1 + Math.random() * .3 }; });
+    if (deCero) { ts = suelto ? 0 : CHISPA + 1000; estallo = !suelto; chispas = []; }
+  };
+  const paso = () => {
+    ts += PASO;
+    for (const b of burbujas) { b.px = b.x; b.py = b.y; b.y -= b.s; b.x += Math.sin(ts / 1500 + b.f) * .12; if (b.y < -4) { b.y = b.py = H + 4; b.x = b.px = Math.random() * W; } }
+    const R = Math.max(90, 40 * esc);
+    for (const g of granos) {
+      g.px = g.x; g.py = g.y;
+      if (ts > g.espera) {
+        let ax = (g.hx - g.x) * .05, ay = (g.hy - g.y) * .05;
+        if (ptr) { const dx = g.x - ptr[0], dy = g.y - ptr[1], d2 = dx * dx + dy * dy; if (d2 < R * R) { const d = Math.sqrt(d2) || 1, k = (1 - d / R) * 2.4; ax += dx / d * k; ay += dy / d * k; } }
+        g.vx = (g.vx + ax) * .82; g.vy = (g.vy + ay) * .82; g.x += g.vx; g.y += g.vy;
+      } else { g.x += Math.sin(ts / 1000 + g.f) * .25; g.y -= .2; }
+    }
+    if (!estallo && ts > CHISPA) { estallo = true; ini.classList.remove('esperando'); for (let i = 0; i < 28; i++) { const a = Math.random() * 6.2832, v = 1.5 + Math.random() * 3.5; chispas.push({ x: brillo[0], y: brillo[1], vx: Math.cos(a) * v, vy: Math.sin(a) * v, vida: 1 }); } }
+    for (const c of chispas) { c.x += c.vx; c.y += c.vy; c.vx *= .95; c.vy *= .95; c.vida -= .017; }
+    chispas = chispas.filter(c => c.vida > 0);
+  };
+  const estrella = (x, y, R, giro) => {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(giro); ctx.beginPath();
+    for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4, d = i % 2 ? R * .2 : R; ctx.lineTo(Math.cos(a) * d, Math.sin(a) * d); }
+    ctx.closePath(); ctx.fill(); ctx.restore();
+  };
+  const pintar = (ahora, avanzar = true) => {
+    if (!quieto && avanzar) { acum += Math.min(ahora - (ultimo || ahora), 1000); ultimo = ahora; let n = 0; while (acum >= PASO && n < 90) { paso(); acum -= PASO; n++; } if (n >= 90) acum = 0; }
+    const k = quieto || !avanzar ? 1 : acum / PASO; // fracción entre el paso anterior y el actual
+    ctx.clearRect(0, 0, W, H); ctx.globalCompositeOperation = 'lighter';
+    // Burbujas que suben despacio, como en un matraz
+    ctx.fillStyle = TONOS[0]; ctx.globalAlpha = .14; ctx.beginPath();
+    for (const b of burbujas) { const x = b.px + (b.x - b.px) * k, y = b.py + (b.y - b.py) * k; ctx.moveTo(x + b.r, y); ctx.arc(x, y, b.r, 0, 6.2832); }
+    ctx.fill();
+    // Granos de la molécula, por lotes de tono y opacidad
+    for (const c of cubos) c.length = 0;
+    for (const g of granos) {
+      const a = quieto ? .8 : .5 + .5 * Math.sin(ahora / 1000 * g.v + g.f), alfa = g.at ? .6 + .4 * a : .4 + .55 * a;
+      cubos[g.t * NIVELES + Math.min(NIVELES - 1, Math.floor(alfa * NIVELES))].push(g);
+    }
+    cubos.forEach((c, i) => {
+      if (!c.length) return;
+      ctx.fillStyle = TONOS[Math.floor(i / NIVELES)]; ctx.globalAlpha = (i % NIVELES + .5) / NIVELES; ctx.beginPath();
+      for (const g of c) { const x = g.px + (g.x - g.px) * k, y = g.py + (g.y - g.py) * k; ctx.moveTo(x + g.r, y); ctx.arc(x, y, g.r, 0, 6.2832); }
+      ctx.fill();
+    });
+    // La chispa: aparece cuando la molécula ya está hecha y luego late despacio
+    const e = Math.min(1, Math.max(0, (ts - CHISPA) / 600));
+    if (e > 0) {
+      const R = (10 + 5 * esc) * (1 - Math.pow(1 - e, 3)) * (quieto ? 1 : .88 + .12 * Math.sin(ahora / 700));
+      ctx.globalAlpha = 1; ctx.save(); ctx.translate(brillo[0], brillo[1]); ctx.scale(R * 2.6, R * 2.6); ctx.fillStyle = HALO; ctx.beginPath(); ctx.arc(0, 0, 1, 0, 6.2832); ctx.fill(); ctx.restore();
+      ctx.fillStyle = '#F7E9C4'; estrella(brillo[0], brillo[1], R, quieto ? 0 : ahora / 5000);
+    }
+    if (chispas.length) {
+      ctx.fillStyle = '#F1D79C';
+      for (const c of chispas) { ctx.globalAlpha = c.vida; ctx.beginPath(); ctx.arc(c.x, c.y, 1.4, 0, 6.2832); ctx.fill(); }
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+  };
+  const bucle = (ahora) => { pintar(ahora); raf = enVista && pestana && ts < hasta ? requestAnimationFrame(bucle) : 0; };
+  const arrancar = () => { if (quieto) pintar(performance.now()); else if (empezado && !raf) { ultimo = 0; raf = requestAnimationFrame(bucle); } };
+  const despertar = () => { if (!empezado) return; hasta = ts + VIVO; if (enVista && pestana) arrancar(); };
+  // La reacción empieza en cuanto se ve casi media sección
+  new IntersectionObserver(([e]) => {
+    enVista = e.isIntersecting;
+    if (!empezado && e.intersectionRatio >= .45) { empezado = true; ini.classList.add('en-marcha'); despertar(); }
+    if (enVista) arrancar();
+  }, { threshold: [0, .45, .7] }).observe(ini);
+  document.addEventListener('visibilitychange', () => { pestana = !document.hidden; if (pestana) arrancar(); });
+  const donde = e => { const r = ini.getBoundingClientRect(); ptr = [e.clientX - r.left, e.clientY - r.top]; despertar(); };
+  ini.addEventListener('pointermove', donde, { passive: true });
+  ini.addEventListener('pointerdown', donde, { passive: true });
+  ini.addEventListener('pointerleave', () => { ptr = null; });
+  ini.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') setTimeout(() => { ptr = null; }, 350); });
+  let ancho = innerWidth;
+  addEventListener('resize', () => { if (innerWidth !== ancho) { ancho = innerWidth; montar(!empezado); empezado ? arrancar() : pintar(performance.now(), false); } });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { montar(true); pintar(performance.now(), false); });
+})();
+// Paneles vivos (los de «Trabajos» y el escaparate de la portada): al aparecer, cada web pasa por sus momentos una vez (menos de 5 s, WCAG 2.2.2)
+// y vuelve al primero; con el ratón encima sigue pasando y el panel se inclina hacia el puntero. Con movimiento reducido, quietos.
+(() => {
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches, PASO = 1600;
+  document.querySelectorAll('[data-estados]').forEach((v, n) => {
+    const nombres = v.dataset.estados.split('|'), total = nombres.length;
+    if (total < 2 || quieto) return;
+    const txt = v.querySelector('.estado-nombre .txt'), puntos = v.querySelector('.puntos');
+    if (puntos) puntos.innerHTML = '<i></i>'.repeat(total);
+    const capas = [...v.querySelectorAll('.pantalla')].map(p => [...p.children]);
+    let i = 0, reloj = 0, vueltas = 0, encima = false;
+    const ver = k => {
+      for (const imgs of capas) imgs.forEach((im, j) => { im.classList.toggle('antes', j === i && k !== i); im.classList.toggle('ver', j === k); if (j !== i && j !== k) im.classList.remove('antes'); });
+      i = k; if (txt) txt.textContent = nombres[k]; if (puntos) [...puntos.children].forEach((p, j) => p.classList.toggle('si', j === k));
+    };
+    v.classList.add('vivo'); ver(0);
+    const tic = () => { const k = (i + 1) % total; ver(k); if (k === 0 && !encima) parar(); };
+    const andar = () => { if (!reloj) reloj = setInterval(tic, PASO); };
+    const parar = () => { clearInterval(reloj); reloj = 0; };
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) setTimeout(andar, +v.dataset.espera || 300 + n * 150); else { parar(); ver(0); } }, { threshold: .5 }).observe(v);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) parar(); });
+    if (matchMedia('(hover: hover)').matches) {
+      v.addEventListener('pointerenter', () => { encima = true; andar(); });
+      v.addEventListener('pointermove', e => { const r = v.getBoundingClientRect(); v.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 7 + 'deg'); v.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -5 + 'deg'); });
+      v.addEventListener('pointerleave', () => { encima = false; v.style.setProperty('--ry', '0deg'); v.style.setProperty('--rx', '0deg'); });
+    }
+  });
+})();
+  // Precios: al verse cada paquete, se dibujan sus barras, se tacha lo de fuera y la diferencia cuenta hasta su cifra
+  (() => {
+    const paquetes = document.querySelectorAll('.paquete'); if (!paquetes.length) return;
+    const eur = x => x >= 1000 ? Math.floor(x / 1000) + '.' + String(x % 1000).padStart(3, '0') : String(x);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => {
+      for (const e of es) {
+        if (!e.isIntersecting) continue;
+        const p = e.target.closest('.paquete'), el = p.querySelector('.total'); io.unobserve(e.target);
+        requestAnimationFrame(() => {
+          p.classList.remove('espera');
+          setTimeout(() => {
+            const t0 = performance.now();
+            const paso = t => {
+              const k = Math.min(1, (t - t0) / 700), s = 1 - Math.pow(1 - k, 3);
+              el.textContent = '−' + eur(Math.round(+el.dataset.meta * s)) + ' €';
+              if (k < 1) requestAnimationFrame(paso);
+            };
+            requestAnimationFrame(paso);
+          }, 450);
+        });
+      }
+    }, { threshold: .5 });
+    for (const p of paquetes) { p.classList.add('espera'); io.observe(p.querySelector('.compara')); }
+  })();
+
+  // Tu presupuesto: un paquete (o ninguno) y las piezas que se sumen. Suma y escribe el mensaje de WhatsApp
+  (() => {
+    const caja = document.getElementById('presupuesto'); if (!caja) return;
+    const paquetes = [...document.querySelectorAll('.paquete')], piezas = [...document.querySelectorAll('.x-pieza')];
+    const que = document.getElementById('p-que'), lineas = document.getElementById('p-lineas'), total = document.getElementById('p-total'), pedir = document.getElementById('p-pedir'), voz = document.getElementById('p-voz');
+    const dinero = x => x.toLocaleString('es-ES', { minimumFractionDigits: Number.isInteger(x) ? 0 : 2, maximumFractionDigits: 2 }) + ' €';
+    const lista = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a.at(-1);
+    let elegido = null;
+    const pintar = () => {
+      const p = paquetes.find(x => x.dataset.k === elegido);
+      const sueltas = piezas.filter(b => b.getAttribute('aria-pressed') === 'true');
+      const nombres = [p && p.dataset.nombre, ...sueltas.map(b => b.dataset.nombre)].filter(Boolean);
+      const unaVez = (p ? +p.dataset.precio : 0) + sueltas.filter(b => !b.dataset.cada).reduce((s, b) => s + +b.dataset.precio, 0);
+      const cada = sueltas.filter(b => b.dataset.cada).map(b => `${dinero(+b.dataset.precio)} al ${b.dataset.cada}`);
+      let msg = 'Hola, Covalente. Quiero hablar de mi negocio.', frase = '';
+      caja.classList.toggle('activo', nombres.length > 0); caja.classList.toggle('lleno', nombres.length > 0);
+      const filas = [p && [p.dataset.nombre, +p.dataset.precio, ''], ...sueltas.map(b => [b.dataset.nombre, +b.dataset.precio, b.dataset.cada ? ' /' + b.dataset.cada : ''])].filter(Boolean);
+      lineas.innerHTML = filas.map(([n, v, c]) => `<li><span>${n}</span><b>${dinero(v)}${c}</b></li>`).join(''); lineas.hidden = !filas.length;
+      if (nombres.length) {
+        que.textContent = lista(nombres);
+        const partes = [];
+        if (unaVez) partes.push(`<b>${dinero(unaVez)}</b>`);
+        if (cada.length) partes.push((unaVez ? 'y ' : '') + lista(cada));
+        total.innerHTML = partes.join('<br>'); total.hidden = false;
+        const cuenta = [unaVez && dinero(unaVez), ...cada].filter(Boolean).join(' y ');
+        msg = `Hola, Covalente. Me interesa: ${lista(nombres)} (${cuenta}).`;
+        frase = `${lista(nombres)}: ${cuenta}.`;
+      } else {
+        que.textContent = 'Elige un paquete y súmale lo que necesites.'; total.hidden = true;
+      }
+      if (ORIGEN[origen]) msg += ' ' + ORIGEN[origen];
+      pedir.href = WA + encodeURIComponent(msg);
+      voz.textContent = frase;
+      caja.classList.remove('cambia'); void caja.offsetWidth; caja.classList.add('cambia');
+    };
+    for (const p of paquetes) {
+      const b = p.querySelector('.elegir');
+      b.addEventListener('click', () => {
+        elegido = elegido === p.dataset.k ? null : p.dataset.k;
+        for (const q of paquetes) q.querySelector('.elegir').setAttribute('aria-pressed', q.dataset.k === elegido);
+        pintar();
+      });
+    }
+    for (const b of piezas) b.addEventListener('click', () => { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); pintar(); });
+  })();
+</script>
+<script src="/contar.js" defer></script>
+</body>
+</html>

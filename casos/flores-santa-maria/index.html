@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flores Santa María · web de muestra de Covalente</title>
+<meta name="description" content="Flores Santa María, floristería en la calle de Santa María (Madrid): cinco ramos cada día, cada uno con su color, y uno mixto a tu gusto, para recoger o en casa. Web de muestra de Covalente.">
+<meta name="theme-color" content="#266699">
+<link rel="canonical" href="https://covalente.eu/casos/flores-santa-maria/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23266699'/%3E%3Cpath d='M16 26V12M16 17c-4 0-6-3-6-6 4 0 6 3 6 6Zm0-2c4 0 6-3 6-6-4 0-6 3-6 6Z' fill='none' stroke='%23FFF4E4' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fuentes/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/InstrumentSans.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Fraunces"; src:url(fuentes/Fraunces.woff2) format("woff2"); font-weight:300 700; font-display:swap}
+@font-face{font-family:"Instrument Sans"; src:url(fuentes/InstrumentSans.woff2) format("woff2"); font-weight:400 700; font-stretch:75% 100%; font-display:swap}
+
+/* Flores Santa María, «La pared»: cada ramo del día tiene su pared de color y la página entera es esa pared.
+   El nombre del ramo, enorme, pasa por detrás de las flores (la misma foto, recortada encima). Las fotos son enteras:
+   nada pegado. Lo demás de la página, en papel claro, para que el color lo pongan los ramos. */
+:root{--vineta:1; --pared:#266699; --tinta:#FFF4E4; --palabra:#FFE7C7; --boton:#FFF4E4; --boton-t:#123E66;
+  --papel:#FBF7F1; --negro:#231C19; --gris:#6B605A; --linea:rgba(35,28,25,.14); --blanco:#FFFFFF;
+  --serif:"Fraunces", Georgia, serif; --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --margen:max(16px, 3.6vw)}
+body[data-ramo=frambuesa]{--pared:#366048; --tinta:#FDEEF1; --palabra:#F7C3D2; --boton:#F7C3D2; --boton-t:#1F3A2B}
+body[data-ramo=granada]{--vineta:0; --pared:#E0B8BD; --tinta:#3E0A12; --palabra:#6A0F1D; --boton:#6A0F1D; --boton-t:#FCE9EC}
+body[data-ramo=azahar]{--vineta:0; --pared:#DCA840; --tinta:#2A200C; --palabra:#2F4B36; --boton:#2F4B36; --boton-t:#FFF8E8}
+body[data-ramo=macedonia]{--pared:#5A3846; --tinta:#FCEFE6; --palabra:#F7CDB8; --boton:#F7CDB8; --boton-t:#3A1F2B}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--papel); color:var(--negro); font:400 16px/1.5 var(--sans); font-variant-numeric:tabular-nums; -webkit-tap-highlight-color:transparent}
+img{display:block; max-width:100%; height:auto}
+h1, h2, p, fieldset, legend, ul, ol, dl{margin:0; padding:0}
+ul, ol{list-style:none}
+fieldset{border:0; min-width:0}
+a{color:inherit}
+button, input{font:inherit; color:inherit}
+:focus-visible{outline:2px solid currentColor; outline-offset:3px; border-radius:6px}
+[hidden]{display:none !important}
+[tabindex="-1"]:focus{outline:none}
+.oculto{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:12px 24px; border:0; border-radius:999px; background:var(--negro); color:var(--papel); font-weight:600; font-size:16px; text-decoration:none; cursor:pointer; transition:filter .15s}
+.boton:hover{filter:brightness(1.12)}
+.boton.claro{background:none; color:var(--negro); box-shadow:inset 0 0 0 1.5px var(--negro)}
+.boton.claro:hover{background:var(--blanco); filter:none}
+
+/* ——— La pared ——— */
+.pared{position:relative; background:var(--pared); color:var(--tinta); transition:background-color .7s ease, color .7s ease}
+.cab{position:absolute; inset:0 0 auto; z-index:6; display:flex; align-items:center; gap:10px 22px; padding:18px var(--margen)}
+.marca{font:500 24px/1 var(--serif); letter-spacing:-.01em; font-variation-settings:"opsz" 36}
+.donde{font-size:14px; opacity:.85}
+.abierto{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px}
+.abierto i{width:8px; height:8px; border-radius:50%; background:currentColor; opacity:.9}
+.abierto.cerrado i{opacity:.35}
+.inventado{font-size:13px; padding:6px 12px; border-radius:999px; box-shadow:inset 0 0 0 1px currentColor; text-decoration:none; white-space:nowrap}
+.cab > *{white-space:nowrap}
+
+.escenas{position:relative; overflow:hidden; container-type:size; touch-action:pan-y}
+/* La foto (4:3) cubre la caja; dentro, todo se coloca en % de la foto, así el nombre y el recorte casan al píxel */
+.escena{position:absolute; inset:0; opacity:0; transition:opacity .6s ease; pointer-events:none}
+.escena.activa{opacity:1}
+.lienzo{--w:max(100cqw, 133.94cqh); --h:calc(var(--w) * .74667); position:absolute; width:var(--w); height:var(--h);
+  left:calc(50cqw - var(--w) / 2); top:clamp(calc(100cqh - var(--h)), calc(50cqh - var(--fy, .5) * var(--h)), 0px)}
+.lienzo img{position:absolute; inset:0; width:100%; height:100%}
+.palabra{position:absolute; left:50%; top:var(--y, 42%); translate:-50% -50%; margin:0; white-space:nowrap; color:var(--palabra);
+  font:400 var(--fs, 160px)/.86 var(--serif); font-variation-settings:"opsz" 144; letter-spacing:-.035em; transition:translate .9s cubic-bezier(.2,.75,.2,1), opacity .6s ease, color .7s ease}
+.escena:not(.activa) .palabra{translate:calc(-50% + var(--dx, 6%)) -50%; opacity:0}
+/* En las paredes oscuras, las esquinas de abajo se oscurecen como en una foto (viñeta): ahí va el texto claro y se lee */
+.escenas::after{content:""; position:absolute; inset:0; z-index:2; pointer-events:none; opacity:var(--vineta, 0); transition:opacity .7s ease;
+  background:radial-gradient(60% 58% at 0% 100%, rgba(6,14,24,.5), transparent), radial-gradient(48% 52% at 100% 100%, rgba(6,14,24,.42), transparent)}
+
+.debajo{position:relative; z-index:3}
+.flores-txt{font-size:18px; line-height:1.35; max-width:30ch}
+.ramos{display:flex; gap:14px; margin-top:16px}
+.ramo{position:relative; display:grid; justify-items:center; gap:6px; cursor:pointer; font-size:13px; font-weight:600}
+.ramo input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
+.ramo .bola{width:58px; height:58px; border-radius:50%; background-color:var(--c); background-repeat:no-repeat; background-size:300% auto; background-position:50% 33%;
+  box-shadow:0 0 0 2px var(--pared), 0 0 0 3px color-mix(in srgb, var(--tinta) 35%, transparent); transition:box-shadow .25s, scale .25s}
+.ramo:hover .bola{scale:1.06}
+.ramo:has(input:checked) .bola{box-shadow:0 0 0 3px var(--pared), 0 0 0 5px var(--tinta)}
+.ramo:has(input:focus-visible) .bola{outline:2px solid var(--tinta); outline-offset:7px}
+.ramo small{font-weight:400; opacity:.85; margin-top:-5px}
+.ramo.agotado .bola{filter:saturate(.25); opacity:.7}
+
+.pide{display:grid; gap:14px; align-content:end}
+.tamanos{display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; padding:5px; border-radius:16px; box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--tinta) 30%, transparent)}
+.tam{position:relative; display:grid; justify-items:center; padding:8px 4px 9px; border-radius:11px; cursor:pointer; transition:background-color .25s, color .25s}
+.tam input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
+.tam b{font:400 26px/1.1 var(--serif); font-variation-settings:"opsz" 48}
+.tam small{font-size:13px; opacity:.85}
+.tam:has(input:checked){background:var(--tinta); color:var(--pared)}
+.tam:has(input:focus-visible){outline:2px solid var(--tinta); outline-offset:2px}
+.cuando{font-size:15px}
+.cuando b{font-weight:600}
+.pide .boton{width:100%; min-height:58px; font-size:18px; background:var(--boton); color:var(--boton-t); transition:background-color .7s, color .7s, filter .15s}
+.quedan{font-size:13px; text-align:center; opacity:.85; margin-top:-6px}
+
+@media (min-width:1100px){
+  .pared{height:100dvh; min-height:660px; max-height:1100px}
+  .escenas{position:absolute; inset:0}
+  .debajo{position:absolute; inset:auto var(--margen) 34px; display:flex; justify-content:space-between; align-items:flex-end; gap:32px; pointer-events:none}
+  .debajo > *{pointer-events:auto}
+  .elige{max-width:min(30vw, 420px)}
+  .pide{width:min(28vw, 380px)}
+}
+@media (max-width:1099px){
+  .escenas{height:min(54svh, 116vw); min-height:400px}
+  .debajo{display:grid; gap:22px; padding:6px var(--margen) 0}
+  .lienzo{--fy:.56}
+  .pide{padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+  .tamanos{max-width:520px}
+}
+@media (min-width:700px) and (max-width:1099px){
+  .debajo{grid-template-columns:1fr 1fr; align-items:end; padding-bottom:26px}
+  .pide{padding:0}
+}
+@media (max-width:699px){
+  .donde, .cab .abierto{display:none}
+  .marca{font-size:21px}
+  .cab{padding:14px var(--margen)}
+  .inventado{margin-left:auto}
+  .palabra{top:calc(var(--y, 42%) - 3%)}
+  .ramos{justify-content:space-between; gap:6px}
+  .ramo .bola{width:54px; height:54px}
+  .flores-txt{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){ .pared, .escena, .palabra, .tam, .pide .boton{transition:none} }
+
+/* ——— Lo demás, en papel claro ——— */
+.banda{padding:72px var(--margen); display:grid; gap:20px}
+.banda h2{font:400 clamp(34px, 4.2vw, 56px)/1.02 var(--serif); letter-spacing:-.025em; font-variation-settings:"opsz" 96; text-wrap:balance}
+.banda p{font-size:17px; color:var(--gris); max-width:40ch}
+.banda .boton{justify-self:start}
+
+.envuelto{grid-template-columns:minmax(0, 1fr)}
+.envuelto img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px}
+.envuelto .texto{display:grid; gap:18px}
+.encargos{list-style:none; margin:4px 0 6px; padding:0; display:grid; max-width:46ch}
+.encargos li{display:grid; gap:2px; padding:14px 0; border-top:1px solid var(--linea)}
+.encargos li:last-child{border-bottom:1px solid var(--linea)}
+.encargos b{font:400 23px/1.15 var(--serif); font-variation-settings:"opsz" 48; letter-spacing:-.01em}
+.encargos span{font-size:16px; color:var(--gris)}
+@media (min-width:900px){ .envuelto{grid-template-columns:minmax(0, 1.25fr) minmax(0, 1fr); align-items:center; gap:56px} }
+
+.viernes{background:var(--blanco)}
+.semanas{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:clamp(8px, 2vw, 24px); margin:12px 0 6px}
+.semana{display:grid; gap:8px}
+.semana .muestra{aspect-ratio:3/4; border-radius:4px; background-color:var(--c); background-repeat:no-repeat; background-size:auto 128%; background-position:50% 18%}
+.semana b{font-weight:600; font-size:15px}
+.semana small{font-size:13px; color:var(--gris); margin-top:-6px}
+@media (min-width:900px){ .viernes{grid-template-columns:minmax(0, 1fr) minmax(0, 1.6fr); column-gap:56px; align-items:center} .viernes .texto{display:grid; gap:18px} .semanas{grid-row:1 / span 2; grid-column:2; margin:0} }
+
+.bodas{padding:0; gap:0}
+.bodas img{width:100%; height:min(72vh, 62vw); min-height:300px; object-fit:cover}
+.bodas .texto{display:grid; gap:16px; padding:34px var(--margen) 72px}
+@media (min-width:900px){ .bodas{position:relative} .bodas .texto{position:absolute; left:var(--margen); bottom:var(--margen); width:min(440px, 40vw); padding:30px 32px; background:var(--papel); border-radius:4px} }
+
+.tienda{grid-template-columns:minmax(0, 1fr)}
+.tienda > img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px}
+.tienda .texto{display:grid; gap:16px; align-content:start}
+@media (min-width:900px){ .tienda{grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:56px; align-items:start} }
+.horario{display:grid; grid-template-columns:auto auto; justify-content:start; gap:2px 18px; font-size:15px; color:var(--gris)}
+.horario .hoy-dia{color:var(--negro); font-weight:600}
+.llegar{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.atrib{font-size:12px; color:var(--gris)}
+.mapa{position:relative; display:block; width:100%; height:200px; margin:0; padding:0; border:0; border-radius:4px; overflow:hidden; cursor:pointer; background:#F1EEE8; transition:height .6s cubic-bezier(.3,.7,.2,1)}
+.mapa.grande{height:min(420px, 80vw)}
+.mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -52%}
+.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:5px 10px; border-radius:999px; background:#fff; font-size:12px; font-weight:600}
+.m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
+.m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
+.m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
+.m-etiquetas text{font:500 9.5px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#6A655D;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;letter-spacing:.01em}
+.m-etiquetas .m-lugar{font-style:italic;fill:#7C766C}
+.m-ruta-fondo{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.m-ruta{fill:none;stroke:#2F6FDB;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+.m-ruta-mascara{stroke-dasharray:1;stroke-dashoffset:0} .mapa.dibuja .m-ruta-mascara{animation:ruta 1.4s cubic-bezier(.4,0,.2,1) both}
+@keyframes ruta{from{stroke-dashoffset:1}}
+.m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px system-ui, -apple-system, "Segoe UI", sans-serif;text-anchor:middle}
+.m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--negro);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:#E0B8BD}
+.m-nombre-pin,.m-nombre-origen{font:700 15px system-ui, -apple-system, "Segoe UI", sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){ .mapa{transition:none} .mapa.dibuja .m-ruta-mascara{animation:none} }
+
+footer{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:22px var(--margen) calc(26px + env(safe-area-inset-bottom)); border-top:1px solid var(--linea); font-size:14px; color:var(--gris)}
+footer .boton{min-height:44px; font-size:14px}
+
+/* ——— Hojas: el encargo y el panel de Inés ——— */
+dialog.hoja{width:min(100%, 480px); max-height:92dvh; margin:auto auto 0; padding:24px var(--margen) calc(24px + env(safe-area-inset-bottom)); border:0; border-radius:18px 18px 0 0; background:var(--blanco); color:var(--negro)}
+dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
+@media (min-width:640px){ dialog.hoja{margin:auto; border-radius:16px; padding:28px 32px} }
+.hoja h2{font:400 30px/1.1 var(--serif); font-variation-settings:"opsz" 72; letter-spacing:-.015em}
+.hoja .cabeza{display:flex; gap:14px; align-items:center; margin-bottom:20px}
+.hoja .cabeza .bola{flex:none; width:64px; height:64px; border-radius:50%; background-color:var(--c); background-repeat:no-repeat; background-size:300% auto; background-position:50% 33%}
+.hoja .resumen{color:var(--gris); font-size:15px; margin-top:2px}
+.hoja form{display:grid; gap:18px}
+.hoja legend, .campo label{display:block; font-size:14px; font-weight:600; color:var(--gris); margin-bottom:8px}
+.entregas{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.opcion{position:relative; display:grid; gap:1px; padding:11px 14px 12px; border-radius:12px; box-shadow:inset 0 0 0 1px var(--linea); cursor:pointer}
+.opcion input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
+.opcion b{font-weight:600; font-size:15px}
+.opcion small{font-size:13px; color:var(--gris)}
+.opcion:has(input:checked){box-shadow:inset 0 0 0 2px var(--negro)}
+.opcion:has(input:focus-visible){outline:2px solid var(--negro); outline-offset:2px}
+.opcion:has(input:disabled){opacity:.5; cursor:not-allowed}
+.dia-horas{font-size:14px; color:var(--gris); margin:-4px 0 8px}
+.horas{display:flex; flex-wrap:wrap; gap:6px}
+.hora{position:relative}
+.hora input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
+.hora span{display:grid; place-items:center; min-width:62px; min-height:42px; padding:0 10px; border-radius:999px; box-shadow:inset 0 0 0 1px var(--linea); font-weight:600; font-size:15px}
+.hora input:checked + span{background:var(--negro); color:var(--blanco); box-shadow:none}
+.hora input:focus-visible + span{outline:2px solid var(--negro); outline-offset:2px}
+.tono span{gap:8px; padding:0 14px 0 10px}
+.tono i{width:16px; height:16px; border-radius:50%; background:var(--c); box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.tono input:checked + span i{box-shadow:0 0 0 2px var(--blanco)}
+.mezcla-aviso{font-size:13px; color:var(--gris); margin-top:8px}
+.campo input{width:100%; min-height:48px; padding:10px 12px; border:1px solid var(--linea); border-radius:10px; background:var(--blanco); font-size:16px}
+.campo small{display:block; color:var(--gris); font-size:13px; margin-top:6px}
+.acciones{display:grid; gap:8px}
+.acciones .boton{width:100%}
+.pago{font-size:14px; color:var(--gris); text-align:center}
+.hecho{text-align:center}
+.hecho .numero{display:block; margin:6px 0 2px; font:400 64px/1 var(--serif)}
+.hecho p{color:var(--gris); margin:8px auto 20px; max-width:30ch}
+.panel .fila{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.panel .fila.cuatro{grid-template-columns:repeat(2, 1fr)}
+.panel .campo input[type=number]{max-width:140px}
+.marca-check{display:flex; gap:10px; align-items:center; min-height:44px}
+.marca-check input{width:20px; height:20px}
+.act{font-size:13px; color:var(--gris)}
+.aviso{position:fixed; left:50%; bottom:calc(110px + env(safe-area-inset-bottom)); z-index:20; translate:-50% 20px; max-width:calc(100% - 32px); padding:12px 16px; border-radius:10px; background:var(--negro); color:var(--papel); font-size:15px; opacity:0; pointer-events:none; transition:opacity .25s, translate .25s}
+.aviso.ver{opacity:1; translate:-50% 0}
+</style>
+</head>
+<body data-ramo="mandarina">
+<main>
+  <section class="pared" aria-labelledby="t-tienda-h">
+    <header class="cab">
+      <p class="marca">Flores Santa María</p>
+      <p class="donde">Calle de Santa María · barrio de las Letras</p>
+      <p class="abierto" id="abierto"><i></i><span>Abierto</span></p>
+      <a class="inventado" href="https://covalente.eu">Muestra de Covalente</a>
+    </header>
+    <h1 class="oculto" id="t-tienda-h">Flores Santa María, floristería en el barrio de las Letras: los ramos de hoy</h1>
+
+    <div class="escenas" id="escenas"></div>
+
+    <div class="debajo">
+      <div class="elige">
+        <h2 class="oculto" id="t-ramo" aria-live="polite">Ramo Mandarina</h2>
+        <p class="flores-txt" id="flores-txt"></p>
+        <div class="ramos" id="ramos" role="radiogroup" aria-label="Los ramos de hoy"></div>
+      </div>
+
+      <form class="pide" id="pide">
+        <fieldset>
+          <legend class="oculto">Tamaño</legend>
+          <div class="tamanos" id="tamanos"></div>
+        </fieldset>
+        <p class="cuando" id="cuando"></p>
+        <button class="boton" id="quiero" type="submit">Lo quiero</button>
+        <p class="quedan" id="quedan"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="banda envuelto" aria-labelledby="t-envuelto">
+    <img src="img/ramos/ines-960.jpg" srcset="img/ramos/ines-960.jpg 960w, img/ramos/ines-1024.jpg 1024w" sizes="(min-width:900px) 55vw, 100vw" alt="Inés, la florista, sonríe en la puerta de la tienda con un ramo naranja y rosa envuelto en papel kraft." width="1024" height="768" loading="lazy">
+    <div class="texto">
+      <h2 id="t-envuelto">Envuelto a mano</h2>
+      <p>En papel kraft y con cordel. Lo recoges en la tienda o te lo llevamos por el barrio de las Letras.</p>
+      <ul class="encargos">
+        <li><b>Ramos a tu medida</b><span>Dinos para quién es, qué colores le gustan y cuánto quieres gastar.</span></li>
+        <li><b>Tarjetas con tu diseño</b><span>Con su nombre, una foto o un dibujo tuyo, hechas para el ramo.</span></li>
+        <li><b>¿No lo ves aquí?</b><span>Cajas de flores, plantas, un detalle para la oficina. Pregúntanos.</span></li>
+      </ul>
+      <button class="boton" type="button" data-demo="Contar tu idea">Cuéntanos tu idea</button>
+    </div>
+  </section>
+
+  <section class="banda viernes" aria-labelledby="t-viernes">
+    <div class="texto">
+      <h2 id="t-viernes">Cada viernes, un color</h2>
+      <p>Un ramo en casa cada semana, cada vez de un color. 20 € a la semana, sin permanencia.</p>
+      <button class="boton" type="button" data-demo="Apuntarme a las flores de los viernes">Apuntarme</button>
+    </div>
+    <ol class="semanas" id="semanas"></ol>
+  </section>
+
+  <section class="banda bodas" aria-labelledby="t-bodas">
+    <img src="img/ramos/bodas-960.jpg" srcset="img/ramos/bodas-960.jpg 960w, img/ramos/bodas-1600.jpg 1600w" sizes="100vw" alt="Mesa larga de boda en un patio de Madrid con centros bajos de rosas blancas, ranúnculos y paniculata delante de una pared amarilla." width="1600" height="1194" loading="lazy">
+    <div class="texto">
+      <h2 id="t-bodas">Bodas y celebraciones</h2>
+      <p>Ramo de novia, mesas y centros. Dinos la fecha y cuántos sois.</p>
+      <button class="boton" type="button" data-demo="Pedir presupuesto para un evento">Pedir presupuesto</button>
+    </div>
+  </section>
+
+  <section class="banda tienda" aria-labelledby="t-tienda">
+    <img src="img/ramos/tienda-960.jpg" srcset="img/ramos/tienda-960.jpg 960w, img/ramos/tienda-1600.jpg 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="La tienda: fachada de madera verde con las puertas abiertas y cubos de flores naranjas, rosas, rojas y blancas en la acera." width="1600" height="1194" loading="lazy">
+    <div class="texto">
+      <h2 id="t-tienda">Calle de Santa María</h2>
+      <p>A 3 minutos andando del metro de Antón Martín.</p>
+      <dl class="horario" id="horario"></dl>
+      <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de Santa María, a 3 minutos andando del metro de Antón Martín. Toca para agrandarlo."><p class="crece" aria-hidden="true">Ampliar</p></button>
+      <div class="llegar"><a class="boton claro" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760">Cómo llegar</a></div>
+      <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Web de muestra diseñada por <a href="https://covalente.eu">Covalente</a>. Fotos creadas con IA. <a href="/legal.html">Aviso legal</a></p>
+  <button class="boton claro" type="button" id="abrir-panel">Ver el panel de Inés</button>
+</footer>
+
+<dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
+  <form method="dialog" id="hoja-form">
+    <div class="cabeza"><span class="bola" id="hoja-bola" aria-hidden="true"></span><div><h2 id="t-hoja" tabindex="-1">Mandarina</h2><p class="resumen" id="resumen"></p></div></div>
+    <fieldset id="f-mezcla" hidden>
+      <legend>Colores de la mezcla</legend>
+      <div class="horas" id="mezcla"></div>
+      <p class="mezcla-aviso" id="mezcla-aviso">Elige dos o más y lo mezclamos con lo que llegó hoy.</p>
+    </fieldset>
+    <fieldset>
+      <legend>Cómo lo quieres</legend>
+      <div class="entregas">
+        <label class="opcion"><input type="radio" name="entrega" value="tienda" checked><b>Lo recojo</b><small>En la tienda</small></label>
+        <label class="opcion" id="op-casa"><input type="radio" name="entrega" value="casa"><b>Me lo traéis</b><small id="reparto-texto">Barrio de las Letras, +4 €</small></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend id="t-horas">Hora</legend>
+      <p class="dia-horas" id="dia-horas"></p>
+      <div class="horas" id="horas" role="radiogroup" aria-labelledby="t-horas dia-horas"></div>
+    </fieldset>
+    <div class="campo"><label for="c-tarjeta">Tarjeta, si es un regalo</label><input id="c-tarjeta" name="tarjeta" maxlength="90" autocomplete="off" placeholder="La escribimos a mano"></div>
+    <div class="campo"><label for="c-nombre">Nombre</label><input id="c-nombre" name="nombre" autocomplete="name" required></div>
+    <div class="campo"><label for="c-tel">Teléfono</label><input id="c-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required><small>Te avisamos por WhatsApp cuando esté listo.</small></div>
+    <div class="campo" id="campo-dir" hidden><label for="c-dir">Dirección</label><input id="c-dir" name="dir" autocomplete="street-address"></div>
+    <div class="acciones">
+      <button class="boton" value="ok" id="encargar">Encargar</button>
+      <p class="pago" id="pago">Pagas al recogerlo, con tarjeta o en efectivo.</p>
+      <button class="boton claro" value="cancelar" formnovalidate>Volver</button>
+    </div>
+  </form>
+  <div class="hecho" id="hecho" hidden>
+    <h2 tabindex="-1" id="t-hecho">Encargado</h2>
+    <span class="numero" id="numero">0</span>
+    <p id="hecho-texto"></p>
+    <button class="boton" type="button" id="cerrar-hecho">Hecho</button>
+  </div>
+</dialog>
+
+<dialog class="hoja panel" id="panel" aria-labelledby="t-panel">
+  <form method="dialog" id="panel-form">
+    <div><h2 id="t-panel" tabindex="-1">Panel de Inés</h2><p class="resumen">Lo que cambies aquí se ve al momento en la web. En este ejemplo no se guarda.</p></div>
+    <fieldset>
+      <legend>Precio de cada tamaño</legend>
+      <div class="fila">
+        <div class="campo"><label for="p-s">Pequeño, €</label><input id="p-s" type="number" min="1" inputmode="numeric"></div>
+        <div class="campo"><label for="p-m">Mediano, €</label><input id="p-m" type="number" min="1" inputmode="numeric"></div>
+        <div class="campo"><label for="p-l">Grande, €</label><input id="p-l" type="number" min="1" inputmode="numeric"></div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Ramos que quedan hoy</legend>
+      <div class="fila cuatro" id="p-quedan"></div>
+    </fieldset>
+    <label class="marca-check"><input type="checkbox" id="p-reparto"> Hoy hay reparto</label>
+    <p class="act" id="p-act" aria-live="polite"></p>
+    <div class="acciones"><button class="boton" value="ok">Cerrar el panel</button></div>
+  </form>
+</dialog>
+
+<p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const q = new URLSearchParams(location.search);
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)');
+  const euros = n => n.toLocaleString('es-ES', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
+
+  // Los ramos de hoy: uno por color, cada uno fotografiado en su pared. y: altura del nombre en la foto (en %).
+  // Precios de barrio en Madrid (investigacion/17-precios-reales-casos.md): 20, 30 y 45 €.
+  const RAMOS = {
+    mandarina: { n: 'Mandarina', flores: 'Ranúnculos, rosas y tulipanes naranjas.', pared: '#266699', y: 27, quedan: 4 },
+    frambuesa: { n: 'Frambuesa', flores: 'Rosas fucsia y rosa palo, con lisianthus y eucalipto.', pared: '#366048', y: 26, quedan: 5 },
+    granada:   { n: 'Granada', flores: 'Rosas rojas, anémonas, ranúnculos y hypericum.', pared: '#E0B8BD', y: 27, quedan: 3 },
+    azahar:    { n: 'Azahar', flores: 'Rosas blancas, ranúnculos y paniculata, con eucalipto.', pared: '#DCA840', y: 25, quedan: 4 },
+    macedonia: { n: 'Macedonia', flores: 'Un poco de todo. Tú eliges los colores de la mezcla.', pared: '#5A3846', y: 27, quedan: 4, mixto: true }
+  };
+  // Para el ramo mixto, los colores que se pueden mezclar (los de los otros ramos)
+  const TONOS = { naranjas: { n: 'Naranjas', c: '#F08A24' }, rosas: { n: 'Rosas', c: '#E2457E' }, rojos: { n: 'Rojos', c: '#B5121B' }, blancos: { n: 'Blancos', c: '#F6F3EC' } };
+  const ORDEN = Object.keys(RAMOS);
+  const TAMANO = { s: { n: 'Pequeño', precio: 20, tallos: 10 }, m: { n: 'Mediano', precio: 30, tallos: 15 }, l: { n: 'Grande', precio: 45, tallos: 25 } };
+  const pedido = q.get('ramo'), ptam = q.get('t');
+  const est = { ramo: RAMOS[pedido] ? pedido : 'mandarina', t: TAMANO[ptam] ? ptam : 'm', entrega: 'tienda', hora: null, cuando: 'Hoy', reparto: true, envio: 4, mezcla: new Set(Object.keys(TONOS)) };
+  const mezclaTexto = () => { const l = [...est.mezcla].map(k => TONOS[k].n.toLowerCase()); return l.length > 1 ? l.slice(0, -1).join(', ') + ' y ' + l.at(-1) : l.join(''); };
+  const foto = (id, w) => `img/ramos/${id}-${w}.jpg`;
+  const bola = (el, id) => { el.style.setProperty('--c', RAMOS[id].pared); el.style.backgroundImage = `url(${foto(id, 960)})`; };
+
+  // ——— Hora de Madrid (o la de ?hora=HH:MM) ———
+  const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const ABRE = 10 * 60, CIERRA = 20 * 60;
+  function ahora() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    const d = new Date(Date.UTC(+p.year, +p.month - 1, +p.day));
+    let min = +p.hour * 60 + +p.minute;
+    const h = q.get('hora'); if (/^\d{1,2}:\d{2}$/.test(h || '')) { const [a, b] = h.split(':'); min = +a * 60 + +b; }
+    return { d, min };
+  }
+  const abreEse = d => d.getUTCDay() !== 0;
+  const fechaTexto = d => `${DIAS[d.getUTCDay()]} ${d.getUTCDate()} de ${MESES[d.getUTCMonth()]}`;
+  const hhmm = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+  function horas(entrega = est.entrega) {
+    const { d, min } = ahora(), margen = entrega === 'casa' ? 90 : 60, fin = CIERRA - (entrega === 'casa' ? 60 : 30);
+    let dia = new Date(d), desde = Math.ceil((min + margen) / 30) * 30, cuando = 'Hoy';
+    if (!abreEse(dia) || desde > fin || RAMOS[est.ramo].quedan === 0) {
+      do { dia.setUTCDate(dia.getUTCDate() + 1); } while (!abreEse(dia));
+      const dif = Math.round((dia - d) / 864e5);
+      cuando = dif === 1 ? 'Mañana' : DIAS[dia.getUTCDay()][0].toUpperCase() + DIAS[dia.getUTCDay()].slice(1);
+      desde = ABRE + 30;
+    }
+    desde = Math.max(desde, ABRE + 30);
+    const lista = []; for (let m = desde; m <= fin; m += 30) lista.push(m);
+    return { cuando, dia, lista };
+  }
+
+  // ——— La pared: una escena por ramo (foto, nombre y el mismo ramo recortado delante) ———
+  $('#escenas').innerHTML = ORDEN.map(id => `<div class="escena" data-id="${id}" aria-hidden="true"><div class="lienzo">
+      <img class="foto" alt="" width="2400" height="1792" data-srcset="${foto(id, 960)} 960w, ${foto(id, 1600)} 1600w, ${foto(id, 2400)} 2400w">
+      <p class="palabra" style="--y:${RAMOS[id].y}%">${RAMOS[id].n}</p>
+      <img class="delante" alt="" width="2400" height="1792" data-srcset="img/ramos/${id}-recorte-960.webp 960w, img/ramos/${id}-recorte-1600.webp 1600w, img/ramos/${id}-recorte-2400.webp 2400w">
+    </div></div>`).join('');
+  const sizes = () => { const e = $('#escenas'); return Math.ceil(Math.max(e.clientWidth, e.clientHeight * 1.3394)) + 'px'; };
+  function cargar(id, prioridad) {
+    document.querySelectorAll(`.escena[data-id="${id}"] img[data-srcset]`).forEach(i => {
+      i.sizes = sizes(); if (prioridad) i.fetchPriority = 'high'; i.srcset = i.dataset.srcset; i.removeAttribute('data-srcset');
+    });
+  }
+  // El nombre ocupa casi todo el ancho en el móvil y un 80 % en pantallas grandes, sin pasar del 30 % de alto.
+  // Va a la altura de las puntas del ramo: asoma entero por arriba y las flores le tapan solo la parte de abajo
+  function medir() {
+    const e = $('#escenas'), W = e.clientWidth, H = e.clientHeight, ancho = W < 700 ? .94 : W < 1100 ? .86 : .8;
+    document.querySelectorAll('.palabra').forEach(p => {
+      p.style.setProperty('--fs', '100px');
+      const fs = Math.min(100 * W * ancho / p.scrollWidth, H * .3);
+      p.style.setProperty('--fs', fs.toFixed(1) + 'px');
+    });
+    document.querySelectorAll('.escena img[srcset]').forEach(i => { i.sizes = sizes(); });
+  }
+
+  $('#ramos').innerHTML = ORDEN.map(id => `<label class="ramo" data-id="${id}"><input type="radio" name="ramo" value="${id}"${id === est.ramo ? ' checked' : ''}><span class="bola" aria-hidden="true"></span><span>${RAMOS[id].n}</span><small></small></label>`).join('');
+  document.querySelectorAll('.ramo .bola').forEach(b => bola(b, b.closest('.ramo').dataset.id));
+  $('#tamanos').innerHTML = Object.entries(TAMANO).map(([k]) => `<label class="tam"><input type="radio" name="t" value="${k}"${k === est.t ? ' checked' : ''}><b></b><small></small></label>`).join('');
+
+  function pintarTamanos() {
+    document.querySelectorAll('.tam').forEach(l => { const t = TAMANO[l.querySelector('input').value]; l.querySelector('b').textContent = euros(t.precio); l.querySelector('small').textContent = `${t.tallos} tallos`; l.querySelector('input').setAttribute('aria-label', `${t.n}: ${euros(t.precio)}, unos ${t.tallos} tallos`); });
+  }
+  function pintarAbierto() {
+    const { d, min } = ahora(), abierto = abreEse(d) && min >= ABRE && min < CIERRA;
+    const a = $('#abierto'); a.classList.toggle('cerrado', !abierto);
+    a.querySelector('span').textContent = abierto ? `Abierto hasta las ${hhmm(CIERRA)}` : (abreEse(d) && min < ABRE ? `Abrimos a las ${hhmm(ABRE)}` : 'Cerrado ahora');
+    const filas = [['Lunes a sábado', '10:00 a 20:00'], ['Domingo', 'Cerrado']];
+    $('#horario').innerHTML = filas.map(([x, y], i) => { const hoy = (i === 0) === abreEse(d); return `<dt${hoy ? ' class="hoy-dia"' : ''}>${x}</dt><dd style="margin:0"${hoy ? ' class="hoy-dia"' : ''}>${y}</dd>`; }).join('');
+  }
+  function pintarRamo() {
+    const r = RAMOS[est.ramo], t = TAMANO[est.t], { cuando, lista } = horas('tienda'), agotado = r.quedan === 0;
+    $('#t-ramo').textContent = `Ramo ${r.n}`;
+    $('#flores-txt').textContent = r.flores;
+    const primera = lista[0];
+    $('#cuando').innerHTML = primera == null ? 'Hoy ya no da tiempo.' : `<b>${cuando} desde las ${hhmm(primera)}</b>, en la tienda o en tu casa.`;
+    $('#quiero').textContent = `${agotado ? 'Lo quiero para mañana' : 'Lo quiero'} · ${euros(t.precio)}`;
+    $('#quedan').textContent = agotado ? 'Los de hoy se han acabado.' : cuando === 'Hoy' ? `Quedan ${r.quedan} para hoy. Pagas al recogerlo.` : 'Pagas al recogerlo, con tarjeta o en efectivo.';
+    document.querySelectorAll('.ramo').forEach(l => { const q2 = RAMOS[l.dataset.id].quedan; l.classList.toggle('agotado', q2 === 0); l.querySelector('small').textContent = q2 === 0 ? 'Mañana' : ''; });
+  }
+
+  // ——— Cambiar de ramo: la pared entera cambia de color y el nombre entra por el lado del que vienes ———
+  function elegir(id, mover = true) {
+    const antes = ORDEN.indexOf(est.ramo), ahora_ = ORDEN.indexOf(id), dir = ahora_ >= antes ? 1 : -1;
+    est.ramo = id; document.body.dataset.ramo = id;
+    document.querySelector('meta[name=theme-color]').content = RAMOS[id].pared;
+    cargar(id, true);
+    document.querySelectorAll('.escena').forEach(e => {
+      const es = e.dataset.id === id;
+      if (mover) e.style.setProperty('--dx', (es ? dir * 7 : -dir * 7) + '%');
+      e.classList.toggle('activa', es);
+    });
+    const r = document.querySelector(`.ramo input[value="${id}"]`); if (r && !r.checked) r.checked = true;
+    pintarRamo();
+    // carga el siguiente para que el cambio sea inmediato
+    cargar(ORDEN[(ahora_ + 1) % ORDEN.length]);
+  }
+  $('#ramos').addEventListener('change', e => elegir(e.target.value));
+  $('#tamanos').addEventListener('change', e => { est.t = e.target.value; pintarRamo(); });
+  // Deslizar sobre la foto en el móvil
+  let x0 = null;
+  $('#escenas').addEventListener('pointerdown', e => { x0 = e.clientX; });
+  $('#escenas').addEventListener('pointerup', e => {
+    if (x0 == null) return; const dx = e.clientX - x0; x0 = null;
+    if (Math.abs(dx) < 50) return;
+    const i = ORDEN.indexOf(est.ramo), j = (i + (dx < 0 ? 1 : -1) + ORDEN.length) % ORDEN.length; elegir(ORDEN[j]);
+  });
+  $('#escenas').addEventListener('pointercancel', () => { x0 = null; });
+
+  // ——— El encargo, en una hoja ———
+  const hoja = $('#hoja');
+  function pintarHoras() {
+    const { cuando, dia, lista } = horas();
+    if (!lista.includes(est.hora)) est.hora = lista[0] ?? null;
+    $('#dia-horas').textContent = `${cuando}, ${fechaTexto(dia)}`;
+    $('#horas').innerHTML = lista.map(m => `<label class="hora"><input type="radio" name="hora" value="${m}"${m === est.hora ? ' checked' : ''}><span>${hhmm(m)}</span></label>`).join('');
+    est.cuando = cuando;
+  }
+  function pintarHoja() {
+    const r = RAMOS[est.ramo], t = TAMANO[est.t], casa = est.entrega === 'casa', total = t.precio + (casa ? est.envio : 0);
+    $('#t-hoja').textContent = r.n; bola($('#hoja-bola'), est.ramo);
+    $('#resumen').textContent = `${t.n}, unos ${t.tallos} tallos · ${euros(t.precio)}`;
+    const casaL = $('#op-casa'); casaL.querySelector('input').disabled = !est.reparto;
+    $('#reparto-texto').textContent = est.reparto ? `Barrio de las Letras, +${euros(est.envio)}` : 'Hoy no hay reparto';
+    $('#campo-dir').hidden = !casa; $('#c-dir').required = casa;
+    const mixto = !!r.mixto, pocos = mixto && est.mezcla.size < 2;
+    $('#f-mezcla').hidden = !mixto;
+    if (mixto) $('#resumen').textContent = `${t.n}, unos ${t.tallos} tallos, con ${mezclaTexto()} · ${euros(t.precio)}`;
+    $('#mezcla-aviso').textContent = pocos ? 'Elige al menos dos colores para mezclar.' : 'Lo mezclamos con lo que llegó hoy del mercado.';
+    $('#encargar').textContent = pocos ? 'Elige al menos dos colores' : `Encargar · ${euros(total)}`; $('#encargar').disabled = est.hora == null || pocos;
+    $('#pago').textContent = casa ? 'Pagas al recibirlo, con tarjeta o en efectivo.' : 'Pagas al recogerlo, con tarjeta o en efectivo.';
+  }
+  $('#pide').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!est.reparto && est.entrega === 'casa') est.entrega = 'tienda';
+    document.querySelector(`input[name=entrega][value=${est.entrega}]`).checked = true;
+    pintarHoras(); pintarHoja();
+    $('#hoja-form').hidden = false; $('#hecho').hidden = true;
+    hoja.showModal(); $('#t-hoja').focus();
+  });
+  $('#mezcla').innerHTML = Object.entries(TONOS).map(([k, x]) => `<label class="hora tono"><input type="checkbox" name="tono" value="${k}" checked><span><i style="--c:${x.c}"></i>${x.n}</span></label>`).join('');
+  $('#hoja-form').addEventListener('change', e => {
+    const { name, value } = e.target;
+    if (name === 'tono') e.target.checked ? est.mezcla.add(value) : est.mezcla.delete(value);
+    if (name === 'entrega') { est.entrega = value; pintarHoras(); }
+    if (name === 'hora') est.hora = +value;
+    pintarHoja();
+  });
+  $('#hoja-form').addEventListener('submit', e => {
+    if (e.submitter?.value === 'cancelar') return;
+    e.preventDefault();
+    const casa = est.entrega === 'casa', r = RAMOS[est.ramo];
+    $('#numero').textContent = 1040 + Math.floor(Math.random() * 60);
+    $('#hecho-texto').textContent = `${r.n}, ${TAMANO[est.t].n.toLowerCase()}${r.mixto ? `, con ${mezclaTexto()}` : ''}. ${casa ? 'Te lo llevamos' : 'Te esperamos'} ${est.cuando === 'Hoy' ? 'hoy' : est.cuando.toLowerCase()} a las ${hhmm(est.hora)}. Es una demostración: no se ha enviado nada.`;
+    $('#hoja-form').hidden = true; $('#hecho').hidden = false; $('#t-hecho').focus();
+    if (est.cuando === 'Hoy' && r.quedan > 0) r.quedan--;
+    pintarRamo();
+  });
+  $('#cerrar-hecho').onclick = () => hoja.close();
+
+  // ——— Cada viernes, un color: los cuatro próximos viernes, una pared cada uno ———
+  (() => {
+    const { d } = ahora(), v = new Date(d); v.setUTCDate(v.getUTCDate() + ((5 - v.getUTCDay() + 7) % 7 || 7));
+    $('#semanas').innerHTML = ORDEN.slice(0, 4).map((id, i) => { const f = new Date(v); f.setUTCDate(v.getUTCDate() + 7 * i);
+      return `<li class="semana"><span class="muestra" data-id="${id}" aria-hidden="true"></span><b>${RAMOS[id].n}</b><small>Viernes ${f.getUTCDate()} de ${MESES[f.getUTCMonth()]}</small></li>`; }).join('');
+    document.querySelectorAll('.semana .muestra').forEach(m => bola(m, m.dataset.id));
+  })();
+
+  // ——— Panel de Inés ———
+  const panel = $('#panel');
+  $('#abrir-panel').onclick = () => {
+    $('#p-s').value = TAMANO.s.precio; $('#p-m').value = TAMANO.m.precio; $('#p-l').value = TAMANO.l.precio;
+    $('#p-quedan').innerHTML = ORDEN.map(id => `<div class="campo"><label for="p-q-${id}">${RAMOS[id].n}</label><input id="p-q-${id}" type="number" min="0" inputmode="numeric" value="${RAMOS[id].quedan}"></div>`).join('');
+    $('#p-reparto').checked = est.reparto; $('#p-act').textContent = '';
+    panel.showModal(); $('#t-panel').focus();
+  };
+  $('#panel-form').addEventListener('input', () => {
+    for (const k of ['s', 'm', 'l']) { const v = Math.round(+$('#p-' + k).value); if (v > 0) TAMANO[k].precio = v; }
+    ORDEN.forEach(id => { const v = $('#p-q-' + id); if (v && v.value !== '') RAMOS[id].quedan = Math.max(0, Math.round(+v.value)); });
+    est.reparto = $('#p-reparto').checked;
+    pintarTamanos(); pintarRamo();
+    $('#p-act').textContent = `Actualizado a las ${hhmm(ahora().min)}`;
+  });
+
+  // ——— Lo que en la web real abre WhatsApp ———
+  let avisoT;
+  document.querySelectorAll('[data-demo]').forEach(b => b.onclick = () => {
+    const a = $('#aviso'); a.textContent = `En la web real, «${b.dataset.demo}» abre WhatsApp con la tienda.`;
+    a.classList.add('ver'); clearTimeout(avisoT); avisoT = setTimeout(() => a.classList.remove('ver'), 3200);
+  });
+
+  // ——— El mapa: pequeño siempre; al tocarlo crece y dibuja el camino desde el metro ———
+  fetch('img/mapa.svg').then(r => r.text()).then(t => { $('#mapa').insertAdjacentHTML('afterbegin', t.replace(/<title[^>]*>.*?<\/title>/, '')); $('#mapa svg').setAttribute('aria-hidden', 'true'); }).catch(() => {});
+  $('#mapa').onclick = () => {
+    const m = $('#mapa'), g = !m.classList.contains('grande'); m.classList.toggle('grande', g); m.setAttribute('aria-expanded', g);
+    m.querySelector('.crece').textContent = g ? 'Reducir' : 'Ampliar';
+    if (g && !quieto.matches) { m.classList.remove('dibuja'); void m.offsetWidth; m.classList.add('dibuja'); }
+  };
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !quieto.matches) { $('#mapa').classList.add('dibuja'); o.disconnect(); } }), { threshold: .6 }).observe($('#mapa'));
+
+  // ——— Arranque ———
+  pintarTamanos(); pintarAbierto();
+  elegir(est.ramo, false);
+  document.fonts.ready.then(medir); medir();
+  new ResizeObserver(medir).observe($('#escenas'));
+  addEventListener('load', () => setTimeout(() => ORDEN.forEach(id => cargar(id)), 1200));
+  setInterval(() => { pintarAbierto(); pintarRamo(); }, 60000);
+})();
+</script>
+<script>
+// Si la visita llega con ?o= (la red de origen), la vuelta a covalente.eu lo conserva. No se guarda nada
+(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
+</script>
+<script src="/contar.js" defer></script>
+</body>
+</html>
