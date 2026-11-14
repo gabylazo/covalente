@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <script>
-// La apertura (seis segundos antes de la web) solo sale en una visita que llega de fuera: sin ancla, sin venir de otra página nuestra, sin recargar ni volver atrás
+// La apertura (unos cuatro segundos antes de la web) solo sale en una visita que llega de fuera: sin ancla, sin venir de otra página nuestra, sin recargar ni volver atrás
 // y sin movimiento reducido. Quien llega de un buscador va directo al contenido, y los robots también. ?intro=1 la fuerza y ?intro=0 la quita;
 // nuestras visitas (?nc=1) no la llevan. No guarda nada.
 (function (h) {
@@ -374,8 +374,8 @@ footer.oscuro{background:var(--verde-2)}
 .pie nav a:hover{border-color:var(--oro); color:var(--oro)}
 .pie nav svg{width:20px; height:20px}
 
-/* ——— La apertura: seis segundos antes de la web. El polvo de oro forma dos átomos, «tu negocio» y «nuestro diseño», que se unen en un enlace covalente;
-   sale el logo y la web se abre desde el enlace. Cuándo sale lo decide el script del <head>; se salta con el botón, con un toque o con Escape. ——— */
+/* ——— La apertura: unos cuatro segundos antes de la web. El polvo de oro forma dos átomos, «tu negocio» y «nuestro diseño», que se unen;
+   debajo sale el logo con «Estudio de diseño en Madrid» y la web se abre desde el enlace. Cuándo sale lo decide el script del <head>; se salta con el botón, con un toque o con Escape. ——— */
 #apertura{display:none}
 .con-apertura{overflow:hidden; scrollbar-gutter:stable; background:var(--verde)} /* el hueco de la barra de scroll, del color de la apertura */
 .con-apertura #apertura{display:block; position:fixed; inset:0; z-index:100; overflow:hidden; color:var(--marfil); cursor:pointer; touch-action:none;
@@ -389,7 +389,6 @@ footer.oscuro{background:var(--verde-2)}
 .ap-mas{color:var(--oro)}
 .ap-texto{position:absolute; inset:0 0 auto; display:grid; justify-items:center; gap:14px; padding-inline:20px; text-align:center; pointer-events:none}
 .ap-texto > *{opacity:0}
-.ap-frase{font:500 clamp(27px, 3.4vw, 44px)/1.05 var(--titulo); letter-spacing:-.012em}
 .ap-logo{width:clamp(230px, 28vw, 380px)}
 .ap-oficio{font-size:clamp(16px, 1.5vw, 20px); font-weight:600; color:rgba(243,236,221,.86)}
 .ap-saltar{position:absolute; z-index:2; right:max(16px, 3vw); bottom:max(16px, 3vh); min-height:44px; padding:8px 18px; border:1px solid rgba(243,236,221,.4); border-radius:8px;
@@ -406,7 +405,7 @@ footer.oscuro{background:var(--verde-2)}
 </head>
 <body>
 <div id="apertura" role="region" aria-label="Presentación de Covalente">
-  <p class="sr">Tu negocio y nuestro diseño forman un enlace covalente. Covalente, estudio de diseño en Madrid.</p>
+  <p class="sr">Tu negocio y nuestro diseño se unen. Covalente, estudio de diseño en Madrid.</p>
   <button class="ap-saltar" type="button">Saltar</button>
   <div aria-hidden="true">
     <canvas></canvas>
@@ -428,7 +427,7 @@ footer.oscuro{background:var(--verde-2)}
       <g class="ap-er"><circle r="24" fill="url(#ap-le)"/><circle r="7.5" fill="#FFF6DC"/></g>
     </svg>
     <span class="ap-rot ap-rl">tu negocio</span><span class="ap-rot ap-mas">+</span><span class="ap-rot ap-rr">nuestro diseño</span>
-    <div class="ap-texto"><span class="ap-frase">Eso es un enlace</span><img class="ap-logo" src="img/covalente-horizontal-oscuro.svg" alt="" width="851" height="134"><span class="ap-oficio">Estudio de diseño en Madrid</span></div>
+    <div class="ap-texto"><img class="ap-logo" src="img/covalente-horizontal-oscuro.svg" alt="" width="851" height="134"><span class="ap-oficio">Estudio de diseño en Madrid</span></div>
   </div>
 </div>
 <script>
@@ -448,10 +447,10 @@ footer.oscuro{background:var(--verde-2)}
   try {
     const q = s => ap.querySelector(s), cv = q('canvas'), ctx = cv.getContext('2d'), svg = q('svg');
     const [gl, gr, el, er, des, lente, rl, rr, mas, texto] = ['gl', 'gr', 'el', 'er', 'des', 'lente', 'rl', 'rr', 'mas', 'texto'].map(k => q('.ap-' + k));
-    const rec = q('#ap-rec circle'), colas = ap.querySelectorAll('.ap-cola'), [frase, logo, oficio] = texto.children;
+    const rec = q('#ap-rec circle'), colas = ap.querySelectorAll('.ap-cola'), [logo, oficio] = texto.children;
     const c = x => x < 0 ? 0 : x > 1 ? 1 : x, eio = x => x * x * (3 - 2 * x), eo = x => 1 - (1 - x) ** 3;
     // El guion, en segundos: el enlace, cuándo empieza a abrirse y cuándo acaba
-    const TB = 2, TO = 5.2, FIN = 5.9, SEP = 1.95, JUN = .72, TONOS = ['#C9A35C', '#E3C27E', '#FFF3D6'], NIV = 4;
+    const TB = 1.6, TO = 3.7, FIN = 4.3, SEP = 1.95, JUN = .72, TONOS = ['#C9A35C', '#E3C27E', '#FFF3D6'], NIV = 4;
     const cubos = Array.from({ length: 3 * NIV }, () => []);
     let W, H, R, CX, CY, RMAX, wl, wr, G = [];
     const medir = () => {
@@ -460,7 +459,7 @@ footer.oscuro{background:var(--verde-2)}
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
       R = Math.max(48, Math.min(110, W * .148, H * .12)); CX = W / 2; CY = Math.round(H * .38); RMAX = Math.hypot(CX, Math.max(CY, H - CY)) + 60;
       ap.style.setProperty('--ap-x', CX + 'px'); ap.style.setProperty('--ap-y', CY + 'px');
-      texto.style.top = CY + R + 26 + 'px'; wl = rl.offsetWidth; wr = rr.offsetWidth;
+      texto.style.top = CY + R + 34 + 'px'; wl = rl.offsetWidth; wr = rr.offsetWidth;
       for (const o of [des, lente, rec]) o.setAttribute('cy', CY);
       des.setAttribute('cx', CX); lente.setAttribute('r', R); rec.setAttribute('r', R);
       // Granos con semilla fija: cada uno sabe dónde flota y su sitio en uno de los dos átomos (el anillo o el núcleo)
@@ -474,7 +473,7 @@ footer.oscuro{background:var(--verde-2)}
     };
     const pintar = t => {
       // El polvo: llena la pantalla, se junta en los dos átomos, se suelta y, al abrirse la web, sale despedido desde el enlace
-      const amb = 1 - .5 * eio(c((t - 1) / .9)), abre = c((t - TO) / (FIN - TO)), empuje = abre * abre * RMAX;
+      const amb = 1 - .5 * eio(c((t - .8) / .8)), abre = c((t - TO) / (FIN - TO)), empuje = abre * abre * RMAX;
       for (const b of cubos) b.length = 0;
       for (const g of G) cubos[g.tono * NIV + Math.min(NIV - 1, Math.floor(g.a * (.72 + .28 * Math.sin(2.4 * t + g.f2 * 3)) * NIV))].push(g);
       ctx.clearRect(0, 0, W, H);
@@ -483,7 +482,7 @@ footer.oscuro{background:var(--verde-2)}
         ctx.fillStyle = TONOS[Math.floor(i / NIV)]; ctx.globalAlpha = amb * (i % NIV + .5) / NIV; ctx.beginPath();
         for (const g of b) {
           let x = g.x0 + 14 * Math.sin(.5 * t + g.f1), y = g.y0 - g.v * t + 7 * Math.sin(.8 * t + g.f2);
-          const w = eio(c((t - .15 - g.s * .25) / .6)) * (1 - eio(c((t - .95 - g.s * .3) / .7)));
+          const w = eio(c((t - .1 - g.s * .2) / .5)) * (1 - eio(c((t - .8 - g.s * .25) / .6)));
           if (w > 0) { x += (CX + g.lado * SEP * R + g.ox - x) * w; y += (CY + g.oy - y) * w; }
           if (empuje) { const dx = x - CX, dy = y - CY, d = Math.hypot(dx, dy) || 1, e = empuje * (.5 + g.s); x += dx / d * e; y += dy / d * e; }
           ctx.moveTo(x + g.r, y); ctx.arc(x, y, g.r, 0, 6.283);
@@ -507,9 +506,9 @@ footer.oscuro{background:var(--verde-2)}
       ctx.globalAlpha = 1;
       // Los dos átomos: se acercan, rebotan un poco al unirse y la zona que comparten se enciende
       const fuera = 1 - eio(c((t - TO) / .3)), k = R / 100;
-      svg.style.opacity = eio(c((t - .6) / .35)) * fuera;
+      svg.style.opacity = eio(c((t - .5) / .3)) * fuera;
       const bote = t > TB ? .06 * Math.exp(-5 * (t - TB)) * Math.sin(15 * (t - TB)) : 0;
-      const d = R * (SEP + (JUN - SEP) * eio(c((t - (TB - .75)) / .75)) + bote), XL = CX - d, XR = CX + d;
+      const d = R * (SEP + (JUN - SEP) * eio(c((t - (TB - .6)) / .6)) + bote), XL = CX - d, XR = CX + d;
       gl.setAttribute('transform', `translate(${XL} ${CY}) scale(${k})`); gr.setAttribute('transform', `translate(${XR} ${CY}) scale(${k})`);
       rec.setAttribute('cx', XR); lente.setAttribute('cx', XL);
       lente.setAttribute('opacity', eio(c((t - TB) / .4)) * (.22 + .06 * Math.sin(3 * (t - TB))));
@@ -523,13 +522,12 @@ footer.oscuro{background:var(--verde-2)}
       colas[0].setAttribute('transform', `rotate(${(aL - .8) * 57.2958})`); colas[1].setAttribute('transform', `rotate(${aR * 57.2958})`);
       colas[0].setAttribute('opacity', .6 * (1 - u)); colas[1].setAttribute('opacity', .6 * (1 - u));
       // Los rótulos van bajo su átomo y, al unirse, quedan a los lados del «+»
-      const ro = eio(c((t - .7) / .3)) * (1 - eio(c((t - 2.55) / .25))), y = CY + R + 22 + 'px';
+      const ro = eio(c((t - .6) / .25)) * (1 - eio(c((t - 2.05) / .2))), y = CY + R + 22 + 'px';
       rl.style.left = Math.min(XL, CX - 16 - wl / 2) + 'px'; rr.style.left = Math.max(XR, CX + 16 + wr / 2) + 'px'; mas.style.left = CX + 'px';
       rl.style.top = rr.style.top = mas.style.top = y;
       rl.style.opacity = rr.style.opacity = ro; mas.style.opacity = ro * eio(c((t - TB - .05) / .25));
-      // «Eso es un enlace» + el logo, que se queda; después, qué somos
-      const fi = eio(c((t - 2.75) / .3)), li = eio(c((t - 2.85) / .3)), oi = eio(c((t - 4.15) / .3));
-      frase.style.opacity = fi * (1 - eio(c((t - 4) / .25))); frase.style.translate = `0 ${(1 - fi) * 8}px`;
+      // Debajo, el logo y qué somos
+      const li = eio(c((t - 2.25) / .3)), oi = eio(c((t - 2.4) / .3));
       logo.style.opacity = li * fuera; logo.style.translate = `0 ${(1 - li) * 8}px`;
       oficio.style.opacity = oi * fuera; oficio.style.translate = `0 ${(1 - oi) * 8}px`;
     };
