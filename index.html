@@ -1,7 +1,20 @@
 <!doctype html>
 <html lang="es">
 <head>
-<script>document.documentElement.classList.add('js')</script>
+<script>
+// La apertura (seis segundos antes de la web) solo sale en una visita que llega de fuera: sin ancla, sin venir de otra página nuestra, sin recargar ni volver atrás
+// y sin movimiento reducido. Quien llega de un buscador va directo al contenido, y los robots también. ?intro=1 la fuerza y ?intro=0 la quita;
+// nuestras visitas (?nc=1) no la llevan. No guarda nada.
+(function (h) {
+  h.classList.add('js');
+  try {
+    var q = new URLSearchParams(location.search), i = q.get('intro'), n = performance.getEntriesByType('navigation')[0], r = document.referrer;
+    if (i !== '0' && !matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      (i === '1' || (!q.has('nc') && !location.hash && (!r || r.indexOf(location.origin) !== 0) && !/google\.|bing\.|duckduckgo\.|yahoo\./.test(r) &&
+        !/bot|crawl|spider/i.test(navigator.userAgent) && (!n || n.type === 'navigate')))) h.classList.add('con-apertura', 'ap-espera');
+  } catch (e) {}
+})(document.documentElement);
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Covalente, estudio de diseño en Madrid</title>
@@ -360,10 +373,190 @@ footer.oscuro{background:var(--verde-2)}
 .pie nav a{display:grid; place-items:center; width:44px; height:44px; border-radius:50%; border:1px solid var(--linea-oscura); color:var(--marfil)}
 .pie nav a:hover{border-color:var(--oro); color:var(--oro)}
 .pie nav svg{width:20px; height:20px}
+
+/* ——— La apertura: seis segundos antes de la web. El polvo de oro forma dos átomos, «tu negocio» y «nuestro diseño», que se unen en un enlace covalente;
+   sale el logo y la web se abre desde el enlace. Cuándo sale lo decide el script del <head>; se salta con el botón, con un toque o con Escape. ——— */
+#apertura{display:none}
+.con-apertura{overflow:hidden; scrollbar-gutter:stable; background:var(--verde)} /* el hueco de la barra de scroll, del color de la apertura */
+.con-apertura #apertura{display:block; position:fixed; inset:0; z-index:100; overflow:hidden; color:var(--marfil); cursor:pointer; touch-action:none;
+  background:radial-gradient(60% 55% at 50% 38%, rgba(46,118,97,.55), transparent 72%), radial-gradient(60% 70% at 0% 100%, rgba(4,22,18,.75), transparent 70%), var(--verde)}
+#apertura::before{content:""; position:absolute; inset:0; background:var(--grano); opacity:.2; mix-blend-mode:overlay; pointer-events:none}
+#apertura canvas, #apertura svg{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+#apertura svg{opacity:0}
+.ap-anillo{fill:none; stroke-width:2.2}
+.ap-cola{fill:none; stroke-width:4; stroke-linecap:round; stroke-dasharray:80 548.3}
+.ap-rot{position:absolute; left:0; top:0; translate:-50% 0; font-size:clamp(15px, 1.5vw, 20px); font-weight:600; white-space:nowrap; opacity:0; pointer-events:none}
+.ap-mas{color:var(--oro)}
+.ap-texto{position:absolute; inset:0 0 auto; display:grid; justify-items:center; gap:14px; padding-inline:20px; text-align:center; pointer-events:none}
+.ap-texto > *{opacity:0}
+.ap-frase{font:500 clamp(27px, 3.4vw, 44px)/1.05 var(--titulo); letter-spacing:-.012em}
+.ap-logo{width:clamp(230px, 28vw, 380px)}
+.ap-oficio{font-size:clamp(16px, 1.5vw, 20px); font-weight:600; color:rgba(243,236,221,.86)}
+.ap-saltar{position:absolute; z-index:2; right:max(16px, 3vw); bottom:max(16px, 3vh); min-height:44px; padding:8px 18px; border:1px solid rgba(243,236,221,.4); border-radius:8px;
+  background:none; color:var(--marfil); font:600 15px var(--f); cursor:pointer}
+.ap-saltar:hover{border-color:var(--oro); color:var(--oro)}
+#apertura .ap-saltar:focus-visible{outline:2px solid var(--oro); outline-offset:3px}
+#apertura.abriendo{pointer-events:none;
+  -webkit-mask-image:radial-gradient(circle at var(--ap-x) var(--ap-y), transparent calc(var(--ap-r, 0px) - 48px), #000 var(--ap-r, 0px));
+  mask-image:radial-gradient(circle at var(--ap-x) var(--ap-y), transparent calc(var(--ap-r, 0px) - 48px), #000 var(--ap-r, 0px))}
+/* Debajo de la apertura la portada está quieta y entera; su entrada empieza cuando la apertura se abre */
+.ap-espera .escaparate .marco > *, .ap-espera .escaparate .navegador::after, .ap-espera .escaparate .movil::after{animation:none}
 </style>
 <meta name="p:domain_verify" content="1d49ada69d3427aec2253d094f92c344">
 </head>
 <body>
+<div id="apertura" role="region" aria-label="Presentación de Covalente">
+  <p class="sr">Tu negocio y nuestro diseño forman un enlace covalente. Covalente, estudio de diseño en Madrid.</p>
+  <button class="ap-saltar" type="button">Saltar</button>
+  <div aria-hidden="true">
+    <canvas></canvas>
+    <svg>
+      <defs>
+        <radialGradient id="ap-hl"><stop offset="0" stop-color="#F3ECDD" stop-opacity=".5"/><stop offset="1" stop-color="#F3ECDD" stop-opacity="0"/></radialGradient>
+        <radialGradient id="ap-hr"><stop offset="0" stop-color="#E3C27E" stop-opacity=".55"/><stop offset="1" stop-color="#E3C27E" stop-opacity="0"/></radialGradient>
+        <radialGradient id="ap-nl" cx=".38" cy=".34"><stop offset="0" stop-color="#FFF"/><stop offset="1" stop-color="#E2D8C3"/></radialGradient>
+        <radialGradient id="ap-nr" cx=".38" cy=".34"><stop offset="0" stop-color="#FFF0C8"/><stop offset="1" stop-color="#C9A35C"/></radialGradient>
+        <radialGradient id="ap-le"><stop offset="0" stop-color="#FFF6DC" stop-opacity=".95"/><stop offset=".35" stop-color="#F1D79A" stop-opacity=".5"/><stop offset="1" stop-color="#E3C27E" stop-opacity="0"/></radialGradient>
+        <radialGradient id="ap-lf"><stop offset="0" stop-color="#FFFBEF" stop-opacity=".9"/><stop offset=".5" stop-color="#F1D79A" stop-opacity=".35"/><stop offset="1" stop-color="#E3C27E" stop-opacity="0"/></radialGradient>
+        <clipPath id="ap-rec"><circle/></clipPath>
+      </defs>
+      <circle class="ap-des" fill="url(#ap-lf)" opacity="0"/>
+      <circle class="ap-lente" fill="#E3C27E" opacity="0" clip-path="url(#ap-rec)"/>
+      <g class="ap-gl"><circle r="80" fill="url(#ap-hl)"/><circle class="ap-anillo" r="100" stroke="rgba(243,236,221,.85)"/><circle class="ap-cola" r="100" stroke="#FFF6DC"/><circle r="21" fill="url(#ap-nl)"/></g>
+      <g class="ap-gr"><circle r="80" fill="url(#ap-hr)"/><circle class="ap-anillo" r="100" stroke="#C9A35C"/><circle class="ap-cola" r="100" stroke="#F1D79A"/><circle r="21" fill="url(#ap-nr)"/></g>
+      <g class="ap-el"><circle r="24" fill="url(#ap-le)"/><circle r="7.5" fill="#FFF6DC"/></g>
+      <g class="ap-er"><circle r="24" fill="url(#ap-le)"/><circle r="7.5" fill="#FFF6DC"/></g>
+    </svg>
+    <span class="ap-rot ap-rl">tu negocio</span><span class="ap-rot ap-mas">+</span><span class="ap-rot ap-rr">nuestro diseño</span>
+    <div class="ap-texto"><span class="ap-frase">Eso es un enlace</span><img class="ap-logo" src="img/covalente-horizontal-oscuro.svg" alt="" width="851" height="134"><span class="ap-oficio">Estudio de diseño en Madrid</span></div>
+  </div>
+</div>
+<script>
+// La apertura. Todo se pinta en función del tiempo (el polvo, los átomos y los textos), así que saltarla es adelantar el reloj.
+// Si algo falla, o a los 9 s pase lo que pase, se quita y queda la web.
+(() => {
+  const raiz = document.documentElement, ap = document.getElementById('apertura');
+  if (!raiz.classList.contains('con-apertura')) { ap.remove(); return; }
+  let hecho = false, abierto = false, t0 = 0;
+  const resto = () => document.querySelectorAll('body > :not(#apertura):not(script)');
+  const soltar = () => { // la web de debajo empieza: su entrada y los paneles vivos
+    if (abierto) return; abierto = true;
+    raiz.classList.remove('ap-espera'); for (const e of resto()) e.inert = false;
+    document.dispatchEvent(new Event('aperturafin'));
+  };
+  const fin = () => { if (hecho) return; hecho = true; soltar(); raiz.classList.remove('con-apertura'); ap.remove(); };
+  try {
+    const q = s => ap.querySelector(s), cv = q('canvas'), ctx = cv.getContext('2d'), svg = q('svg');
+    const [gl, gr, el, er, des, lente, rl, rr, mas, texto] = ['gl', 'gr', 'el', 'er', 'des', 'lente', 'rl', 'rr', 'mas', 'texto'].map(k => q('.ap-' + k));
+    const rec = q('#ap-rec circle'), colas = ap.querySelectorAll('.ap-cola'), [frase, logo, oficio] = texto.children;
+    const c = x => x < 0 ? 0 : x > 1 ? 1 : x, eio = x => x * x * (3 - 2 * x), eo = x => 1 - (1 - x) ** 3;
+    // El guion, en segundos: el enlace, cuándo empieza a abrirse y cuándo acaba
+    const TB = 2, TO = 5.2, FIN = 5.9, SEP = 1.95, JUN = .72, TONOS = ['#C9A35C', '#E3C27E', '#FFF3D6'], NIV = 4;
+    const cubos = Array.from({ length: 3 * NIV }, () => []);
+    let W, H, R, CX, CY, RMAX, wl, wr, G = [];
+    const medir = () => {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      W = ap.clientWidth; H = ap.clientHeight; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      R = Math.max(48, Math.min(110, W * .148, H * .12)); CX = W / 2; CY = Math.round(H * .38); RMAX = Math.hypot(CX, Math.max(CY, H - CY)) + 60;
+      ap.style.setProperty('--ap-x', CX + 'px'); ap.style.setProperty('--ap-y', CY + 'px');
+      texto.style.top = CY + R + 26 + 'px'; wl = rl.offsetWidth; wr = rr.offsetWidth;
+      for (const o of [des, lente, rec]) o.setAttribute('cy', CY);
+      des.setAttribute('cx', CX); lente.setAttribute('r', R); rec.setAttribute('r', R);
+      // Granos con semilla fija: cada uno sabe dónde flota y su sitio en uno de los dos átomos (el anillo o el núcleo)
+      let s = 20261114;
+      const azar = () => { s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+      G = Array.from({ length: Math.max(700, Math.min(1800, Math.round(W * H / 800))) }, (_, i) => {
+        const an = azar() * 6.283, ra = azar() < .74 ? R * (1 + (azar() - .5) * .07) : .21 * R * Math.sqrt(azar()), t = azar();
+        return { x0: azar() * W, y0: azar() * (H + 80), f1: azar() * 6.283, f2: azar() * 6.283, v: 5 + azar() * 11, r: (.7 + Math.pow(azar(), 2.2) * 2.3) * (W < 700 ? .72 : 1), a: .45 + azar() * .55,
+          tono: t < .5 ? 0 : t < .86 ? 1 : 2, s: azar(), lado: i % 2 ? 1 : -1, ox: ra * Math.cos(an), oy: ra * Math.sin(an) };
+      });
+    };
+    const pintar = t => {
+      // El polvo: llena la pantalla, se junta en los dos átomos, se suelta y, al abrirse la web, sale despedido desde el enlace
+      const amb = 1 - .5 * eio(c((t - 1) / .9)), abre = c((t - TO) / (FIN - TO)), empuje = abre * abre * RMAX;
+      for (const b of cubos) b.length = 0;
+      for (const g of G) cubos[g.tono * NIV + Math.min(NIV - 1, Math.floor(g.a * (.72 + .28 * Math.sin(2.4 * t + g.f2 * 3)) * NIV))].push(g);
+      ctx.clearRect(0, 0, W, H);
+      cubos.forEach((b, i) => {
+        if (!b.length) return;
+        ctx.fillStyle = TONOS[Math.floor(i / NIV)]; ctx.globalAlpha = amb * (i % NIV + .5) / NIV; ctx.beginPath();
+        for (const g of b) {
+          let x = g.x0 + 14 * Math.sin(.5 * t + g.f1), y = g.y0 - g.v * t + 7 * Math.sin(.8 * t + g.f2);
+          const w = eio(c((t - .15 - g.s * .25) / .6)) * (1 - eio(c((t - .95 - g.s * .3) / .7)));
+          if (w > 0) { x += (CX + g.lado * SEP * R + g.ox - x) * w; y += (CY + g.oy - y) * w; }
+          if (empuje) { const dx = x - CX, dy = y - CY, d = Math.hypot(dx, dy) || 1, e = empuje * (.5 + g.s); x += dx / d * e; y += dy / d * e; }
+          ctx.moveTo(x + g.r, y); ctx.arc(x, y, g.r, 0, 6.283);
+        }
+        ctx.fill();
+      });
+      const pb = (t - TB) / .9; // las chispas del enlace
+      if (pb > 0 && pb < 1) {
+        ctx.fillStyle = '#FFF3D6'; ctx.globalAlpha = (1 - pb) * (1 - pb); ctx.beginPath();
+        for (let j = 0; j < 48; j++) {
+          const an = j * 2.39996, d = R * (.22 + (.95 + 2 * ((j * 37) % 23) / 23) * eo(pb)), r = .8 + ((j * 13) % 5) * .3, x = CX + d * Math.cos(an), y = CY + d * Math.sin(an) * .92;
+          ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, 6.283);
+        }
+        ctx.fill();
+      }
+      if (abre > 0) { // la web se abre desde el enlace: un hueco que crece (máscara) con un aro de oro en el borde
+        const r = RMAX * abre ** 1.6;
+        ap.style.setProperty('--ap-r', r + 'px'); ap.style.opacity = 1 - eio(c((abre - .6) / .4));
+        ctx.globalAlpha = .8 * (1 - abre); ctx.strokeStyle = '#E3C27E'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(CX, CY, r + 6, 0, 6.283); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      // Los dos átomos: se acercan, rebotan un poco al unirse y la zona que comparten se enciende
+      const fuera = 1 - eio(c((t - TO) / .3)), k = R / 100;
+      svg.style.opacity = eio(c((t - .6) / .35)) * fuera;
+      const bote = t > TB ? .06 * Math.exp(-5 * (t - TB)) * Math.sin(15 * (t - TB)) : 0;
+      const d = R * (SEP + (JUN - SEP) * eio(c((t - (TB - .75)) / .75)) + bote), XL = CX - d, XR = CX + d;
+      gl.setAttribute('transform', `translate(${XL} ${CY}) scale(${k})`); gr.setAttribute('transform', `translate(${XR} ${CY}) scale(${k})`);
+      rec.setAttribute('cx', XR); lente.setAttribute('cx', XL);
+      lente.setAttribute('opacity', eio(c((t - TB) / .4)) * (.22 + .06 * Math.sin(3 * (t - TB))));
+      const pd = (t - TB) / .7;
+      des.setAttribute('r', R * (.2 + 2.1 * eo(c(pd)))); des.setAttribute('opacity', pd > 0 && pd < 1 ? .75 * (1 - pd) * (1 - pd) : 0);
+      // Los electrones: cada uno gira en su átomo y, al unirse, los dos se quedan en la zona compartida
+      const aL = -.6 + 2.6 * t, aR = 2.4 - 2.2 * t, u = eio(c((t - (TB - .2)) / .5)), b = 2.6 * (t - TB);
+      const poner = (g, px, py, qx, qy) => g.setAttribute('transform', `translate(${px + (qx - px) * u} ${py + (qy - py) * u}) scale(${k})`);
+      poner(el, XL + R * Math.cos(aL), CY + R * Math.sin(aL), CX + .056 * R * Math.cos(b), CY - R * (.275 - .04 * Math.sin(b)));
+      poner(er, XR + R * Math.cos(aR), CY + R * Math.sin(aR), CX - .056 * R * Math.cos(b), CY + R * (.275 - .04 * Math.sin(b)));
+      colas[0].setAttribute('transform', `rotate(${(aL - .8) * 57.2958})`); colas[1].setAttribute('transform', `rotate(${aR * 57.2958})`);
+      colas[0].setAttribute('opacity', .6 * (1 - u)); colas[1].setAttribute('opacity', .6 * (1 - u));
+      // Los rótulos van bajo su átomo y, al unirse, quedan a los lados del «+»
+      const ro = eio(c((t - .7) / .3)) * (1 - eio(c((t - 2.55) / .25))), y = CY + R + 22 + 'px';
+      rl.style.left = Math.min(XL, CX - 16 - wl / 2) + 'px'; rr.style.left = Math.max(XR, CX + 16 + wr / 2) + 'px'; mas.style.left = CX + 'px';
+      rl.style.top = rr.style.top = mas.style.top = y;
+      rl.style.opacity = rr.style.opacity = ro; mas.style.opacity = ro * eio(c((t - TB - .05) / .25));
+      // «Eso es un enlace» + el logo, que se queda; después, qué somos
+      const fi = eio(c((t - 2.75) / .3)), li = eio(c((t - 2.85) / .3)), oi = eio(c((t - 4.15) / .3));
+      frase.style.opacity = fi * (1 - eio(c((t - 4) / .25))); frase.style.translate = `0 ${(1 - fi) * 8}px`;
+      logo.style.opacity = li * fuera; logo.style.translate = `0 ${(1 - li) * 8}px`;
+      oficio.style.opacity = oi * fuera; oficio.style.translate = `0 ${(1 - oi) * 8}px`;
+    };
+    const abrir = () => { if (!abierto) { ap.classList.add('abriendo'); soltar(); } };
+    const bucle = ahora => {
+      if (hecho) return;
+      const t = (ahora - t0) / 1000;
+      if (t >= FIN) return fin();
+      if (t >= TO) abrir();
+      pintar(t); requestAnimationFrame(bucle);
+    };
+    const saltar = () => { const ahora = performance.now(); if (!hecho && ahora - t0 < TO * 1000) t0 = ahora - TO * 1000; };
+    medir();
+    const fijo = new URLSearchParams(location.search).get('it'); // ?intro=1&it=3.2 la deja quieta en ese segundo, para revisarla
+    if (document.fonts) document.fonts.ready.then(() => { if (hecho) return; wl = rl.offsetWidth; wr = rr.offsetWidth; if (fijo !== null) pintar(+fijo); });
+    if (fijo !== null) { if (+fijo >= TO) abrir(); pintar(+fijo); return; }
+    pintar(0);
+    ap.addEventListener('click', saltar);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') saltar(); });
+    addEventListener('resize', () => { if (!hecho) medir(); });
+    document.addEventListener('DOMContentLoaded', () => { if (!abierto) for (const e of resto()) e.inert = true; });
+    // El reloj arranca cuando la pestaña se ve
+    const empezar = () => { t0 = performance.now(); setTimeout(fin, 9000); requestAnimationFrame(bucle); };
+    if (document.hidden) document.addEventListener('visibilitychange', empezar, { once: true }); else empezar();
+  } catch (e) { fin(); }
+})();
+</script>
 <a class="salto" href="#trabajos">Saltar a los trabajos</a>
 
 <header class="oscuro">
@@ -390,7 +583,7 @@ footer.oscuro{background:var(--verde-2)}
           <a class="enlace" href="#trabajos">Ver trabajos</a>
         </div>
         <ul class="garantias">
-          <li><b>Desde 39 €</b>sin sorpresas</li>
+          <li><b>Desde 39 €</b>sin IVA</li>
           <li><b>3 semanas</b>o menos</li>
           <li><b>Tuyo</b>archivos y derechos</li>
         </ul>
@@ -772,7 +965,12 @@ if (ORIGEN[origen]) {
     const tic = () => { const k = (i + 1) % total; ver(k); if (k === 0 && !encima) parar(); };
     const andar = () => { if (!reloj) reloj = setInterval(tic, PASO); };
     const parar = () => { clearInterval(reloj); reloj = 0; };
-    new IntersectionObserver(([e]) => { if (e.isIntersecting) setTimeout(andar, +v.dataset.espera || 300 + n * 150); else { parar(); ver(0); } }, { threshold: .5 }).observe(v);
+    const salir = () => setTimeout(andar, +v.dataset.espera || 300 + n * 150); // con la apertura delante, espera a que se abra
+    new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) { parar(); ver(0); }
+      else if (document.documentElement.classList.contains('ap-espera')) document.addEventListener('aperturafin', salir, { once: true });
+      else salir();
+    }, { threshold: .5 }).observe(v);
     document.addEventListener('visibilitychange', () => { if (document.hidden) parar(); });
     if (matchMedia('(hover: hover)').matches) {
       v.addEventListener('pointerenter', () => { encima = true; andar(); });
