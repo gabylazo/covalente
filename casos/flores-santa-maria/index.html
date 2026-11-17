@@ -606,7 +606,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
 </script>
 <script>
 // Si la visita llega con ?o= (la red de origen), la vuelta a covalente.eu lo conserva. No se guarda nada
-(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
+(() => { const o = new URLSearchParams(location.search).get('o'); if (/^(ig|tt|pin|g|cartel|tarjeta|taller|web)$/.test(o || '')) document.querySelectorAll('a[href^="https://covalente.eu"]').forEach(a => { a.href = 'https://covalente.eu/?o=' + o; }); })();
 </script>
 <script src="/contar.js" defer></script>
 </body>

@@ -817,8 +817,8 @@ footer.oscuro{background:var(--verde-2)}
 const WA = 'https://wa.me/34613912752?text=';
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.wa); });
 
-// De qué red llega la visita (?o=ig, tt, pin, g o cartel): se añade al mensaje de WhatsApp y pasa a los casos. No se guarda nada
-const ORIGEN = { ig: 'Os he visto en Instagram.', tt: 'Os he visto en TikTok.', pin: 'Os he visto en Pinterest.', g: 'Os he encontrado en Google.', cartel: 'Vengo por el cartel.' };
+// De dónde llega la visita (?o=ig, tt, pin, g, cartel, tarjeta, taller o web): se añade al mensaje de WhatsApp y pasa a los casos. No se guarda nada
+const ORIGEN = { ig: 'Os he visto en Instagram.', tt: 'Os he visto en TikTok.', pin: 'Os he visto en Pinterest.', g: 'Os he encontrado en Google.', cartel: 'Vengo por el cartel.', tarjeta: 'Tengo vuestra tarjeta.', taller: 'Vengo por el taller.', web: 'Vengo por vuestros consejos.' };
 const origen = new URLSearchParams(location.search).get('o');
 if (ORIGEN[origen]) {
   document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
