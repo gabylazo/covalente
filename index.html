@@ -192,7 +192,7 @@ footer.oscuro{background:var(--verde-2)}
 /* ——— Precios ——— */
 .precios{background:radial-gradient(60% 50% at 90% 0%, rgba(201,163,92,.1), transparent 70%), linear-gradient(180deg, var(--blanco), #F7F5EF); border-block:1px solid var(--linea)}
 .precios .cabeza{margin-bottom:40px}
-.precios .cabeza p{text-wrap:balance}
+.precios .cabeza p{text-wrap:pretty} /* balance acortaba la primera línea y, justificada, se abría (18/11) */
 .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
 
 /* Paquetes (12/11, v2; sin IVA en los precios por orden suya): el precio y, debajo, una sola barra que hace la resta. La barra entera es lo que cobran otros estudios;
@@ -292,7 +292,7 @@ footer.oscuro{background:var(--verde-2)}
 .x-info summary:hover{background:rgba(15,59,50,.07)}
 .x-info summary svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transition:rotate .2s}
 .x-info[open] summary svg{rotate:180deg}
-.x-info p{margin:0 16px 14px 110px; font-size:14px; line-height:1.5; color:#3F3D38; max-width:62ch; text-align:justify; hyphens:auto}
+.x-info p{margin:0 16px 14px 110px; font-size:14px; line-height:1.5; color:#3F3D38; max-width:62ch; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
 @media (max-width:480px){ .x-pieza{grid-template-columns:64px minmax(0, 1fr) auto 30px; gap:10px; padding-right:10px} .x-pieza img{width:64px; height:48px} .x-texto small{font-size:12.5px} .x-marca{width:30px; height:30px} .x-info summary{margin-left:75px} .x-info p{margin:0 12px 12px 12px} }
 
 /* Tu presupuesto: en el móvil, una barra que se queda pegada abajo en cuanto eliges algo; en el escritorio, un panel al lado de la lista */
@@ -365,6 +365,8 @@ footer.oscuro{background:var(--verde-2)}
 .contacto{padding-block:96px 72px; display:grid; gap:28px}
 .contacto h2{font-size:clamp(52px, 7.6vw, 110px); letter-spacing:-.02em}
 .contacto p{color:var(--marfil-suave); font-size:19px; max-width:34ch}
+/* Texto justificado (Gabriela, 18/11): los párrafos de más de una línea. No los titulares, las cifras, las etiquetas ni los pasos */
+.cabeza p, .linea, .esencia, .p-incluye small, .preguntas details p, .contacto p, .pie p{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
 .contacto .acciones{display:flex; flex-wrap:wrap; gap:14px 28px; align-items:center}
 .pie{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px; padding-block:28px 40px; border-top:1px solid var(--linea-oscura); font-size:14px; color:var(--marfil-suave)}
 .pie img{width:130px}
