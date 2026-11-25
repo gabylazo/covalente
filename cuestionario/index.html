@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuéntanos tu negocio, Covalente</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Cuéntanos tu negocio y te preparamos el presupuesto. Unas preguntas sobre tu marca o tu web; al terminar se abre tu expediente.">
+<link rel="canonical" href="https://covalente.eu/cuestionario/">
+<meta name="theme-color" content="#0F3B32">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preload" href="../fuentes/Figtree.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Figtree";src:url("../fuentes/Figtree.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Bodoni Moda";src:url("../fuentes/BodoniModa.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Bodoni Moda";src:url("../fuentes/BodoniModa-cursiva.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Gloock";src:url("fuentes/Gloock.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Young Serif";src:url("fuentes/YoungSerif.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Familjen Grotesk";src:url("fuentes/FamiljenGrotesk.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Big Shoulders Display";src:url("fuentes/BigShouldersDisplay.woff2") format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"Italiana";src:url("fuentes/Italiana.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IM Fell English";src:url("fuentes/IMFellEnglish.woff2") format("woff2");font-weight:400;font-display:swap}
+</style>
+<link rel="stylesheet" href="expediente.css">
+<style>
+:root{
+  --marfil:#F3ECDD; --papel:#FAF6EC; --campo:#E9E0CC; --verde:#0F3B32; --verde2:#0A2B24; --negro:#1A1A1A; --suave:#4A4F48; --oro:#C9A35C; --linea:#D9CFBA; --borde:#B9AE97;
+  --titulo:'Bodoni Moda', Georgia, serif; --texto:'Figtree', system-ui, sans-serif; --r:3px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--marfil);color:var(--negro);font:400 16px/1.55 var(--texto);-webkit-font-smoothing:antialiased}
+p,figcaption{hyphens:auto;-webkit-hyphens:auto;hyphenate-limit-chars:7 3 3;-webkit-hyphenate-limit-before:3;-webkit-hyphenate-limit-after:3}
+.j{text-align:justify}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+a{color:var(--verde)}
+img{display:block;max-width:100%}
+.cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(16px,4vw) 14px;background:var(--verde)}
+.cabecera img{height:20px;width:auto}
+.cabecera .lema{font:italic 400 15px/1 var(--titulo);letter-spacing:.01em;color:#DCD5C3;white-space:nowrap}
+.barra{height:2px;background:var(--verde)}
+.barra i{display:block;height:2px;width:0;background:var(--oro);transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.marco{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:clamp(32px,5vw,88px);padding:0 max(16px,4vw);min-height:calc(100vh - 130px)}
+.marco.solo{grid-template-columns:minmax(0,1fr)}
+.escena{padding:clamp(24px,5vh,56px) 0 80px;max-width:720px}
+.escena.ancha{max-width:1324px}
+.escena.entra{animation:entra .32s cubic-bezier(.2,.7,.2,1)}
+@keyframes entra{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.escena.entra,.dato.nuevo{animation:none}.barra i{transition:none}}
+.arriba{display:flex;align-items:center;gap:14px;min-height:44px;margin:0 0 26px}
+.cuadro{width:44px;height:44px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--borde);border-radius:var(--r);background:var(--papel);color:var(--negro);transition:background .15s,color .15s,border-color .15s}
+.cuadro:hover{background:var(--verde);border-color:var(--verde);color:var(--marfil)}
+.cuadro svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.signo{width:44px;height:44px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:0;background:none;color:var(--negro);border-radius:var(--r);transition:color .15s}
+.signo svg{width:15px;height:19px;fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.signo:hover{color:var(--verde)}
+.signo:focus-visible{outline-offset:-3px}
+#volver{margin-left:-15px}
+.paso{font:400 14px/1 var(--texto);color:var(--suave);font-variant-numeric:tabular-nums;white-space:nowrap}
+h1{font:400 clamp(30px,3.3vw,46px)/1.1 var(--titulo);letter-spacing:-.005em;margin:0 0 16px;text-wrap:balance}
+h1:focus{outline:none}
+h2{font:400 clamp(22px,2.2vw,28px)/1.18 var(--titulo);margin:0 0 12px}
+.ayuda{font:400 16px/1.55 var(--texto);color:var(--suave);max-width:58ch;margin:0 0 30px;text-wrap:pretty}
+.nota{color:var(--suave);font-size:14.5px;max-width:58ch;margin:18px 0 0}
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:8px 24px;border:1px solid var(--verde);border-radius:var(--r);background:var(--verde);color:var(--marfil);font:500 15.5px/1.15 var(--texto);letter-spacing:.01em;text-decoration:none;text-align:center;transition:background-color .2s,border-color .2s,color .2s}
+.boton:hover{background:var(--verde2);border-color:var(--verde2)}
+.boton.sec{background:transparent;color:var(--verde)}
+.boton.sec:hover{background:rgba(15,59,50,.07);border-color:var(--verde)}
+.boton[disabled]{opacity:.35;cursor:not-allowed}
+.boton.grande{min-height:56px;padding:8px 28px;font-size:17px}
+.acciones{display:flex;align-items:center;gap:12px;margin-top:36px;flex-wrap:wrap}
+.opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;max-width:680px;margin:0 0 8px}
+.opciones.una-col{grid-template-columns:minmax(0,1fr);max-width:560px}
+.op{display:flex;align-items:center;gap:14px;min-height:56px;padding:12px 18px;border:1px solid var(--borde);border-radius:var(--r);background:var(--papel);color:var(--negro);font:400 16.5px/1.3 var(--texto);text-align:left;transition:background .15s,color .15s,border-color .15s}
+.op:hover{border-color:var(--verde)}
+.op[aria-checked="true"],.op[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:var(--marfil)}
+.op > svg{width:22px;height:22px;flex:none}
+.op .txt{flex:1}
+.op .ej{font:400 19px/1.1 var(--titulo);color:var(--verde);white-space:nowrap}
+.op[aria-pressed="true"] .ej{color:var(--oro)}
+.op .orden{font:500 14px/1 var(--texto);font-variant-numeric:tabular-nums}
+.caja{width:18px;height:18px;flex:none;border:1px solid currentColor;border-radius:2px;display:inline-flex;align-items:center;justify-content:center}
+.caja svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+[aria-pressed="true"] .caja svg{opacity:1}
+.op[aria-pressed="true"] .caja,.op[aria-pressed="true"] .orden{color:var(--oro)}
+.palabras{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;max-width:680px;margin:0 0 8px}
+.palabras .op{min-height:50px;padding:10px 16px;font-size:16px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:0 0 8px}
+.pieza{display:flex;flex-direction:column;border:1px solid var(--borde);border-radius:var(--r);background:var(--papel);overflow:hidden;text-align:left;transition:border-color .15s}
+.pieza:hover{border-color:var(--verde)}
+.pieza .vista{display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;padding:16px;text-align:center;line-height:1.05;overflow-wrap:anywhere;background:#FFFDF8;color:var(--negro);border-bottom:1px solid var(--linea)}
+.pieza .vista img{width:100%;height:100%;object-fit:cover}
+.pieza .pie{display:flex;align-items:center;gap:10px;min-height:48px;padding:10px 14px;font:400 15px/1.3 var(--texto);transition:background .15s,color .15s}
+.pieza[aria-pressed="true"]{border-color:var(--verde)}
+.pieza[aria-pressed="true"] .pie{background:var(--verde);color:var(--marfil)}
+.dos{display:inline-grid;grid-template-columns:1fr 1fr;margin:0 0 22px;border:1px solid var(--verde);border-radius:var(--r);overflow:hidden}
+.dos button{min-height:48px;padding:10px 22px;font:500 15px/1.2 var(--texto);color:var(--verde);background:var(--papel);text-align:center}
+.dos button[aria-selected="true"]{background:var(--verde);color:var(--marfil)}
+.colores{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:12px;max-width:680px}
+.chip{display:flex;flex-direction:column;border:1px solid var(--borde);border-radius:var(--r);background:var(--papel);overflow:hidden;text-align:left;transition:border-color .15s}
+.chip:hover{border-color:var(--verde)}
+.chip .tinta{display:block;aspect-ratio:4/3;box-shadow:inset 0 -1px 0 rgba(26,26,26,.1);transition:opacity .2s}
+.chip .nom{display:block;font:400 14px/1.25 var(--texto);padding:8px 10px 2px}
+.chip .estado{display:block;font:500 13px/1.2 var(--texto);padding:0 10px 9px;min-height:1.9em;color:var(--verde)}
+.chip.si{border-color:var(--verde);background:var(--verde);color:var(--marfil)}
+.chip.si .estado{color:var(--marfil)}
+.chip.no .tinta{opacity:.28}
+.chip.no .estado{color:var(--negro)}
+.campo{display:block;margin:0 0 18px;max-width:620px}
+.campo > span{display:block;font:500 15px/1.3 var(--texto);margin-bottom:8px}
+.campo.sin > span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.campo input,.campo textarea{width:100%;font:400 18px/1.4 var(--texto);color:var(--negro);background:var(--papel);border:1px solid var(--borde);border-radius:var(--r);padding:14px 16px}
+.campo textarea{min-height:130px;resize:vertical}
+.campo input::placeholder,.campo textarea::placeholder{color:#6F695E}
+.campo input:focus,.campo textarea:focus{outline:2px solid var(--verde);outline-offset:1px;border-color:var(--verde)}
+.sub{margin-top:30px}
+.sub > p{font:500 16px/1.3 var(--texto);margin:0 0 12px}
+.sub > h2{margin:0 0 18px}
+.oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.privacidad{font-size:14px;color:var(--suave);max-width:60ch;margin-top:26px}
+.acepto{display:flex;gap:12px;align-items:flex-start;font-size:15px;margin-top:14px;max-width:60ch;min-height:44px;cursor:pointer}
+.acepto input{width:22px;height:22px;margin-top:1px;accent-color:var(--verde);flex:none}
+.lam{position:relative;display:block;overflow:hidden;border-radius:2px;min-width:0}
+.lam .llena{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.movil{position:relative;display:block;aspect-ratio:9/18.6;border:1px solid #151515;border-radius:24px;background:#151515;overflow:hidden;box-shadow:0 20px 44px rgba(10,24,20,.26)}
+.movil > img,.movil > .vivaweb,.movil > .pant{position:absolute;inset:0;width:100%;height:100%;border-radius:23px;overflow:hidden}
+.movil > img{object-fit:cover;object-position:50% 0}
+.movil > .pant{display:grid;justify-items:center;align-content:center;padding:0 11%;background:var(--verde);color:var(--marfil);text-align:center}
+.movil > .pant svg{display:block;width:58%;height:auto;margin-bottom:16%}
+.pant .msj{font:400 clamp(17px,1.5vw,21px)/1.22 var(--titulo);text-wrap:balance}
+.pant .fch{margin-top:11%;padding-top:11%;border-top:1px solid rgba(243,236,221,.3);font:400 12.5px/1.5 var(--texto);color:#DCD5C3}
+.pant .fch b{display:block;font:400 15px/1.3 var(--texto);color:var(--marfil)}
+.pant .fir{margin-top:6%;font:italic 400 13.5px/1.2 var(--titulo);color:#DCD5C3}
+.ventana{display:grid;grid-template-rows:auto minmax(0,1fr);border:1px solid rgba(26,26,26,.16);border-bottom:0;border-radius:6px 6px 0 0;background:#fff;overflow:hidden;box-shadow:0 20px 44px rgba(10,24,20,.14)}
+.ventana .dir{padding:9px 14px;border-bottom:1px solid rgba(26,26,26,.1);background:#F6F3EC;font:400 12.5px/1 var(--texto);color:var(--suave);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vivaweb{position:relative;height:100%;min-height:0;overflow:hidden;background:#F6EEEC}
+.vivaweb iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#F6EEEC}
+.movil > .vivaweb{background:#F6EEEC url(img/web-nerea-movil.webp) 50% 0/100% auto no-repeat}
+.movil > .vivaweb iframe{background:transparent}
+.portada{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:center}
+.portada h1{font-size:clamp(34px,3.8vw,52px);margin-bottom:6px}
+.elige{display:inline-grid;gap:12px;margin-top:34px}
+.contactos{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:12px;margin-top:30px}
+.contacto{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:8px 30px;border:1px solid var(--verde);border-radius:var(--r);background:var(--verde);color:var(--marfil);text-decoration:none;transition:background-color .2s,border-color .2s}
+.contacto svg{width:22px;height:22px;flex:none;color:var(--oro)}
+.contacto .nom{font:500 17px/1.15 var(--texto);letter-spacing:.01em}
+.contacto:hover{background:var(--verde2);border-color:var(--verde2)}
+.escaparate{margin:0;display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:10px}
+.escaparate .lam{height:clamp(400px,66vh,620px)}
+.esc-foto .llena{object-position:47% 50%}
+.esc-web{display:grid;place-items:center;background:var(--verde)}
+.esc-web .movil{height:84%}
+.escaparate figcaption{grid-column:2;margin-top:6px;font-size:13.5px;line-height:1.45;color:var(--suave)}
+.vivo .atomos circle,.entra .vivo-e .atomos circle{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.6);animation:atomo .5s cubic-bezier(.2,.7,.2,1) forwards}
+.vivo .atomos circle:nth-child(1),.entra .vivo-e .atomos circle:nth-child(1){animation-delay:.1s}
+.vivo .atomos circle:nth-child(2),.entra .vivo-e .atomos circle:nth-child(2){animation-delay:.19s}
+.vivo .atomos circle:nth-child(3),.entra .vivo-e .atomos circle:nth-child(3){animation-delay:.28s}
+.vivo .atomos circle:nth-child(4),.entra .vivo-e .atomos circle:nth-child(4){animation-delay:.37s}
+.vivo .atomos circle:nth-child(5),.entra .vivo-e .atomos circle:nth-child(5){animation-delay:.46s}
+.vivo .linea path,.entra .vivo-e .linea path{stroke-dasharray:1 2;stroke-dashoffset:1.05;animation:traza .95s cubic-bezier(.5,.05,.3,1) .6s forwards}
+.vivo .linea path:nth-child(2),.entra .vivo-e .linea path:nth-child(2){animation-duration:.3s;animation-delay:1s}
+.vivo .linea path:nth-child(3),.entra .vivo-e .linea path:nth-child(3){animation-duration:.25s;animation-delay:1.4s}
+.vivo .palabra,.entra .vivo-e .palabra{opacity:0;animation:aparece .5s ease 1.45s forwards}
+@keyframes traza{to{stroke-dashoffset:0}}
+@keyframes atomo{to{opacity:1;transform:none}}
+@keyframes aparece{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.vivo .linea path,.vivo .atomos circle,.vivo .palabra,.entra .vivo-e .linea path,.entra .vivo-e .atomos circle,.entra .vivo-e .palabra{animation:none!important;stroke-dashoffset:0;opacity:1;transform:none}}
+.paquetes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.2vw,32px)}
+.paquete{position:relative;display:flex;flex-direction:column;min-width:0;padding:10px 10px 18px;border:1px solid var(--linea);border-radius:var(--r);cursor:pointer;transition:border-color .15s}
+.paquete:hover{border-color:var(--borde)}
+.paquete[aria-checked="true"]{border-color:var(--verde)}
+.paquete .lam{aspect-ratio:1/1.08}
+.radio{position:absolute;top:22px;right:22px;z-index:1;width:22px;height:22px;display:grid;place-items:center;border:1px solid var(--verde);border-radius:50%;background:var(--papel)}
+.radio::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--verde);transform:scale(0);transition:transform .15s}
+[aria-checked="true"] > .radio::after{transform:none}
+.p-kit{display:grid;grid-template-columns:58fr 19fr 9fr 14fr}
+.p-kit .c{position:relative;display:flex;align-items:center;justify-content:center;min-width:0}
+.p-kit .c.v{background:var(--verde);color:var(--marfil)}
+.p-kit .c.m{background:var(--marfil);color:var(--negro);align-items:flex-start;padding-top:22px;box-shadow:inset 0 1px 0 var(--borde),inset 0 -1px 0 var(--borde)}
+.p-kit .c.o{background:var(--oro);color:var(--negro)}
+.p-kit .c.n{background:var(--negro);color:var(--marfil)}
+.p-kit .c.v > span:first-child{display:block;width:64%}
+.p-kit .c.v svg{display:block;width:100%;height:auto}
+.p-kit .ics{display:grid;justify-items:center;gap:14px}
+.p-kit .c.m img{border-radius:22%}
+.p-kit .cod{position:absolute;left:50%;bottom:16px;writing-mode:vertical-rl;transform:translateX(-50%) rotate(180deg);font:400 12px/1 var(--texto);letter-spacing:.04em;white-space:nowrap}
+.p-kit .c.v .cod{left:20px;transform:rotate(180deg)}
+.p-web{background:var(--campo)}
+.p-web .movil{position:absolute;left:50%;top:9%;width:54%;transform:translateX(-50%)}
+.paquete .cuerpo{display:flex;flex-direction:column;gap:6px;padding:18px 6px 0;flex:1}
+.paquete .fila{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.paquete .nombre{font:400 25px/1.15 var(--titulo)}
+.paquete .nombre .mas{font:300 .82em/1 var(--texto);padding:0 .08em}
+.paquete .precio{font:400 17px/1 var(--texto);font-variant-numeric:tabular-nums;white-space:nowrap}
+.paquete .que{font:400 14.5px/1.5 var(--texto);color:var(--suave);margin:0;flex:1}
+.paquete.suelto{grid-column:1/-1;padding:18px 64px 20px 16px}
+.paquete.suelto .cuerpo{padding:0}
+.paquete.suelto .radio{top:20px;right:20px}
+.ejemplo{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);grid-template-rows:auto auto 1fr;grid-template-areas:"v t" "v n" "v l";column-gap:clamp(24px,4vw,64px);align-items:start;margin-top:56px;padding-top:44px;border-top:1px solid var(--linea)}
+.ejemplo > h2{grid-area:t}
+.ejemplo > .visor{grid-area:v}
+.ejemplo > .lista{grid-area:l}
+.lienzo{position:relative;display:grid;aspect-ratio:3/2;overflow:hidden;border-radius:2px;background:var(--campo)}
+.lienzo img{min-height:0}
+.lam-logo{grid-template-rows:minmax(0,1fr) auto;background:var(--verde)}
+.lam-logo .gran{display:grid;place-items:center;padding-top:2%}
+.lam-logo .gran svg{display:block;width:27%;min-width:150px;height:auto}
+.lam-logo .cuadros{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
+.lam-logo .cq{display:grid;justify-items:center;align-content:center;gap:14px;padding:22px 8px 16px;background:var(--verde2);font:400 12px/1 var(--texto);color:#C9C2B0;font-variant-numeric:tabular-nums}
+.lam-logo .cq svg{display:block;width:min(124px,62%);height:auto}
+.et-1 .linea,.et-1 .palabra,.et-2 .palabra,.et-3 .palabra{visibility:hidden}
+.et-2 .linea path{stroke-dasharray:1 2;stroke-dashoffset:.46}
+.et-2 .linea path:nth-child(n+2){visibility:hidden}
+.lam-ver{grid-template-columns:repeat(3,minmax(0,1fr))}
+.lam-ver .vr{position:relative;display:grid;place-items:center;min-width:0;padding-bottom:6%}
+.lam-ver .vr svg{display:block;width:48%;height:auto}
+.lam-ver .vr.claro{background:var(--marfil);color:var(--negro);box-shadow:inset 0 0 0 1px var(--borde)}
+.lam-ver .vr.negro{background:var(--negro);color:var(--marfil)}
+.lam-ver .vr.tinta{background:var(--verde);color:var(--marfil)}
+.lam-ver .vr.tinta svg{width:34%;color:var(--oro)}
+.lam-ver .rot{position:absolute;left:clamp(12px,1.6vw,22px);bottom:clamp(12px,1.5vw,20px);font:400 13px/1.2 var(--texto)}
+.rep{position:absolute;right:16px;top:16px;z-index:2;min-height:44px;padding:8px 20px;border:1px solid rgba(243,236,221,.5);border-radius:var(--r);background:var(--verde);color:var(--marfil);font:500 14.5px/1 var(--texto);letter-spacing:.01em;transition:background-color .2s,border-color .2s}
+.rep:hover{background:var(--verde2);border-color:var(--marfil)}
+.rep:focus-visible{outline-color:var(--oro)}
+.lam-pal{display:flex}
+.lam-pal .tn.m{box-shadow:inset 0 1px 0 var(--borde),inset 0 -1px 0 var(--borde)}
+.lam-pal .tn{flex:var(--f) 1 0;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:clamp(12px,1.7vw,24px);background:var(--c);color:var(--t)}
+.lam-pal b{font:400 clamp(17px,1.7vw,22px)/1.15 var(--titulo);margin-bottom:6px}
+.lam-pal .cod{font:400 13px/1.4 var(--texto);font-variant-numeric:tabular-nums}
+.lam-pal .uso{font:400 13px/1.35 var(--texto);margin-top:10px;padding-top:10px;border-top:1px solid currentColor}
+.lam-ico{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.lam-ico .medidas,.lam-ico .usos{display:flex;align-items:center;justify-content:center;padding:6%}
+.lam-ico .medidas{background:var(--papel);color:var(--suave)}
+.lam-ico .usos{position:relative;display:block;padding:0;overflow:hidden;background:var(--campo)}
+.lam-ico .ventana{position:absolute;left:10%;top:16%;width:170%;border-radius:8px 0 0 0}
+.lam-ico .pestanas{display:flex;align-items:flex-end;padding:10px 12px 0;background:#E3DCCD}
+.lam-ico .ventana > img{width:100%;height:auto;border-radius:0}
+.lam-ico .fila{display:flex;align-items:flex-end;gap:clamp(12px,2vw,26px)}
+.lam-ico .tam{display:grid;justify-items:center;gap:12px;font:400 12.5px/1 var(--texto);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lam-ico img{border-radius:22%;flex:none}
+.lam-ico .tam > svg{display:block}
+.lam-ico img.perfil{border-radius:50%}
+.lam-ico .pest{display:flex;align-items:center;gap:9px;padding:10px 22px 10px 12px;border-radius:7px 7px 0 0;background:#F6F3EC;color:var(--negro);font:400 13px/1 var(--texto)}
+.lam-ico .pest img{border-radius:3px}
+.lam-let{grid-template-columns:1fr 1fr}
+.lam-let .lt{display:flex;flex-direction:column;justify-content:flex-end;gap:3px;padding:clamp(16px,2.6vw,34px);min-width:0}
+.lam-let .lt.a{background:var(--papel);color:var(--negro)}
+.lam-let .lt.b{background:var(--verde);color:var(--marfil)}
+.lam-let .aa{font-size:clamp(60px,8.4vw,120px);line-height:1;margin-bottom:auto}
+.lam-let .lt.a .aa,.lam-let .lt.a .frase{font-family:var(--titulo)}
+.lam-let .lt.b .aa{font-weight:300}
+.lam-let b{font:500 15px/1.2 var(--texto)}
+.lam-let .para{font:400 13.5px/1.3 var(--texto)}
+.lam-let .frase{font-size:clamp(17px,1.9vw,24px);line-height:1.2;margin-top:12px;padding-top:12px;border-top:1px solid currentColor}
+.lam-let .lt.a .frase{font-style:italic}
+.lam-foto img{width:100%;height:100%;object-fit:cover}
+.lam-web{padding:5% 6% 0}
+.lam-web .ventana{min-height:0}
+.lam-movil{place-items:center}
+.lam-movil .movil{height:90%}
+.ejemplo .apunte{grid-area:n;margin:0 0 16px;font-size:14.5px;color:var(--suave)}
+.pasa{display:flex;align-items:center;gap:2px;margin-top:8px}
+.pasa p{flex:1;margin:0 14px 0 0;font-size:14.5px;line-height:1.4;color:var(--suave);text-align:justify}
+#ejSig{margin-right:-15px}
+.incluye{list-style:none;margin:0 0 22px;padding:0;border-top:1px solid var(--linea)}
+.incluye li{padding:12px 0;border-bottom:1px solid var(--linea);font-size:15.5px;line-height:1.4}
+.sub.mas{margin-top:56px}
+.extras{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);column-gap:clamp(24px,4vw,64px);align-items:start}
+.ex-vis{min-width:0}
+.ex-lam{aspect-ratio:3/2;background:var(--campo)}
+.ex-carta .llena{object-position:50% 16%}
+.ex-plant{display:flex;align-items:center;justify-content:center;gap:2%;padding:0 2.5%;background:var(--verde)}
+.ex-plant img{display:block;width:30.3%;height:auto;min-width:0}
+.ex-movil{display:grid;place-items:center}
+.ex-movil .movil{height:88%}
+.ex-pie{margin:12px 0 0;font-size:14.5px;line-height:1.45;color:var(--suave);text-align:justify}
+.ex-lista{display:grid;gap:10px;align-content:start;min-width:0}
+.ex-lista .op{min-height:54px;padding:10px 16px;gap:12px;font-size:16px}
+.ex-lista .op.viendo{border-color:var(--verde)}
+.ex-lista .precio{white-space:nowrap;font-variant-numeric:tabular-nums}
+.movil > .fichap{position:absolute;inset:0;width:100%;height:100%;border-radius:23px;overflow:hidden}
+.fichap{container-type:inline-size;display:flex;flex-direction:column;background:#FFFDF8;color:var(--negro);text-align:left}
+.fichap .ff{flex:0 0 40%;min-height:0}
+.fichap .ff img{display:block;width:100%;height:100%;object-fit:cover}
+.fichap .fc{flex:1;display:flex;flex-direction:column;padding:8cqw 8cqw 0}
+.fichap .fn{font:400 10.6cqw/1.08 var(--titulo)}
+.fichap .fh{margin-top:4.6cqw;font:400 5.9cqw/1.35 var(--texto);color:var(--suave)}
+.fichap .fh b{font-weight:500;color:#1E6B45}
+.fichap .fd{margin-top:1.2cqw;font:400 5.9cqw/1.35 var(--texto);color:var(--suave)}
+.fichap .fb{display:grid;grid-template-columns:1fr 1fr;gap:3.6cqw;margin-top:7.5cqw}
+.fichap .fb span{display:flex;align-items:center;justify-content:center;min-height:17cqw;border:1px solid var(--negro);border-radius:2px;font:500 6.1cqw/1 var(--texto)}
+.fichap .fb span:first-child{background:var(--negro);color:#FFFDF8}
+.fichap .fg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.4cqw;margin-top:7.5cqw}
+.fichap .fg img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.antes{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:clamp(28px,5vw,88px);align-items:center}
+.antes .acciones{margin-top:8px}
+.pasos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.2vw,32px)}
+.pasos li{display:grid;gap:18px;min-width:0;align-content:start}
+.pasos .lam{overflow:visible;border-radius:0}
+.pasos .movil{width:100%;box-shadow:0 14px 30px rgba(10,24,20,.16)}
+.pasos .pie{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;row-gap:3px;align-items:baseline}
+.pasos .n{font:400 24px/1 var(--titulo);color:var(--verde)}
+.pasos b{font:500 15.5px/1.3 var(--texto)}
+.pasos .d{grid-column:2;font:400 14px/1.45 var(--texto);color:var(--suave)}
+.tres{list-style:none;counter-reset:n;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:6px 0 0;padding:0;max-width:720px}
+.tres li{counter-increment:n;border-top:1px solid var(--linea);padding:14px 0 0}
+.tres li::before{content:counter(n);display:block;font:400 26px/1 var(--titulo);color:var(--verde);margin-bottom:10px}
+.tres b{display:block;font:500 15.5px/1.3 var(--texto)}
+.tres span{display:block;font:400 14.5px/1.45 var(--texto);color:var(--suave);margin-top:3px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.tres li[aria-current="step"]{border-top-color:var(--verde)}
+.final .ayuda.estado{max-width:720px}
+.tres.en-curso li:not([aria-current])::before,.tres.en-curso li:not([aria-current]) b{color:var(--suave)}
+.expediente{align-self:start;position:sticky;top:24px;margin-top:clamp(24px,5vh,56px);background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);padding:26px 26px 30px;max-height:calc(100vh - 48px);overflow:auto}
+.expediente h2{font:400 24px/1.1 var(--titulo);margin:0}
+.expediente .num{font-size:14px;color:var(--suave);margin:6px 0 20px}
+.expediente .vacio{color:var(--suave);font-size:15px;margin:0}
+.grupo{margin:0 0 18px}
+.grupo h3,.grupo h2{font:500 13px/1.3 var(--texto);color:var(--verde);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--linea)}
+.dato{margin:0 0 10px}
+.dato dt{font-size:13px;color:var(--suave)}
+.dato dd{margin:1px 0 0;font:400 15.5px/1.35 var(--texto);overflow-wrap:anywhere}
+.dato.nuevo{animation:nuevo 1.2s ease-out}
+@keyframes nuevo{from{background:rgba(201,163,92,.28)}to{background:transparent}}
+.abrir-exp,.cerrar-exp{display:none}
+.fichero{display:flex;align-items:center;gap:16px;max-width:760px;margin-top:36px;padding:10px 10px 10px 20px;border:1px solid var(--borde);border-radius:var(--r);background:var(--papel);cursor:pointer;transition:border-color .15s}
+.fichero:hover{border-color:var(--verde)}
+.fichero .fi{flex:1;min-width:0;display:grid;gap:3px}
+.fichero .fi b{font:500 16.5px/1.25 var(--texto);font-variant-numeric:tabular-nums}
+.fichero .fi span{font:400 13.5px/1.25 var(--texto);color:var(--suave)}
+.bajar{width:44px;height:44px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:var(--r);color:var(--verde)}
+.bajar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.bajar:focus-visible{outline-offset:-2px}
+.final .doc{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);padding:clamp(24px,4vw,44px);margin-top:38px;max-width:680px}
+.final .doc .exp-cab{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--negro);padding-bottom:14px;margin-bottom:20px}
+.final .doc .exp-cab strong{font:400 28px/1.05 var(--titulo)}
+.final .doc .exp-cab span{font-size:14px;color:var(--suave);text-align:right}
+.pie-maqueta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;font-size:13px;color:var(--suave);padding:18px max(16px,4vw) 28px}
+.pie-maqueta .maq{min-height:44px;padding:6px 16px;border:1px solid var(--borde);border-radius:var(--r);font:500 13px/1.2 var(--texto);color:var(--suave);transition:border-color .15s,color .15s}
+.pie-maqueta .maq:hover{border-color:var(--verde);color:var(--negro)}
+.pie-maqueta .maq[hidden]{display:none}
+.portada.entrada{align-items:start}
+.portada.entrada h1{margin-bottom:14px}
+@media (min-width:901px){.portada h1 .hola{display:block}}
+.enviado{margin:2px 0 16px;max-width:58ch;font:400 16px/1.5 var(--texto);overflow-wrap:anywhere}
+.campo.codigo input{max-width:240px;font-size:24px;letter-spacing:.3em;font-variant-numeric:tabular-nums;padding:11px 16px}
+.campo input[aria-invalid="true"]{border-color:var(--negro)}
+.error{margin:-6px 0 0;max-width:58ch;padding:1px 0 1px 12px;border-left:1px solid var(--verde);font:500 15px/1.45 var(--texto);color:var(--negro)}
+.nohay{margin-top:34px;padding-top:28px;border-top:1px solid var(--linea)}
+.nohay h2{text-wrap:balance}
+.nohay h2:focus{outline:none}
+.nohay .ayuda{margin-bottom:0}
+.nohay .contactos{margin-top:22px}
+#cliZona .acciones{margin-top:22px}
+#cliZona .nota{margin-top:14px}
+@media (max-width:900px){
+  .marco{grid-template-columns:minmax(0,1fr);gap:0}
+  .escena{padding-bottom:110px}
+  .portada{grid-template-columns:minmax(0,1fr);gap:34px}
+  .escaparate{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .escaparate .lam{height:clamp(300px,88vw,460px)}
+  .esc-web .movil{height:86%;border-radius:20px}
+  .esc-web .movil > .vivaweb{border-radius:19px}
+  .opciones{grid-template-columns:minmax(0,1fr)}
+  .palabras{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rejilla{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .colores{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dos{display:grid}
+  .dos button{padding:10px 8px}
+  .paquetes{grid-template-columns:minmax(0,1fr);gap:16px}
+  .paquete .lam{aspect-ratio:1/.92}
+  .p-web .movil{width:50%}
+  .ejemplo{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;grid-template-areas:"t" "n" "v" "l";margin-top:44px;padding-top:34px}
+  .lienzo{aspect-ratio:4/5}
+  .lienzo.lam-logo,.lienzo.lam-let,.lienzo.lam-foto{aspect-ratio:1/1}
+  .lam-logo .gran svg{width:44%}
+  .lam-logo .cq{padding:14px 4px 12px;gap:9px;font-size:12px}
+  .lam-logo .cq svg{width:64%}
+  .lam-ver{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(3,minmax(0,1fr))}
+  .lam-ver .vr{padding-bottom:0}
+  .lam-ver .vr svg{width:30%}
+  .lam-ver .vr.tinta svg{width:20%}
+  .lam-pal{flex-direction:column}
+  .lam-pal .tn.m{box-shadow:inset 1px 0 0 var(--borde),inset -1px 0 0 var(--borde)}
+  .lam-pal .tn{padding:12px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:end;column-gap:12px}
+  .lam-pal b{grid-column:1/-1;margin-bottom:2px}
+  .lam-pal .uso{grid-column:1/-1;margin-top:6px;padding-top:6px}
+  .lam-ico{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+  .lam-ico .medidas{padding:18px 10px}
+  .lam-ico .ventana{left:8%;top:14%;width:150%}
+  .lam-ico .fila{gap:14px}
+  .lam-web{padding:6% 5% 0}
+  .ejemplo > .lista{margin-top:26px}
+  .pasa{flex-wrap:wrap;margin-top:12px}
+  .pasa p{flex:0 0 100%;margin:0}
+  #ejAnt{margin-left:auto}
+  .extras{grid-template-columns:minmax(0,1fr);row-gap:20px}
+  .ex-lam{aspect-ratio:1/1}
+  .ex-plant{gap:4%;padding:0 4%}
+  .ex-plant img{width:44%}
+  .ex-plant img:nth-child(1){transform:translateY(-9%)}
+  .ex-plant img:nth-child(2){transform:translateY(9%)}
+  .ex-plant img:nth-child(3){display:none}
+  .antes{grid-template-columns:minmax(0,1fr);gap:38px}
+  .pasos{grid-template-columns:minmax(0,1fr);gap:30px}
+  .pasos li{gap:14px}
+  .pasos .lam{overflow:hidden;border-radius:2px;background:var(--campo);aspect-ratio:5/4}
+  .pasos .movil{position:absolute;left:50%;top:9%;width:58%;transform:translateX(-50%)}
+  .pasos .movil > .pant{align-content:start;padding-top:20%}
+  .pasos .movil > .pant svg{width:50%;margin-bottom:10%}
+  .tres{grid-template-columns:minmax(0,1fr);gap:0}
+  .tres li{display:grid;grid-template-columns:36px minmax(0,1fr);padding:12px 0}
+  .tres li::before{grid-row:1/3;margin:0}
+  .expediente{position:fixed;inset:auto 0 0 0;top:auto;margin:0;border-radius:0;max-height:78vh;transform:translateY(100%);z-index:5;padding:24px 16px 32px;visibility:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s .35s}
+  .expediente.abierto{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .abrir-exp{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:4;justify-content:space-between;align-items:center;background:var(--verde);color:var(--marfil);padding:14px 16px calc(14px + env(safe-area-inset-bottom));font:500 15px var(--texto)}
+  .abrir-exp[hidden]{display:none}
+  .cerrar-exp{display:inline-flex;float:right}
+  .final .doc .exp-cab span{text-align:left}
+}
+@media (max-width:380px){
+  .cabecera .lema{display:none}
+  .lam-ico .fila{gap:10px}
+}
+#otraHueco .campo,#subHueco .campo{margin:14px 0 0}
+.otra-sola{margin-top:12px}
+.oferta{max-width:58ch}
+.oferta .boton{margin-top:16px}
+.nota.descarga{margin-top:14px}
+.ex-dominio .ventana,.ex-pagina .ventana{position:absolute;display:block}
+.ex-dominio .ventana > img,.ex-pagina .ventana > img{display:block;width:100%;height:auto}
+.ex-dominio .ventana{left:8%;top:15%;width:118%;border-radius:4px 0 0 0}
+.ex-dominio .dir{padding:clamp(12px,1.5vw,20px) clamp(14px,1.8vw,26px);background:#EDE8DC;text-align:left}
+.ex-dominio .dir span{display:block;padding:.5em .75em;border:1px solid rgba(26,26,26,.16);border-radius:4px;background:#fff;font:400 clamp(20px,2.6vw,36px)/1.1 var(--texto);letter-spacing:-.005em;color:var(--negro);overflow:hidden;text-overflow:ellipsis}
+.ex-pagina .ventana{left:9%;top:12%;width:82%;border-radius:4px 4px 0 0}
+.ex-pagina .pestanas{display:flex;align-items:flex-end;gap:2px;padding:10px 12px 0;background:#E3DCCD}
+.ex-pagina .pest{padding:10px 20px;border-radius:4px 4px 0 0;background:#F6F3EC;color:var(--negro);font:400 13px/1 var(--texto);white-space:nowrap}
+.ex-pagina .pest.fuera{background:transparent;color:var(--suave)}
+.ex-pagina .dir{text-align:left}
+.movil > .chatp{position:absolute;inset:0;width:100%;height:100%;border-radius:23px;overflow:hidden}
+.chatp{container-type:inline-size;display:flex;flex-direction:column;background:var(--marfil);color:var(--negro);text-align:left}
+.chatp .cc{flex:none;display:flex;align-items:center;justify-content:center;height:25cqw;background:var(--verde)}
+.chatp .cc img{display:block;height:8.6cqw;width:auto}
+.chatp .cm{flex:1;display:flex;flex-direction:column;gap:5cqw;padding:9cqw 6cqw 0}
+.chatp .tu,.chatp .no{display:block;max-width:92%;padding:4.6cqw 5.4cqw 5cqw;border-radius:2px;font:400 7.1cqw/1.36 var(--texto)}
+.chatp .tu{align-self:flex-end;background:#FFFDF8;border:1px solid var(--borde)}
+.chatp .no{align-self:flex-start;background:var(--verde);color:var(--marfil)}
+.chatp .no img{display:block;width:100%;height:auto;margin-top:4.6cqw;border-radius:1px}
+.chatp .fi{align-self:flex-start;font:italic 400 6.4cqw/1.2 var(--titulo);color:var(--suave)}
+@media (max-width:900px){
+  .extras{display:block}
+  .ex-vis{position:sticky;top:0;z-index:2;background:var(--marfil);padding:10px 0 14px}
+  .ex-lam{aspect-ratio:4/3;max-height:46vh}
+  .ex-pie{min-height:calc(1.45em*4);margin-top:10px}
+  .ex-movil{display:block}
+  .ex-movil .movil{position:absolute;left:50%;top:8%;width:54%;height:auto;transform:translateX(-50%)}
+  .ex-dominio .ventana{left:7%;top:14%;width:132%}
+  .ex-pagina .ventana{left:6%;top:10%;width:88%}
+  .ex-pagina .pest{padding:8px 12px;font-size:12px}
+}
+@media (max-width:380px){
+  .ex-pie{min-height:calc(1.45em*5)}
+}
+@media print{
+  .cabecera,.barra,.pie-maqueta,.abrir-exp,.expediente,.final > :not(.exp-doc){display:none!important}
+  .marco{display:block;padding:0;min-height:0}
+  .escena{padding:0;max-width:none;animation:none}
+}
+</style>
+<style>
+.elige { display:grid;gap:2px;max-width:440px;margin-top:26px }
+.opciones { grid-template-columns:minmax(0,1fr);gap:2px;max-width:560px;margin-bottom:14px }
+.elige .boton,.opciones .op { display:flex;align-items:center;justify-content:flex-start;gap:16px;min-height:56px;margin-left:-12px;padding:8px 18px 8px 12px;border:0;border-radius:3px;background:none;box-shadow:none;color:var(--negro);font:400 19px/1.3 var(--texto);letter-spacing:0;text-align:left;transition:background .15s }
+.elige .boton::before,.opciones .op[role="radio"]::before { content:"";flex:none;width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--verde);transition:box-shadow .15s,background .15s }
+.elige .boton,.elige .boton.sec { background:none;color:var(--negro) }
+.elige .boton:hover,.elige .boton.sec:hover,.opciones .op:hover { background:rgba(15,59,50,.06) }
+.elige .boton:hover::before,.opciones .op[role="radio"]:hover::before { box-shadow:inset 0 0 0 1.5px var(--verde) }
+.elige .boton:active::before,.opciones .op[role="radio"][aria-checked="true"]::before { background:var(--verde);box-shadow:inset 0 0 0 1.5px var(--verde),inset 0 0 0 6.5px var(--marfil) }
+.opciones .op[aria-checked="true"],.opciones .op[aria-pressed="true"] { background:none;color:var(--negro);font-weight:500 }
+.opciones .op[aria-checked="true"]:hover,.opciones .op[aria-pressed="true"]:hover { background:rgba(15,59,50,.06) }
+.opciones .op .caja { width:22px;height:22px;border:1px solid var(--verde);border-radius:2px;color:var(--marfil) }
+.opciones .op[aria-pressed="true"] .caja { background:var(--verde) }
+.elige .boton { min-height:60px;font-size:21px }
+.elige .boton::before { width:26px;height:26px }
+.elige .boton:active::before { box-shadow:inset 0 0 0 1.5px var(--verde),inset 0 0 0 7px var(--marfil) }
+@media (max-width:900px) { .opciones .op { font-size:18px } .elige .boton { font-size:20px } }
+.boton:not(.elige *) { border:0;border-radius:4px;min-height:52px;padding:8px 28px;background:linear-gradient(#15493E,#0F3B32);color:var(--marfil);box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 1px 0 #061C16,0 2px 3px rgba(10,24,20,.26),0 14px 22px -14px rgba(10,24,20,.62);transition:transform .12s cubic-bezier(.2,.7,.2,1),box-shadow .12s,background .12s }
+.boton:not(.elige *).grande { min-height:58px;padding:8px 32px }
+.boton:not(.elige *):hover { background:linear-gradient(#174E42,#103E34);transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 1px 0 #061C16,0 2px 3px rgba(10,24,20,.26),0 18px 26px -14px rgba(10,24,20,.62) }
+.boton:not(.elige *):active { transform:translateY(2px);background:var(--verde);box-shadow:inset 0 2px 4px rgba(0,0,0,.5) }
+.boton:not(.elige *).sec { background:linear-gradient(#FFFEFB,#FAF5EA);color:var(--verde);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(26,26,26,.05),0 1px 0 rgba(26,26,26,.17),0 2px 3px rgba(26,26,26,.07),0 14px 22px -15px rgba(26,26,26,.48) }
+.boton:not(.elige *).sec:hover { background:linear-gradient(#FFFEFB,#FAF5EA);transform:translateY(-1px);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(26,26,26,.05),0 1px 0 rgba(26,26,26,.17),0 2px 3px rgba(26,26,26,.07),0 18px 26px -15px rgba(26,26,26,.48) }
+.boton:not(.elige *).sec:active { transform:translateY(2px);background:#F6F0E3;box-shadow:inset 0 2px 3px rgba(26,26,26,.2),0 0 0 1px rgba(26,26,26,.07) }
+.boton:not(.elige *)[disabled] { transform:none }
+.acciones:has(.boton:not(.sec)) .boton.sec,.acciones:has(.boton:not(.sec)) .boton.sec:hover,.acciones:has(.boton:not(.sec)) .boton.sec:active { background:#FFFDF8;box-shadow:none;transform:none }
+.acciones:has(.boton:not(.sec)) .boton.sec:hover,.acciones:has(.boton:not(.sec)) .boton.sec:active { background:var(--campo) }
+.acciones { gap:16px }
+@media (prefers-reduced-motion:reduce) { .boton:not(.elige *) { transition:none } }
+</style>
+<style>
+.cabecera{padding-top:4px;padding-bottom:2px}
+.cabecera .marca{display:flex;align-items:center;min-height:44px}
+.ayuda{text-align:justify}
+.contactos{gap:16px}
+.contacto{border:0;border-radius:4px;background:linear-gradient(#15493E,#0F3B32);box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 1px 0 #061C16,0 2px 3px rgba(10,24,20,.26),0 14px 22px -14px rgba(10,24,20,.62);transition:transform .12s cubic-bezier(.2,.7,.2,1),box-shadow .12s,background .12s}
+.contacto:hover{border:0;background:linear-gradient(#174E42,#103E34);transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 1px 0 #061C16,0 2px 3px rgba(10,24,20,.26),0 18px 26px -14px rgba(10,24,20,.62)}
+.contacto:active{transform:translateY(2px);background:var(--verde);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion:reduce){.contacto{transition:none}}
+.cuadro{border:0;background:none}
+.cuadro:hover{border:0;background:rgba(15,59,50,.08);color:var(--negro)}
+.rep{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:8px 14px 8px 10px;color:var(--marfil);font:500 16px/1 var(--texto)}
+.rep svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.rep:hover{border:0;background:rgba(243,236,221,.1)}
+.pie-maqueta{font-size:16px}
+.pie-maqueta .maq{display:inline-flex;align-items:center;gap:10px;border:0;padding:6px 12px;margin-right:-12px;font:500 16px/1.2 var(--texto);color:var(--verde)}
+.pie-maqueta .maq svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.pie-maqueta .maq:hover{border:0;background:rgba(15,59,50,.06);color:var(--negro)}
+#pieTexto{display:flex;flex-wrap:wrap;gap:8px 28px}
+#pieTexto a{display:inline-block;padding:4px 0;color:var(--suave)}
+#pieTexto a:hover{color:var(--negro)}
+.paquete,.paquete:hover,.paquete[aria-checked="true"]{border:0}
+.paquete{padding:0 0 6px;border-radius:2px}
+.paquete .radio{top:14px;right:14px}
+.paquete .cuerpo{padding:16px 2px 0}
+.paquete.suelto{padding:14px 18px 14px 54px;margin-left:-12px;border-radius:3px;transition:background .15s}
+.paquete.suelto .radio{left:14px;right:auto;top:calc(50% - 11px)}
+.paquete.suelto:hover{background:rgba(15,59,50,.06)}
+.ex-lista{gap:2px}
+.ex-lista .op{border:0;background:none;color:var(--negro);padding:8px 14px 8px 12px;min-height:56px;font:400 18px/1.3 var(--texto)}
+.ex-lista .op:hover,.ex-lista .op.viendo{border:0;background:rgba(15,59,50,.06)}
+.ex-lista .op[aria-pressed="true"]{background:none;color:var(--negro);font-weight:500}
+.ex-lista .op[aria-pressed="true"].viendo,.ex-lista .op[aria-pressed="true"]:hover{background:rgba(15,59,50,.06)}
+.ex-lista .op .caja,.palabras .op .caja,.pieza .caja{width:22px;height:22px;border:1px solid var(--verde);border-radius:2px;color:var(--marfil)}
+.ex-lista .op[aria-pressed="true"] .caja,.palabras .op[aria-pressed="true"] .caja,.pieza[aria-pressed="true"] .caja{background:var(--verde);color:var(--marfil)}
+.palabras{grid-template-columns:repeat(3,minmax(0,1fr));gap:2px 16px;max-width:720px}
+.palabras .op{border:0;background:none;color:var(--negro);margin-left:-12px;padding:8px 12px;min-height:52px;gap:14px;font:400 18px/1.3 var(--texto)}
+.palabras .op:hover{border:0;background:rgba(15,59,50,.06)}
+.palabras .op[aria-pressed="true"]{background:none;color:var(--negro);font-weight:500}
+.palabras .op .orden,.palabras .op[aria-pressed="true"] .orden{margin-left:auto;color:var(--verde);font:500 16px/1 var(--texto)}
+.pieza,.pieza:hover,.pieza[aria-pressed="true"]{border:0;background:none;overflow:visible}
+.pieza .vista{border:0;border-radius:2px;background:#FFFDF8;transition:background .15s}
+.pieza:hover .vista{background:#fff}
+.pieza .pie{gap:12px;padding:12px 4px 8px;font:400 17px/1.3 var(--texto)}
+.pieza[aria-pressed="true"] .pie{background:none;color:var(--negro);font-weight:500}
+.dosop{grid-template-columns:repeat(2,max-content);column-gap:28px;margin:0 0 22px}
+.chip,.chip:hover,.chip.si{position:relative;border:0;background:none;color:var(--negro);overflow:visible}
+.chip .tinta{border-radius:2px;box-shadow:inset 0 0 0 1px rgba(26,26,26,.12)}
+.chip .marca{position:absolute;left:8px;top:8px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--verde);color:var(--marfil)}
+.chip .marca:empty{display:none}
+.chip.no .marca{background:var(--papel);color:var(--negro);box-shadow:0 0 0 1px var(--negro)}
+.chip .marca svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.chip .nom{font:400 16px/1.25 var(--texto);padding:10px 2px 0}
+.chip .estado,.chip.si .estado,.chip.no .estado{font:500 16px/1.2 var(--texto);padding:2px 2px 0;min-height:1.5em;color:var(--verde)}
+.chip.si,.chip.si .estado{color:var(--negro)}
+.fichero{border:0;background:none;width:max-content;max-width:100%;padding:6px 18px 6px 4px;margin-left:-4px;gap:12px;border-radius:3px}
+.fichero:hover{border:0;background:rgba(15,59,50,.06)}
+.fichero .bajar{order:-1}
+.paso,.nota,.campo > span,.acepto,.escaparate figcaption,.paquete .que,.p-kit .cod,.lam-logo .cq,.lam-ver .rot,.lam-pal .cod,.lam-pal .uso,.lam-ico .tam,
+.lam-let b,.lam-let .para,.ejemplo .apunte,.pasa p,.incluye li,.ex-pie,.pasos b,.pasos .d,.tres b,.tres span,.expediente .num,.expediente .vacio,
+.grupo h3,.grupo h2,.dato dt,.dato dd,.cabecera .lema,.abrir-exp,.error,.op .orden,.final .doc .exp-cab span,.fichero .fi span{font-size:16px}
+.boton:not(.grande){font-size:16px}
+.contacto + .contacto,.contacto + .contacto:hover,.contacto + .contacto:active{background:none;box-shadow:none;transform:none;color:var(--verde)}
+.contacto + .contacto svg{color:var(--verde)}
+.contacto + .contacto:hover{background:rgba(15,59,50,.06)}
+.nohay.sola{border-top:0;padding-top:0;margin-top:8px}
+.privacidad{font-size:14px}
+@media screen{.exp-doc .exp-lema,.exp-doc .exp-linea dt,.exp-doc .exp-dato dt,.exp-doc .exp-pie{font-size:16px}}
+@media (max-width:900px){
+  .lam-logo .cq{font-size:16px}
+  .palabras{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dosop{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<header class="cabecera">
+  <a class="marca" href="../"><img src="../img/covalente-horizontal-oscuro.svg" alt="Covalente, ir a covalente.eu"></a>
+  <span class="lema">Tenemos química</span>
+</header>
+<div class="barra" aria-hidden="true"><i id="barra"></i></div>
+<div class="marco" id="marco">
+  <main class="escena" id="escena" tabindex="-1"></main>
+  <aside class="expediente" id="expediente" aria-label="Tu expediente" tabindex="0" hidden>
+    <button class="cuadro cerrar-exp" id="cerrarExp" aria-label="Cerrar el expediente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <h2>Tu expediente</h2>
+    <p class="num" id="expNum">Se va escribiendo con lo que contestas.</p>
+    <div id="expDatos"><p class="vacio">Aún está en blanco. Empieza por la primera pregunta.</p></div>
+  </aside>
+</div>
+<button class="abrir-exp" id="abrirExp" hidden><span>Tu expediente</span><span id="abrirN"></span></button>
+<footer class="pie-maqueta"><span class="j" id="pieTexto">Maqueta de Covalente: no envía nada. Lo que contestes se queda solo en este navegador.</span><button class="maq" id="otra" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.8v3.4h3.4"/></svg><span>Empezar otra vez</span></button></footer>
+<script src="expediente.js"></script>
+<script>
+'use strict';
+/* ---------- Envío ---------- */
+const API = 'https://covalente-gestion.covalente-gestion.workers.dev/api/expediente';
+const WA_URL = 'https://wa.me/34613912752?text=';
+const CON_CODIGO = false;
+/* ---------- Preguntas ---------- */
+const PARTE = (g, e, q, cero, mejorar, mas) => ({t:'una', obliga:true, g, e, q, op:[['cero', cero], ['mejorar', mejorar]], otraE:'Cuéntanos tu caso', ...mas});
+const P = {
+  servicio: {t:'servicio'},
+  
+  kitParte: PARTE('El encargo', '¿Ya tiene marca?', '¿Ya tienes marca?', 'No, empiezo de cero', 'Sí, y quiero mejorarla o cambiar algo', {ayuda:'La marca es el logo, los colores y las letras con los que se reconoce tu negocio.'}),
+  webParte: PARTE('El encargo', '¿Ya tiene web?', '¿Ya tienes web?', 'No, sería la primera', 'Sí, y quiero rehacerla o cambiar algo'),
+  tarjetaParte: PARTE('Tarjeta', '¿Ya tiene tarjeta?', '¿Ya tienes tarjeta?', 'No, sería la primera', 'Sí, y quiero cambiarla'),
+  cartaParte: PARTE('Carta', '¿Ya tiene carta?', '¿Ya tienes carta o lista de precios?', 'No, hay que hacerla', 'Sí, y quiero cambiarla'),
+  plantillasParte: PARTE('Plantillas', '¿Ya usa plantillas?', '¿Ya usas plantillas en Instagram?', 'No, sería la primera vez', 'Sí, y quiero mejorarlas', {ayuda:'Una plantilla es un diseño ya hecho: cada vez que publicas, solo cambias el texto y la foto.'}),
+  mapsYa: {t:'una', obliga:true, g:'Google Maps', e:'¿Ya sale en el mapa?', q:'¿Tu negocio ya sale en Google Maps?', ayuda:'Búscalo por su nombre en Google Maps. Si aparece con su horario y sus fotos, ya tiene ficha.',
+    op:[['si','Sí, ya sale'],['no','No, no sale'],['nose','No lo sé']], otraE:'Cuéntanos tu caso', siga:{si:['mapsEnlace','Pega el enlace, si lo tienes a mano','',0,'Enlace']}},
+  dominio: {t:'una', obliga:a => (a.extras || []).includes('dominio'), g:'Dirección de internet', e:'¿Ya tiene dirección?', q:'¿Tu negocio ya tiene dirección de internet?', ayuda:'Es lo que se escribe para entrar en una web, como tunegocio.es. También se llama dominio.',
+    op:[['si','Sí, ya la tengo'],['no','No, todavía no'],['nose','No lo sé']], otraE:'Cuéntanos tu caso',
+    siga:{si:['dominioCual','¿Cuál es?','tunegocio.es',0,'Su dirección'], no:['dominioQuiere','¿Cuál te gustaría?','tunegocio.es',0,'La que le gustaría']},
+    nota:a => a.dominio === 'nose' ? 'No pasa nada: lo miramos nosotros. Un .es o un .com cuesta 19 € al año; otras terminaciones, algo más, y depende de que esté libre.' : ''},
+  webNuestra: {t:'una', obliga:true, oferta:true, g:'Tu web', e:'¿La hicimos nosotros?', q:'¿Tu web la hicimos nosotros?',
+    ayuda:'El mantenimiento es para webs nuestras.',
+    op:[['si','Sí, la hizo Covalente'],['no','No, la hizo otra persona'],['notengo','Todavía no tengo web']], otraE:'Cuéntanos tu caso'},
+  
+  nombreNegocio: {t:'texto', g:'Tu negocio', e:'Nombre', q:'¿Cómo se llama tu negocio?', ayuda:'Escríbelo tal cual tiene que salir, con sus mayúsculas y sus tildes.', ph:'Flores Santa María'},
+  negocio: {t:'texto', g:'Tu negocio', e:'A qué se dedica', q:'¿A qué se dedica tu negocio?', ayuda:'En una frase, como se lo contarías a alguien que entra por la puerta.', ph:'Ramos para el día y flores para bodas.'},
+  tieneAlgo: {t:'varias', g:'Tu negocio', e:'Lo que ya tiene', q:'¿Qué tienes ya de tu marca?', ayuda:'La marca es tu logo, tus colores y tus letras. Elige todo lo que tengas.',
+    op:a => [['logo','Logo'],['colores','Colores'],['instagram','Instagram'],['web','Web'],['nada','Nada todavía']].filter(o => o[0] !== 'web' || !['web', 'kitweb'].includes(a.servicio)), exclusiva:'nada',
+    extra:['conservar','¿Hay algo que quieras conservar? (opcional)','El color verde de la fachada'], nota:'Si tienes logo o fotos, nos los mandas luego por WhatsApp o por correo.'},
+  decide: {t:'una', g:'Para terminar', e:'Quién decide', q:'¿Quién decide al final?', ayuda:'Quién da el sí al diseño.', op:[['yo','Yo'],['varios','Lo decidimos entre varios']],
+    siga:{varios:['quienes','¿Quiénes? Así se lo enseñamos a todos desde el principio.','']}, otraE:'Cuéntanos quién'},
+  fecha: {t:'una', g:'Para terminar', e:'Fecha', q:'¿Hay alguna fecha que te importe?', ayuda:'Una apertura, una campaña o una feria.', op:[['no','No hay prisa'],['si','Sí, hay una fecha']],
+    siga:{si:['cuando','¿Qué día, y qué pasa ese día?','El 12 de diciembre abrimos']}, otraE:'Cuéntanos tu caso'},
+  
+  kitObjetivo: {t:'varias', g:'Tu marca', e:'Qué quiere conseguir', q:'¿Qué quieres conseguir con tu marca?', ayuda:'Elige lo que más te importe.',
+    op:[['reconozcan','Que me reconozcan a la primera'],['serio','Que se vea un negocio serio'],['valor','Poder cobrar lo que vale mi trabajo'],['nuevo','Abrir con buena imagen desde el primer día'],['distinto','No parecerme a los demás']],
+    extra:['kitIdea','Cuéntanos qué idea tienes','Abro en marzo y quiero que desde la calle se vea que aquí se cuida todo.',1,'Su idea']},
+  tieneNombre: {t:'una', g:'Tu negocio', e:'¿Tiene nombre?', q:'¿Tu negocio ya tiene nombre?', ayuda:'Si no lo tienes claro, te proponemos tres y comprobamos que no los use ya otro negocio. Va incluido en el Kit de marca.',
+    op:[['si','Sí, ya lo tengo'],['dudo','Tengo uno, pero no me convence'],['no','Todavía no: ayudadme a buscarlo']], otraE:'Cuéntanos tu caso'},
+  nombre: {t:'campos', g:'Tu negocio', q:a => a.tieneNombre === 'dudo' ? '¿Cuál es el que tienes ahora?' : 'Escríbelo tal cual tiene que salir.',
+    ayuda:a => a.tieneNombre === 'dudo' ? 'Partimos de él: puede que solo haya que pulirlo.' : 'Con sus mayúsculas y sus tildes. Lo copiamos letra a letra en el logo.',
+    campos:[['nombreNegocio','Nombre','Flores Santa María'],['frase','Frase debajo del nombre, si la lleva (opcional)','Desde 1987']]},
+  estiloNombre: {t:'varias', max:2, g:'El nombre', e:'Cómo lo quiere', q:'¿Cómo te gustaría que fuera el nombre?', ayuda:'Elige uno o dos. A la derecha de cada uno va un ejemplo: son nuestras muestras.',
+    op:[['persona','Con tu nombre o el de alguien','Nerea Nails'],['lugar','Con el lugar donde estás','Flores Santa María'],['objeto','Con un objeto de tu oficio','Taberna La Jarra'],['idea','Una palabra que cuente algo más','Covalente'],['igual','Sorprendedme']]},
+  gustos: {t:'largo', g:'El nombre', e:'Cosas que le gustan', q:'Cuéntanos cosas que te gusten.', ayuda:'Palabras, lugares, objetos, una canción, un color o un recuerdo: lo que tenga que ver contigo o con tu negocio. De aquí salen los nombres.', ph:'El mercado de los sábados, el olor a eucalipto, el azul de las puertas de mi pueblo…', nota:'Si te cuesta escribirlo, nos lo puedes contar en un audio.'},
+  idioma: {t:'una', g:'El nombre', e:'Idioma', q:'¿En qué idioma quieres el nombre?', op:[['es','En español'],['en','En inglés'],['igual','Me da igual']], otra:'En otro idioma', otraE:'¿En cuál?'},
+  nombresQueGustan: {t:'campos', g:'El nombre', q:'¿Hay algún nombre que te guste?', ayuda:'De cualquier negocio o marca. Es opcional: sirve para saber qué te suena bien.',
+    campos:[['nombresSi','Nombres que te gustan','La Violeta, Pez Tortilla…'],['nombresNo','Alguno que no te guste nada',''],['nombresPensados','Nombres que ya hayas pensado','']]},
+  cliente: {t:'texto', g:'Para quién', e:'Su cliente', q:'¿Quién te compra?', ayuda:'Qué gente viene y qué busca cuando viene.', ph:'Vecinos del barrio que se dan un capricho el viernes.'},
+  porQue: {t:'texto', g:'Para quién', e:'Por qué le eligen', q:'¿Por qué te eligen a ti y no a otro?', ayuda:'Lo que tienes tú y no tienen los demás. De aquí sale la idea de tu marca.', ph:'Envolvemos cada ramo a mano, delante del cliente.'},
+  palabras: {t:'palabras', max:3, g:'Cómo es', e:'Tres palabras', q:'¿Qué tres palabras le van a tu negocio?', ayuda:'Elige tres. Si falta la tuya, toca Otra y escríbela.',
+    op:['Cercana','Elegante','Artesana','Alegre','Tranquila','Atrevida','Clásica','Moderna','Natural','Cuidadosa','Rápida','Divertida','Seria','Cálida','Sencilla','Lujosa','De barrio','Viajera'], otraK:'palabrasPropias', otraE:'Tus palabras'},
+  estilo: {t:'letras', max:2, g:'Cómo es', e:'Estilo', q:'¿Cuál se parece más a lo que buscas?', ayuda:'Es tu nombre escrito de seis maneras. Elige una o dos. No es tu logo: solo nos dice por dónde ir.', otra:'Ninguna: la imagino de otra manera', otraE:'Cuéntanos cómo'},
+  colores: {t:'colores', g:'Cómo es', e:'Colores', q:'¿Qué colores te gustan?', ayuda:'Toca los que te gusten. Si cambias a marcar los que no quieres ver, los que toques quedan tachados.', otra:'Otro color', otraE:'¿Cuál?', otraPh:'El azul de mi fachada'},
+  donde: {t:'varias', g:'Dónde va', e:'Dónde sale', q:'¿Dónde se va a ver tu marca?', ayuda:'Así sabemos sobre qué cosas te enseñamos las ideas.',
+    op:[['rotulo','Rótulo o escaparate'],['redes','Instagram y redes'],['tarjetas','Tarjetas'],['envases','Bolsas, cajas o envases'],['uniformes','Uniformes'],['web','Web'],['carta','Carta o lista de precios'],['vehiculo','Furgoneta o moto']], otra:'Otro sitio'},
+  referencias: {t:'campos', g:'Dónde va', q:'¿Hay alguna marca que te guste?', ayuda:'De lo que sea: no hace falta que sea de tu oficio. Es opcional.',
+    campos:[['refSi','Las que te gustan (nombre o enlace)',''],['refNo','Una que no te guste nada',''],['refZona','Un negocio de tu zona al que no quieras parecerte','']]},
+  
+  kitTiene: {t:'varias', g:'Tu marca', e:'Lo que tiene ahora', q:'¿Qué tienes ahora de tu marca?', ayuda:'Elige todo lo que tengas.',
+    op:[['logo','Logo'],['colores','Colores'],['letras','Un tipo de letra'],['rotulo','Rótulo o escaparate'],['tarjetas','Tarjetas o papelería'],['redes','Instagram u otras redes']], otra:'Otra cosa',
+    extra:['kitEnlace','¿Dónde podemos verla? Tu web o tu Instagram (opcional)','instagram.com/tunegocio'], nota:'El logo y lo demás nos lo mandas luego por WhatsApp o por correo. Vale una foto.'},
+  kitCambiar: {t:'varias', g:'Tu marca', e:'Qué quiere cambiar', q:'¿Qué quieres cambiar, y por qué?',
+    op:[['logo','El logo'],['colores','Los colores'],['letras','Las letras'],['ordenar','Ordenarla: cada cosa va por su lado'],['todo','Casi todo, sin dejar de ser yo']], otra:'Otra cosa',
+    extra:['kitPorQue','Cuéntanos por qué','El logo se ve antiguo y en el móvil no se lee.',1,'Por qué']},
+  kitConservar: {t:'texto', g:'Tu marca', e:'Qué quiere conservar', q:'¿Qué quieres conservar?', ayuda:'Lo que tus clientes ya reconocen y no quieres perder: el nombre, un color o un dibujo.', ph:'El nombre y el verde de la fachada.'},
+  
+  webObjetivo: {t:'varias', g:'Tu web', e:'Qué quiere conseguir', q:'¿Qué quieres conseguir con tu web?', ayuda:'Elige lo que más te importe.',
+    op:[['encuentren','Que me encuentren en Google'],['escriban','Que me escriban o me reserven más'],['ensenar','Enseñar bien lo que hago'],['serio','Que se vea un negocio serio'],['repetir','Dejar de contestar siempre lo mismo']],
+    extra:['webIdea','Cuéntanos qué idea tienes','Que quien me busque vea los precios y pida cita sin llamarme.',1,'Su idea']},
+  primeroWeb: {t:'una', g:'Tu web', e:'Lo primero en la web', q:'Cuando alguien entre en tu web, ¿qué quieres que haga?',
+    op:[['whatsapp','Escribirme por WhatsApp'],['cita','Pedir cita o reservar'],['llamar','Llamarme'],['venir','Venir a verme'],['comprar','Encargar o comprar']], otra:'Otra cosa'},
+  preguntanSiempre: {t:'texto', g:'Tu web', e:'Lo que le preguntan', q:'¿Qué te pregunta siempre la gente antes de ir?', ayuda:'La web lo contesta arriba del todo, para que no te lo tengan que preguntar.', ph:'Si hace falta cita, cuánto cuesta y si se aparca cerca.'},
+  google: {t:'texto', g:'Tu web', e:'Cómo le buscan', q:'¿Qué escribiría alguien en Google para encontrarte?', ayuda:'Como lo buscaría alguien que todavía no te conoce.', ph:'floristería en Lavapiés'},
+  servicios: {t:'largo', g:'Tu web', e:'Servicios', q:'¿Qué servicios o productos quieres enseñar?', ayuda:'Una lista vale. Si es larga, nos la mandas luego.', ph:'Ramo del día, centros de mesa, flores para bodas…',
+    sub:['precios','¿Ponemos los precios en la web?',[['si','Sí'],['no','No'],['algunos','Solo algunos']]]},
+  zonaHorario: {t:'campos', g:'Dónde y cuándo', q:'¿Dónde estás y qué horario tienes?', ayuda:'Si trabajas desde casa, basta con la zona: nunca publicamos la dirección de una casa.',
+    campos:[['zona','Calle o zona','Calle de Santa María, Madrid'],['horario','Horario','De martes a sábado, de 10 a 20']]},
+  contactoWeb: {t:'varias', g:'Tu web', e:'Cómo le escriben', q:'¿Por dónde quieres que te escriban desde la web?', ayuda:'Elige todos los que uses.', op:[['whatsapp','WhatsApp'],['telefono','Teléfono'],['correo','Correo'],['instagram','Instagram']], otra:'Otro'},
+  fotos: {t:'una', g:'Tu web', e:'Fotos', q:'¿Tienes fotos de tu negocio o de tu trabajo?', op:[['muchas','Sí, bastantes'],['algunas','Algunas'],['no','No tengo']],
+    nota:a => a.fotos === 'no' ? 'Lo hablamos antes de empezar: ninguna web sale sin fotos de verdad.' : 'Nos las mandas luego por WhatsApp o por correo.', otraE:'Cuéntanos tu caso'},
+  tipoWeb: {t:'campos', g:'Tu web', q:'¿Hay alguna web que te guste?', ayuda:'Es opcional. De lo que sea: una tienda, un restaurante o un hotel. Si no se te ocurre ninguna, sáltala.',
+    campos:[['webSi','Pega el enlace o dinos el nombre','https://',0,'Una web que le gusta'],['webPorQue','¿Qué te gusta de ella?','Las fotos grandes y que se pide cita en un toque',0,'Qué le gusta de ella'],['webNo','¿Alguna que no te guste nada?','',0,'Una que no le gusta']]},
+  trato: {t:'una', g:'Tu web', e:'Trato', q:'¿Cómo hablas a tus clientes?', ayuda:'Los textos de la web los escribimos nosotros, y tienen que sonar como tú.',
+    op:[['tu','De tú'],['usted','De usted'],['depende','Depende del cliente']], otra:'De otra manera', extra:['fraseTuya','¿Tienes alguna frase o palabra muy tuya? (opcional)','¿Qué te pongo, guapa?'], otraE:'Cuéntanos cómo'},
+  
+  webTiene: {t:'campos', g:'Tu web', q:'¿Cuál es tu web?', ayuda:'De ella sacamos lo que ya cuentas, tu horario y tu contacto, sin preguntártelo otra vez.',
+    campos:[['webActual','La dirección de tu web','tunegocio.es',0,'Su web'],['webQuien','¿Quién te la hizo, o con qué? (opcional)','Un conocido, una plantilla, no lo sé…',0,'Quién la hizo']]},
+  webCambiar: {t:'varias', g:'Tu web', e:'Qué quiere cambiar', q:'¿Qué quieres cambiar de tu web, y por qué?',
+    op:[['antigua','Se ve antigua'],['movil','En el móvil se ve mal'],['datos','Tiene datos que ya no valen'],['nadie','No me escribe nadie desde ella'],['sola','No puedo cambiar nada yo']], otra:'Otra cosa',
+    extra:['webCambiarPorQue','Cuéntanos por qué','La hice hace años y ya no se parece a mi negocio.',1,'Por qué']},
+  webConservar: {t:'varias', g:'Tu web', e:'Qué quiere conservar', q:'¿Qué quieres conservar de la que tienes?',
+    op:[['direccion','La dirección de internet'],['textos','Los textos'],['fotos','Las fotos'],['nada','Nada: empezar de nuevo']], exclusiva:'nada', otra:'Otra cosa'},
+  
+  kitwebObjetivo: {t:'varias', g:'Tu marca y tu web', e:'Qué quiere conseguir', q:'¿Qué quieres conseguir con tu marca y tu web?', ayuda:'Elige lo que más te importe.',
+    op:[['reconozcan','Que me reconozcan a la primera'],['encuentren','Que me encuentren en Google'],['escriban','Que me escriban o me reserven más'],['serio','Que se vea un negocio serio'],['nuevo','Abrir con buena imagen desde el primer día']],
+    extra:['kitwebIdea','Cuéntanos qué idea tienes','Abro en marzo y quiero llegar con todo hecho: el rótulo, las tarjetas y la web.',1,'Su idea']},
+  
+  tarjetaTipo: {t:'una', g:'Tarjeta', e:'Tarjeta', q:'¿Qué tarjeta necesitas?', op:[['visita','De visita'],['fidelidad','De fidelidad, la de los sellos'],['las-dos','Las dos']],
+    extra:['tarjetaIdea','¿Qué quieres conseguir con ella?','Que me guarden el teléfono y vuelvan.',1,'Qué quiere conseguir']},
+  tarjetaDatos: {t:'campos', g:'Tarjeta', q:'¿Qué datos van en la tarjeta?', ayuda:'El código QR es el cuadrado que se enfoca con la cámara del móvil y abre lo que tú elijas: tu web, tu WhatsApp o tu Instagram.',
+    campos:[['tarjetaDatos','Lo que va escrito: solo lo que quieras dar','Nombre, teléfono, web e Instagram',0,'Lo que va escrito'],['tarjetaQR','Si quieres un código QR, ¿qué abre? (opcional)','Mi WhatsApp',0,'Código QR']]},
+  cartaTipo: {t:'una', g:'Carta', e:'Carta', q:'¿Qué necesitas que diseñemos?', op:[['carta','Una carta'],['menu','Un menú del día'],['precios','Una lista de precios']],
+    extra:['cartaIdea','¿Qué quieres conseguir con ella?','Que se lea bien y poder cambiar un precio sin rehacerla.',1,'Qué quiere conseguir'],
+    nota:'Lo que va escrito nos lo mandas luego, como lo tengas: a mano, en una foto o en un mensaje. Si es de comida, con los alérgenos de cada plato.'},
+  plantillasTemas: {t:'varias', g:'Plantillas', e:'Qué publica', q:'¿Qué publicas más en Instagram?', op:[['novedades','Novedades'],['ofertas','Ofertas'],['horarios','Horarios'],['fechas','Fechas especiales'],['trabajos','Trabajos hechos'],['consejos','Consejos']], otra:'Otra cosa',
+    extra:['plantillasIdea','¿Qué quieres conseguir con ellas?','Publicar más rápido y que todo se vea de la misma marca.',1,'Qué quiere conseguir']},
+  mapsLocal: {t:'una', g:'Google Maps', e:'¿Tiene local?', q:'¿Tus clientes van a un local tuyo?', op:[['local','Sí, tengo local'],['domicilio','No: voy yo o trabajo por internet'],['ambos','Las dos cosas']], otra:'Otro caso',
+    nota:'Google lo pide. Si no tienes local, tu ficha enseña la zona donde trabajas, no una dirección.', otraE:'Cuéntanos tu caso'},
+  mapsObjetivo: {t:'varias', g:'Google Maps', e:'Qué quiere conseguir', q:'¿Qué quieres conseguir con tu ficha?', ayuda:'La ficha es lo que sale de tu negocio en Google Maps: el nombre, el horario, las fotos y las reseñas de tus clientes.',
+    op:a => a.mapsYa === 'si' ? [['salga','Que salga cuando me buscan'],['vea','Que se vea mejor: fotos, logo y descripción'],['datos','Corregir datos que están mal'],['resenas','Mejorar las reseñas']]
+      : [['salga','Que me encuentren cuando buscan lo que hago'],['llegar','Que sepan llegar y cuándo abro'],['resenas','Empezar a tener reseñas'],['cuidado','Que se vea un negocio cuidado']], otra:'Otra cosa',
+    extra:a => a.mapsYa === 'si' ? ['mapsIdea','Cuéntanos qué cambiarías y por qué','Salen fotos antiguas y el horario de antes.',1,'Qué cambiaría y por qué'] : ['mapsIdea','Cuéntanos qué idea tienes','Que quien busque una floristería por aquí me vea a mí.',1,'Su idea']},
+  mantCambios: {t:'varias', g:'Mantenimiento', e:'Qué suele cambiar', q:'¿Qué sueles tener que cambiar en tu web?', op:[['precios','Precios'],['horarios','Horarios'],['fotos','Fotos'],['textos','Textos'],['avisos','Avisos, como el de vacaciones']], otra:'Otra cosa',
+    extra:['mantIdea','¿Qué quieres conseguir?','Que la web esté siempre al día sin tener que acordarme.',1,'Qué quiere conseguir']},
+  dominioPara: {t:'una', g:'Dirección de internet', e:'Para qué la quiere', q:'¿Para qué quieres la dirección?', op:[['web','Para una web que ya tengo'],['futura','Para una web que haré más adelante'],['guardar','Para guardarla y que nadie me la quite']], otra:'Para otra cosa'},
+  
+  tarjetaCambiar: {t:'varias', g:'Tarjeta', e:'Qué quiere cambiar', q:'¿Qué quieres cambiar de tu tarjeta, y por qué?', op:[['diseno','El diseño: se ve antigua'],['datos','Los datos: han cambiado'],['marca','Que vaya con mi marca de ahora']], otra:'Otra cosa',
+    extra:[['tarjetaPorQue','Cuéntanos por qué','Cambié de teléfono y de paso quiero que se vea más cuidada.',1,'Por qué'],['tarjetaConservar','¿Qué quieres conservar? (opcional)','El color y el tamaño',0,'Qué quiere conservar']],
+    nota:'Mándanos luego una foto de la que tienes, por WhatsApp o por correo.'},
+  cartaCambiar: {t:'varias', g:'Carta', e:'Qué quiere cambiar', q:'¿Qué quieres cambiar de tu carta, y por qué?', op:[['diseno','El diseño: se ve antigua'],['contenido','Los precios o lo que ofrezco: han cambiado'],['leer','Que se lea mejor'],['marca','Que vaya con mi marca de ahora']], otra:'Otra cosa',
+    extra:[['cartaPorQue','Cuéntanos por qué','Está llena de tachones y cuesta encontrar los precios.',1,'Por qué'],['cartaConservar','¿Qué quieres conservar? (opcional)','El orden de los platos',0,'Qué quiere conservar']],
+    nota:'Mándanos luego una foto de la que tienes, por WhatsApp o por correo. Si es de comida, con los alérgenos de cada plato.'},
+  plantillasCambiar: {t:'varias', g:'Plantillas', e:'Qué quiere cambiar', q:'¿Qué quieres cambiar de tus plantillas, y por qué?', op:[['iguales','Se parecen a las de todo el mundo'],['marca','No van con mi marca'],['faltan','Me faltan para algunas cosas'],['cuesta','Me cuesta usarlas']], otra:'Otra cosa',
+    extra:[['plantillasPorQue','Cuéntanos por qué','Cada publicación parece de un negocio distinto.',1,'Por qué'],['plantillasInsta','Tu Instagram, para verlas','@tunegocio',0,'Su Instagram']]},
+  mapsGestiona: {t:'una', g:'Google Maps', e:'Quién la gestiona', q:'¿Quién gestiona la ficha?', ayuda:'Para cambiar algo hay que entrar con la cuenta de Google que la creó.', op:[['yo','Yo: tengo acceso'],['otro','Otra persona'],['nose','No lo sé']], otra:'Otro caso',
+    siga:{otro:['mapsQuien','¿Quién? Si lo sabes','Mi gestoría, un antiguo socio…',0,'Quién la lleva']}, otraE:'Cuéntanos tu caso'},
+  dominioCambiar: {t:'una', g:'Dirección de internet', e:'Qué quiere hacer con ella', q:'¿Qué quieres hacer con la dirección que tienes?', op:[['usar','Usarla en mi web'],['nombre','Ponerla a mi nombre: ahora la tiene otra persona'],['renovar','Que os encarguéis de renovarla cada año'],['cambiar','Cambiarla por otra']], otra:'Otra cosa'},
+};
+const SERVICIOS = [
+  ['kit','Kit de marca','Logo, colores, letras y plantillas. Y el nombre, si no lo tienes.','49 €'],
+  ['web','Página web','A medida y pensada para el móvil.','39 €'],
+  ['kitweb','Kit + web','Marca y web a juego.','69 €'],
+  ['extra','Solo algo suelto','Una tarjeta, una carta, plantillas, tu ficha de Google Maps, el mantenimiento o el dominio.','']];
+const EXTRAS = [['tarjeta','Tarjeta','15 €'],['carta','Carta','19 €'],['plantillas','6 plantillas más','19 €'],['maps','Ficha en Google Maps','19 €'],['mant','Mantenimiento','12 €/mes'],['dominio','Dominio','19 €/año']];
+const LOGOS = '../img/';
+const LOGO = {oscuro: "<svg viewBox=\"0 0 850.95 134\" aria-hidden=\"true\" focusable=\"false\"><g transform=\"translate(7.33 -0.54) scale(0.67)\"><g class=\"linea\" fill=\"none\" stroke=\"#C9A35C\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path pathLength=\"1\" d=\"M14 176 64 112 106 140 156 68 198 96 282 18\"/><path pathLength=\"1\" d=\"M129.7 132.1 156.9 92.95\"/><path pathLength=\"1\" d=\"M260.2 21 282 18 277.4 39.5\"/></g><g class=\"atomos\" fill=\"#C9A35C\"><circle cx=\"14\" cy=\"176\" r=\"13\"/><circle cx=\"64\" cy=\"112\" r=\"13\"/><circle cx=\"106\" cy=\"140\" r=\"13\"/><circle cx=\"156\" cy=\"68\" r=\"13\"/><circle cx=\"198\" cy=\"96\" r=\"13\"/></g></g><path class=\"palabra\" transform=\"translate(230.45 104.7)\" fill=\"#C9A35C\" d=\"M54.10-23.70L72.60-23.70Q71.80-16.20 67.05-10.50Q62.30-4.80 54.85-1.60Q47.40 1.60 38.10 1.60L38.10 1.60Q27.80 1.60 19.90-2.20Q12-6 7.60-12.80Q3.20-19.60 3.20-28.50L3.20-28.50Q3.20-37.40 7.60-44.20Q12-51 19.90-54.80Q27.80-58.60 38.10-58.60L38.10-58.60Q47.40-58.60 54.85-55.40Q62.30-52.20 67.05-46.55Q71.80-40.90 72.60-33.30L72.60-33.30L54.10-33.30Q53-38.80 48.65-41.70Q44.30-44.60 38.10-44.60L38.10-44.60Q33.20-44.60 29.55-42.70Q25.90-40.80 23.90-37.20Q21.90-33.60 21.90-28.50L21.90-28.50Q21.90-23.40 23.90-19.80Q25.90-16.20 29.55-14.30Q33.20-12.40 38.10-12.40L38.10-12.40Q44.40-12.40 48.70-15.45Q53-18.50 54.10-23.70L54.10-23.70ZM113.40 1.60L113.40 1.60Q102.60 1.60 94.50-2.20Q86.40-6 81.90-12.80Q77.40-19.60 77.40-28.50L77.40-28.50Q77.40-37.50 81.90-44.25Q86.40-51 94.55-54.80Q102.70-58.60 113.40-58.60L113.40-58.60Q124.20-58.60 132.35-54.80Q140.50-51 145-44.25Q149.50-37.50 149.50-28.50L149.50-28.50Q149.50-19.50 145-12.75Q140.50-6 132.35-2.20Q124.20 1.60 113.40 1.60ZM113.40-12.40L113.40-12.40Q118.90-12.40 122.75-14.35Q126.60-16.30 128.65-19.90Q130.70-23.50 130.70-28.50L130.70-28.50Q130.70-33.50 128.65-37.10Q126.60-40.70 122.75-42.65Q118.90-44.60 113.40-44.60L113.40-44.60Q108.10-44.60 104.20-42.65Q100.30-40.70 98.20-37.10Q96.10-33.50 96.10-28.50L96.10-28.50Q96.10-23.50 98.20-19.90Q100.30-16.30 104.20-14.35Q108.10-12.40 113.40-12.40Z\"/><path class=\"palabra\" transform=\"translate(230.45 104.7)\" fill=\"#F3ECDD\" d=\"M172.50-57L193-8.70L186.50-8.80L207.10-57L226.90-57L200 0L178.90 0L152-57L172.50-57ZM303.30 0L284 0L281.50-20.70L284.20-28.50L281.50-36.20L284-57L303.30-57L299.80-28.50L303.30 0ZM288.60-28.50L288.60-28.50Q287.10-19.40 282.90-12.65Q278.70-5.90 272.30-2.15Q265.90 1.60 257.90 1.60L257.90 1.60Q249.50 1.60 243.15-2.20Q236.80-6 233.20-12.75Q229.60-19.50 229.60-28.50L229.60-28.50Q229.60-37.50 233.20-44.25Q236.80-51 243.15-54.80Q249.50-58.60 257.90-58.60L257.90-58.60Q265.90-58.60 272.30-54.85Q278.70-51.10 282.95-44.40Q287.20-37.70 288.60-28.50ZM248.40-28.50L248.40-28.50Q248.40-23.90 250.30-20.35Q252.20-16.80 255.55-14.75Q258.90-12.70 263.30-12.70L263.30-12.70Q267.70-12.70 271.65-14.75Q275.60-16.80 278.60-20.35Q281.60-23.90 283.10-28.50L283.10-28.50Q281.60-33.10 278.60-36.65Q275.60-40.20 271.65-42.25Q267.70-44.30 263.30-44.30L263.30-44.30Q258.90-44.30 255.55-42.25Q252.20-40.20 250.30-36.65Q248.40-33.10 248.40-28.50ZM312.80 0L312.80-77L331.30-77L331.30 0L312.80 0ZM375.00 1.60L375.00 1.60Q364.80 1.60 356.75-2.20Q348.70-6 344.10-12.80Q339.50-19.60 339.50-28.70L339.50-28.70Q339.50-37.60 343.90-44.30Q348.30-51 356.05-54.80Q363.80-58.60 373.60-58.60L373.60-58.60Q383.60-58.60 390.80-54.20Q398.00-49.80 401.90-41.80Q405.80-33.80 405.80-23L405.80-23L354.40-23L354.40-34.70L395.60-34.70L388.90-30.50Q388.60-35.20 386.65-38.45Q384.70-41.70 381.50-43.45Q378.30-45.20 373.90-45.20L373.90-45.20Q369.10-45.20 365.60-43.30Q362.10-41.40 360.15-38Q358.20-34.60 358.20-30.10L358.20-30.10Q358.20-24.40 360.75-20.40Q363.30-16.40 368.15-14.30Q373.00-12.20 380.00-12.20L380.00-12.20Q386.40-12.20 392.80-13.95Q399.20-15.70 404.30-18.90L404.30-18.90L404.30-6.80Q398.50-2.80 391.05-0.60Q383.60 1.60 375.00 1.60ZM415.00-37.60L411.40-57L429.90-57L433.60-34.80L433.60 0L415.00 0L415.00-37.60ZM454.90-58.60L454.90-58.60Q463.10-58.60 468.85-55.35Q474.60-52.10 477.65-46.10Q480.70-40.10 480.70-31.80L480.70-31.80L480.70 0L462.10 0L462.10-29Q462.10-36.10 458.60-39.75Q455.10-43.40 448.60-43.40L448.60-43.40Q444.00-43.40 440.65-41.45Q437.30-39.50 435.45-35.95Q433.60-32.40 433.60-27.50L433.60-27.50L427.70-30.60Q428.80-39.70 432.65-45.90Q436.50-52.10 442.25-55.35Q448-58.60 454.90-58.60ZM497.20-43.20L485.40-43.20L485.40-51.30L497.20-55.60L505.20-72.20L515.80-72.20L515.80-57L540.40-57L540.40-43.20L515.80-43.20L515.80-24.40Q515.80-18 518.40-15.45Q521-12.90 527.70-12.90L527.70-12.90Q532-12.90 535.25-13.65Q538.50-14.40 541.40-15.70L541.40-15.70L541.40-1.60Q538.40-0.40 533.55 0.60Q528.70 1.60 523.50 1.60L523.50 1.60Q514.40 1.60 508.55-1.30Q502.70-4.20 499.95-9.45Q497.20-14.70 497.20-21.80L497.20-21.80L497.20-43.20ZM581.70 1.60L581.70 1.60Q571.50 1.60 563.45-2.20Q555.40-6 550.80-12.80Q546.20-19.60 546.20-28.70L546.20-28.70Q546.20-37.60 550.60-44.30Q555-51 562.75-54.80Q570.50-58.60 580.30-58.60L580.30-58.60Q590.30-58.60 597.50-54.20Q604.70-49.80 608.60-41.80Q612.50-33.80 612.50-23L612.50-23L561.10-23L561.10-34.70L602.30-34.70L595.60-30.50Q595.30-35.20 593.35-38.45Q591.40-41.70 588.20-43.45Q585-45.20 580.60-45.20L580.60-45.20Q575.80-45.20 572.30-43.30Q568.80-41.40 566.85-38Q564.90-34.60 564.90-30.10L564.90-30.10Q564.90-24.40 567.45-20.40Q570-16.40 574.85-14.30Q579.70-12.20 586.70-12.20L586.70-12.20Q593.10-12.20 599.50-13.95Q605.90-15.70 611-18.90L611-18.90L611-6.80Q605.20-2.80 597.75-0.60Q590.30 1.60 581.70 1.60Z\"/></svg>", claro: "<svg viewBox=\"0 0 850.95 134\" aria-hidden=\"true\" focusable=\"false\"><g transform=\"translate(7.33 -0.54) scale(0.67)\"><g class=\"linea\" fill=\"none\" stroke=\"#C9A35C\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path pathLength=\"1\" d=\"M14 176 64 112 106 140 156 68 198 96 282 18\"/><path pathLength=\"1\" d=\"M129.7 132.1 156.9 92.95\"/><path pathLength=\"1\" d=\"M260.2 21 282 18 277.4 39.5\"/></g><g class=\"atomos\" fill=\"#C9A35C\"><circle cx=\"14\" cy=\"176\" r=\"13\"/><circle cx=\"64\" cy=\"112\" r=\"13\"/><circle cx=\"106\" cy=\"140\" r=\"13\"/><circle cx=\"156\" cy=\"68\" r=\"13\"/><circle cx=\"198\" cy=\"96\" r=\"13\"/></g></g><path class=\"palabra\" transform=\"translate(230.45 104.7)\" fill=\"#C9A35C\" d=\"M54.10-23.70L72.60-23.70Q71.80-16.20 67.05-10.50Q62.30-4.80 54.85-1.60Q47.40 1.60 38.10 1.60L38.10 1.60Q27.80 1.60 19.90-2.20Q12-6 7.60-12.80Q3.20-19.60 3.20-28.50L3.20-28.50Q3.20-37.40 7.60-44.20Q12-51 19.90-54.80Q27.80-58.60 38.10-58.60L38.10-58.60Q47.40-58.60 54.85-55.40Q62.30-52.20 67.05-46.55Q71.80-40.90 72.60-33.30L72.60-33.30L54.10-33.30Q53-38.80 48.65-41.70Q44.30-44.60 38.10-44.60L38.10-44.60Q33.20-44.60 29.55-42.70Q25.90-40.80 23.90-37.20Q21.90-33.60 21.90-28.50L21.90-28.50Q21.90-23.40 23.90-19.80Q25.90-16.20 29.55-14.30Q33.20-12.40 38.10-12.40L38.10-12.40Q44.40-12.40 48.70-15.45Q53-18.50 54.10-23.70L54.10-23.70ZM113.40 1.60L113.40 1.60Q102.60 1.60 94.50-2.20Q86.40-6 81.90-12.80Q77.40-19.60 77.40-28.50L77.40-28.50Q77.40-37.50 81.90-44.25Q86.40-51 94.55-54.80Q102.70-58.60 113.40-58.60L113.40-58.60Q124.20-58.60 132.35-54.80Q140.50-51 145-44.25Q149.50-37.50 149.50-28.50L149.50-28.50Q149.50-19.50 145-12.75Q140.50-6 132.35-2.20Q124.20 1.60 113.40 1.60ZM113.40-12.40L113.40-12.40Q118.90-12.40 122.75-14.35Q126.60-16.30 128.65-19.90Q130.70-23.50 130.70-28.50L130.70-28.50Q130.70-33.50 128.65-37.10Q126.60-40.70 122.75-42.65Q118.90-44.60 113.40-44.60L113.40-44.60Q108.10-44.60 104.20-42.65Q100.30-40.70 98.20-37.10Q96.10-33.50 96.10-28.50L96.10-28.50Q96.10-23.50 98.20-19.90Q100.30-16.30 104.20-14.35Q108.10-12.40 113.40-12.40Z\"/><path class=\"palabra\" transform=\"translate(230.45 104.7)\" fill=\"#1A1A1A\" d=\"M172.50-57L193-8.70L186.50-8.80L207.10-57L226.90-57L200 0L178.90 0L152-57L172.50-57ZM303.30 0L284 0L281.50-20.70L284.20-28.50L281.50-36.20L284-57L303.30-57L299.80-28.50L303.30 0ZM288.60-28.50L288.60-28.50Q287.10-19.40 282.90-12.65Q278.70-5.90 272.30-2.15Q265.90 1.60 257.90 1.60L257.90 1.60Q249.50 1.60 243.15-2.20Q236.80-6 233.20-12.75Q229.60-19.50 229.60-28.50L229.60-28.50Q229.60-37.50 233.20-44.25Q236.80-51 243.15-54.80Q249.50-58.60 257.90-58.60L257.90-58.60Q265.90-58.60 272.30-54.85Q278.70-51.10 282.95-44.40Q287.20-37.70 288.60-28.50ZM248.40-28.50L248.40-28.50Q248.40-23.90 250.30-20.35Q252.20-16.80 255.55-14.75Q258.90-12.70 263.30-12.70L263.30-12.70Q267.70-12.70 271.65-14.75Q275.60-16.80 278.60-20.35Q281.60-23.90 283.10-28.50L283.10-28.50Q281.60-33.10 278.60-36.65Q275.60-40.20 271.65-42.25Q267.70-44.30 263.30-44.30L263.30-44.30Q258.90-44.30 255.55-42.25Q252.20-40.20 250.30-36.65Q248.40-33.10 248.40-28.50ZM312.80 0L312.80-77L331.30-77L331.30 0L312.80 0ZM375.00 1.60L375.00 1.60Q364.80 1.60 356.75-2.20Q348.70-6 344.10-12.80Q339.50-19.60 339.50-28.70L339.50-28.70Q339.50-37.60 343.90-44.30Q348.30-51 356.05-54.80Q363.80-58.60 373.60-58.60L373.60-58.60Q383.60-58.60 390.80-54.20Q398.00-49.80 401.90-41.80Q405.80-33.80 405.80-23L405.80-23L354.40-23L354.40-34.70L395.60-34.70L388.90-30.50Q388.60-35.20 386.65-38.45Q384.70-41.70 381.50-43.45Q378.30-45.20 373.90-45.20L373.90-45.20Q369.10-45.20 365.60-43.30Q362.10-41.40 360.15-38Q358.20-34.60 358.20-30.10L358.20-30.10Q358.20-24.40 360.75-20.40Q363.30-16.40 368.15-14.30Q373.00-12.20 380.00-12.20L380.00-12.20Q386.40-12.20 392.80-13.95Q399.20-15.70 404.30-18.90L404.30-18.90L404.30-6.80Q398.50-2.80 391.05-0.60Q383.60 1.60 375.00 1.60ZM415.00-37.60L411.40-57L429.90-57L433.60-34.80L433.60 0L415.00 0L415.00-37.60ZM454.90-58.60L454.90-58.60Q463.10-58.60 468.85-55.35Q474.60-52.10 477.65-46.10Q480.70-40.10 480.70-31.80L480.70-31.80L480.70 0L462.10 0L462.10-29Q462.10-36.10 458.60-39.75Q455.10-43.40 448.60-43.40L448.60-43.40Q444.00-43.40 440.65-41.45Q437.30-39.50 435.45-35.95Q433.60-32.40 433.60-27.50L433.60-27.50L427.70-30.60Q428.80-39.70 432.65-45.90Q436.50-52.10 442.25-55.35Q448-58.60 454.90-58.60ZM497.20-43.20L485.40-43.20L485.40-51.30L497.20-55.60L505.20-72.20L515.80-72.20L515.80-57L540.40-57L540.40-43.20L515.80-43.20L515.80-24.40Q515.80-18 518.40-15.45Q521-12.90 527.70-12.90L527.70-12.90Q532-12.90 535.25-13.65Q538.50-14.40 541.40-15.70L541.40-15.70L541.40-1.60Q538.40-0.40 533.55 0.60Q528.70 1.60 523.50 1.60L523.50 1.60Q514.40 1.60 508.55-1.30Q502.70-4.20 499.95-9.45Q497.20-14.70 497.20-21.80L497.20-21.80L497.20-43.20ZM581.70 1.60L581.70 1.60Q571.50 1.60 563.45-2.20Q555.40-6 550.80-12.80Q546.20-19.60 546.20-28.70L546.20-28.70Q546.20-37.60 550.60-44.30Q555-51 562.75-54.80Q570.50-58.60 580.30-58.60L580.30-58.60Q590.30-58.60 597.50-54.20Q604.70-49.80 608.60-41.80Q612.50-33.80 612.50-23L612.50-23L561.10-23L561.10-34.70L602.30-34.70L595.60-30.50Q595.30-35.20 593.35-38.45Q591.40-41.70 588.20-43.45Q585-45.20 580.60-45.20L580.60-45.20Q575.80-45.20 572.30-43.30Q568.80-41.40 566.85-38Q564.90-34.60 564.90-30.10L564.90-30.10Q564.90-24.40 567.45-20.40Q570-16.40 574.85-14.30Q579.70-12.20 586.70-12.20L586.70-12.20Q593.10-12.20 599.50-13.95Q605.90-15.70 611-18.90L611-18.90L611-6.80Q605.20-2.80 597.75-0.60Q590.30 1.60 581.70 1.60Z\"/></svg>"};
+const TINTAS = [['Verde botella','#0F3B32','15 59 50','Fondos y botones','#F3ECDD',38],['Marfil','#F3ECDD','243 236 221','El papel','#1A1A1A',24],['Oro','#C9A35C','201 163 92','El logo y los detalles','#1A1A1A',16],['Negro','#1A1A1A','26 26 26','Los textos','#F3ECDD',22]];
+const MOL = `<g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 176 64 112 106 140 156 68 198 96 282 18"/><path d="M121.6 131.6 153.6 85.5"/><path d="M260.2 21 282 18 277.4 39.5"/></g><g fill="currentColor">${[[14,176],[64,112],[106,140],[156,68],[198,96]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="9"/>`).join('')}</g>`;
+const mol = () => `<svg viewBox="0 0 300 200" aria-hidden="true" focusable="false">${MOL}</svg>`;
+const icono = n => n > 48
+  ? `<svg viewBox="0 0 64 64" width="${n}" height="${n}" style="width:${n}px;height:${n}px" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#1A1A1A"/><g transform="translate(5.56 13.49) scale(0.18)" style="color:#C9A35C">${MOL}</g></svg>`
+  : `<img src="${LOGOS}favicon.svg" width="${n}" height="${n}" style="width:${n}px;height:${n}px" alt="">`;
+LOGO.apilado = "<svg viewBox=\"0 0 687.77 456.88\" aria-hidden=\"true\" focusable=\"false\"><g transform=\"translate(131.22 2) scale(1.47)\"><g class=\"linea\" fill=\"none\" stroke=\"#C9A35C\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path pathLength=\"1\" d=\"M14 176 64 112 106 140 156 68 198 96 282 18\"/><path pathLength=\"1\" d=\"M121.6 131.6 153.6 85.5\"/><path pathLength=\"1\" d=\"M260.2 21 282 18 277.4 39.5\"/></g><g class=\"atomos\" fill=\"#C9A35C\"><circle cx=\"14\" cy=\"176\" r=\"9\"/><circle cx=\"64\" cy=\"112\" r=\"9\"/><circle cx=\"106\" cy=\"140\" r=\"9\"/><circle cx=\"156\" cy=\"68\" r=\"9\"/><circle cx=\"198\" cy=\"96\" r=\"9\"/></g></g><path class=\"palabra\" transform=\"translate(20.64 429.18)\" fill=\"#C9A35C\" d=\"M56.80-24.88L76.23-24.88Q75.39-17.01 70.40-11.03Q65.41-5.04 57.59-1.68Q49.77 1.68 40.00 1.68L40.00 1.68Q29.19 1.68 20.89-2.31Q12.60-6.30 7.98-13.44Q3.36-20.58 3.36-29.92L3.36-29.92Q3.36-39.27 7.98-46.41Q12.60-53.55 20.89-57.54Q29.19-61.53 40.00-61.53L40.00-61.53Q49.77-61.53 57.59-58.17Q65.41-54.81 70.40-48.88Q75.39-42.95 76.23-34.96L76.23-34.96L56.80-34.96Q55.65-40.74 51.08-43.78Q46.52-46.83 40.00-46.83L40.00-46.83Q34.86-46.83 31.03-44.84Q27.20-42.84 25.09-39.06Q22.99-35.28 22.99-29.92L22.99-29.92Q22.99-24.57 25.09-20.79Q27.20-17.01 31.03-15.01Q34.86-13.02 40.00-13.02L40.00-13.02Q46.62-13.02 51.13-16.22Q55.65-19.43 56.80-24.88L56.80-24.88ZM119.07 1.68L119.07 1.68Q107.73 1.68 99.22-2.31Q90.72-6.30 85.99-13.44Q81.27-20.58 81.27-29.92L81.27-29.92Q81.27-39.38 85.99-46.46Q90.72-53.55 99.28-57.54Q107.83-61.53 119.07-61.53L119.07-61.53Q130.41-61.53 138.97-57.54Q147.52-53.55 152.25-46.46Q156.97-39.38 156.97-29.92L156.97-29.92Q156.97-20.47 152.25-13.39Q147.52-6.30 138.97-2.31Q130.41 1.68 119.07 1.68ZM119.07-13.02L119.07-13.02Q124.84-13.02 128.89-15.07Q132.93-17.11 135.08-20.89Q137.23-24.68 137.23-29.92L137.23-29.92Q137.23-35.17 135.08-38.95Q132.93-42.73 128.89-44.78Q124.84-46.83 119.07-46.83L119.07-46.83Q113.50-46.83 109.41-44.78Q105.31-42.73 103.11-38.95Q100.91-35.17 100.91-29.92L100.91-29.92Q100.91-24.68 103.11-20.89Q105.31-17.11 109.41-15.07Q113.50-13.02 119.07-13.02Z\"/><path class=\"palabra\" transform=\"translate(20.64 429.18)\" fill=\"#F3ECDD\" d=\"M181.13-59.85L202.65-9.13L195.82-9.24L217.45-59.85L238.25-59.85L210 0L187.84 0L159.60-59.85L181.13-59.85ZM318.46 0L298.20 0L295.57-21.73L298.41-29.92L295.57-38.01L298.20-59.85L318.46-59.85L314.79-29.92L318.46 0ZM303.03-29.92L303.03-29.92Q301.45-20.37 297.04-13.28Q292.63-6.19 285.91-2.26Q279.19 1.68 270.79 1.68L270.79 1.68Q261.97 1.68 255.31-2.31Q248.64-6.30 244.86-13.39Q241.08-20.47 241.08-29.92L241.08-29.92Q241.08-39.38 244.86-46.46Q248.64-53.55 255.31-57.54Q261.97-61.53 270.79-61.53L270.79-61.53Q279.19-61.53 285.91-57.59Q292.63-53.66 297.10-46.62Q301.56-39.59 303.03-29.92ZM260.82-29.92L260.82-29.92Q260.82-25.09 262.81-21.37Q264.81-17.64 268.33-15.49Q271.84-13.33 276.46-13.33L276.46-13.33Q281.08-13.33 285.23-15.49Q289.38-17.64 292.53-21.37Q295.68-25.09 297.25-29.92L297.25-29.92Q295.68-34.75 292.53-38.48Q289.38-42.21 285.23-44.36Q281.08-46.52 276.46-46.52L276.46-46.52Q271.84-46.52 268.33-44.36Q264.81-42.21 262.81-38.48Q260.82-34.75 260.82-29.92ZM328.44 0L328.44-80.85L347.87-80.85L347.87 0L328.44 0ZM393.75 1.68L393.75 1.68Q383.04 1.68 374.59-2.31Q366.13-6.30 361.31-13.44Q356.48-20.58 356.48-30.13L356.48-30.13Q356.48-39.48 361.10-46.52Q365.72-53.55 373.85-57.54Q381.99-61.53 392.28-61.53L392.28-61.53Q402.78-61.53 410.34-56.91Q417.90-52.29 422.00-43.89Q426.09-35.49 426.09-24.15L426.09-24.15L372.12-24.15L372.12-36.43L415.38-36.43L408.35-32.02Q408.03-36.96 405.98-40.37Q403.94-43.78 400.57-45.62Q397.22-47.46 392.60-47.46L392.60-47.46Q387.56-47.46 383.88-45.46Q380.20-43.47 378.16-39.90Q376.11-36.33 376.11-31.61L376.11-31.61Q376.11-25.62 378.79-21.42Q381.47-17.22 386.56-15.01Q391.65-12.81 399-12.81L399-12.81Q405.72-12.81 412.44-14.65Q419.16-16.48 424.51-19.84L424.51-19.84L424.51-7.14Q418.43-2.94 410.60-0.63Q402.78 1.68 393.75 1.68ZM435.75-39.48L431.97-59.85L451.39-59.85L455.28-36.54L455.28 0L435.75 0L435.75-39.48ZM477.64-61.53L477.64-61.53Q486.25-61.53 492.29-58.12Q498.33-54.70 501.53-48.41Q504.74-42.10 504.74-33.39L504.74-33.39L504.74 0L485.20 0L485.20-30.45Q485.20-37.91 481.53-41.74Q477.86-45.57 471.03-45.57L471.03-45.57Q466.20-45.57 462.68-43.52Q459.17-41.48 457.22-37.75Q455.28-34.02 455.28-28.88L455.28-28.88L449.08-32.13Q450.24-41.68 454.28-48.20Q458.32-54.70 464.36-58.12Q470.40-61.53 477.64-61.53ZM522.06-45.36L509.67-45.36L509.67-53.86L522.06-58.38L530.46-75.81L541.59-75.81L541.59-59.85L567.42-59.85L567.42-45.36L541.59-45.36L541.59-25.62Q541.59-18.90 544.32-16.22Q547.05-13.54 554.09-13.54L554.09-13.54Q558.60-13.54 562.01-14.33Q565.42-15.12 568.47-16.48L568.47-16.48L568.47-1.68Q565.32-0.42 560.23 0.63Q555.13 1.68 549.67 1.68L549.67 1.68Q540.12 1.68 533.98-1.36Q527.84-4.41 524.95-9.92Q522.06-15.43 522.06-22.89L522.06-22.89L522.06-45.36ZM610.78 1.68L610.78 1.68Q600.07 1.68 591.62-2.31Q583.17-6.30 578.34-13.44Q573.51-20.58 573.51-30.13L573.51-30.13Q573.51-39.48 578.13-46.52Q582.75-53.55 590.89-57.54Q599.02-61.53 609.31-61.53L609.31-61.53Q619.81-61.53 627.38-56.91Q634.93-52.29 639.03-43.89Q643.13-35.49 643.13-24.15L643.13-24.15L589.15-24.15L589.15-36.43L632.41-36.43L625.38-32.02Q625.06-36.96 623.02-40.37Q620.97-43.78 617.61-45.62Q614.25-47.46 609.63-47.46L609.63-47.46Q604.59-47.46 600.91-45.46Q597.24-43.47 595.19-39.90Q593.14-36.33 593.14-31.61L593.14-31.61Q593.14-25.62 595.82-21.42Q598.50-17.22 603.59-15.01Q608.68-12.81 616.03-12.81L616.03-12.81Q622.75-12.81 629.48-14.65Q636.19-16.48 641.55-19.84L641.55-19.84L641.55-7.14Q635.46-2.94 627.64-0.63Q619.81 1.68 610.78 1.68Z\"/></svg>";
+LOGO.apiladoClaro = "<svg viewBox=\"0 0 687.77 456.88\" aria-hidden=\"true\" focusable=\"false\"><g transform=\"translate(131.22 2) scale(1.47)\"><g class=\"linea\" fill=\"none\" stroke=\"#C9A35C\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path pathLength=\"1\" d=\"M14 176 64 112 106 140 156 68 198 96 282 18\"/><path pathLength=\"1\" d=\"M121.6 131.6 153.6 85.5\"/><path pathLength=\"1\" d=\"M260.2 21 282 18 277.4 39.5\"/></g><g class=\"atomos\" fill=\"#C9A35C\"><circle cx=\"14\" cy=\"176\" r=\"9\"/><circle cx=\"64\" cy=\"112\" r=\"9\"/><circle cx=\"106\" cy=\"140\" r=\"9\"/><circle cx=\"156\" cy=\"68\" r=\"9\"/><circle cx=\"198\" cy=\"96\" r=\"9\"/></g></g><path class=\"palabra\" transform=\"translate(20.64 429.18)\" fill=\"#C9A35C\" d=\"M56.80-24.88L76.23-24.88Q75.39-17.01 70.40-11.03Q65.41-5.04 57.59-1.68Q49.77 1.68 40.00 1.68L40.00 1.68Q29.19 1.68 20.89-2.31Q12.60-6.30 7.98-13.44Q3.36-20.58 3.36-29.92L3.36-29.92Q3.36-39.27 7.98-46.41Q12.60-53.55 20.89-57.54Q29.19-61.53 40.00-61.53L40.00-61.53Q49.77-61.53 57.59-58.17Q65.41-54.81 70.40-48.88Q75.39-42.95 76.23-34.96L76.23-34.96L56.80-34.96Q55.65-40.74 51.08-43.78Q46.52-46.83 40.00-46.83L40.00-46.83Q34.86-46.83 31.03-44.84Q27.20-42.84 25.09-39.06Q22.99-35.28 22.99-29.92L22.99-29.92Q22.99-24.57 25.09-20.79Q27.20-17.01 31.03-15.01Q34.86-13.02 40.00-13.02L40.00-13.02Q46.62-13.02 51.13-16.22Q55.65-19.43 56.80-24.88L56.80-24.88ZM119.07 1.68L119.07 1.68Q107.73 1.68 99.22-2.31Q90.72-6.30 85.99-13.44Q81.27-20.58 81.27-29.92L81.27-29.92Q81.27-39.38 85.99-46.46Q90.72-53.55 99.28-57.54Q107.83-61.53 119.07-61.53L119.07-61.53Q130.41-61.53 138.97-57.54Q147.52-53.55 152.25-46.46Q156.97-39.38 156.97-29.92L156.97-29.92Q156.97-20.47 152.25-13.39Q147.52-6.30 138.97-2.31Q130.41 1.68 119.07 1.68ZM119.07-13.02L119.07-13.02Q124.84-13.02 128.89-15.07Q132.93-17.11 135.08-20.89Q137.23-24.68 137.23-29.92L137.23-29.92Q137.23-35.17 135.08-38.95Q132.93-42.73 128.89-44.78Q124.84-46.83 119.07-46.83L119.07-46.83Q113.50-46.83 109.41-44.78Q105.31-42.73 103.11-38.95Q100.91-35.17 100.91-29.92L100.91-29.92Q100.91-24.68 103.11-20.89Q105.31-17.11 109.41-15.07Q113.50-13.02 119.07-13.02Z\"/><path class=\"palabra\" transform=\"translate(20.64 429.18)\" fill=\"#1A1A1A\" d=\"M181.13-59.85L202.65-9.13L195.82-9.24L217.45-59.85L238.25-59.85L210 0L187.84 0L159.60-59.85L181.13-59.85ZM318.46 0L298.20 0L295.57-21.73L298.41-29.92L295.57-38.01L298.20-59.85L318.46-59.85L314.79-29.92L318.46 0ZM303.03-29.92L303.03-29.92Q301.45-20.37 297.04-13.28Q292.63-6.19 285.91-2.26Q279.19 1.68 270.79 1.68L270.79 1.68Q261.97 1.68 255.31-2.31Q248.64-6.30 244.86-13.39Q241.08-20.47 241.08-29.92L241.08-29.92Q241.08-39.38 244.86-46.46Q248.64-53.55 255.31-57.54Q261.97-61.53 270.79-61.53L270.79-61.53Q279.19-61.53 285.91-57.59Q292.63-53.66 297.10-46.62Q301.56-39.59 303.03-29.92ZM260.82-29.92L260.82-29.92Q260.82-25.09 262.81-21.37Q264.81-17.64 268.33-15.49Q271.84-13.33 276.46-13.33L276.46-13.33Q281.08-13.33 285.23-15.49Q289.38-17.64 292.53-21.37Q295.68-25.09 297.25-29.92L297.25-29.92Q295.68-34.75 292.53-38.48Q289.38-42.21 285.23-44.36Q281.08-46.52 276.46-46.52L276.46-46.52Q271.84-46.52 268.33-44.36Q264.81-42.21 262.81-38.48Q260.82-34.75 260.82-29.92ZM328.44 0L328.44-80.85L347.87-80.85L347.87 0L328.44 0ZM393.75 1.68L393.75 1.68Q383.04 1.68 374.59-2.31Q366.13-6.30 361.31-13.44Q356.48-20.58 356.48-30.13L356.48-30.13Q356.48-39.48 361.10-46.52Q365.72-53.55 373.85-57.54Q381.99-61.53 392.28-61.53L392.28-61.53Q402.78-61.53 410.34-56.91Q417.90-52.29 422.00-43.89Q426.09-35.49 426.09-24.15L426.09-24.15L372.12-24.15L372.12-36.43L415.38-36.43L408.35-32.02Q408.03-36.96 405.98-40.37Q403.94-43.78 400.57-45.62Q397.22-47.46 392.60-47.46L392.60-47.46Q387.56-47.46 383.88-45.46Q380.20-43.47 378.16-39.90Q376.11-36.33 376.11-31.61L376.11-31.61Q376.11-25.62 378.79-21.42Q381.47-17.22 386.56-15.01Q391.65-12.81 399-12.81L399-12.81Q405.72-12.81 412.44-14.65Q419.16-16.48 424.51-19.84L424.51-19.84L424.51-7.14Q418.43-2.94 410.60-0.63Q402.78 1.68 393.75 1.68ZM435.75-39.48L431.97-59.85L451.39-59.85L455.28-36.54L455.28 0L435.75 0L435.75-39.48ZM477.64-61.53L477.64-61.53Q486.25-61.53 492.29-58.12Q498.33-54.70 501.53-48.41Q504.74-42.10 504.74-33.39L504.74-33.39L504.74 0L485.20 0L485.20-30.45Q485.20-37.91 481.53-41.74Q477.86-45.57 471.03-45.57L471.03-45.57Q466.20-45.57 462.68-43.52Q459.17-41.48 457.22-37.75Q455.28-34.02 455.28-28.88L455.28-28.88L449.08-32.13Q450.24-41.68 454.28-48.20Q458.32-54.70 464.36-58.12Q470.40-61.53 477.64-61.53ZM522.06-45.36L509.67-45.36L509.67-53.86L522.06-58.38L530.46-75.81L541.59-75.81L541.59-59.85L567.42-59.85L567.42-45.36L541.59-45.36L541.59-25.62Q541.59-18.90 544.32-16.22Q547.05-13.54 554.09-13.54L554.09-13.54Q558.60-13.54 562.01-14.33Q565.42-15.12 568.47-16.48L568.47-16.48L568.47-1.68Q565.32-0.42 560.23 0.63Q555.13 1.68 549.67 1.68L549.67 1.68Q540.12 1.68 533.98-1.36Q527.84-4.41 524.95-9.92Q522.06-15.43 522.06-22.89L522.06-22.89L522.06-45.36ZM610.78 1.68L610.78 1.68Q600.07 1.68 591.62-2.31Q583.17-6.30 578.34-13.44Q573.51-20.58 573.51-30.13L573.51-30.13Q573.51-39.48 578.13-46.52Q582.75-53.55 590.89-57.54Q599.02-61.53 609.31-61.53L609.31-61.53Q619.81-61.53 627.38-56.91Q634.93-52.29 639.03-43.89Q643.13-35.49 643.13-24.15L643.13-24.15L589.15-24.15L589.15-36.43L632.41-36.43L625.38-32.02Q625.06-36.96 623.02-40.37Q620.97-43.78 617.61-45.62Q614.25-47.46 609.63-47.46L609.63-47.46Q604.59-47.46 600.91-45.46Q597.24-43.47 595.19-39.90Q593.14-36.33 593.14-31.61L593.14-31.61Q593.14-25.62 595.82-21.42Q598.50-17.22 603.59-15.01Q608.68-12.81 616.03-12.81L616.03-12.81Q622.75-12.81 629.48-14.65Q636.19-16.48 641.55-19.84L641.55-19.84L641.55-7.14Q635.46-2.94 627.64-0.63Q619.81 1.68 610.78 1.68Z\"/></svg>";
+const WEB_URL = 'covalente.eu/casos/nerea-nails';
+const WEB_SRC = '../casos/nerea-nails/?nc=1';   
+const vivaweb = (ancho, titulo) => `<div class="vivaweb" data-ancho="${ancho}"><iframe src="${WEB_SRC}" title="${titulo}"></iframe></div>`;
+const movil = dentro => `<div class="movil">${dentro}</div>`;
+const LAM = {
+  kit: `<div class="lam p-kit" role="img" aria-label="La marca de Covalente: el logo, el icono y sus cuatro colores, cada uno con su código.">
+        <div class="c v"><span class="vivo-e">${LOGO.apilado}</span><span class="cod">Verde botella #0F3B32</span></div>
+        <div class="c m"><span class="ics">${[44, 28, 16].map(n => `<img src="${LOGOS}favicon.svg" width="${n}" height="${n}" alt="">`).join('')}</span><span class="cod">Marfil #F3ECDD</span></div>
+        <div class="c o"><span class="cod">Oro #C9A35C</span></div>
+        <div class="c n"><span class="cod">Negro #1A1A1A</span></div>
+      </div>`,
+  web: `<div class="lam p-web">${movil('<img src="img/web-nerea-movil.webp" alt="La web de muestra de Nerea Nails, en un móvil.">')}</div>`,
+  kitweb: `<div class="lam p-kitweb"><img class="llena" src="img/movil-covalente.webp" alt="Un móvil en la mano con la web de Covalente: la marca y la web, a juego."></div>`,
+};
+const V = {
+  logo: () => `<div class="lienzo viva lam-logo"><div class="gran vivo" id="gran" role="img" aria-label="El logo de Covalente: cinco átomos que se enlazan y, debajo, el nombre.">${LOGO.apilado}</div><div class="cuadros" aria-hidden="true">${[['0,9 s', 1], ['1,1 s', 2], ['1,6 s', 3], ['2,0 s', 4]].map(([t, e]) => `<span class="cq et-${e}">${LOGO.apilado}${t}</span>`).join('')}</div><button class="rep" id="repetir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.8v3.4h3.4"/></svg><span>Repetir</span></button></div>`,
+  versiones: () => `<div class="lienzo viva lam-ver"><div class="vr claro" role="img" aria-label="El logo de Covalente sobre claro.">${LOGO.apiladoClaro}<span class="rot" aria-hidden="true">Sobre claro</span></div><div class="vr negro" role="img" aria-label="El logo de Covalente sobre negro.">${LOGO.apilado}<span class="rot" aria-hidden="true">Sobre negro</span></div><div class="vr tinta" role="img" aria-label="El signo de Covalente, solo y a una tinta.">${mol()}<span class="rot" aria-hidden="true">El signo solo, a una tinta</span></div></div>`,
+  paleta: () => `<div class="lienzo viva lam-pal">${TINTAS.map(([n, hex, rgb, uso, tx, f]) => `<div class="tn${hex === '#F3ECDD' ? ' m' : ''}" style="--c:${hex};--t:${tx};--f:${f}"><b>${n}</b><span class="cod">${hex}</span><span class="cod">RGB ${rgb}</span><span class="uso">${uso}</span></div>`).join('')}</div>`,
+  icono: () => { const ic = icono;
+    return `<div class="lienzo viva lam-ico"><div class="medidas"><div class="fila">${[16, 24, 32, 48, 96].map(n => `<span class="tam">${ic(n)}${n} px</span>`).join('')}</div></div><div class="usos"><div class="ventana"><div class="pestanas"><span class="pest">${ic(16)}Covalente</span></div><img src="img/web-covalente.webp" alt="La web de Covalente en un navegador, con el icono en su pestaña."></div></div></div>`; },
+  letras: () => `<div class="lienzo viva lam-let"><div class="lt a"><span class="aa" aria-hidden="true">Aa</span><b>Bodoni Moda</b><span class="para">Para los títulos</span><span class="frase">Tenemos química</span></div><div class="lt b"><span class="aa" aria-hidden="true">Aa</span><b>Figtree</b><span class="para">Para los textos</span><span class="frase">Marca y web a medida para negocios pequeños</span></div></div>`,
+  piezas: () => `<div class="lienzo viva lam-foto"><img src="img/tarjetas.webp" alt="Tarjetas de visita de Covalente, verdes, negras y marfil, con el logo en oro y el lema en relieve."></div>`,
+  web: () => `<div class="lienzo viva lam-web"><div class="ventana"><div class="dir">${WEB_URL}</div>${vivaweb(1280, 'La web de muestra de Nerea Nails, como se ve en un ordenador')}</div></div>`,
+  movil: () => `<div class="lienzo viva lam-movil">${movil(vivaweb(390, 'La web de muestra de Nerea Nails, como se ve en un móvil'))}</div>`,
+};
+const EXV = {
+  tarjeta: {cls:'', pie:'De visita o de fidelidad, con tu marca y lista para imprimir. Las de la foto son de Nerea Nails, una muestra de Covalente.',
+    html:() => '<img class="llena" src="img/tarjeta.webp" alt="Un taco de tarjetas de visita y una tarjeta de fidelidad de Nerea Nails, sobre el mostrador del salón.">'},
+  carta: {cls:'ex-carta', pie:'Carta, menú o lista de precios con tu marca, para imprimir y para redes. La de la foto es de Taberna La Jarra, una muestra, con precios de muestra.',
+    html:() => '<img class="llena" src="img/extra-carta.webp" alt="La carta de Taberna La Jarra, impresa, sobre la barra de zinc junto a un vermut.">'},
+  plantillas: {cls:'ex-plant', pie:'Seis diseños más para Instagram, en Canva: novedades, horarios o fechas especiales. Estas son de Nerea Nails, una muestra.',
+    html:() => [['1','una novedad'],['2','el horario'],['3','las fechas especiales']].map(([n, q]) => `<img src="img/extra-plantilla-${n}.webp" width="600" height="750" alt="Plantilla de Instagram de Nerea Nails para ${q}.">`).join('')},
+  maps: {cls:'ex-movil', pie:'Así te encuentran cuando te buscan en el mapa: nombre, horario, fotos y cómo llegar. El ejemplo es Taberna La Jarra, una muestra.',
+    html:() => movil(`<div class="fichap" role="img" aria-label="Cómo se ve un negocio cuando lo buscan en el mapa: una foto, el nombre, si está abierto, la calle, dos botones, para llegar y para llamar, y más fotos. El ejemplo es Taberna La Jarra."><div class="ff"><img src="img/ficha-taberna.webp" alt=""></div><div class="fc" aria-hidden="true"><span class="fn">Taberna La Jarra</span><span class="fh"><b>Abierto.</b> Cierra a las 0:00</span><span class="fd">Calle de Echegaray, Madrid</span><span class="fb"><span>Cómo llegar</span><span>Llamar</span></span><span class="fg"><img src="img/ficha-foto-1.webp" alt=""><img src="img/ficha-foto-2.webp" alt=""><img src="img/ficha-foto-3.webp" alt=""></span></div></div>`)},
+  mant: {cls:'ex-movil', pie:'Nos escribes y lo cambiamos: precios, horarios, fotos o un aviso de vacaciones. Hasta 4 cambios pequeños al mes, sin permanencia. Solo para webs nuestras; la de la imagen es una muestra.',
+    html:() => movil(`<div class="chatp" role="img" aria-label="Una conversación con Covalente. El negocio escribe: desde hoy cerramos a las 0:00, ¿lo cambiáis en la web? Covalente contesta: hecho, ya está en tu web, y manda la captura de la web de Taberna La Jarra con el horario nuevo."><div class="cc" aria-hidden="true"><img src="${LOGOS}covalente-horizontal-oscuro.svg" alt=""></div><div class="cm" aria-hidden="true"><span class="tu">Desde hoy cerramos a las 0:00. ¿Lo cambiáis en la web?</span><span class="no">Hecho. Ya está en tu web.<img src="img/extra-mant-web.webp" width="600" height="516" alt=""></span><span class="fi">Equipo de Covalente</span></div></div>`)},
+  dominio: {cls:'ex-dominio', pie:'Registramos tu dirección de internet a tu nombre y la renovamos cada año. Los 19 € son para un .es o un .com; otras cuestan más, y te lo decimos antes. Depende de que esté libre.',
+    html:() => '<div class="ventana"><div class="dir" aria-hidden="true"><span>covalente.eu</span></div><img src="img/web-covalente.webp" alt="La web de Covalente en un navegador. Arriba, grande, su dirección: covalente.eu."></div>'}
+};
+const EJEMPLOS = {
+  kit: {titulo:'Así queda un Kit de marca', apunte:'El ejemplo es nuestra propia marca.',
+    incluye:['Logo a medida, en todas sus versiones','Colores y letras','Guía de marca en PDF','6 plantillas de Instagram','Tu nombre, si aún no lo tienes: tres, comprobados'],
+    vistas:[
+      {html:V.logo, pie:'El logo, en movimiento: cinco átomos que se enlazan, y entra el nombre.'},
+      {html:V.versiones, pie:'Sus versiones: sobre claro, sobre negro y el signo solo, a una tinta.'},
+      {html:V.paleta, pie:'Los colores: cada uno con su nombre, su uso y sus códigos.'},
+      {html:V.icono, pie:'El icono, de 16 px a icono de app. A la derecha, en la pestaña de nuestra web.'},
+      {html:V.letras, pie:'Las letras: una para los títulos y otra para los textos.'},
+      {html:V.piezas, pie:'En las cosas: las tarjetas, con el relieve en seco.'}]},
+  web: {titulo:'Así queda una Página web', apunte:'El ejemplo es la web de muestra de Nerea Nails.',
+    incluye:['A medida y pensada para el móvil','Lo que ofreces, dónde estás, tu horario y tus fotos','Botón de WhatsApp con el mensaje ya escrito','Preparada para Google','Conectada a tu dominio'],
+    vistas:[
+      {html:V.web, pie:'En el ordenador. Es la web de verdad: deslízala y pruébala dentro de la ventana.'},
+      {html:V.movil, pie:'En el móvil. Deslízala y pruébala dentro de la pantalla.'}]},
+  kitweb: {titulo:'Así quedan la marca y la web, a juego', apunte:'Dos ejemplos: nuestra marca y la web de muestra de Nerea Nails. En tu caso, la web sale de tu marca nueva.',
+    incluye:['Todo el Kit de marca','Toda la Página web','La web, hecha sobre tu marca nueva'],
+    vistas:[
+      {html:V.logo, pie:'La marca: el logo, en movimiento.'},
+      {html:V.paleta, pie:'La marca: los colores, con sus códigos.'},
+      {html:V.web, pie:'La web, en el ordenador. Deslízala dentro de la ventana.'},
+      {html:V.movil, pie:'La web, en el móvil. Deslízala dentro de la pantalla.'}]},
+};
+const MENOR = '<svg viewBox="0 0 15 19" aria-hidden="true"><path d="M12.5 1.5 2.5 9.5l10 8"/></svg>';
+const MAYOR = '<svg viewBox="0 0 15 19" aria-hidden="true"><path d="M2.5 1.5l10 8-10 8"/></svg>';
+const CHECK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>';
+const NO = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg>';
+const WA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path vector-effect="non-scaling-stroke" transform="translate(7.5 6.9) scale(.39)" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+const CORREO = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="5" width="18.5" height="14" rx="1.5"/><path d="m3.6 6.4 8.4 6.6 8.4-6.6"/></svg>';
+const BAJAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v12.5"/><path d="m7 11 5 5 5-5"/><path d="M4.5 20.5h15"/></svg>';
+const arriba = paso => `<div class="arriba"><button class="signo" id="volver" aria-label="Volver">${MENOR}</button>${paso ? `<span class="paso">${paso}</span>` : ''}</div>`;
+const NOMBRE_SERV = {kit:'Kit de marca', web:'Página web', kitweb:'Kit + web', extra:'Algo suelto'};
+const ORIGEN = {ig:'Instagram', tt:'TikTok', pin:'Pinterest', wa:'WhatsApp', correo:'correo', web:'la web'};
+const PALETA = [['Marfil','#EFE6D2'],['Arena','#D9C3A0'],['Arcilla','#B0674C'],['Teja','#8E3B2E'],['Mostaza','#C49A3A'],['Oliva','#6B6B3A'],['Salvia','#9DAA8C'],['Verde botella','#1F4A3D'],['Azul petróleo','#1E4B5A'],['Azul tinta','#22304A'],['Malva','#8E6E7E'],['Rosa empolvado','#D8B4AA'],['Gris piedra','#8C877D'],['Negro','#1A1A1A'],['Blanco','#FAFAF7']];
+const LETRAS = [
+  ['clasica','Clásica, con peso',"'Gloock', serif",400,1],
+  ['calida','Cálida, de oficio',"'Young Serif', serif",400,.95],
+  ['actual','Actual y limpia',"'Familjen Grotesk', sans-serif",500,.95],
+  ['caracter','Con carácter, de cartel',"'Big Shoulders Display', sans-serif",800,1.25],
+  ['delicada','Fina y delicada',"'Italiana', serif",400,1.05],
+  ['siempre','De siempre, de imprenta',"'IM Fell English', serif",400,1]];
+function flujo(a, sup){
+  const s = a.servicio, ex = a.extras || [];
+  const kit = s === 'kit' || s === 'kitweb', web = s === 'web' || s === 'kitweb', suelto = s === 'extra';
+  const SUP = sup === 'mejorar' ? {mapsYa:'si', dominio:'si', webNuestra:'si'} : {mapsYa:'no', dominio:'no', webNuestra:'si'};
+  const r = k => a[k] || (sup ? SUP[k] || sup : '');
+  const f = [], pon = (...l) => l.forEach(x => { if (x && !f.includes(x)) f.push(x); });
+  if (!s) return f;
+  const nombreBloque = () => {
+    const n = ['tieneNombre'];
+    if (a.tieneNombre === 'si' || a.tieneNombre === 'dudo') n.push('nombre');
+    if (a.tieneNombre === 'no' || a.tieneNombre === 'dudo') n.push('estiloNombre','gustos','idioma','nombresQueGustan');
+    return n;
+  };
+  const ofrecida = web && (a.webNuestra === 'no' || a.webNuestra === 'notengo');
+  if (kit) pon('kitParte');
+  if (web && !ofrecida) pon('webParte');
+  const kp = kit ? r('kitParte') : '', wp = !web ? '' : ofrecida ? (a.webNuestra === 'no' ? 'mejorar' : 'cero') : r('webParte');
+  const dos = kp === 'cero' && wp === 'cero';
+  if (suelto) pon('nombreNegocio');
+  if (kp === 'cero') pon('negocio', dos ? 'kitwebObjetivo' : 'kitObjetivo', ...nombreBloque(), 'cliente','porQue','palabras','estilo','colores','donde', dos ? '' : 'referencias');
+  if (kp === 'mejorar') pon('nombreNegocio','negocio','kitTiene','kitCambiar','kitConservar');
+  if (kp === 'otra') pon('nombreNegocio');
+  const nom = kp === 'cero' ? '' : 'nombreNegocio';
+  if (wp === 'cero') pon(nom, 'negocio', dos ? '' : 'webObjetivo', kit ? '' : 'tieneAlgo', 'primeroWeb','preguntanSiempre','google','servicios','zonaHorario','contactoWeb','fotos','tipoWeb','dominio','trato');
+  if (wp === 'mejorar') pon(nom, 'webTiene','webCambiar','webConservar');
+  if (wp === 'otra') pon(nom);
+  const pieza = (x, parte, cero, mejorar) => {
+    if (!ex.includes(x)) return;
+    let p = 'cero';
+    if (!kit) { pon(parte); p = r(parte); }
+    if (p === 'cero') { if (suelto) pon('negocio','tieneAlgo'); pon(...cero); }
+    if (p === 'mejorar') pon(...mejorar);
+  };
+  pieza('tarjeta', 'tarjetaParte', ['tarjetaTipo','tarjetaDatos'], ['tarjetaCambiar']);
+  pieza('carta', 'cartaParte', ['cartaTipo'], ['cartaCambiar']);
+  pieza('plantillas', 'plantillasParte', ['plantillasTemas'], ['plantillasCambiar']);
+  if (!web && ex.includes('mant')) pon('webNuestra');
+  const nuestra = web || r('webNuestra') === 'si';
+  if (ex.includes('maps')){
+    pon('mapsYa'); const m = r('mapsYa');
+    if (m === 'si') pon('mapsObjetivo','mapsGestiona');
+    if (m === 'no' || m === 'nose') { if (suelto) pon('negocio'); if (m === 'no') pon('mapsLocal'); pon('zonaHorario','mapsObjetivo'); }
+  }
+  if (ex.includes('mant') && nuestra) pon('mantCambios');
+  if (ex.includes('dominio')){
+    pon('dominio'); const d = r('dominio');
+    const tras = d === 'si' ? 'dominioCambiar' : (d === 'no' || d === 'nose') && !web ? 'dominioPara' : '';
+    if (tras && !f.includes(tras)) f.splice(f.indexOf('dominio') + 1, 0, tras);
+  }
+  if (kp === 'cero' || wp === 'cero') pon('decide');
+  if (['cero','mejorar'].includes(kp) || ['cero','mejorar'].includes(wp)) pon('fecha');
+  return f;
+}
+/* ---------- Estado ---------- */
+const params = new URLSearchParams(location.search);
+const ver = params.get('ver');
+const origen = ORIGEN[params.get('o')] || 'la web';
+const DESTINO = ver ? '' : params.get('api') === 'local' && ['localhost', '127.0.0.1'].includes(location.hostname) ? `http://127.0.0.1:${/^\d{2,5}$/.test(params.get('puerto') || '') ? params.get('puerto') : 8793}/api/expediente` : API;
+const CLAVE = 'covalente-cuestionario', ARCHIVO = 'covalente-expedientes', PANTALLAS = ['inicio','necesitas','cliente','consulta','servicio','antes','pregunta','contacto','final'];
+const PREG = ['servicio','antes','pregunta','contacto'];
+let A = {}, pantalla = 'inicio', i = 0, pestanaColor = 'si', qAhora = '';
+let pasos = [{p:'inicio'}], pos = 0, meta = 0, hondo = 0, gen = 0, camino = [];
+const lee = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v === null ? d : v; } catch (e) { return d; } };
+{ const g = lee(CLAVE, null);
+  if (g && g.A && typeof g.A === 'object') A = g.A;
+  if (g && Number.isInteger(g.gen)) gen = g.gen;
+  if (g && Array.isArray(g.pasos) && g.pasos.length && g.pasos.every(s => s && PANTALLAS.includes(s.p)) && g.pasos[0].p === 'inicio') { pasos = g.pasos; meta = Math.max(0, Math.min(+g.pos || 0, pasos.length - 1)); }
+  if (g && Array.isArray(g.camino) && g.camino.every(s => s && PREG.includes(s.p))) camino = g.camino;
+  else { 
+    const k = pasos.findIndex(s => PREG.includes(s.p)); let f = PREG.includes((pasos[meta] || {}).p) ? meta : pasos.length - 1;
+    while (f > k && !PREG.includes(pasos[f].p)) f--;
+    if (k > 0) camino = pasos.slice(k, f + 1); } }
+const guardar = () => { if (ver) return; const s = pasos[pos]; if (s && PREG.includes(s.p)) camino = pasos.slice(pasos.findIndex(x => PREG.includes(x.p)), pos + 1);
+  try { localStorage.setItem(CLAVE, JSON.stringify({A, pasos, pos, gen, camino, v:6})); } catch (e) {} };
+const archivo = () => { const l = lee(ARCHIVO, []); return Array.isArray(l) ? l : []; };
+const archivar = a => { if (ver || !a || !a.expediente) return; try { localStorage.setItem(ARCHIVO, JSON.stringify([...archivo().filter(x => x && x.expediente !== a.expediente), a])); } catch (e) {} };
+const todos = () => [...archivo().filter(x => x && x.expediente && x.expediente !== A.expediente), ...(A.expediente ? [A] : [])];
+const expediente = n => n ? (todos().find(x => x.expediente === n) || null) : A.expediente ? A : (archivo().slice(-1)[0] || null);
+const estado = () => { try { history.replaceState({pos, h:hondo, g:gen}, ''); } catch (e) {} };
+const vale = s => !!s && (['inicio','necesitas','cliente','consulta'].includes(s.p) ? true : s.p === 'final' ? !!expediente(s.q) : A.expediente ? false : s.p === 'servicio' ? true : !A.servicio ? false : s.p === 'pregunta' ? flujo(A).includes(s.q) : true);
+function coloca(){
+  while (pos > 0 && !vale(pasos[pos])) pos--;
+  const s = pasos[pos] || {p:'inicio'};
+  pantalla = s.p; if (s.p === 'pregunta') i = flujo(A).indexOf(s.q);
+}
+function ir(p, q, mas){
+  pasos = pasos.slice(0, pos + 1); pasos.push(q ? {p, q, ...(mas || {})} : {p}); pos = pasos.length - 1; meta = pos;
+  try { history.pushState({pos, h:++hondo, g:gen}, ''); } catch (e) {}
+  guardar(); coloca(); pintar();
+}
+function atras(){
+  const s = pasos[pos], f = flujo(A);
+  const aqui = !!s && s.p === pantalla && (s.p !== 'pregunta' || s.q === f[i]);
+  if (aqui && pos > 0){
+    if (hondo > 0 && history.state && history.state.pos === pos && history.state.g === gen) return history.back();
+    pos--; coloca(); estado(); guardar(); return pintar();
+  }
+  const ant = pantalla === 'pregunta' ? (i > 0 ? {p:'pregunta', q:f[i - 1]} : {p:'antes'}) : pantalla === 'contacto' ? (f.length ? {p:'pregunta', q:f[f.length - 1]} : {p:'antes'}) : pantalla === 'antes' ? {p:'servicio'} : ['servicio', 'consulta'].includes(pantalla) ? {p:'necesitas'} : {p:'inicio'};
+  pasos = ant.p === 'inicio' ? [ant] : [{p:'inicio'}, ant]; pos = pasos.length - 1; meta = pos;
+  coloca(); estado(); guardar(); pintar();
+}
+addEventListener('popstate', e => {
+  const st = e.state || {};
+  pos = st.g === gen ? Math.max(0, Math.min(Number.isInteger(st.pos) ? st.pos : 0, pasos.length - 1)) : 0; hondo = Number.isInteger(st.h) ? st.h : 0;
+  coloca(); guardar(); pintar();
+});
+function retomar(){
+  const c = camino.filter(vale);
+  if (!c.length || !A.servicio || A.expediente) return ir('servicio');
+  pasos = [...pasos.slice(0, pos + 1), ...c];
+  for (let k = pos + 1; k < pasos.length; k++) { try { history.pushState({pos:k, h:++hondo, g:gen}, ''); } catch (e) {} }
+  pos = pasos.length - 1; meta = pos; coloca(); estado(); guardar(); pintar();
+}
+function reinicia(){ archivar(A); A = {}; pasos = [{p:'inicio'}]; pos = 0; meta = 0; camino = []; gen++; estado(); guardar(); coloca(); pintar(); }
+function abrir(){ archivar(A); pasos = [{p:'inicio'}, {p:'final', q:A.expediente}]; pos = 1; meta = 1; camino = []; gen++; estado(); guardar(); coloca(); pintar(); }
+function sustituye(p, q){ pasos = pasos.slice(0, pos); pasos.push(q ? {p, q} : {p}); meta = pos; estado(); guardar(); coloca(); pintar(); }
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const val = (x, a) => typeof x === 'function' ? x(a) : x;
+const escena = $('#escena');
+function pintar(){
+  const enPreguntas = pantalla === 'pregunta';
+  $('#expediente').hidden = !(enPreguntas || pantalla === 'contacto');
+  $('#abrirExp').hidden = $('#expediente').hidden;
+  $('#marco').classList.toggle('solo', $('#expediente').hidden);
+  const n = Math.max(flujo(A, 'cero').length, i + 1);
+  $('#barra').style.width = enPreguntas ? (i / (n + 1) * 100) + '%' : pantalla === 'contacto' ? (n / (n + 1) * 100) + '%' : pantalla === 'final' ? '100%' : '0';
+  $('#otra').hidden = pantalla !== 'final';
+  ({inicio, necesitas, cliente, consulta, servicio, antes, pregunta, contacto, final})[pantalla]();
+  pintarExpediente();
+  const h = escena.querySelector('h1'); if (h){ h.tabIndex = -1; h.focus({preventScroll:true}); }
+  window.scrollTo(0, 0);
+}
+const escaparate = () => `<figure class="escaparate">
+    <div class="lam esc-foto"><img class="llena" src="img/tarjetas.webp" alt="Tarjetas de visita de Covalente, verdes, negras y marfil, con el logo en oro y el lema en relieve."></div>
+    <div class="lam esc-web">${movil(vivaweb(390, 'La web de muestra de Nerea Nails, como se ve en un móvil'))}</div>
+    <figcaption>Muestra</figcaption>
+  </figure>`;
+function vivas(){
+  escena.querySelectorAll('.vivaweb').forEach(c => {
+    const f = c.firstElementChild, ancho = +c.dataset.ancho, k = c.clientWidth / ancho;
+    if (!k) return;
+    f.style.width = ancho + 'px'; f.style.height = Math.ceil(c.clientHeight / k) + 'px'; f.style.transform = `scale(${k})`;
+  });
+}
+addEventListener('resize', vivas);
+function inicio(){
+  escena.className = 'escena entra ancha';
+  escena.innerHTML = `<div class="portada"><div>
+      <h1><span class="hola">Hola. </span>¿Ya eres cliente de Covalente?</h1>
+      <div class="elige">
+        <button class="boton grande" data-ir="necesitas">No, todavía no</button>
+        <button class="boton grande sec" data-ir="cliente">Sí, ya soy cliente</button>
+      </div>
+    </div>${escaparate()}</div>`;
+  escena.querySelectorAll('[data-ir]').forEach(b => b.onclick = () => ir(b.dataset.ir));
+  vivas();
+}
+function necesitas(){
+  escena.className = 'escena entra ancha';
+  escena.innerHTML = `<div class="portada"><div>
+      ${arriba()}
+      <h1>¿Qué necesitas?</h1>
+      <div class="elige">
+        <button class="boton grande" data-ir="servicio">Quiero un diseño para mi negocio</button>
+        <button class="boton grande sec" data-ir="consulta">Tengo una pregunta</button>
+        ${!A.expediente && A.servicio ? '<button class="boton grande sec" id="retomar">Seguir donde lo dejaste</button>' : ''}
+      </div>
+    </div>${escaparate()}</div>`;
+  escena.querySelectorAll('[data-ir]').forEach(b => b.onclick = () => { if (b.dataset.ir === 'servicio' && A.expediente) { archivar(A); A = {}; camino = []; } ir(b.dataset.ir); });
+  const r = $('#retomar'); if (r) r.onclick = retomar;
+  $('#volver').onclick = atras;
+  vivas();
+}
+let cli = {dato:'', paso:1, codigo:'', error:'', otro:false};
+const cifras = s => String(s || '').replace(/\D/g, '').replace(/^00/, '');
+const correoN = s => String(s || '').toLowerCase().replace(/\s+/g, '');
+const mismoTel = (a, b) => !!a && (a === b || (a.length >= 9 && b.length >= 9 && Math.abs(a.length - b.length) <= 3 && (a.endsWith(b) || b.endsWith(a))));
+const datoBueno = d => d.includes('@') ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correoN(d)) : /^[\d\s+().-]+$/.test(d) && cifras(d).length >= 9;
+const busca = d => { const c = d.includes('@'), n = c ? correoN(d) : cifras(d);
+  return todos().filter(x => c ? correoN(x.contactoDato) === n : mismoTel(cifras(x.contactoDato), n)).sort((x, y) => String(y.abierto || '').localeCompare(String(x.abierto || '')))[0] || null; };
+function cliente(){
+  escena.className = 'escena entra ancha';
+  if (!CON_CODIGO) return clienteAqui();
+  escena.innerHTML = `<div class="portada entrada"><div>
+      ${arriba()}
+      <h1>Entra en tu expediente.</h1>
+      <p class="ayuda j">Introduce el correo o el número de WhatsApp que nos facilitaste y te enviaremos un código de verificación.</p>
+      <div id="cliZona"></div>
+    </div>${escaparate()}</div>`;
+  $('#volver').onclick = atras;
+  zonaCliente();
+  vivas();
+}
+function clienteAqui(){
+  const l = todos().slice().reverse();
+  const nom = x => esc(((x.nombreNegocio || '').trim() || 'Tu negocio') + ', expediente ' + x.expediente);
+  escena.innerHTML = `<div class="portada entrada"><div>
+      ${arriba()}
+      <h1>Tu expediente.</h1>
+      ${l.length ? `<p class="ayuda j">${l.length === 1 ? 'Este es el que enviaste' : 'Estos son los que enviaste'} desde este móvil u ordenador.</p>
+      <div class="elige">${l.map(x => `<button class="boton grande" data-exp="${esc(x.expediente)}">${nom(x)}</button>`).join('')}</div>
+      <section class="nohay" aria-labelledby="noHayT"><h2 id="noHayT">¿Es otro?</h2><p class="ayuda j">Escríbenos y te lo mandamos.</p>`
+      : `<section class="nohay sola" aria-labelledby="noHayT"><h2 id="noHayT" class="oculto">Escríbenos</h2><p class="ayuda j">Si lo enviaste desde otro móvil u ordenador, aquí no está. Escríbenos y te lo mandamos.</p>`}
+      <div class="contactos">
+        <a class="contacto" href="${WA_URL}Hola%2C%20Covalente.%20Soy%20cliente%20y%20no%20encuentro%20mi%20expediente." target="_blank" rel="noopener">${WA}<span class="nom">WhatsApp</span></a>
+        <a class="contacto" href="mailto:covalente.madrid@gmail.com">${CORREO}<span class="nom">Correo</span></a>
+      </div></section>
+    </div>${escaparate()}</div>`;
+  escena.querySelectorAll('[data-exp]').forEach(b => b.onclick = () => ir('final', b.dataset.exp, {vuelve:true}));
+  $('#volver').onclick = atras;
+  vivas();
+}
+function zonaCliente(foco){
+  const c = cli, correo = c.dato.includes('@'), z = $('#cliZona');
+  const error = id => c.error ? `<p class="error j" id="${id}" role="alert">${esc(c.error)}</p>` : '';
+  const mal = id => c.error ? ` aria-invalid="true" aria-describedby="${id}"` : '';
+  const a = correo ? 'por correo a ' + esc(correoN(c.dato)) : 'por WhatsApp al ' + esc(c.dato.trim());
+  z.innerHTML = `
+    <form id="fDato" novalidate>
+      <label class="campo"><span>Tu correo o tu número de WhatsApp</span><input id="dato" value="${esc(c.dato)}" placeholder="tu@correo.es o 600 000 000" autocomplete="username" spellcheck="false"${c.paso === 1 ? mal('errDato') : ''}></label>
+      ${c.paso === 1 ? error('errDato') + '<div class="acciones"><button class="boton" type="submit">Enviarme el código</button></div>' : ''}
+    </form>
+    ${c.paso === 2 ? `<form id="fCodigo" novalidate>
+      <p class="enviado j">Te hemos enviado ${c.otro ? 'otro código' : 'el código'} ${a}.</p>
+      <label class="campo codigo"><span>Código</span><input id="codigo" value="${esc(c.codigo)}" inputmode="numeric" autocomplete="one-time-code" maxlength="7"${mal('errCodigo')}></label>
+      ${error('errCodigo')}
+      <div class="acciones"><button class="boton" type="submit">Entrar</button><button class="boton sec" type="button" id="otroCodigo">Enviarme otro código</button></div>
+      ${API ? '' : '<p class="nota j">Maqueta: no se envía nada y vale cualquier código de seis cifras.</p>'}
+    </form>` : ''}
+    ${c.paso === 3 ? `<section class="nohay" aria-labelledby="noHayT">
+      <h2 id="noHayT" tabindex="-1">No hay ningún expediente con ${correo ? 'ese correo' : 'ese número'}.</h2>
+      <p class="ayuda j">Revisa que sea el que nos facilitaste o escríbenos y lo localizamos.</p>
+      <div class="contactos">
+        <a class="contacto" href="${WA_URL}Hola%2C%20Covalente.%20Soy%20cliente%20y%20no%20encuentro%20mi%20expediente." target="_blank" rel="noopener">${WA}<span class="nom">WhatsApp</span></a>
+        <a class="contacto" href="mailto:covalente.madrid@gmail.com">${CORREO}<span class="nom">Correo</span></a>
+      </div>
+    </section>` : ''}`;
+  const dato = $('#dato');
+  dato.oninput = () => { c.dato = dato.value; if (c.paso !== 1 || c.error) { const p = dato.selectionStart; c.paso = 1; c.error = ''; c.codigo = ''; zonaCliente('#dato'); $('#dato').setSelectionRange(p, p); } };
+  $('#fDato').onsubmit = e => { e.preventDefault(); const d = c.dato.trim();
+    c.error = !d ? 'Introduce el correo o el número de WhatsApp que nos facilitaste.' : !datoBueno(d) ? 'Escribe un correo completo, como tu@correo.es, o un número de teléfono con todas sus cifras.' : '';
+    if (c.error) return zonaCliente('#dato');
+    c.paso = 2; c.codigo = ''; c.otro = false; zonaCliente('#codigo'); };
+  const f2 = $('#fCodigo');
+  if (f2) {
+    $('#codigo').oninput = e => { c.codigo = e.target.value; };
+    $('#otroCodigo').onclick = () => { c.otro = true; c.codigo = ''; c.error = ''; zonaCliente('#codigo'); };
+    f2.onsubmit = e => { e.preventDefault(); const k = c.codigo.replace(/\s+/g, '');
+      if (!/^\d{6}$/.test(k)) { c.error = k ? 'El código tiene seis cifras. Lo encontrarás en el mensaje que te hemos enviado.' : 'Introduce el código de seis cifras que te hemos enviado.'; return zonaCliente('#codigo'); }
+      const X = busca(c.dato.trim());
+      if (!X) { c.paso = 3; c.error = ''; c.codigo = ''; return zonaCliente('#noHayT'); }
+      c.paso = 1; c.error = ''; c.codigo = ''; ir('final', X.expediente, {vuelve:true}); };
+  }
+  if (foco) { const f = $(foco); if (f) f.focus({preventScroll:true}); }
+}
+function consulta(){
+  escena.className = 'escena entra ancha';
+  escena.innerHTML = `<div class="portada"><div>
+      ${arriba()}
+      <h1>Escríbenos.</h1>
+      <p class="ayuda">Te contestamos en el día, de lunes a viernes.</p>
+      <div class="contactos">
+        <a class="contacto" href="${WA_URL}Hola%2C%20Covalente.%20Tengo%20una%20pregunta." target="_blank" rel="noopener">${WA}<span class="nom">WhatsApp</span></a>
+        <a class="contacto" href="mailto:covalente.madrid@gmail.com">${CORREO}<span class="nom">Correo</span></a>
+      </div>
+    </div>${escaparate()}</div>`;
+  $('#volver').onclick = atras;
+  vivas();
+}
+let exN = 'tarjeta';
+let ejN = 0;
+function servicio(){
+  escena.className = 'escena entra ancha';
+  const ex = A.extras || [], s = A.servicio, ej = EJEMPLOS[s];
+  if (ej && ejN >= ej.vistas.length) ejN = 0;
+  const v = ej && ej.vistas[ejN];
+  escena.innerHTML = `
+    ${arriba()}
+    <h1>¿Qué quieres que hagamos?</h1>
+    <p class="ayuda">Precios cerrados, sin IVA.</p>
+    <div class="paquetes" role="radiogroup" aria-label="Servicio">
+      ${SERVICIOS.filter(x => x[0] !== 'extra').map(([k, t, d, p]) => `<div class="paquete" role="radio" aria-checked="${s === k}" tabindex="${s === k || (!s && k === 'kit') ? 0 : -1}" data-s="${k}" aria-labelledby="pn-${k} pp-${k}" aria-describedby="pq-${k}">
+        <span class="radio" aria-hidden="true"></span>
+        ${LAM[k]}
+        <div class="cuerpo"><div class="fila"><span class="nombre" id="pn-${k}">${t.replace(' + ', ' <span class="mas">+</span> ')}</span><span class="precio" id="pp-${k}">${p}</span></div><p class="que j" id="pq-${k}">${d}</p></div>
+      </div>`).join('')}
+      <div class="paquete suelto" role="radio" aria-checked="${s === 'extra'}" tabindex="${s === 'extra' ? 0 : -1}" data-s="extra" aria-labelledby="pn-extra" aria-describedby="sueltoD">
+        <span class="radio" aria-hidden="true"></span>
+        <div class="cuerpo"><span class="nombre" id="pn-extra">Solo necesito algo suelto</span><p class="que j" id="sueltoD">Una tarjeta, una carta, plantillas, la ficha de Google Maps, el mantenimiento o el dominio.</p></div>
+      </div>
+    </div>
+    ${ej ? `<section class="ejemplo" id="ejemplo" aria-label="Un ejemplo">
+      <h2>${ej.titulo}</h2>
+      <p class="apunte j">${ej.apunte}</p>
+      <div class="visor">
+        ${v.html()}
+        <div class="pasa"><p>${v.pie}</p><button class="signo" id="ejAnt" aria-label="Lámina anterior">${MENOR}</button><span class="paso">${ejN + 1} de ${ej.vistas.length}</span><button class="signo" id="ejSig" aria-label="Lámina siguiente">${MAYOR}</button></div>
+      </div>
+      <div class="lista">
+        <ul class="incluye">${ej.incluye.map(x => `<li>${x}</li>`).join('')}</ul>
+      </div>
+    </section>` : ''}
+    <section class="sub mas" id="extras" ${s ? '' : 'hidden'}>
+      <h2>${s === 'extra' ? '¿Qué necesitas?' : 'Súmale, si quieres'}</h2>
+      <div class="extras">
+        <div class="ex-vis"><div class="lam ex-lam ${EXV[exN].cls}" id="exLam" data-ver="${exN}">${EXV[exN].html()}</div><p class="ex-pie" id="exPie">${EXV[exN].pie}</p></div>
+        <div class="ex-lista" role="group" aria-label="Extras">
+          ${EXTRAS.map(([k, t, p]) => `<button class="op${k === exN ? ' viendo' : ''}" aria-pressed="${ex.includes(k)}" data-x="${k}"><span class="caja">${CHECK}</span><span class="txt">${t}</span><span class="precio">${p}</span></button>`).join('')}
+        </div>
+      </div>
+    </section>
+    <div class="acciones"><button class="boton" id="seguir">Seguir</button></div>`;
+  const ok = () => { $('#seguir').disabled = !A.servicio || (A.servicio === 'extra' && !(A.extras || []).length); };
+  const repinta = foco => { servicio(); escena.classList.remove('entra'); const b = escena.querySelector(foco); if (b) b.focus({preventScroll:true}); };
+  const elige = (k, baja) => {
+    A.servicio = k; ejN = 0; exN = EXTRAS[0][0]; guardar(); repinta(`[data-s="${k}"]`); pintarExpediente();
+    const e = baja && ($('#ejemplo') || $('#extras')); if (e) e.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth', block:'nearest'});
+  };
+  const radios = [...escena.querySelectorAll('.paquetes [role=radio]')];
+  radios.forEach((b, k) => {
+    b.onclick = () => elige(b.dataset.s, true);
+    b.onkeydown = e => {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); return elige(b.dataset.s, true); }
+      const d = {ArrowRight:1, ArrowDown:1, ArrowLeft:-1, ArrowUp:-1}[e.key], n = e.key === 'Home' ? 0 : e.key === 'End' ? radios.length - 1 : d ? (k + d + radios.length) % radios.length : -1;
+      if (n >= 0) { e.preventDefault(); elige(radios[n].dataset.s, false); }
+    };
+  });
+  const kit = escena.querySelector('[data-s="kit"]'); if (kit) kit.onmouseenter = () => { const l = kit.querySelector('.vivo-e'), n = l.cloneNode(true); n.classList.add('vivo'); l.replaceWith(n); };
+  const verExtra = k => { exN = k; const l = $('#exLam'); if (l.dataset.ver !== k) { l.dataset.ver = k; l.className = 'lam ex-lam ' + EXV[k].cls; l.innerHTML = EXV[k].html(); $('#exPie').textContent = EXV[k].pie; } escena.querySelectorAll('[data-x]').forEach(b => b.classList.toggle('viendo', b.dataset.x === k)); };
+  escena.querySelectorAll('[data-x]').forEach(b => { b.onmouseenter = b.onfocus = () => verExtra(b.dataset.x);
+    b.onclick = () => { const l = new Set(A.extras || []); l.has(b.dataset.x) ? l.delete(b.dataset.x) : l.add(b.dataset.x); A.extras = [...l]; b.setAttribute('aria-pressed', l.has(b.dataset.x)); verExtra(b.dataset.x); guardar(); ok(); pintarExpediente(); }; });
+  ['extra-carta.webp', 'extra-plantilla-1.webp', 'extra-plantilla-2.webp', 'extra-plantilla-3.webp', 'ficha-taberna.webp', 'ficha-foto-1.webp', 'ficha-foto-2.webp', 'ficha-foto-3.webp', 'extra-mant-web.webp', 'web-covalente.webp'].forEach(f => { new Image().src = 'img/' + f; });
+  if (ej){
+    const n = ej.vistas.length;
+    $('#ejAnt').onclick = () => { ejN = (ejN + n - 1) % n; repinta('#ejAnt'); };
+    $('#ejSig').onclick = () => { ejN = (ejN + 1) % n; repinta('#ejSig'); };
+    const rep = $('#repetir'); if (rep) rep.onclick = () => { const g = $('#gran'); g.classList.remove('vivo'); void g.offsetWidth; g.classList.add('vivo'); };
+    vivas();
+  }
+  $('#seguir').onclick = () => ir('antes');
+  $('#volver').onclick = atras;
+  ok();
+}
+function antes(){
+  escena.className = 'escena entra ancha';
+  const n = flujo(A, 'cero').length, menos = flujo(A, 'mejorar').length < n, min = Math.max(2, Math.round(n * 0.5));
+  const tercera = `<div class="pant vivo" role="img" aria-label="El mensaje con el que empezamos: Ya tenemos todo para empezar, con tu fecha de entrega. Lo firma el equipo de Covalente.">${LOGO.apilado}<span class="msj">Ya tenemos todo para empezar.</span><span class="fch">Tu fecha de entrega<b>11 de diciembre</b></span><span class="fir">Equipo de Covalente</span></div>`;
+  const pasos = [
+    ['<img src="img/paso-pregunta.webp" alt="Una pregunta del cuestionario: el nombre del negocio escrito con seis letras distintas, para elegir.">', 'Contestas', 'Mientras, se va escribiendo tu expediente.'],
+    ['<img src="img/paso-presupuesto.webp" alt="Un presupuesto de Covalente, como lo recibe el cliente.">', 'Recibes tu presupuesto', 'En menos de 24 horas, de lunes a viernes.'],
+    [tercera, 'Empezamos', 'Con tu sí y la mitad del pago.']];
+  escena.innerHTML = `<div class="antes"><div>
+      ${arriba()}
+      <h1>Unas preguntas para conocer tu negocio.</h1>
+      <p class="ayuda j">${menos ? `Son ${n} como mucho, unos ${min} minutos; menos si ya tienes algo hecho.` : `Son ${n} y se tarda unos ${min} minutos.`} Puedes saltarte las que no sepas. Con ellas preparamos tu presupuesto sin volver a preguntarte nada.</p>
+      <div class="acciones"><button class="boton" id="empezar">Empezar</button><button class="boton sec" id="prefiero">Prefiero contarlo por mensaje</button></div>
+    </div>
+    <ol class="pasos">
+      ${pasos.map(([dentro, t, d], k) => `<li><div class="lam">${movil(dentro)}</div><div class="pie"><span class="n" aria-hidden="true">${k + 1}</span><b>${t}</b><span class="d">${d}</span></div></li>`).join('')}
+    </ol></div>`;
+  $('#empezar').onclick = () => ir('pregunta', flujo(A)[0]);
+  $('#prefiero').onclick = () => ir('consulta');
+  $('#volver').onclick = atras;
+}
+/* ---------- Una pregunta ---------- */
+const masCampos = (p, a) => { const x = val(p.extra, a); return !x ? [] : Array.isArray(x[0]) ? x : [x]; };
+function pregunta(){
+  const f = flujo(A); const id = f[i]; const p = P[id];
+  if (!p) { pantalla = A.servicio ? 'antes' : 'servicio'; return pintar(); }
+  escena.className = 'escena entra'; qAhora = id;
+  const ops = val(p.op, A) || [], obliga = !!val(p.obliga, A);
+  const oK = p.otraK || id + 'Otra', oSi = id + 'OtraSi', oTxt = p.otra || 'Otra';
+  const otraOn = p.t === 'una' ? A[id] === 'otra' : !!A[oSi];
+  let cuerpo = '';
+  const campo = (k, etiqueta, ph, largo, sin) => `<label class="campo${sin ? ' sin' : ''}"><span>${etiqueta}</span>${largo ? `<textarea data-k="${k}" placeholder="${esc(ph)}">${esc(A[k] || '')}</textarea>` : `<input data-k="${k}" value="${esc(A[k] || '')}" placeholder="${esc(ph)}" autocomplete="off">`}</label>`;
+  const hueco = () => campo(oK, p.otraE || 'Cuéntanos cuál', p.otraPh || '');
+  const otraVarias = caja => `<button class="op" aria-pressed="${otraOn}" data-otra>${caja ? `<span class="caja">${CHECK}</span>` : ''}<span class="txt">${oTxt}</span></button>`;
+  const huecoDiv = `<div id="otraHueco">${otraOn ? hueco() : ''}</div>`;
+  if (p.t === 'texto') cuerpo = campo(id, 'Tu respuesta', p.ph, false, true);
+  if (p.t === 'largo') cuerpo = campo(id, 'Tu respuesta', p.ph, true, true);
+  if (p.t === 'campos') cuerpo = p.campos.map(([k, e, ph, largo]) => campo(k, e, ph || '', largo)).join('');
+  if (p.t === 'una') cuerpo = `<div class="opciones" role="radiogroup" aria-label="${esc(val(p.q, A))}">${ops.map(([k, t]) => `<button class="op" role="radio" aria-checked="${A[id] === k}" data-v="${k}"><span class="txt">${t}</span></button>`).join('')}<button class="op" role="radio" aria-checked="${otraOn}" data-v="otra" data-otra><span class="txt">${oTxt}</span></button></div>${huecoDiv}<div id="siga"></div>`;
+  if (p.t === 'varias'){
+    const l = A[id] || [];
+    cuerpo = `<div class="opciones${ops.some(o => o[2]) ? ' una-col' : ''}" role="group" aria-label="${esc(val(p.q, A))}">${ops.map(([k, t, ej]) => `<button class="op" aria-pressed="${l.includes(k)}" data-v="${k}"><span class="caja">${CHECK}</span><span class="txt">${t}</span>${ej ? `<span class="ej">${ej}</span>` : ''}</button>`).join('')}${otraVarias(true)}</div>${huecoDiv}`;
+  }
+  if (p.t === 'palabras'){
+    const l = A[id] || [];
+    cuerpo = `<div class="palabras" role="group" aria-label="Palabras">${ops.map(w => { const n = l.indexOf(w); return `<button class="op" aria-pressed="${n >= 0}" data-v="${w}"><span class="caja">${CHECK}</span><span class="txt">${w}</span>${n >= 0 ? `<span class="orden">${n + 1}</span>` : ''}</button>`; }).join('')}${otraVarias(true)}</div>${huecoDiv}`;
+  }
+  if (p.t === 'fotos'){
+    const l = A[id] || [];
+    cuerpo = `<div class="rejilla">${ops.map(([k, t, d, src, pos]) => `<button class="pieza" aria-pressed="${l.includes(k)}" data-v="${k}"><span class="vista"><img src="${src}" alt="" style="object-position:${pos}" loading="lazy"></span><span class="pie"><span class="caja">${CHECK}</span><span class="txt">${t}</span></span></button>`).join('')}</div>`;
+  }
+  if (p.t === 'letras'){
+    const l = A[id] || []; const nom = (A.nombreNegocio || '').trim() || 'Tu negocio';
+    const ancho = Math.min(innerWidth, 900) < 600 ? 150 : 210; const tam = Math.max(15, Math.min(46, ancho / Math.max(6, nom.length) * 2.1));
+    cuerpo = `<div class="rejilla">${LETRAS.map(([k, t, fam, w, esc2]) => `<button class="pieza" aria-pressed="${l.includes(k)}" data-v="${k}"><span class="vista" style="font-family:${fam};font-weight:${w};font-size:${(tam * esc2).toFixed(1)}px">${esc(nom)}</span><span class="pie"><span class="caja">${CHECK}</span><span class="txt">${t}</span></span></button>`).join('')}</div><div class="opciones otra-sola">${otraVarias(true)}</div>${huecoDiv}`;
+  }
+  if (p.t === 'colores'){
+    const si = A.coloresSi || [], no = A.coloresNo || [];
+    cuerpo = `<div class="opciones dosop" role="radiogroup" aria-label="Qué colores marcas"><button class="op" role="radio" aria-checked="${pestanaColor === 'si'}" data-tab="si"><span class="txt">Marco los que me gustan${si.length ? ` (${si.length})` : ''}</span></button><button class="op" role="radio" aria-checked="${pestanaColor === 'no'}" data-tab="no"><span class="txt">Marco los que no quiero ver${no.length ? ` (${no.length})` : ''}</span></button></div>
+      <div class="colores">${PALETA.map(([n, c]) => { const s = si.includes(n), x = no.includes(n); return `<button class="chip ${s ? 'si' : ''} ${x ? 'no' : ''}" data-v="${n}" aria-pressed="${pestanaColor === 'si' ? s : x}"><span class="tinta" style="background:${c}"></span><span class="marca">${s ? CHECK : x ? NO : ''}</span><span class="nom">${n}</span><span class="estado">${s ? 'Me gusta' : x ? 'No' : ''}</span></button>`; }).join('')}</div><div class="opciones otra-sola">${otraVarias(true)}</div>${huecoDiv}`;
+  }
+  const mas = masCampos(p, A);
+  if (mas.length) cuerpo += `<div class="sub">${mas.map(([k, e, ph, largo]) => campo(k, e, ph || '', largo)).join('')}</div>`;
+  if (p.sub) cuerpo += `<div class="sub"><p>${p.sub[1]}</p><div class="opciones" role="radiogroup" aria-label="${esc(p.sub[1])}">${p.sub[2].map(([k, t]) => `<button class="op" role="radio" aria-checked="${A[p.sub[0]] === k}" data-sub="${k}"><span class="txt">${t}</span></button>`).join('')}<button class="op" role="radio" aria-checked="${A[p.sub[0]] === 'otra'}" data-sub="otra" data-otra><span class="txt">Otra</span></button></div><div id="subHueco">${A[p.sub[0]] === 'otra' ? campo(p.sub[0] + 'Otra', 'Cuéntanos cuál', '') : ''}</div></div>`;
+  const nota = val(p.nota, A), ayuda = val(p.ayuda, A), total = Math.max(flujo(A, 'cero').length, i + 1);
+  escena.innerHTML = `
+    ${arriba(`Pregunta ${i + 1} de ${total}`)}
+    <h1>${val(p.q, A)}</h1>
+    ${ayuda ? `<p class="ayuda j">${ayuda}</p>` : ''}
+    ${cuerpo}
+    <p class="nota j" id="nota" ${nota ? '' : 'hidden'}>${nota || ''}</p>
+    ${p.oferta ? '<div class="oferta" id="oferta" hidden></div>' : ''}
+    <div class="acciones"><button class="boton" id="seguir">Seguir</button>${obliga ? '' : '<button class="boton sec" id="saltar">Saltar esta pregunta</button>'}</div>`;
+  const entrada = el => {
+    el.oninput = () => { A[el.dataset.k] = el.value; guardar(); pintarExpediente(el.dataset.k); };
+    if (el.tagName === 'INPUT') el.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); avanzar(); } };
+  };
+  escena.querySelectorAll('[data-k]').forEach(entrada);
+  const tras = () => {
+    const c = $('#siga');
+    if (c) { const s = p.siga && p.siga[A[id]]; c.innerHTML = s ? `<div class="sub">${campo(s[0], s[1], s[2] || '')}</div>` : ''; c.querySelectorAll('[data-k]').forEach(entrada); }
+    const n = val(p.nota, A), ne = $('#nota'); ne.textContent = n || ''; ne.hidden = !n;
+    const of = $('#oferta');
+    if (of) {
+      const v = A[id], hay = v === 'no' || v === 'notengo'; of.hidden = !hay; of.innerHTML = '';
+      if (hay) {
+        const kit = A.servicio === 'kit';
+        of.innerHTML = `<p class="nota j">El mantenimiento lo hacemos sobre webs nuestras, porque sabemos cómo están hechas por dentro. ${v === 'no' ? 'Si quieres, rehacemos la tuya' : 'Si quieres, empezamos por tu web'}: ${kit ? 'con tu Kit de marca, las dos cosas juntas son el Kit + web, 69 €' : 'la Página web son 39 €'}, sin IVA.</p><button class="boton sec" id="sumarWeb">${kit ? 'Cambiar a Kit + web' : 'Añadir la Página web'}</button>`;
+        $('#sumarWeb').onclick = () => { A.servicio = kit ? 'kitweb' : 'web'; const sig = flujo(A).find(x => !pasos.slice(0, pos).some(s => s.q === x)); sustituye(sig ? 'pregunta' : 'contacto', sig); };
+      }
+    }
+    const b = $('#seguir'); b.disabled = obliga && !A[id];
+    const g = flujo(A, A[id] || !obliga ? undefined : 'cero'); b.textContent = g[g.length - 1] === id ? 'Seguir al último paso' : 'Seguir';
+  };
+  if (p.t === 'una'){
+    escena.querySelectorAll('[data-v]').forEach(b => b.onclick = () => {
+      A[id] = b.dataset.v; guardar();
+      escena.querySelectorAll('[data-v]').forEach(x => x.setAttribute('aria-checked', x === b));
+      const h = $('#otraHueco');
+      if (A[id] === 'otra') { if (!h.firstChild) { h.innerHTML = hueco(); h.querySelectorAll('[data-k]').forEach(entrada); } } else h.innerHTML = '';
+      tras(); pintarExpediente(id);
+      if (A[id] === 'otra') return h.querySelector('[data-k]').focus({preventScroll:true});
+      if (!(p.siga && p.siga[A[id]]) && !p.extra && !p.nota && !(p.oferta && A[id] !== 'si')) setTimeout(() => { if (pantalla === 'pregunta' && qAhora === id) avanzar(); }, 380);
+    });
+  }
+  if (p.sub) escena.querySelectorAll('[data-sub]').forEach(b => b.onclick = () => {
+    A[p.sub[0]] = b.dataset.sub; guardar(); escena.querySelectorAll('[data-sub]').forEach(x => x.setAttribute('aria-checked', x === b)); pintarExpediente(p.sub[0]);
+    const h = $('#subHueco');
+    if (b.dataset.sub === 'otra') { if (!h.firstChild) { h.innerHTML = campo(p.sub[0] + 'Otra', 'Cuéntanos cuál', ''); h.querySelectorAll('[data-k]').forEach(entrada); } h.querySelector('[data-k]').focus({preventScroll:true}); } else h.innerHTML = '';
+  });
+  const repinta = foco => { pregunta(); escena.classList.remove('entra'); const o = typeof foco === 'string' ? escena.querySelector(foco) : foco(); if (o) o.focus({preventScroll:true}); };
+  if (['varias', 'palabras', 'fotos', 'letras'].includes(p.t)){
+    escena.querySelectorAll('[data-v]').forEach(b => b.onclick = () => {
+      let l = [...(A[id] || [])]; const v = b.dataset.v;
+      if (l.includes(v)) l = l.filter(x => x !== v);
+      else {
+        if (p.exclusiva) { if (v === p.exclusiva) { l = []; A[oSi] = false; } else l = l.filter(x => x !== p.exclusiva); }
+        if (p.max && l.length >= p.max) l.shift();
+        l.push(v);
+      }
+      A[id] = l; guardar(); pintarExpediente(id);
+      repinta(() => [...escena.querySelectorAll('[data-v]')].find(x => x.dataset.v === v));
+    });
+  }
+  if (p.t === 'colores'){
+    escena.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { pestanaColor = b.dataset.tab; repinta(`[data-tab="${pestanaColor}"]`); });
+    escena.querySelectorAll('.chip').forEach(b => b.onclick = () => {
+      const n = b.dataset.v, k = pestanaColor === 'si' ? 'coloresSi' : 'coloresNo', otra = pestanaColor === 'si' ? 'coloresNo' : 'coloresSi';
+      const l = new Set(A[k] || []); l.has(n) ? l.delete(n) : l.add(n); A[k] = [...l];
+      A[otra] = (A[otra] || []).filter(x => x !== n);
+      guardar(); pintarExpediente(k); repinta(() => [...escena.querySelectorAll('.chip')].find(x => x.dataset.v === n));
+    });
+  }
+  if (p.t !== 'una'){
+    const o = escena.querySelector('.opciones:not(.sub .opciones) [data-otra], .palabras [data-otra]');
+    if (o) o.onclick = () => {
+      A[oSi] = !A[oSi]; if (A[oSi] && p.exclusiva) A[id] = (A[id] || []).filter(x => x !== p.exclusiva);
+      guardar(); pintarExpediente(id); repinta(() => $('#otraHueco [data-k]') || escena.querySelector('[data-otra]'));
+    };
+  }
+  $('#seguir').onclick = avanzar;
+  const s = $('#saltar'); if (s) s.onclick = avanzar;
+  $('#volver').onclick = atras;
+  tras();
+}
+function avanzar(){
+  const p = P[qAhora]; if (pantalla === 'pregunta' && p && val(p.obliga, A) && !A[qAhora]) return;
+  const f = flujo(A), k = f.indexOf(qAhora);
+  const sig = k >= 0 ? f[k + 1] : f.find(x => !pasos.slice(0, pos + 1).some(s => s.q === x));
+  if (sig) ir('pregunta', sig); else ir('contacto');
+}
+function contacto(){
+  escena.className = 'escena entra';
+  const c = ['whatsapp', 'correo'].includes(A.canal) ? A.canal : 'whatsapp'; A.canal = c;
+  const ph = {whatsapp:'600 000 000', correo:'tu@correo.es'}[c];
+  escena.innerHTML = `
+    ${arriba('Último paso')}
+    <h1>¿Cómo te llamas y por dónde te escribimos?</h1>
+    <label class="campo"><span>Tu nombre</span><input data-k="persona" value="${esc(A.persona || '')}" placeholder="Carmen" autocomplete="given-name"></label>
+    <div class="sub"><p id="canalT">Te escribimos por</p>
+      <div class="opciones" role="radiogroup" aria-labelledby="canalT">${[['whatsapp','WhatsApp',WA],['correo','Correo',CORREO]].map(([k, t, ico]) => `<button class="op" role="radio" aria-checked="${c === k}" data-c="${k}">${ico}<span class="txt">${t}</span></button>`).join('')}</div>
+    </div>
+    <label class="campo" style="margin-top:18px"><span>${{whatsapp:'Tu número', correo:'Tu correo'}[c]}</span><input data-k="contactoDato" value="${esc(A.contactoDato || '')}" placeholder="${ph}" ${c === 'correo' ? 'type="email" autocomplete="email"' : 'inputmode="tel" autocomplete="tel"'}></label>
+    <label class="oculto" aria-hidden="true">No rellenar<input tabindex="-1" autocomplete="off" id="tarro"></label>
+    <p class="privacidad j">Usamos tus respuestas solo para preparar tu presupuesto y tu propuesta, y no las compartimos con nadie. Si no seguimos adelante, las borramos a los seis meses; puedes pedir que las borremos antes escribiendo a covalente.madrid@gmail.com. Quién es el responsable y el resto, en el <a href="../legal.html#cuestionario">aviso legal</a>.</p>
+    <label class="acepto"><input type="checkbox" id="acepto" ${A.acepto ? 'checked' : ''}><span>He leído cómo usáis mis respuestas.</span></label>
+    <p class="nota" id="fallo" role="alert" hidden></p>
+    <div class="acciones"><button class="boton" id="enviar">Enviar y abrir mi expediente</button></div>`;
+  const ok = () => { $('#enviar').disabled = !((A.persona || '').trim() && (A.contactoDato || '').trim() && A.acepto); };
+  escena.querySelectorAll('[data-k]').forEach(el => el.oninput = () => { A[el.dataset.k] = el.value; guardar(); ok(); pintarExpediente(el.dataset.k); });
+  escena.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { A.canal = b.dataset.c; guardar(); contacto(); escena.classList.remove('entra'); const o = escena.querySelector(`[data-c="${A.canal}"]`); if (o) o.focus({preventScroll:true}); });
+  $('#acepto').onchange = e => { A.acepto = e.target.checked; guardar(); ok(); };
+  $('#enviar').onclick = () => {
+    if (DESTINO) return enviar();
+    if ($('#tarro').value) return;
+    let n = 1; try { n = (+localStorage.getItem('covalente-exp-n') || 0) + 1; localStorage.setItem('covalente-exp-n', n); } catch (e) {}
+    A.expediente = String(n).padStart(4, '0'); A.abierto = new Date().toISOString(); A.origen = origen; A.v = 5;
+    abrir();
+  };
+  const enviar = async () => {
+    const b = $('#enviar'), fallo = $('#fallo'); b.disabled = true; fallo.hidden = true;
+    try {
+      const r = await fetch(DESTINO, {method:'POST', body: JSON.stringify({...A, o: params.get('o') || 'web', tarro: $('#tarro').value})});
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok || !d.numero) throw new Error(d.error || 'No se ha podido enviar. Vuelve a intentarlo en un momento.');
+      A.expediente = String(d.numero).padStart(4, '0'); A.abierto = d.alta || new Date().toISOString(); A.origen = origen; A.v = 5;
+      abrir();
+    } catch (e) {
+      fallo.textContent = e instanceof TypeError ? 'No se ha podido enviar. Comprueba la conexión y vuelve a intentarlo.' : e.message;
+      fallo.hidden = false; b.disabled = false;
+    }
+  };
+  $('#volver').onclick = atras;
+  ok();
+}
+/* ---------- El expediente ---------- */
+const corta = s => { s = s.replace(/ \((opcional|nombre o enlace)\)/g, ''); return s.startsWith('¿') ? s.replace(/\?.*$/, '?') : s.replace(/[:,.].*$/, ''); };
+const nomExtra = x => { const n = (EXTRAS.find(e => e[0] === x) || [0, x])[1]; return n[0].toLowerCase() + n.slice(1); };
+const enLista = l => l.length > 1 ? l.slice(0, -1).join(', ') + ' y ' + l[l.length - 1] : l.join('');
+const encargo = a => { const x = (a.extras || []).map(nomExtra); if (a.servicio === 'extra') { const t = enLista(x); return t ? t[0].toUpperCase() + t.slice(1) : NOMBRE_SERV.extra; } return NOMBRE_SERV[a.servicio] + (x.length ? ', con ' + enLista(x) : ''); };
+function filas(a = A){
+  const viejo = !!a.expediente && !a.v, f = flujo(a, viejo ? 'cero' : undefined), g = {}, hecho = new Set();
+  const add = (grupo, e, v, k) => { if (v === undefined || v === null || v === '' || v === false || (Array.isArray(v) && !v.length) || hecho.has(k)) return; hecho.add(k); (g[grupo] = g[grupo] || []).push([e, v, k]); };
+  if (a.servicio) add('El encargo', 'Servicio', NOMBRE_SERV[a.servicio] + ((a.extras || []).length ? ', con ' + enLista(a.extras.map(nomExtra)) : ''), 'servicio');
+  const op = (l, v) => { const o = (l || []).find(x => (Array.isArray(x) ? x[0] : x) === v); return o ? (Array.isArray(o) ? o[1] : o) : v; };
+  const fila = id => {
+    const p = P[id]; if (!p || p.t === 'servicio') return;
+    const oT = String(a[p.otraK || id + 'Otra'] || '').trim(), oN = p.otra || 'Otra', ops = val(p.op, a) || [];
+    if (id === 'nombreNegocio' && f.includes('nombre')) return;
+    if (p.t === 'campos') { p.campos.forEach(([k, e, , , ee]) => add(p.g, ee || corta(e), a[k], k)); return; }
+    if (p.t === 'colores') { add(p.g, 'Colores que le gustan', (a.coloresSi || []).join(', '), 'coloresSi'); add(p.g, 'Colores que no', (a.coloresNo || []).join(', '), 'coloresNo'); if (a.coloresOtraSi || (viejo && oT)) add(p.g, 'Otro color', oT || 'Sin decir cuál', 'coloresOtra'); return; }
+    let v = a[id];
+    if (['varias', 'palabras', 'letras', 'fotos'].includes(p.t)) {
+      v = (Array.isArray(v) ? v : []).map(x => p.t === 'letras' ? (LETRAS.find(l => l[0] === x) || [0, x])[1] : op(ops, x));
+      if (a[id + 'OtraSi'] || (viejo && oT)) v.push(oT || oN);
+      v = v.join(p.t === 'letras' ? '; ' : ', ');
+    } else if (p.t === 'una') v = v === 'otra' ? (oT || oN) : op(ops, v);
+    add(p.g, p.e || val(p.q, a), v, id);
+    const s = p.siga && p.siga[a[id]]; if (s) add(p.g, s[4] || corta(s[1]), a[s[0]], s[0]);
+    masCampos(p, a).forEach(([k, e, , , ee]) => add(p.g, ee || corta(e), a[k], k));
+    if (p.sub) add(p.g, p.sub[1], a[p.sub[0]] === 'otra' ? (String(a[p.sub[0] + 'Otra'] || '').trim() || 'Otra') : op(p.sub[2], a[p.sub[0]]), p.sub[0]);
+  };
+  f.forEach(fila);
+  const hay = k => { const v = a[k]; return v !== undefined && v !== null && v !== '' && !(Array.isArray(v) && !v.length); };
+  if (viejo) Object.keys(P).forEach(id => { const p = P[id]; if (f.includes(id) || p.t === 'servicio') return; if ((p.t === 'campos' ? p.campos.map(x => x[0]) : p.t === 'colores' ? ['coloresSi', 'coloresNo'] : [id]).some(hay)) fila(id); });
+  return g;
+}
+function pintarExpediente(nuevo){
+  const g = filas(); const n = Object.values(g).reduce((s, x) => s + x.length, 0);
+  $('#abrirN').textContent = n ? `${n} ${n === 1 ? 'respuesta' : 'respuestas'}` : 'en blanco';
+  const titulo = (A.nombreNegocio || '').trim();
+  $('#expNum').textContent = titulo ? titulo : 'Se va escribiendo con lo que contestas.';
+  $('#expDatos').innerHTML = n ? Object.entries(g).map(([t, l]) => `<section class="grupo"><h3>${esc(t)}</h3><dl>${l.map(([e, v, k]) => `<div class="dato${k === nuevo ? ' nuevo' : ''}"><dt>${esc(e)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></section>`).join('')
+    : '<p class="vacio">Aún está en blanco. Empieza por la primera pregunta.</p>';
+}
+$('#abrirExp').onclick = () => $('#expediente').classList.add('abierto');
+$('#cerrarExp').onclick = () => $('#expediente').classList.remove('abierto');
+function final(){
+  const s = pasos[pos], X = expediente(s && s.p === 'final' ? s.q : undefined);
+  if (!X) { pantalla = 'inicio'; return inicio(); }
+  escena.className = 'escena entra final';
+  const g = filas(X);
+  const fecha = new Date(X.abierto || Date.now()).toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'});
+  const canal = {whatsapp:'WhatsApp', correo:'correo', instagram:'Instagram'}[X.canal || 'whatsapp'];
+  const negocio = (X.nombreNegocio || '').trim() || 'Tu negocio';
+  const plantilla = window.CovalenteExpediente;
+  const doc = plantilla ? plantilla.html({negocio, encargo: encargo(X), numero: X.expediente, fecha, origen: X.origen || 'la web', grupos: Object.entries(g).map(([t, l]) => [t, l.map(([e, v]) => [e, v])])})
+    : `<article class="doc" aria-label="Expediente"><div class="exp-cab"><strong>${esc(negocio)}</strong><span>Expediente ${esc(X.expediente)}<br>Abierto el ${fecha}<br>Llegó por ${esc(X.origen)}</span></div>${Object.entries(g).map(([t, l]) => `<section class="grupo"><h2>${esc(t)}</h2><dl>${l.map(([e, v]) => `<div class="dato"><dt>${esc(e)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></section>`).join('')}</article>`;
+  const vuelve = !!(s && s.p === 'final' && s.vuelve), persona = (X.persona || '').trim(), ahora = vuelve ? 1 : 0;
+  const paso = (n, t, d) => `<li${n === ahora ? ' aria-current="step"' : ''}><b>${t}</b><span>${d}</span></li>`;
+  escena.innerHTML = `
+    ${vuelve ? `<h1>Tu expediente${persona ? ', ' + esc(persona) : ''}.</h1>
+    <p class="ayuda j estado">${X.abierto ? `Lo abriste el ${fecha}. ` : ''}Te escribimos por ${canal} con tu presupuesto.</p>`
+    : `<h1>Tu expediente está abierto.</h1>
+    <p class="ayuda j">Gracias, ${esc(persona)}. Te escribimos por ${canal} en menos de 24 horas, de lunes a viernes, con tu presupuesto.</p>`}
+    <ol class="tres${ahora ? ' en-curso' : ''}">
+      ${paso(1, 'Leemos tu expediente', 'Si falta algo, te preguntamos una sola cosa.')}
+      ${paso(2, 'Recibes tu presupuesto', 'Con lo que incluye y el plazo.')}
+      ${paso(3, 'Empezamos', 'Con tu sí y la mitad del pago. Cambios todas las veces que quieras, hasta que te guste.')}
+    </ol>
+    <div class="fichero" id="fichero"><span class="fi"><b>Expediente ${esc(X.expediente)}</b><span>PDF</span></span><button class="bajar" id="descargar" aria-label="Descargar el expediente en PDF">${BAJAR}</button></div>
+    <p class="nota descarga j">Se abre la ventana de imprimir del navegador: elige Guardar como PDF.</p>
+    ${doc}`;
+  $('#descargar').onclick = e => { e.stopPropagation(); const t = `Expediente ${X.expediente}, ${negocio}, Covalente`; plantilla ? plantilla.imprimir(t) : window.print(); };
+  $('#fichero').onclick = () => $('#descargar').click();
+}
+$('#otra').onclick = reinicia;
+if (ver) {
+  const parte = params.get('parte') === 'mejorar' ? 'mejorar' : 'cero', mej = parte === 'mejorar';
+  A = {servicio:'kitweb', extras:['tarjeta'], kitParte:parte, webParte:parte, tarjetaParte:parte, cartaParte:parte, plantillasParte:parte, mapsYa: mej ? 'si' : 'no', dominio: mej ? 'si' : 'no', webNuestra:'si',
+       negocio:'Pan de masa madre y bollería de toda la vida.', tieneNombre:'si', nombreNegocio:'Horno de la Plaza', frase:'Desde 1962',
+       tieneAlgo:['instagram'], cliente:'Vecinos que bajan a por pan antes del trabajo.', porQue:'Horneamos tres veces al día.', palabras:['Cercana','Artesana','Cálida'],
+       estilo:['calida'], coloresSi:['Arena','Teja'], coloresNo:['Azul tinta'], donde:['rotulo','envases','redes'], persona:'Carmen', contactoDato:'600 000 000', acepto:true, v:5};
+  if (ver === 'nombre-no') { A.tieneNombre = 'no'; delete A.nombreNegocio; }
+  if (['kit','web','kitweb','extra'].includes(params.get('s'))) { A.servicio = params.get('s'); if (A.servicio === 'extra') A.extras = ['tarjeta','carta']; }
+  if (params.get('x') !== null) A.extras = params.get('x').split(',').filter(x => EXTRAS.some(e => e[0] === x));
+  if (EXTRAS.some(e => e[0] === params.get('ex'))) exN = params.get('ex');
+  const f = flujo(A), k = ver === 'nombre-no' ? 'estiloNombre' : ver;
+  if (['inicio','necesitas','cliente','consulta','servicio','antes','contacto','final'].includes(k)) { pantalla = k; if (k === 'final') { A.expediente = '0007'; A.abierto = new Date().toISOString(); A.origen = origen; } }
+  else if (f.includes(k)) { pantalla = 'pregunta'; i = f.indexOf(k); }
+  if (params.get('tab') === 'no') pestanaColor = 'no';
+  if (/^[0-9]$/.test(params.get('ej') || '')) ejN = +params.get('ej');
+} else {
+  const st = history.state;
+  if (st && Number.isInteger(st.pos) && st.g === gen) { pos = Math.max(0, Math.min(st.pos, pasos.length - 1)); hondo = Number.isInteger(st.h) ? st.h : 0; } else { pos = 0; hondo = st && Number.isInteger(st.h) ? st.h : 0; }
+  coloca(); estado();
+}
+if (API) $('#pieTexto').innerHTML = '<a href="../">covalente.eu</a><a href="../legal.html#cuestionario">Aviso legal y privacidad</a>';
+else if (DESTINO) $('#pieTexto').textContent = 'Maqueta de Covalente en pruebas: al enviar, las respuestas se guardan en la app de gestión de este ordenador.';
+pintar();
+</script>
+<script src="/contar.js" defer></script>
+</body>
+</html>

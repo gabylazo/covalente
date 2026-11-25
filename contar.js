@@ -1,5 +1,6 @@
 // Contador de visitas de covalente.eu, sin cookies ni almacenamiento. Solo manda qué pasa (alguien llega de fuera o pulsa WhatsApp), de dónde llega
-// (la marca ?o= de cada red, o el tipo de sitio del que viene: buscador, directo u otra web) y en qué página. El servidor suma 1 al contador del día:
+// (la marca ?o= de cada red, o el tipo de sitio del que viene: buscador, directo u otra web) y en qué página (la portada, las muestras,
+// el cuestionario o el catálogo). El servidor suma 1 al contador del día:
 // no guarda la IP, la dirección de origen ni nada que identifique a nadie. No cuenta robots, ni las visitas con ?nc (las nuestras de prueba).
 (() => {
   const q = new URLSearchParams(location.search);
@@ -7,7 +8,8 @@
   const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   const URL_C = local ? 'http://127.0.0.1:8795/api/visita' : 'https://covalente-gestion.covalente-gestion.workers.dev/api/visita';
   const caso = (location.pathname.match(/^\/casos\/([a-z-]+)\/?/) || [])[1];
-  const pagina = /^\/(index\.html)?$/.test(location.pathname) ? 'portada' : ['nerea-nails', 'taberna-la-jarra', 'flores-santa-maria'].includes(caso) ? caso : null;
+  const seccion = (location.pathname.match(/^\/(cuestionario|catalogo)(\/|\/index\.html)?$/) || [])[1];
+  const pagina = /^\/(index\.html)?$/.test(location.pathname) ? 'portada' : ['nerea-nails', 'taberna-la-jarra', 'flores-santa-maria'].includes(caso) ? caso : seccion || null;
   if (!pagina) return;
   let ref = ''; try { ref = new URL(document.referrer).hostname; } catch (e) {}
   const interna = /(^|\.)covalente\.eu$|^gabylazo\.github\.io$/.test(ref) || (local && /^(localhost|127\.0\.0\.1)$/.test(ref));

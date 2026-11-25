@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo de servicios de Covalente</title>
+<meta name="description" content="Marca y web a medida para negocios pequeños, con precio cerrado. Kit de marca, Página web y Kit + web.">
+<meta name="theme-color" content="#0F3B32">
+<link rel="canonical" href="https://covalente.eu/catalogo/">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij48dGl0bGU+Q292YWxlbnRlLCBpY29ubzwvdGl0bGU+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxQTFBMUEiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1LjU2IDEzLjQ5KSBzY2FsZSgwLjE4KSI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzlBMzVDIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTE0IDE3NiA2NCAxMTIgMTA2IDE0MCAxNTYgNjggMTk4IDk2IDI4MiAxOCIvPjxwYXRoIGQ9Ik0xMjkuNyAxMzIuMSAxNTYuOSA5Mi45NSIvPjxwYXRoIGQ9Ik0yNjAuMiAyMSAyODIgMTggMjc3LjQgMzkuNSIvPjwvZz48ZyBmaWxsPSIjQzlBMzVDIj48Y2lyY2xlIGN4PSIxNCIgY3k9IjE3NiIgcj0iMTMiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjExMiIgcj0iMTMiLz48Y2lyY2xlIGN4PSIxMDYiIGN5PSIxNDAiIHI9IjEzIi8+PGNpcmNsZSBjeD0iMTU2IiBjeT0iNjgiIHI9IjEzIi8+PGNpcmNsZSBjeD0iMTk4IiBjeT0iOTYiIHI9IjEzIi8+PC9nPjwvZz48L3N2Zz4K">
+<style>
+@font-face{font-family:"Bodoni Moda"; src:url("../fuentes/BodoniModa.woff2") format("woff2"); font-weight:400 900; font-style:normal; font-display:block}
+@font-face{font-family:"Bodoni Moda"; src:url("../fuentes/BodoniModa-cursiva.woff2") format("woff2"); font-weight:400 900; font-style:italic; font-display:block}
+@font-face{font-family:"Figtree"; src:url("../fuentes/Figtree.woff2") format("woff2"); font-weight:300 900; font-style:normal; font-display:block}
+:root{
+  --verde:#0F3B32; --oro:#C9A35C; --marfil:#F3ECDD; --negro:#1A1A1A;
+  --gris:#4F5A54;        
+  --marfil-2:#D9D2C2;    
+  --linea:1px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
+body{margin:0; background:var(--marfil); color:var(--negro); font:400 var(--t)/1.45 Figtree, system-ui, sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+h1, h2, h3, p, ul, ol, figure{margin:0; padding:0}
+ul, ol{list-style:none}
+img, svg{display:block}
+img{width:100%; height:auto; object-fit:cover}
+a{color:inherit; text-underline-offset:.2em; text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid currentColor; outline-offset:3px}
+p, figcaption, li{text-align:justify; hyphens:auto; -webkit-hyphens:auto; hyphenate-limit-chars:10 4 4;
+  -webkit-hyphenate-limit-before:4; -webkit-hyphenate-limit-after:4; text-wrap:pretty}
+@media screen and (max-width:899.98px){p, figcaption, li{hyphenate-limit-chars:7 3 3; -webkit-hyphenate-limit-before:3; -webkit-hyphenate-limit-after:3}}
+.np{white-space:nowrap; hyphens:none; -webkit-hyphens:none}
+.oculto{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+.pag{position:relative; background:var(--marfil); color:var(--negro)}
+.verde{background:var(--verde); color:var(--marfil)}
+h1, h2, h3, .precio, .nom, .frase, .p-quimica{font-family:"Bodoni Moda", "Bodoni 72", Didot, serif; font-weight:500; line-height:1; letter-spacing:-.012em; text-align:left; hyphens:manual; -webkit-hyphens:manual}
+h2, h3{font-size:inherit}
+.titulo{font-size:var(--t-h2)}
+.titulo.ch{font-size:var(--t-h3)}
+.enlace{display:block; min-width:.9em; height:0; border-bottom:var(--linea) solid var(--oro); transform:translateY(-.3em)}
+.doble .enlace{height:.17em; border-top:var(--linea) solid var(--oro); transform:translateY(-.22em)}
+.precio{white-space:nowrap; color:var(--verde); font-size:inherit}
+.verde .precio{color:var(--oro)}
+.precio small{font:500 .5em/1 Figtree, system-ui, sans-serif; letter-spacing:0}
+.sig{font:300 .82em/1 Figtree, system-ui, sans-serif}
+.promesa{font-weight:500; color:var(--verde); text-align:left; hyphens:manual; -webkit-hyphens:manual}
+.verde .promesa{color:var(--marfil)}
+figcaption, .pie, .lista{font-size:var(--t-pie); line-height:1.42; color:var(--gris)}
+figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--negro)}
+.verde figcaption, .verde .pie, .verde .nota{color:var(--marfil-2)}
+.verde figcaption b, .verde .pie b, .verde .mas b, .verde .nota b{color:var(--marfil)}
+.nota{font-size:var(--t-nota); line-height:1.42; color:var(--gris)}
+.credito, .p-que, .pasos p, .rotulo{text-align:left; hyphens:manual; -webkit-hyphens:manual}
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:.7em; border-radius:3px; background:var(--verde); color:var(--marfil);
+  font-weight:600; text-decoration:none; white-space:nowrap}
+.verde .boton{background:var(--oro); color:var(--negro)}
+.boton svg{flex:none; width:1.25em; height:1.25em; fill:currentColor}
+.accion{text-align:left}
+.lam{position:relative; display:flex; align-items:center; justify-content:center; border-radius:3px; overflow:hidden}
+.l-verde{background:var(--verde); color:var(--marfil)}
+.l-marfil{background:var(--marfil); color:var(--negro); box-shadow:inset 0 0 0 var(--linea) rgba(15,59,50,.26)}
+.verde .l-verde{box-shadow:inset 0 0 0 var(--linea) rgba(243,236,221,.32)}
+.verde .l-marfil{box-shadow:none}
+.lam img{flex:none; width:auto; height:auto; max-width:none; object-fit:contain}
+.lam small{display:block; font:500 var(--t-dato)/1.2 Figtree, system-ui, sans-serif; letter-spacing:0; color:var(--gris); white-space:nowrap}
+.l-verde small{color:var(--marfil-2)}
+.lam .dato{position:absolute; left:var(--m-dato); bottom:var(--m-dato)}
+.tam, .app, .perfil{display:flex; flex-direction:column; align-items:center}
+.perfil img, .r-icono .redondo{border-radius:50%}
+.gig img{position:absolute; right:6%; top:11%; height:165%; width:auto}
+.lam.gig .dato{top:var(--m-dato); bottom:auto}
+.uso{flex-direction:column}
+.pest{display:block; width:82%; border-radius:5px 5px 0 0; background:#DAD6CE; padding:var(--p-pest) var(--p-pest) 0}
+.p-tab{display:flex; align-items:center; gap:.5em; width:88%; padding:.42em .6em; border-radius:4px 4px 0 0; background:#EFECE6; color:#1A1A1A;
+  font:500 var(--t-dato)/1.2 Figtree, system-ui, sans-serif; white-space:nowrap; overflow:hidden}
+.p-tab img{width:16px; height:16px}
+.p-tab > span{overflow:hidden; text-overflow:ellipsis}
+.p-barra{display:block; margin:0 calc(-1 * var(--p-pest)); padding:var(--p-pest); background:#EFECE6}
+.p-barra i{display:block; height:.9em; border-radius:3px; background:#fff; font-size:var(--t-dato)}
+.colores{display:grid}
+.colores li{display:flex; flex-direction:column; justify-content:flex-end; border-radius:3px; text-align:left; hyphens:manual; -webkit-hyphens:manual; white-space:nowrap}
+.colores .borde{box-shadow:inset 0 0 0 var(--linea) rgba(15,59,50,.26)}
+.colores b{font-weight:600}
+.letras{display:grid; grid-template-columns:1fr 1fr}
+.letra{flex-direction:column; align-items:flex-start; justify-content:flex-end}
+.letra .aa{line-height:.9}
+.letra b{font:600 var(--t-dato)/1.2 Figtree, system-ui, sans-serif; letter-spacing:0}
+.r-colores{display:grid; border-radius:3px; overflow:hidden}
+.r-colores span{display:flex; align-items:flex-end; font:500 var(--t-dato)/1.15 Figtree, system-ui, sans-serif}
+.r-colores .igual{box-shadow:inset 0 0 0 1px rgba(243,236,221,.34)}   
+.nav-marco{border-radius:6px 6px 3px 3px; background:#EFECE6; box-shadow:0 0 0 var(--linea) rgba(26,26,26,.12), 0 26px 48px -28px rgba(26,26,26,.55)}
+.nav-barra{display:flex; align-items:center; border-bottom:var(--linea) solid #D9D5CC; border-radius:6px 6px 0 0; color:#55524B}
+.nav-url{flex:1; min-width:0; border-radius:4px; background:#fff; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.nav-vista{display:block; border-radius:0 0 3px 3px; overflow:hidden; background:#fff}
+.nav-vista img{object-position:50% 0}
+.desliza .nav-vista{overflow-y:auto; overscroll-behavior:auto; -webkit-overflow-scrolling:touch}
+.desliza .nav-vista:focus-visible{outline:3px solid var(--verde); outline-offset:-3px}
+@supports selector(:has(*)){
+  .desliza .nav-vista:focus-visible{outline:none}
+  .nav-marco:has(.nav-vista:focus-visible){outline:3px solid var(--verde); outline-offset:4px}
+}
+.m-mov{box-shadow:0 18px 40px -18px rgba(26,26,26,.55)}
+.c-vias a{display:flex; align-items:center; gap:.8em; color:var(--marfil);
+  font-weight:500; text-decoration:none; white-space:nowrap}
+.c-vias svg{flex:none; width:1.25em; height:1.25em; fill:var(--marfil-2)}
+.c-vias svg.trazo{fill:none; stroke:var(--marfil-2); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+.c-logo svg{overflow:visible}
+.cierre{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.42 .26'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>")}
+@media screen{
+  :root{--t:17px; --t-pie:15.5px; --t-nota:14px; --t-h2:clamp(38px, 10.6vw, 46px); --t-h3:25px; --px:20px; --t-dato:12.5px; --m-dato:12px; --p-pest:6px}
+  .pag{padding:76px var(--px)}
+  .boton{min-height:50px; padding:0 24px; font-size:16.5px}
+  .boton:hover{background:#0A2B24} .verde .boton:hover{background:#D8B670}
+  .titulo{display:grid; grid-template-columns:1fr auto; align-items:baseline; column-gap:.4em; row-gap:10px}
+  .titulo h2, .titulo .nom{grid-column:1 / -1}
+  .titulo.ch{display:flex}
+  .titulo.ch .enlace{flex:1}
+  .promesa{margin-top:16px; font-size:19px; line-height:1.35}
+  .cab{margin-bottom:30px}
+  figcaption, .e-pie{margin-top:12px}
+  .e-pie .pie{margin-top:6px}
+  .det{margin-top:34px}
+  .det .nota{margin-top:14px}
+  .accion{margin-top:24px}
+  .credito{margin-top:34px}
+  .sangre{width:calc(100% + 2 * var(--px)); max-width:none; margin-inline:calc(-1 * var(--px))}
+  
+  .portada{padding-top:26px; padding-bottom:0; overflow:hidden}
+  .p-que{font-size:13.5px; color:var(--marfil-2)}
+  .p-marca{margin-top:38px}
+  .p-marca svg{width:100%; height:auto}
+  .p-oficio{display:block; margin-top:16px; font:600 17px/1.2 Figtree, system-ui, sans-serif; letter-spacing:0; color:rgba(243,236,221,.86)}
+  .p-quimica{margin-top:54px; font-size:clamp(30px, 8.6vw, 36px)}
+  .p-quimica em{font-style:normal; color:var(--oro)}
+  .p-lema{margin-top:10px; font:italic 400 clamp(19px, 5.4vw, 22px)/1.25 "Bodoni Moda", "Bodoni 72", Didot, serif; text-align:left; hyphens:manual; -webkit-hyphens:manual}
+  .p-linea{margin-top:24px; font-size:16px; font-weight:600; color:var(--oro); text-align:left}
+  .p-pdf{margin-top:30px; text-align:left}
+  .p-foto{margin-top:52px; aspect-ratio:4 / 3; object-position:38% 50%}
+  
+  .frase{font-size:clamp(34px, 9.4vw, 44px); line-height:1.08}
+  .frase em{font-style:normal}
+  .indice{margin-top:44px}
+  .indice li + li{margin-top:26px}
+  .indice a{display:grid; grid-template-columns:84px 1fr; column-gap:18px; align-items:center; text-decoration:none}
+  .indice a > img, .indice .mini{grid-row:1 / 3; aspect-ratio:4 / 5}
+  .indice a > img{object-position:50% 0}
+  .mini img{width:76%}
+  .indice .titulo{font-size:27px; align-self:end; row-gap:4px}
+  .indice .pie{align-self:start; margin-top:6px; text-align:left}
+  .sumario > .nota{margin-top:38px}
+  
+  .rotulo{margin-top:10px}
+  .tablero > figure + figure, .banda, .banda > * + *{margin-top:36px}
+  .lams, .colores, .letras{gap:8px}
+  .lams{display:grid; grid-template-columns:1fr 1fr}
+  .t-logo .lams{grid-template-rows:auto 58px 58px}
+  .t-logo .g{grid-column:1 / -1; aspect-ratio:16 / 11}
+  .t-logo .g img{width:64%}
+  .t-logo .a{grid-column:1; grid-row:2 / 4}
+  .t-logo .a img{width:70%}
+  .t-logo .h{grid-column:2; grid-row:2} .t-logo .h2{grid-column:2; grid-row:3}
+  .t-logo .h img, .t-logo .h2 img{width:78%}
+  .tams{grid-column:1 / -1; height:128px; align-items:flex-end; gap:clamp(8px, 3.6vw, 20px); padding-bottom:18px}   
+  .tam{gap:9px}
+  .gig, .uso{height:150px}
+  .gig{grid-column:1 / -1}
+  .uso{gap:8px; padding-bottom:20px}
+  .uso.ancha{grid-column:1 / -1; height:128px}
+  .app, .perfil{gap:7px}
+  .app img, .perfil img{width:56px; height:56px}
+  .colores, .letras{grid-column:1 / -1}
+  .colores{grid-template-columns:1fr 1fr}
+  .colores li{min-height:108px; padding:12px; font-size:12.5px; line-height:1.4}
+  .colores b{font-size:15.5px}
+  .letra{height:150px; padding:14px}
+  .letra .aa{font-size:66px}
+  .letra b{margin-top:10px; font-size:15px}
+  .t-nombre img{aspect-ratio:1}
+  .t-pieza img{aspect-ratio:3 / 2; object-position:0 100%}
+  
+  .horas{display:grid; gap:30px}
+  .nav-barra{height:32px; padding:0 10px; font-size:12.5px}
+  .nav-url{height:22px; line-height:22px; padding:0 8px}
+  .desliza .nav-vista{height:clamp(280px, 50vh, 380px); container-type:inline-size}
+  @supports (height:round(down, 1.5px, 1px)){
+    .desliza .nav-vista{height:round(down, clamp(280px, 50vh, 380px), 1px)}
+    .desliza .nav-vista img{height:round(down, calc(100cqw * var(--razon)), 1px); object-fit:cover; object-position:50% 0}
+  }
+  .h-20 figure{display:grid; grid-template-columns:46% 1fr; column-gap:18px; align-items:end}
+  .h-20 figcaption{margin-top:0}
+  .h-20 .accion{margin-top:22px}
+  .lista{margin-top:34px}
+  .lista li{padding:12px 0; border-top:1px solid rgba(201,163,92,.75)}
+  .lista li:last-child{border-bottom:1px solid rgba(201,163,92,.75)}
+  
+  .resumen .lams{grid-template-rows:auto 120px}
+  .r-logo{grid-column:1 / -1; aspect-ratio:16 / 9}
+  .r-logo img{width:56%}
+  .r-colores{grid-template-columns:1fr 1fr}
+  .r-colores span{padding:8px}
+  .r-icono{gap:18px}
+  .r-icono img{width:52px; height:52px}
+  .f-web{margin-top:36px}
+  .montaje{position:relative; padding-bottom:30%}
+  .montaje .m-mov{position:absolute; right:0; bottom:0; width:35%; outline:5px solid var(--verde)}
+  
+  .extras h2{font-size:var(--t-h2); line-height:1.02; margin-bottom:30px}
+  .extra + .extra, .fila2, .extra + .fila2{margin-top:46px}
+  .ex1{padding-bottom:20px} .ex2{padding-top:26px}
+  .e-tarjeta img{aspect-ratio:3 / 2}
+  .tira{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+  .e-plantillas{margin-top:46px}
+  
+  .como h2{font-size:var(--t-h2)}
+  .pasos{margin-top:30px}
+  .pasos li{display:grid; grid-template-columns:62px 1fr; align-items:center; padding:20px 0; border-top:1px solid rgba(201,163,92,.6)}
+  .pasos li:last-child{border-bottom:1px solid rgba(201,163,92,.6)}
+  .pasos .n{font:400 58px/1 "Bodoni Moda", serif; color:var(--oro)}
+  .pasos h3{font-size:25px; line-height:1.1}
+  .pasos p{margin-top:6px; color:var(--marfil-2); text-align:left}
+  .cond{margin-top:64px}
+  .cond h2{font-size:30px}
+  .cond ul{margin-top:20px; font-size:var(--t-pie); line-height:1.45; color:var(--marfil-2)}
+  .cond li + li{margin-top:12px}
+  .cond b{font-weight:600; color:var(--marfil)}
+  
+  .muestras h2{font-size:var(--t-h2)}
+  .muestra + .muestra{margin-top:48px}
+  .m-pie{margin-top:14px}
+  .m-pie h3{font-size:27px}
+  .m-url{font-size:var(--t-pie); text-align:left}
+  .m-url a, .c-legal a{display:inline-block; padding:11px 0}
+  .m-pie .boton{margin-top:6px}
+  .m-nerea img{width:62%}
+  
+  .cierre{padding-top:92px; padding-bottom:56px; text-align:center}
+  .c-logo svg{width:min(86%, 400px); height:auto; margin-inline:auto}
+  .c-vias{margin:70px auto 0; display:grid; gap:10px; width:min(100%, 320px)}
+  .c-vias a{min-height:54px; padding:0 22px; font-size:16.5px}
+  .c-vias a:hover span{text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--oro)}
+  .c-legal{margin-top:56px; text-align:center}
+  .c-legal a:first-child{display:block}      
+  .c-fecha{margin-top:8px; text-align:center}
+}
+@media screen and (min-width:900px){
+  :root{--t:18px; --t-pie:16px; --t-nota:14.5px; --t-h2:78px; --t-h3:32px; --px:max(40px, calc((100vw - 1180px) / 2)); --t-dato:14px; --m-dato:16px; --p-pest:8px}
+  .pag{padding:130px var(--px)}
+  .titulo{display:flex}
+  .titulo .enlace{flex:1}
+  .promesa{margin-top:22px; font-size:24px}
+  .cab{margin-bottom:56px}
+  .e-pie{margin-top:18px}
+  .portada{padding-top:40px; padding-bottom:0; display:grid; grid-template-columns:1fr auto; column-gap:60px; align-items:start}
+  .p-que{grid-column:1 / -1; font-size:16px}
+  .p-marca{grid-column:1 / -1; margin-top:64px}
+  .p-marca svg{width:min(66vw, 840px)}
+  .p-oficio{margin-top:24px; font-size:23px}
+  .p-quimica{grid-column:1; grid-row:3; margin-top:92px; font-size:68px}
+  .p-lema{grid-column:1; grid-row:4; margin-top:14px; font-size:32px}
+  .p-linea{grid-column:2; grid-row:3; align-self:end; margin-top:0; font-size:18px; text-align:right}
+  .p-pdf{grid-column:2; grid-row:4; margin-top:14px; text-align:right}
+  .p-foto{grid-column:1 / -1; grid-row:5; margin-top:80px; aspect-ratio:21 / 9; object-position:50% 46%}
+  .sumario{display:grid; grid-template-columns:5fr 7fr; column-gap:90px; align-items:start}
+  .frase{font-size:58px; line-height:1.06}
+  .indice{margin-top:6px}
+  .indice li + li{margin-top:36px}
+  .indice a{grid-template-columns:130px 1fr; column-gap:32px}
+  .indice .titulo{font-size:34px}
+  .indice .pie{font-size:17px}
+  .sumario > .nota{grid-column:2; margin-top:36px}
+  .rotulo{margin-top:14px}
+  .tablero > figure + figure, .banda{margin-top:60px}
+  .lams, .colores, .letras{gap:12px}
+  .t-logo .lams{grid-template-columns:7fr 5fr; grid-template-rows:212px 98px 98px}
+  .t-logo .g{grid-column:1; grid-row:1 / 4; aspect-ratio:auto}
+  .t-logo .g img{width:auto; height:300px}
+  .t-logo .a{grid-column:2; grid-row:1}
+  .t-logo .a img{width:auto; height:150px}
+  .t-logo .h{grid-row:2} .t-logo .h2{grid-row:3}
+  .t-logo .h img, .t-logo .h2 img{width:auto; height:44px}
+  .t-icono .lams{grid-template-columns:repeat(6, 1fr); grid-template-rows:230px 190px}
+  .tams{grid-column:1 / 5; height:auto; gap:52px; padding-bottom:68px}
+  .gig{grid-column:5 / 7; height:auto}
+  .uso, .uso.ancha{grid-column:span 2; height:auto}
+  .app img, .perfil img{width:72px; height:72px}
+  .pest{width:76%}
+  .t-color .lams{grid-template-columns:2fr 1fr}
+  .colores, .letras{grid-column:auto}
+  .colores{grid-template-columns:repeat(4, 1fr)}
+  .colores li{min-height:210px; padding:18px; font-size:14px}
+  .colores b{font-size:18px}
+  .letra{height:auto; padding:18px}
+  .letra .aa{font-size:96px}
+  .banda{display:grid; grid-template-columns:1fr 1fr 1fr; column-gap:44px; align-items:start}
+  .banda > * + *{margin-top:0}
+  .t-nombre img, .t-pieza img{aspect-ratio:4 / 3}
+  .t-pieza img{object-position:0 100%}
+  .banda .det{margin-top:0}
+  .web{display:grid; grid-template-columns:7fr 5fr; column-gap:70px; align-items:start}
+  .web .cab, .horas, .web .credito{grid-column:1 / -1}
+  .horas{grid-template-columns:1fr 268px; column-gap:64px; align-items:start; margin-bottom:70px}
+  .nav-barra{height:42px; padding:0 14px; font-size:14px}
+  .nav-url{height:27px; line-height:27px}
+  .desliza .nav-vista{height:600px}
+  .h-20 figure{display:block}
+  .h-20 figcaption{margin-top:12px}
+  .lista{margin-top:0}
+  .web .det{margin-top:0}
+  .web .det .nota{margin-top:0}
+  .kitweb{display:grid; grid-template-columns:7fr 5fr; column-gap:70px; align-items:start}
+  .kitweb .cab, .resumen, .f-web, .kitweb .credito{grid-column:1 / -1}
+  .resumen .lams{grid-template-columns:5fr 4fr 3fr; grid-template-rows:250px}
+  .r-logo{grid-column:auto; aspect-ratio:auto}
+  .r-logo img{width:auto; height:160px}
+  .r-colores{grid-template-columns:repeat(4, 1fr)}
+  .r-colores span{padding:14px 12px}
+  .r-icono{gap:28px}
+  .r-icono img{width:76px; height:76px}
+  .f-web{margin-top:60px}
+  .montaje{padding-bottom:0; padding-right:10%; margin-bottom:70px}
+  .montaje .m-mov{right:0; bottom:-56px; width:21%; outline-width:8px}
+  .kitweb .det{grid-column:1 / -1; display:grid; grid-template-columns:7fr 5fr; column-gap:70px; margin-top:56px}
+  .kitweb .det .mas{grid-row:1 / 3}
+  .kitweb .det .nota{margin-top:0}
+  .kitweb .accion{margin-top:20px}
+  .extras h2{margin-bottom:56px}
+  .ex1{padding-bottom:40px} .ex2{padding-top:50px}
+  .e-tarjeta img{aspect-ratio:2 / 1}
+  .e-tarjeta .e-pie, .e-pagina .e-pie, .e-dominio .e-pie{display:grid; grid-template-columns:5fr 7fr; column-gap:70px; align-items:baseline}
+  .e-tarjeta .e-pie .pie, .e-pagina .e-pie .pie, .e-dominio .e-pie .pie{margin-top:0}
+  .extra + .extra, .fila2, .extra + .fila2{margin-top:84px}
+  .fila2{display:grid; grid-template-columns:5fr 7fr; grid-template-rows:auto 1fr auto; column-gap:70px}
+  .e-carta{grid-column:1 / 3; grid-row:1 / 4; display:grid; grid-template-columns:subgrid; grid-template-rows:subgrid}
+  .e-carta img{grid-column:1; grid-row:1 / 4}
+  .e-carta .e-pie{grid-column:2; grid-row:1; margin-top:0}
+  .e-plantillas{grid-column:2; grid-row:3; margin-top:60px}
+  .tira{gap:14px}
+  .ex2{display:grid; grid-template-columns:7fr 5fr; column-gap:70px; align-items:end}
+  .e-dominio, .ex2 .credito{grid-column:1 / -1}
+  .ex2 .extra + .extra{margin-top:84px}
+  .e-ficha, .e-mant{align-self:start}
+  .e-mant{margin-top:150px !important}
+  .como{display:grid; grid-template-columns:4fr 8fr; column-gap:70px; align-items:start}
+  .pasos{margin-top:12px}
+  .pasos li{grid-template-columns:110px 1fr; padding:26px 0}
+  .pasos .n{font-size:88px}
+  .pasos h3{font-size:34px}
+  .pasos p{font-size:19px}
+  .cond{grid-column:1 / -1; margin-top:110px; display:grid; grid-template-columns:4fr 8fr; column-gap:70px}
+  .cond h2{font-size:40px}
+  .cond ul{margin-top:6px; columns:2; column-gap:50px}
+  .cond li{break-inside:avoid}
+  .cond li + li{margin-top:14px}
+  .muestras{display:grid; grid-template-columns:8fr 4fr; column-gap:70px; align-items:end}
+  .muestras .cab, .m-flores, .muestras .credito{grid-column:1 / -1}
+  .muestra + .muestra{margin-top:84px}
+  .m-flores .m-pie{display:grid; grid-template-columns:auto 1fr auto; column-gap:28px; align-items:center}
+  .m-flores .boton{margin-top:0}
+  .m-pie h3{font-size:34px}
+  .m-nerea img{width:100%}
+  .cierre{padding-top:150px; padding-bottom:70px}
+  .c-logo svg{width:500px}
+  .c-vias{grid-template-columns:repeat(2, 1fr); gap:18px; width:min(100%, 500px); margin-top:96px}      
+  .c-vias a{justify-content:center; min-height:60px; padding:0 18px; font-size:18px}
+  .c-legal{margin-top:96px}
+}
+@page{size:210mm 297mm; margin:0}
+@media print{
+  :root{--t:9.4pt; --t-pie:8.6pt; --t-nota:7.3pt; --t-h2:14mm; --t-h3:6mm; --linea:.28mm; --t-dato:6.4pt; --m-dato:2mm; --p-pest:1.1mm}
+  html, body{width:210mm; background:#fff}
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .solo-web{display:none !important}
+  .pag{width:210mm; height:297mm; overflow:hidden; break-after:page; break-inside:avoid; counter-increment:pag}
+  .cierre{break-after:auto}
+  .pag:not(.portada):not(.cierre)::before{content:"Covalente, catálogo de servicios"; position:absolute; left:16mm; top:9.5mm; font:500 7pt/1 Figtree, sans-serif; color:var(--gris)}
+  .pag:not(.portada):not(.cierre)::after{content:counter(pag); position:absolute; right:16mm; top:9.5mm; font:600 7pt/1 Figtree, sans-serif; color:var(--gris)}
+  .verde:not(.portada):not(.cierre)::before, .verde:not(.portada):not(.cierre)::after{color:var(--marfil-2)}
+  .pag > *{position:absolute}
+  .titulo{display:flex; align-items:baseline; column-gap:.4em}
+  .titulo .enlace{flex:1}
+  .cab{left:16mm; right:16mm; top:21mm}
+  .promesa{margin-top:4.2mm; font-size:11.5pt; line-height:1.3}
+  figcaption, .e-pie{margin-top:2.8mm}
+  .e-pie .pie{margin-top:1.4mm}
+  .boton{min-height:9.6mm; padding:0 6mm; font-size:9pt; border-radius:.7mm}
+  .det .nota{margin-top:3.2mm}
+  .accion{margin-top:5mm}
+  .credito{left:16mm; right:16mm; bottom:8.5mm; font-size:6.8pt}
+  
+  .p-que{left:16mm; top:15mm; font-size:8.6pt; color:var(--marfil-2)}
+  .p-marca{left:16mm; top:31mm; width:178mm}
+  .p-marca svg{width:168mm; height:auto}
+  .p-oficio{display:block; margin-top:5.4mm; font:600 14pt/1.2 Figtree, sans-serif; letter-spacing:0; color:rgba(243,236,221,.86)}
+  .p-quimica{left:15.6mm; top:88mm; font-size:14.5mm; white-space:nowrap}
+  .p-quimica em{font-style:normal; color:var(--oro)}
+  .p-lema{left:16mm; top:106.5mm; font:italic 400 7.2mm/1.2 "Bodoni Moda", serif; text-align:left; white-space:nowrap}
+  .p-linea{left:16mm; top:124mm; font-size:10pt; font-weight:600; color:var(--oro)}
+  .p-foto{left:0; top:143mm; width:210mm; height:154mm}
+  
+  .frase{left:16mm; top:30mm; width:172mm; font-size:13mm; line-height:1.08}
+  .frase em{font-style:normal}
+  .indice{left:16mm; right:16mm; top:106mm}
+  .indice li{height:52mm}
+  .indice a{display:grid; grid-template-columns:34mm 1fr; column-gap:9mm; align-items:center; text-decoration:none}
+  .indice a > img, .indice .mini{grid-row:1 / 3; width:34mm; height:42.5mm}
+  .indice a > img{object-position:50% 0}
+  .mini img{width:26mm}
+  .indice .titulo{font-size:9.6mm; align-self:end}
+  .indice .pie{align-self:start; margin-top:2.6mm; font-size:10pt; text-align:left}
+  .sumario > .nota{left:59mm; top:270mm; font-size:8pt}
+  
+  .rotulo{margin-top:1.5mm}
+  .tablero{left:16mm; top:53mm; width:178mm}
+  .tablero figcaption{margin-top:2mm}
+  .tablero > figure + figure{margin-top:3.2mm}
+  .lams, .colores, .letras{gap:1.6mm}
+  .lams{display:grid}
+  .t-logo .lams{grid-template-columns:104mm 1fr; grid-template-rows:25mm 12.2mm 12.2mm}
+  .t-logo .g{grid-row:1 / 4}
+  .t-logo .g img{height:38mm}
+  .t-logo .a img{height:18mm}
+  .t-logo .h img, .t-logo .h2 img{height:5.8mm}
+  .t-icono .lams{grid-template-columns:repeat(6, 1fr); grid-template-rows:28mm 21mm}
+  .tams{grid-column:1 / 5; align-items:flex-end; gap:8mm; padding-bottom:4.2mm}
+  .tam{gap:1.6mm}
+  .gig{grid-column:5 / 7}
+  .uso{grid-column:span 2; gap:1.2mm; padding-bottom:3.4mm}
+  .app, .perfil{gap:1mm}
+  .app img, .perfil img{width:9.5mm; height:9.5mm}
+  .pest{width:88%}
+  .p-tab img{width:3mm; height:3mm}
+  .t-color .lams{grid-template-columns:1fr 60mm}
+  .colores{grid-template-columns:repeat(4, 1fr)}
+  .colores li{height:24mm; padding:2mm; font-size:5.9pt; line-height:1.35}
+  .colores b{font-size:7.6pt}
+  .letra{padding:2mm}
+  .letra .aa{font-size:11mm}
+  .letra b{margin-top:1.4mm}
+  .banda{display:grid; grid-template-columns:54mm 54mm 1fr; column-gap:5mm; margin-top:4.5mm}
+  .t-nombre img{height:46mm; object-position:50% 40%}
+  .t-pieza img{height:46mm; object-position:0 100%}
+  .banda .det .nota{margin-top:2.6mm}
+  .banda .accion{margin-top:4mm}
+  
+  .horas{left:16mm; top:55mm; width:178mm; height:137mm}
+  .h-12{position:absolute; left:0; top:0; width:124mm}
+  .nav-barra{height:6mm; padding:0 2.4mm; font-size:6.6pt}
+  .nav-url{height:3.8mm; line-height:3.8mm}
+  .desliza .nav-vista{height:122mm; overflow:hidden}
+  .h-20{position:absolute; left:132mm; top:0; width:46mm}
+  .h-20 .m-mov{height:99.5mm; box-shadow:0 5mm 9mm -5mm rgba(26,26,26,.5)}
+  .h-20 .accion{margin-top:4mm}
+  .lista{left:16mm; top:194mm; width:112mm}
+  .lista li{padding:2mm 0; border-top:.25mm solid rgba(201,163,92,.8)}
+  .lista li:last-child{border-bottom:.25mm solid rgba(201,163,92,.8)}
+  .web .det{left:16mm; top:243mm; width:112mm}
+  .web .det .nota{margin-top:0}
+  
+  .resumen{left:16mm; top:55mm; width:178mm}
+  .resumen .lams{grid-template-columns:66mm 1fr 42mm; grid-template-rows:42mm}
+  .r-logo img{height:27mm}
+  .r-colores{grid-template-columns:repeat(4, 1fr)}
+  .r-colores span{padding:2mm 1.6mm}
+  .r-icono{gap:5mm}
+  .r-icono img{width:13mm; height:13mm}
+  .f-web{left:16mm; top:111mm; width:178mm}
+  .montaje{position:relative; height:102mm}
+  .montaje .nav{width:150mm}
+  .montaje .nav-vista{height:93.75mm}
+  .montaje .m-mov{position:absolute; right:0; top:15mm; width:39mm; height:84.4mm; outline:1.4mm solid var(--verde); box-shadow:0 5mm 9mm -5mm rgba(0,0,0,.55)}
+  .kitweb .det{left:16mm; top:236mm; width:122mm}
+  
+  .extras h2{left:16mm; top:21mm; font-size:14mm}
+  .e-tarjeta{left:16mm; top:43mm; width:178mm}
+  .e-tarjeta img{height:100mm; object-position:50% 82%}
+  .e-tarjeta .e-pie, .e-pagina .e-pie, .e-dominio .e-pie{display:grid; grid-template-columns:66mm 1fr; column-gap:9mm; align-items:baseline}
+  .e-tarjeta .e-pie .pie, .e-pagina .e-pie .pie, .e-dominio .e-pie .pie{margin-top:0}
+  .fila2{left:16mm; top:170mm; width:178mm; height:100mm}
+  .e-carta img{position:absolute; left:0; top:0; width:76mm; height:95mm}
+  .e-carta .e-pie{position:absolute; left:86mm; top:0; width:92mm; margin-top:0}
+  .e-plantillas{position:absolute; left:86mm; top:40mm; width:92mm}
+  .tira{display:grid; grid-template-columns:repeat(3, 1fr); gap:2.4mm}
+  .tira img{height:36.3mm}
+  
+  .e-ficha{left:16mm; top:21mm; width:102mm}      
+  .e-ficha img{height:76.5mm}
+  .e-mant{left:126mm; top:40mm; width:68mm}
+  .e-mant img{height:51mm}
+  .e-dominio{left:16mm; top:165mm; width:178mm}
+  .e-dominio img{height:34mm}   
+  
+  .como > h2{left:16mm; top:21mm; font-size:14mm}
+  .pasos{left:16mm; right:16mm; top:47mm}
+  .pasos li{display:grid; grid-template-columns:30mm 1fr; align-items:center; height:46mm; border-top:.25mm solid rgba(201,163,92,.6)}
+  .pasos li:last-child{border-bottom:.25mm solid rgba(201,163,92,.6)}
+  .pasos .n{font:400 19mm/1 "Bodoni Moda", serif; color:var(--oro)}
+  .pasos h3{font-size:7.6mm}
+  .pasos p{margin-top:1.6mm; font-size:10.5pt; color:var(--marfil-2); text-align:left}
+  .cond{left:16mm; right:16mm; top:225mm}
+  .cond h2{font-size:8mm}
+  .cond ul{margin-top:5mm; columns:2; column-gap:10mm; font-size:8.4pt; line-height:1.42; color:var(--marfil-2)}
+  .cond li{break-inside:avoid}
+  .cond li + li{margin-top:2.6mm}
+  .cond b{font-weight:600; color:var(--marfil)}
+  
+  .muestras h2{font-size:14mm}
+  .m-flores{left:16mm; top:55mm; width:178mm}
+  .m-flores img{height:79.7mm}
+  .m-pie{margin-top:3.2mm}
+  .m-pie h3{font-size:6.6mm}
+  .m-url{margin-top:1.4mm; font-size:8.6pt; text-align:left}
+  .m-pie .boton{margin-top:3mm}
+  .m-flores .m-pie{display:grid; grid-template-columns:auto 1fr auto; column-gap:7mm; align-items:center}
+  .m-flores .m-url, .m-flores .boton{margin-top:0}
+  .m-jarra{left:16mm; top:168mm; width:118mm}
+  .m-jarra img{height:73.75mm}
+  .m-nerea{left:144mm; top:182.6mm; width:50mm}
+  .m-nerea img{height:59.15mm}
+  
+  .c-logo{left:45mm; top:70mm; width:120mm}
+  .c-logo svg{width:120mm; height:auto}
+  .c-vias{left:45mm; right:45mm; top:190mm; display:grid; grid-template-columns:repeat(2, 1fr); gap:5mm}      
+  .c-vias a{justify-content:center; min-height:13mm; font-size:10.5pt}
+  .c-legal{left:16mm; right:16mm; top:262.3mm; text-align:center}      
+  .c-legal a:first-child{display:block}
+  .c-fecha{left:16mm; right:16mm; top:273mm; text-align:center}
+}
+.boton svg.fino{fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
+.cierre .c-cuest{margin-top:56px; text-align:center}
+.c-cuest .boton{min-height:54px; padding:0 26px; font-size:17px}
+@media (min-width:900px){ .cierre .c-cuest{margin-top:80px} }
+</style>
+</head>
+<body>
+<header class="pag verde portada">
+  <p class="p-que">Catálogo de servicios</p>
+  <h1 class="p-marca"><svg role="img" aria-label="Covalente" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850.95 134"><g transform="translate(7.33 -0.54) scale(0.67)"><g fill="none" stroke="#C9A35C" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"><path d="M14 176 64 112 106 140 156 68 198 96 282 18"/><path d="M129.7 132.1 156.9 92.95"/><path d="M260.2 21 282 18 277.4 39.5"/></g><g fill="#C9A35C"><circle cx="14" cy="176" r="13"/><circle cx="64" cy="112" r="13"/><circle cx="106" cy="140" r="13"/><circle cx="156" cy="68" r="13"/><circle cx="198" cy="96" r="13"/></g></g><path transform="translate(230.45 104.7)" fill="#C9A35C" d="M54.10-23.70L72.60-23.70Q71.80-16.20 67.05-10.50Q62.30-4.80 54.85-1.60Q47.40 1.60 38.10 1.60L38.10 1.60Q27.80 1.60 19.90-2.20Q12-6 7.60-12.80Q3.20-19.60 3.20-28.50L3.20-28.50Q3.20-37.40 7.60-44.20Q12-51 19.90-54.80Q27.80-58.60 38.10-58.60L38.10-58.60Q47.40-58.60 54.85-55.40Q62.30-52.20 67.05-46.55Q71.80-40.90 72.60-33.30L72.60-33.30L54.10-33.30Q53-38.80 48.65-41.70Q44.30-44.60 38.10-44.60L38.10-44.60Q33.20-44.60 29.55-42.70Q25.90-40.80 23.90-37.20Q21.90-33.60 21.90-28.50L21.90-28.50Q21.90-23.40 23.90-19.80Q25.90-16.20 29.55-14.30Q33.20-12.40 38.10-12.40L38.10-12.40Q44.40-12.40 48.70-15.45Q53-18.50 54.10-23.70L54.10-23.70ZM113.40 1.60L113.40 1.60Q102.60 1.60 94.50-2.20Q86.40-6 81.90-12.80Q77.40-19.60 77.40-28.50L77.40-28.50Q77.40-37.50 81.90-44.25Q86.40-51 94.55-54.80Q102.70-58.60 113.40-58.60L113.40-58.60Q124.20-58.60 132.35-54.80Q140.50-51 145-44.25Q149.50-37.50 149.50-28.50L149.50-28.50Q149.50-19.50 145-12.75Q140.50-6 132.35-2.20Q124.20 1.60 113.40 1.60ZM113.40-12.40L113.40-12.40Q118.90-12.40 122.75-14.35Q126.60-16.30 128.65-19.90Q130.70-23.50 130.70-28.50L130.70-28.50Q130.70-33.50 128.65-37.10Q126.60-40.70 122.75-42.65Q118.90-44.60 113.40-44.60L113.40-44.60Q108.10-44.60 104.20-42.65Q100.30-40.70 98.20-37.10Q96.10-33.50 96.10-28.50L96.10-28.50Q96.10-23.50 98.20-19.90Q100.30-16.30 104.20-14.35Q108.10-12.40 113.40-12.40Z"/><path transform="translate(230.45 104.7)" fill="#F3ECDD" d="M172.50-57L193-8.70L186.50-8.80L207.10-57L226.90-57L200 0L178.90 0L152-57L172.50-57ZM303.30 0L284 0L281.50-20.70L284.20-28.50L281.50-36.20L284-57L303.30-57L299.80-28.50L303.30 0ZM288.60-28.50L288.60-28.50Q287.10-19.40 282.90-12.65Q278.70-5.90 272.30-2.15Q265.90 1.60 257.90 1.60L257.90 1.60Q249.50 1.60 243.15-2.20Q236.80-6 233.20-12.75Q229.60-19.50 229.60-28.50L229.60-28.50Q229.60-37.50 233.20-44.25Q236.80-51 243.15-54.80Q249.50-58.60 257.90-58.60L257.90-58.60Q265.90-58.60 272.30-54.85Q278.70-51.10 282.95-44.40Q287.20-37.70 288.60-28.50ZM248.40-28.50L248.40-28.50Q248.40-23.90 250.30-20.35Q252.20-16.80 255.55-14.75Q258.90-12.70 263.30-12.70L263.30-12.70Q267.70-12.70 271.65-14.75Q275.60-16.80 278.60-20.35Q281.60-23.90 283.10-28.50L283.10-28.50Q281.60-33.10 278.60-36.65Q275.60-40.20 271.65-42.25Q267.70-44.30 263.30-44.30L263.30-44.30Q258.90-44.30 255.55-42.25Q252.20-40.20 250.30-36.65Q248.40-33.10 248.40-28.50ZM312.80 0L312.80-77L331.30-77L331.30 0L312.80 0ZM375.00 1.60L375.00 1.60Q364.80 1.60 356.75-2.20Q348.70-6 344.10-12.80Q339.50-19.60 339.50-28.70L339.50-28.70Q339.50-37.60 343.90-44.30Q348.30-51 356.05-54.80Q363.80-58.60 373.60-58.60L373.60-58.60Q383.60-58.60 390.80-54.20Q398.00-49.80 401.90-41.80Q405.80-33.80 405.80-23L405.80-23L354.40-23L354.40-34.70L395.60-34.70L388.90-30.50Q388.60-35.20 386.65-38.45Q384.70-41.70 381.50-43.45Q378.30-45.20 373.90-45.20L373.90-45.20Q369.10-45.20 365.60-43.30Q362.10-41.40 360.15-38Q358.20-34.60 358.20-30.10L358.20-30.10Q358.20-24.40 360.75-20.40Q363.30-16.40 368.15-14.30Q373.00-12.20 380.00-12.20L380.00-12.20Q386.40-12.20 392.80-13.95Q399.20-15.70 404.30-18.90L404.30-18.90L404.30-6.80Q398.50-2.80 391.05-0.60Q383.60 1.60 375.00 1.60ZM415.00-37.60L411.40-57L429.90-57L433.60-34.80L433.60 0L415.00 0L415.00-37.60ZM454.90-58.60L454.90-58.60Q463.10-58.60 468.85-55.35Q474.60-52.10 477.65-46.10Q480.70-40.10 480.70-31.80L480.70-31.80L480.70 0L462.10 0L462.10-29Q462.10-36.10 458.60-39.75Q455.10-43.40 448.60-43.40L448.60-43.40Q444.00-43.40 440.65-41.45Q437.30-39.50 435.45-35.95Q433.60-32.40 433.60-27.50L433.60-27.50L427.70-30.60Q428.80-39.70 432.65-45.90Q436.50-52.10 442.25-55.35Q448-58.60 454.90-58.60ZM497.20-43.20L485.40-43.20L485.40-51.30L497.20-55.60L505.20-72.20L515.80-72.20L515.80-57L540.40-57L540.40-43.20L515.80-43.20L515.80-24.40Q515.80-18 518.40-15.45Q521-12.90 527.70-12.90L527.70-12.90Q532-12.90 535.25-13.65Q538.50-14.40 541.40-15.70L541.40-15.70L541.40-1.60Q538.40-0.40 533.55 0.60Q528.70 1.60 523.50 1.60L523.50 1.60Q514.40 1.60 508.55-1.30Q502.70-4.20 499.95-9.45Q497.20-14.70 497.20-21.80L497.20-21.80L497.20-43.20ZM581.70 1.60L581.70 1.60Q571.50 1.60 563.45-2.20Q555.40-6 550.80-12.80Q546.20-19.60 546.20-28.70L546.20-28.70Q546.20-37.60 550.60-44.30Q555-51 562.75-54.80Q570.50-58.60 580.30-58.60L580.30-58.60Q590.30-58.60 597.50-54.20Q604.70-49.80 608.60-41.80Q612.50-33.80 612.50-23L612.50-23L561.10-23L561.10-34.70L602.30-34.70L595.60-30.50Q595.30-35.20 593.35-38.45Q591.40-41.70 588.20-43.45Q585-45.20 580.60-45.20L580.60-45.20Q575.80-45.20 572.30-43.30Q568.80-41.40 566.85-38Q564.90-34.60 564.90-30.10L564.90-30.10Q564.90-24.40 567.45-20.40Q570-16.40 574.85-14.30Q579.70-12.20 586.70-12.20L586.70-12.20Q593.10-12.20 599.50-13.95Q605.90-15.70 611-18.90L611-18.90L611-6.80Q605.20-2.80 597.75-0.60Q590.30 1.60 581.70 1.60Z"/></svg>
+<span class="p-oficio">Estudio de diseño en Madrid</span></h1>
+  <p class="p-quimica">Tenemos <em>química</em></p>
+  <p class="p-lema">para los negocios pequeños que quieren brillar.</p>
+  <p class="p-linea">Marca y web a medida, con precio cerrado.</p>
+  <p class="p-pdf solo-web"><a class="boton" href="Catalogo-Covalente.pdf" download="Catalogo-Covalente.pdf" type="application/pdf"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 19.5h14"/></svg>Descargar el catálogo en PDF</a></p>
+  <img class="p-foto sangre" src="img/portada-tarjetas.jpg" alt="Las tarjetas de Covalente, en verde botella, negro y marfil, colocadas sobre una mesa gris." width="2100" height="1400">
+</header>
+<main>
+  <section class="pag sumario" aria-label="Lo que hacemos y lo que cuesta">
+    <p class="frase">Cada marca y cada web las diseñamos desde cero para un solo negocio: <em>el tuyo.</em></p>
+    <ul class="indice">
+      <li><a href="#kit"><span class="lam l-verde mini"><img src="img/marca/logo-apilado-oscuro.svg" alt="" width="688" height="457"></span><span class="titulo"><span class="nom">Kit de marca</span><span class="enlace" aria-hidden="true"></span><span class="precio">49&nbsp;€</span></span><span class="pie">Para que tu negocio se reconozca y se vea igual en todas partes.</span></a></li>
+      <li><a href="#web"><img src="img/web-jarra-movil-12.jpg" alt="" width="600" height="1298"><span class="titulo"><span class="nom">Página web</span><span class="enlace" aria-hidden="true"></span><span class="precio">39&nbsp;€</span></span><span class="pie">Para que te encuentren y te escriban.</span></a></li>
+      <li><a href="#kit-web"><img src="img/web-covalente-movil.jpg" alt="" width="600" height="1298"><span class="titulo"><span class="nom">Kit <span class="sig">+</span> web</span><span class="enlace" aria-hidden="true"></span><span class="precio">69&nbsp;€</span></span><span class="pie">Marca y web a juego, 19 € menos que por separado.</span></a></li>
+    </ul>
+    <p class="nota">Precios cerrados, sin IVA (21&nbsp;%).</p>
+  </section>
+  <section class="pag kit" id="kit" aria-labelledby="t-kit">
+    <div class="cab"><div class="titulo"><h2 id="t-kit">Kit de marca</h2><span class="enlace" aria-hidden="true"></span><p class="precio">49&nbsp;€</p></div><p class="promesa">Para que tu negocio se reconozca y se vea igual en todas partes.</p><p class="nota rotulo">El ejemplo es nuestra propia marca.</p></div>
+    <div class="tablero">
+      <figure class="t-logo">
+        <div class="lams">
+          <span class="lam l-verde g"><img src="img/marca/logo-principal.svg" alt="El logo de Covalente sobre verde botella: el icono, el nombre y el lema debajo." width="688" height="594"></span>
+          <span class="lam l-marfil a"><img src="img/marca/logo-apilado-claro.svg" alt="El mismo logo sobre marfil." width="688" height="457"></span>
+          <span class="lam l-verde h"><img src="img/marca/logo-horizontal-oscuro.svg" alt="El logo en horizontal, sobre verde botella." width="851" height="134"></span>
+          <span class="lam l-marfil h2"><img src="img/marca/logo-horizontal-claro.svg" alt="El logo en horizontal, sobre marfil." width="851" height="134"></span>
+        </div>
+        <figcaption><b>Logotipo a medida:</b> la versión principal, una horizontal y un icono pequeño, en color, en blanco y negro y para fondo oscuro.</figcaption>
+      </figure>
+      <figure class="t-icono">
+        <div class="lams">
+          <span class="lam l-marfil tams"><span class="tam"><img src="img/marca/icono.svg" alt="" width="16" height="16" style="width:16px; height:16px"><small>16 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="" width="24" height="24" style="width:24px; height:24px"><small>24 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="" width="32" height="32" style="width:32px; height:32px"><small>32 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="" width="48" height="48" style="width:48px; height:48px"><small>48 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="El icono de Covalente, a 64 píxeles." width="64" height="64" style="width:64px; height:64px"><small>64 px</small></span></span>
+          <span class="lam l-verde gig"><img src="img/marca/suelto.svg" alt="El icono, a gran tamaño." width="300" height="200"><small class="dato">En el rótulo</small></span>
+          <span class="lam l-verde uso"><span class="app"><img src="img/marca/icono.svg" alt="El icono en la pantalla de un móvil," width="64" height="64"><small><span class="np">Covalente</span></small></span><small class="dato">Icono de app</small></span>
+          <span class="lam l-marfil uso"><span class="perfil"><img src="img/marca/perfil.svg" alt="en redondo, como foto de perfil," width="1080" height="1080"><small>@covalenteestudio</small></span><small class="dato">Foto de perfil</small></span>
+          <span class="lam l-marfil uso ancha"><span class="pest"><span class="p-tab"><img src="img/marca/icono.svg" alt="y en la pestaña del navegador." width="16" height="16" style="width:16px; height:16px"><span><span class="np">Covalente</span>, estudio de diseño</span></span><span class="p-barra"><i></i></span></span><small class="dato">Pestaña del navegador</small></span>
+        </div>
+        <figcaption><b>Foto de perfil</b> para <span class="np">Instagram</span>, <span class="np">WhatsApp</span> y Google, e <b>icono para tu web</b>.</figcaption>
+      </figure>
+      <figure class="t-color">
+        <div class="lams">
+          <ul class="colores"><li style="background:#0F3B32; color:#F3ECDD"><b>Verde botella</b><span>#0F3B32</span><span>RGB 15 59 50</span><span>CMYK 86 38 65 57</span></li><li style="background:#C9A35C; color:#1A1A1A"><b>Oro</b><span>#C9A35C</span><span>RGB 201 163 92</span><span>CMYK 14 29 72 5</span></li><li class="borde" style="background:#F3ECDD; color:#1A1A1A"><b>Marfil</b><span>#F3ECDD</span><span>RGB 243 236 221</span><span>CMYK 4 5 10 0</span></li><li style="background:#1A1A1A; color:#F3ECDD"><b>Negro</b><span>#1A1A1A</span><span>RGB 26 26 26</span><span>CMYK 77 73 68 69</span></li></ul>
+          <div class="letras"><span class="lam l-marfil letra"><span class="aa" style="font-family:'Bodoni Moda', serif" aria-hidden="true">Aa</span><b>Bodoni Moda</b><small>Los títulos</small></span><span class="lam l-verde letra"><span class="aa" style="font-family:Figtree, sans-serif" aria-hidden="true">Aa</span><b>Figtree</b><small>Los textos</small></span></div>
+        </div>
+        <figcaption><b>Tus colores y tus letras,</b> con sus códigos. Las letras son de licencia libre: las usas donde quieras.</figcaption>
+      </figure>
+      <div class="banda">
+        <figure class="t-nombre"><img src="img/kit-nombres.jpg" alt="Cuaderno abierto con tres nombres propuestos para un negocio; el elegido, destacado." width="1400" height="1400">
+          <figcaption><b>Tu nombre, si aún no lo tienes claro:</b> te proponemos tres, comprobados en el registro de marcas, en el dominio y en <span class="np">Instagram</span>, y eliges uno.</figcaption></figure>
+        <figure class="t-pieza"><img src="img/extra-tarjeta.jpg" alt="Las tarjetas de Covalente sobre una mesa, con el logo y la frase en relieve." width="1800" height="1200">
+          <figcaption><b>En piezas reales:</b> nuestras tarjetas, con relieve.</figcaption></figure>
+        <div class="det">
+          <p class="mas"><b>Y además:</b> guía de uso en PDF, 6 plantillas para <span class="np">Instagram</span> en Canva, foto de perfil, icono para tu web y todos los archivos y los derechos, por escrito.</p>
+          <p class="nota"><b>Plazo:</b> de 7 a 10 días laborables desde el primer pago y tus respuestas. <b>No incluye:</b> registrar la marca (te recomendamos hacerlo en la OEPM), fotografías ni impresión.</p>
+          <p class="accion"><a class="boton" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Me%20interesa%20el%20Kit%20de%20marca%20para%20mi%20negocio.%20Tengo%20vuestro%20cat%C3%A1logo."><span>Pedir<span class="oculto"> el Kit de marca</span> por <span class="np">WhatsApp</span></span></a></p>
+        </div>
+      </div>
+    </div>
+    <p class="nota credito">La marca del ejemplo es la nuestra. Los nombres del cuaderno son un ejemplo con Flores Santa María, una muestra de <span class="np">Covalente</span>.</p>
+  </section>
+  <section class="pag web" id="web" aria-labelledby="t-web">
+    <div class="cab"><div class="titulo"><h2 id="t-web">Página web</h2><span class="enlace" aria-hidden="true"></span><p class="precio">39&nbsp;€</p></div><p class="promesa">Para que te encuentren y te escriban.</p></div>
+    <div class="horas">
+      <figure class="nav desliza h-12">
+        <div class="nav-marco"><div class="nav-barra" aria-hidden="true"><span class="nav-url">covalente.eu/casos/taberna-la-jarra</span></div><div class="nav-vista" tabindex="0" role="region" aria-label="La web de Taberna La Jarra, entera. Se desliza hacia abajo." style="--razon:1.74931"><img src="img/web-jarra-entera.jpg" alt="La web de Taberna La Jarra a las 12:00, la hora del vermut: la barra con el vermut y las tapas, el horario del día, las mesas libres, la pizarra con la carta y el mapa para llegar." width="1440" height="2519"></div></div>
+        <figcaption><b>A las 12:00,</b> la hora del vermut.<span class="solo-web"> Desliza dentro de la ventana para ver la web entera.</span></figcaption>
+      </figure>
+      <div class="h-20">
+        <figure><img class="m-mov" src="img/web-jarra-movil.jpg" alt="La misma web en un móvil a las 20:00: la pared ha cambiado de color y en la barra hay cañas y raciones." width="600" height="1298">
+          <figcaption><b>A las 20:00,</b> cañas y raciones: la web cambia con la hora.</figcaption></figure>
+        <p class="accion"><a class="boton" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">Abrir la muestra<span class="oculto"> de Taberna La Jarra</span></a></p>
+      </div>
+    </div>
+    <ul class="lista">
+      <li><b>Hecha para tu negocio,</b> sin plantilla y pensada para el móvil.</li>
+      <li><b>Lo que tu cliente quiere saber:</b> qué haces, precios, horario, fotos y un mapa para llegar.</li>
+      <li><b>Te escriben con un toque:</b> botón de <span class="np">WhatsApp</span> con el mensaje ya escrito.</li>
+      <li><b>Y además:</b> los textos, de nuestra parte; preparada para Google; alojamiento gratis y a tu nombre, sin cuota mensual, y la base del aviso legal y de la privacidad.</li>
+    </ul>
+    <div class="det">
+      <p class="nota"><b>Plazo:</b> de 5 a 7 días laborables desde el primer pago, tus datos y tus fotos. <b>No incluye:</b> tienda online, reservas, formularios que guarden datos ni posicionamiento continuado. Las fotos de tu negocio las pones tú; si no tienes, lo hablamos antes de empezar.</p>
+      <p class="accion"><a class="boton" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Me%20interesa%20la%20P%C3%A1gina%20web%20para%20mi%20negocio.%20Tengo%20vuestro%20cat%C3%A1logo."><span>Pedir<span class="oculto"> la Página web</span> por <span class="np">WhatsApp</span></span></a></p>
+    </div>
+    <p class="nota credito">Taberna La Jarra es una muestra de <span class="np">Covalente</span>. Sus fotos están creadas con IA. Mapa: © colaboradores de <span class="np">OpenStreetMap</span>.</p>
+  </section>
+  <section class="pag verde kitweb" id="kit-web" aria-labelledby="t-kit-web">
+    <div class="cab"><div class="titulo doble"><h2 id="t-kit-web">Kit <span class="sig">+</span> web</h2><span class="enlace" aria-hidden="true"></span><p class="precio">69&nbsp;€</p></div><p class="promesa">Marca y web a juego, 19 € menos que por separado.</p><p class="nota rotulo">El ejemplo es nuestra propia marca.</p></div>
+    <figure class="resumen">
+      <div class="lams">
+        <span class="lam l-marfil r-logo"><img src="img/marca/logo-apilado-claro.svg" alt="La marca de Covalente: su logo," width="688" height="457"></span>
+        <span class="r-colores"><span class=igual style="background:#0F3B32; color:#F3ECDD">Verde botella</span><span style="background:#C9A35C; color:#1A1A1A">Oro</span><span style="background:#F3ECDD; color:#1A1A1A">Marfil</span><span style="background:#1A1A1A; color:#F3ECDD">Negro</span></span>
+        <span class="lam l-marfil r-icono"><img src="img/marca/icono.svg" alt="su icono" width="64" height="64"><img class="redondo" src="img/marca/perfil.svg" alt="y su foto de perfil." width="1080" height="1080"></span>
+      </div>
+      <figcaption><b>Todo el Kit de marca:</b> logotipo, colores y letras, guía, plantillas y foto de perfil.</figcaption>
+    </figure>
+    <figure class="f-web">
+      <div class="montaje">
+        <div class="nav"><div class="nav-marco"><div class="nav-barra" aria-hidden="true"><span class="nav-url">covalente.eu</span></div><div class="nav-vista"><img src="img/web-covalente-escritorio.jpg" alt="La web de Covalente en un ordenador, con los mismos colores, el mismo logo y las mismas letras que la marca." width="1440" height="900"></div></div></div>
+        <img class="m-mov" src="img/web-covalente-movil.jpg" alt="La misma web en un móvil." width="600" height="1298">
+      </div>
+      <figcaption><b>Toda la Página web,</b> con lo que tu cliente quiere saber y tu botón de <span class="np">WhatsApp</span>.</figcaption>
+    </figure>
+    <div class="det">
+      <p class="mas"><b>Marca y web a juego:</b> la web se diseña con tu marca nueva desde el primer día. <b>Un solo encargo:</b> nos cuentas tu negocio una vez y te lo entregamos todo junto.</p>
+      <p class="nota"><b>Plazo:</b> de 10 a 15 días laborables desde el primer pago y tus respuestas.</p>
+      <p class="accion"><a class="boton" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Me%20interesa%20el%20Kit%20%2B%20web%20para%20mi%20negocio.%20Tengo%20vuestro%20cat%C3%A1logo."><span>Pedir<span class="oculto"> el Kit + web</span> por <span class="np">WhatsApp</span></span></a></p>
+    </div>
+    <p class="nota credito">La marca del ejemplo es la nuestra. En la portada de nuestra web salen las muestras, con fotos creadas con IA.</p>
+  </section>
+  <section class="extras" id="extras" aria-labelledby="t-extras">
+    <div class="pag ex1">
+      <h2 id="t-extras">Súmale lo que necesites</h2>
+      <article class="extra e-tarjeta">
+      <img src="img/extra-tarjeta.jpg" alt="Tarjetas de visita en tres colores, por las dos caras, sobre una mesa." width="1800" height="1200">
+      <div class="e-pie"><div class="titulo ch"><h3>Tarjeta</h3><span class="enlace" aria-hidden="true"></span><p class="precio">15&nbsp;€</p></div><p class="pie">De visita o de fidelidad, por las dos caras y con tu marca, lista para imprimir. La impresión va aparte.</p></div>
+    </article>
+      <div class="fila2">
+        <article class="extra e-carta">
+      <img src="img/extra-carta.jpg" alt="La carta de Taberna La Jarra, impresa, sobre la barra de zinc junto a un vermut." width="1200" height="1500">
+      <div class="e-pie"><div class="titulo ch"><h3>Carta</h3><span class="enlace" aria-hidden="true"></span><p class="precio">19&nbsp;€</p></div><p class="pie">Carta, menú o lista de precios con tu marca: en PDF para imprimir, en imagen para redes y <span class="np">WhatsApp</span>, y editable para que cambies los precios.</p></div>
+    </article>
+        <article class="extra e-plantillas">
+          <div class="tira"><img src="img/extra-plantilla-1.jpg" alt="Plantilla de Instagram de Nerea Nails para una novedad." width="720" height="900"><img src="img/extra-plantilla-2.jpg" alt="Plantilla de Instagram de Nerea Nails con el horario." width="720" height="900"><img src="img/extra-plantilla-3.jpg" alt="Plantilla de Instagram de Nerea Nails para fechas especiales." width="720" height="900"></div>
+          <div class="e-pie"><div class="titulo ch"><h3>6 plantillas más</h3><span class="enlace" aria-hidden="true"></span><p class="precio">19&nbsp;€</p></div><p class="pie">Seis diseños más para <span class="np">Instagram</span>, en Canva: horarios, novedades o fechas especiales.</p></div>
+        </article>
+      </div>
+      <p class="nota credito">Las tarjetas son las de <span class="np">Covalente</span>. La carta es de Taberna La Jarra y las plantillas, de Nerea Nails: muestras de <span class="np">Covalente</span>, con fotos creadas con IA.</p>
+    </div>
+    <div class="pag ex2">
+      <article class="extra e-ficha">
+      <img src="img/extra-ficha.jpg" alt="Un mapa con el pin de Taberna La Jarra y su ficha: fotos, horario y botones para llegar, llamar y abrir su web." width="1200" height="900">
+      <div class="e-pie"><div class="titulo ch"><h3>Ficha en Google Maps</h3><span class="enlace" aria-hidden="true"></span><p class="precio">19&nbsp;€</p></div><p class="pie">Creamos o ponemos a punto tu perfil de empresa de Google: categoría, horario, fotos, servicios y enlaces. Google te pide verificar que el negocio es tuyo, y te guiamos.</p></div>
+    </article>
+      <article class="extra e-mant">
+      <img src="img/extra-mantenimiento.jpg" alt="Un mensaje pide poner el horario de agosto; la respuesta dice que ya está, y debajo se ve el horario cambiado en la web." width="1200" height="900">
+      <div class="e-pie"><div class="titulo ch"><h3>Mantenimiento</h3><span class="enlace" aria-hidden="true"></span><p class="precio">12&nbsp;€<small> al mes</small></p></div><p class="pie">Nos escribes por <span class="np">WhatsApp</span> y cambiamos lo que necesites: hasta 4 cambios pequeños al mes. Lo grande se presupuesta aparte. Sin permanencia.</p></div>
+    </article>
+      <article class="extra e-dominio">
+      <img src="img/extra-dominio.jpg" alt="La barra de direcciones de un navegador con el rótulo Tu dominio y, escrito, covalente.eu; debajo, la cabecera de nuestra web." width="1280" height="245">
+      <div class="e-pie"><div class="titulo ch"><h3>Dominio</h3><span class="enlace" aria-hidden="true"></span><p class="precio"><small>desde </small>19&nbsp;€<small> al año</small></p></div><p class="pie">Registramos tu dirección web a tu nombre y la renovamos cada año. Un .es o un .com, 19 € al año; otras terminaciones o un nombre muy buscado cuestan más, y te decimos el precio antes. Depende de que esté libre.</p></div>
+    </article>
+      <p class="nota credito">Ejemplos con Flores Santa María y Taberna La Jarra, muestras de <span class="np">Covalente</span>, con fotos creadas con IA. Mapa: © colaboradores de <span class="np">OpenStreetMap</span>.</p>
+    </div>
+  </section>
+  <section class="pag verde como" id="como" aria-labelledby="t-como">
+    <h2 id="t-como">Cómo trabajamos</h2>
+    <ol class="pasos">
+      <li><span class="n" aria-hidden="true">1</span><div><h3>Nos cuentas tu negocio.</h3><p>Por <span class="np">WhatsApp</span>.</p></div></li>
+      <li><span class="n" aria-hidden="true">2</span><div><h3>Eliges una idea y la ajustamos.</h3><p>Dos ideas sobre piezas reales y cambios todas las veces que quieras, hasta que te guste.</p></div></li>
+      <li><span class="n" aria-hidden="true">3</span><div><h3>Te lo entregamos, y es tuyo.</h3><p>En 3 semanas o menos, con todos los archivos y los derechos, por escrito.</p></div></li>
+    </ol>
+    <div class="cond">
+      <h2 id="t-cond">Condiciones</h2>
+      <ul>
+        <li><b>Precios cerrados, sin IVA (21 %).</b></li>
+        <li><b>Cómo se paga:</b> la mitad al empezar y la otra mitad al terminar.</li>
+        <li><b>Hasta que te guste:</b> cambiamos lo que quieras, todas las veces que quieras, sin pagar más.</li>
+        <li><b>Los archivos y los derechos son tuyos,</b> por escrito, con el pago completo.</li>
+        <li><b>El dominio va a tu nombre</b> y su precio depende del que elijas y de que esté libre. Un .es o un .com: unos 10-15 € al año si lo pagas tú, o 19 € si nos encargamos nosotros. Otras terminaciones, o un nombre muy buscado, cuestan más: te lo decimos antes.</li>
+        <li><b>Fuera de Madrid también:</b> lo hacemos todo por <span class="np">WhatsApp</span> y, si hace falta, por videollamada.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="pag muestras" id="muestras" aria-labelledby="t-muestras">
+    <div class="cab"><h2 id="t-muestras">Muestras</h2><p class="promesa">Muestras de nuestro trabajo en covalente.eu. Ábrelas en el móvil y pruébalas.</p></div>
+    <article class="muestra m-flores">
+      <img src="img/muestra-flores.jpg" alt="Portada de la web de Flores Santa María: un ramo naranja sobre fondo azul y la palabra Mandarina." width="1440" height="645">
+      <div class="m-pie"><h3>Flores Santa María</h3><p class="m-url"><a href="https://covalente.eu/casos/flores-santa-maria/?o=catalogo">covalente.eu/casos/flores-santa-maria</a></p><a class="boton" href="https://covalente.eu/casos/flores-santa-maria/?o=catalogo">Abrir la muestra<span class="oculto"> de Flores Santa María</span></a></div>
+    </article>
+    <article class="muestra m-jarra">
+      <img src="img/muestra-jarra.jpg" alt="Portada de la web de Taberna La Jarra a la hora de las cañas: la barra con raciones y las mesas libres." width="1440" height="900">
+      <div class="m-pie"><h3>Taberna La Jarra</h3><p class="m-url"><a href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">covalente.eu/casos/taberna-la-jarra</a></p><a class="boton" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">Abrir la muestra<span class="oculto"> de Taberna La Jarra</span></a></div>
+    </article>
+    <article class="muestra m-nerea">
+      <img src="img/muestra-nerea.jpg" alt="Portada de la web de Nerea Nails: una mano con las uñas en tono cereza." width="600" height="710">
+      <div class="m-pie"><h3>Nerea Nails</h3><p class="m-url"><a href="https://covalente.eu/casos/nerea-nails/?o=catalogo">covalente.eu/casos/nerea-nails</a></p><a class="boton" href="https://covalente.eu/casos/nerea-nails/?o=catalogo">Abrir la muestra<span class="oculto"> de Nerea Nails</span></a></div>
+    </article>
+    <p class="nota credito">Las fotos de las muestras están creadas con IA.</p>
+  </section>
+</main>
+<footer class="pag verde cierre" id="contacto">
+  <div class="c-logo"><svg viewBox="-16 -16 719.77 488.88" role="img" aria-label="Covalente">
+      <defs><filter id="relieve" x="-4%" y="-6%" width="108%" height="112%" color-interpolation-filters="sRGB">
+        <feOffset in="SourceAlpha" dx="3.4" dy="4.4" result="o1"/><feGaussianBlur in="o1" stdDeviation="3.2" result="b1"/>
+        <feFlood flood-color="#000" flood-opacity=".5"/><feComposite in2="b1" operator="in" result="sombra"/>
+        <feOffset in="SourceAlpha" dx="-2.6" dy="-3" result="o2"/><feGaussianBlur in="o2" stdDeviation="1.9" result="b2"/>
+        <feFlood flood-color="#fff" flood-opacity=".3"/><feComposite in2="b2" operator="in" result="luz"/>
+        <feFlood flood-color="#0F3B32"/><feComposite in2="SourceAlpha" operator="in" result="cara"/>
+        <feMerge><feMergeNode in="sombra"/><feMergeNode in="luz"/><feMergeNode in="cara"/></feMerge></filter></defs>
+      <g filter="url(#relieve)"><g transform="translate(131.22 2) scale(1.47)"><g fill="none" stroke="#C9A35C" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 176 64 112 106 140 156 68 198 96 282 18"/><path d="M121.6 131.6 153.6 85.5"/><path d="M260.2 21 282 18 277.4 39.5"/></g><g fill="#C9A35C"><circle cx="14" cy="176" r="9"/><circle cx="64" cy="112" r="9"/><circle cx="106" cy="140" r="9"/><circle cx="156" cy="68" r="9"/><circle cx="198" cy="96" r="9"/></g></g><path transform="translate(20.64 429.18)" fill="#C9A35C" d="M56.80-24.88L76.23-24.88Q75.39-17.01 70.40-11.03Q65.41-5.04 57.59-1.68Q49.77 1.68 40.00 1.68L40.00 1.68Q29.19 1.68 20.89-2.31Q12.60-6.30 7.98-13.44Q3.36-20.58 3.36-29.92L3.36-29.92Q3.36-39.27 7.98-46.41Q12.60-53.55 20.89-57.54Q29.19-61.53 40.00-61.53L40.00-61.53Q49.77-61.53 57.59-58.17Q65.41-54.81 70.40-48.88Q75.39-42.95 76.23-34.96L76.23-34.96L56.80-34.96Q55.65-40.74 51.08-43.78Q46.52-46.83 40.00-46.83L40.00-46.83Q34.86-46.83 31.03-44.84Q27.20-42.84 25.09-39.06Q22.99-35.28 22.99-29.92L22.99-29.92Q22.99-24.57 25.09-20.79Q27.20-17.01 31.03-15.01Q34.86-13.02 40.00-13.02L40.00-13.02Q46.62-13.02 51.13-16.22Q55.65-19.43 56.80-24.88L56.80-24.88ZM119.07 1.68L119.07 1.68Q107.73 1.68 99.22-2.31Q90.72-6.30 85.99-13.44Q81.27-20.58 81.27-29.92L81.27-29.92Q81.27-39.38 85.99-46.46Q90.72-53.55 99.28-57.54Q107.83-61.53 119.07-61.53L119.07-61.53Q130.41-61.53 138.97-57.54Q147.52-53.55 152.25-46.46Q156.97-39.38 156.97-29.92L156.97-29.92Q156.97-20.47 152.25-13.39Q147.52-6.30 138.97-2.31Q130.41 1.68 119.07 1.68ZM119.07-13.02L119.07-13.02Q124.84-13.02 128.89-15.07Q132.93-17.11 135.08-20.89Q137.23-24.68 137.23-29.92L137.23-29.92Q137.23-35.17 135.08-38.95Q132.93-42.73 128.89-44.78Q124.84-46.83 119.07-46.83L119.07-46.83Q113.50-46.83 109.41-44.78Q105.31-42.73 103.11-38.95Q100.91-35.17 100.91-29.92L100.91-29.92Q100.91-24.68 103.11-20.89Q105.31-17.11 109.41-15.07Q113.50-13.02 119.07-13.02Z"/><path transform="translate(20.64 429.18)" fill="#F3ECDD" d="M181.13-59.85L202.65-9.13L195.82-9.24L217.45-59.85L238.25-59.85L210 0L187.84 0L159.60-59.85L181.13-59.85ZM318.46 0L298.20 0L295.57-21.73L298.41-29.92L295.57-38.01L298.20-59.85L318.46-59.85L314.79-29.92L318.46 0ZM303.03-29.92L303.03-29.92Q301.45-20.37 297.04-13.28Q292.63-6.19 285.91-2.26Q279.19 1.68 270.79 1.68L270.79 1.68Q261.97 1.68 255.31-2.31Q248.64-6.30 244.86-13.39Q241.08-20.47 241.08-29.92L241.08-29.92Q241.08-39.38 244.86-46.46Q248.64-53.55 255.31-57.54Q261.97-61.53 270.79-61.53L270.79-61.53Q279.19-61.53 285.91-57.59Q292.63-53.66 297.10-46.62Q301.56-39.59 303.03-29.92ZM260.82-29.92L260.82-29.92Q260.82-25.09 262.81-21.37Q264.81-17.64 268.33-15.49Q271.84-13.33 276.46-13.33L276.46-13.33Q281.08-13.33 285.23-15.49Q289.38-17.64 292.53-21.37Q295.68-25.09 297.25-29.92L297.25-29.92Q295.68-34.75 292.53-38.48Q289.38-42.21 285.23-44.36Q281.08-46.52 276.46-46.52L276.46-46.52Q271.84-46.52 268.33-44.36Q264.81-42.21 262.81-38.48Q260.82-34.75 260.82-29.92ZM328.44 0L328.44-80.85L347.87-80.85L347.87 0L328.44 0ZM393.75 1.68L393.75 1.68Q383.04 1.68 374.59-2.31Q366.13-6.30 361.31-13.44Q356.48-20.58 356.48-30.13L356.48-30.13Q356.48-39.48 361.10-46.52Q365.72-53.55 373.85-57.54Q381.99-61.53 392.28-61.53L392.28-61.53Q402.78-61.53 410.34-56.91Q417.90-52.29 422.00-43.89Q426.09-35.49 426.09-24.15L426.09-24.15L372.12-24.15L372.12-36.43L415.38-36.43L408.35-32.02Q408.03-36.96 405.98-40.37Q403.94-43.78 400.57-45.62Q397.22-47.46 392.60-47.46L392.60-47.46Q387.56-47.46 383.88-45.46Q380.20-43.47 378.16-39.90Q376.11-36.33 376.11-31.61L376.11-31.61Q376.11-25.62 378.79-21.42Q381.47-17.22 386.56-15.01Q391.65-12.81 399-12.81L399-12.81Q405.72-12.81 412.44-14.65Q419.16-16.48 424.51-19.84L424.51-19.84L424.51-7.14Q418.43-2.94 410.60-0.63Q402.78 1.68 393.75 1.68ZM435.75-39.48L431.97-59.85L451.39-59.85L455.28-36.54L455.28 0L435.75 0L435.75-39.48ZM477.64-61.53L477.64-61.53Q486.25-61.53 492.29-58.12Q498.33-54.70 501.53-48.41Q504.74-42.10 504.74-33.39L504.74-33.39L504.74 0L485.20 0L485.20-30.45Q485.20-37.91 481.53-41.74Q477.86-45.57 471.03-45.57L471.03-45.57Q466.20-45.57 462.68-43.52Q459.17-41.48 457.22-37.75Q455.28-34.02 455.28-28.88L455.28-28.88L449.08-32.13Q450.24-41.68 454.28-48.20Q458.32-54.70 464.36-58.12Q470.40-61.53 477.64-61.53ZM522.06-45.36L509.67-45.36L509.67-53.86L522.06-58.38L530.46-75.81L541.59-75.81L541.59-59.85L567.42-59.85L567.42-45.36L541.59-45.36L541.59-25.62Q541.59-18.90 544.32-16.22Q547.05-13.54 554.09-13.54L554.09-13.54Q558.60-13.54 562.01-14.33Q565.42-15.12 568.47-16.48L568.47-16.48L568.47-1.68Q565.32-0.42 560.23 0.63Q555.13 1.68 549.67 1.68L549.67 1.68Q540.12 1.68 533.98-1.36Q527.84-4.41 524.95-9.92Q522.06-15.43 522.06-22.89L522.06-22.89L522.06-45.36ZM610.78 1.68L610.78 1.68Q600.07 1.68 591.62-2.31Q583.17-6.30 578.34-13.44Q573.51-20.58 573.51-30.13L573.51-30.13Q573.51-39.48 578.13-46.52Q582.75-53.55 590.89-57.54Q599.02-61.53 609.31-61.53L609.31-61.53Q619.81-61.53 627.38-56.91Q634.93-52.29 639.03-43.89Q643.13-35.49 643.13-24.15L643.13-24.15L589.15-24.15L589.15-36.43L632.41-36.43L625.38-32.02Q625.06-36.96 623.02-40.37Q620.97-43.78 617.61-45.62Q614.25-47.46 609.63-47.46L609.63-47.46Q604.59-47.46 600.91-45.46Q597.24-43.47 595.19-39.90Q593.14-36.33 593.14-31.61L593.14-31.61Q593.14-25.62 595.82-21.42Q598.50-17.22 603.59-15.01Q608.68-12.81 616.03-12.81L616.03-12.81Q622.75-12.81 629.48-14.65Q636.19-16.48 641.55-19.84L641.55-19.84L641.55-7.14Q635.46-2.94 627.64-0.63Q619.81 1.68 610.78 1.68Z"/></g></svg></div>
+  <p class="c-cuest solo-web"><a class="boton" href="../cuestionario/"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h8l3.5 3.5v13.5h-11.5z"/><path d="M14.5 3.5V7H18"/><path d="M9.5 11.5h5.5M9.5 14.5h5.5M9.5 17.5h3"/></svg>Cuéntanos tu negocio</a></p>
+  <ul class="c-vias">
+    <li><a href="https://www.instagram.com/covalenteestudio/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg><span><span class="oculto"><span class="np">Instagram</span>: </span>@covalenteestudio</span></a></li>
+    <li><a href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.%20Tengo%20vuestro%20cat%C3%A1logo."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span><span class="oculto"><span class="np">WhatsApp</span>: </span>+34 613 91 27 52</span></a></li>
+  </ul>
+  <p class="nota c-legal"><a href="mailto:covalente.madrid@gmail.com">covalente.madrid@gmail.com</a> Aviso legal: <a href="../legal.html">covalente.eu/legal</a>. Quién está detrás y cómo tratamos tus datos.</p>
+  <p class="nota c-fecha">Catálogo de <span class="np">Covalente</span>, noviembre de 2026.</p>
+</footer>
+<script src="/contar.js" defer></script>
+</body>
+</html>
