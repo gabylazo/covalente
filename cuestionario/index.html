@@ -534,6 +534,10 @@ h2{font:400 clamp(22px,2.2vw,28px)/1.18 var(--titulo);margin:0 0 12px}
 .ex-lista .op[aria-pressed="true"].viendo,.ex-lista .op[aria-pressed="true"]:hover{background:rgba(15,59,50,.06)}
 .ex-lista .op .caja,.palabras .op .caja,.pieza .caja{width:22px;height:22px;border:1px solid var(--verde);border-radius:2px;color:var(--marfil)}
 .ex-lista .op[aria-pressed="true"] .caja,.palabras .op[aria-pressed="true"] .caja,.pieza[aria-pressed="true"] .caja{background:var(--verde);color:var(--marfil)}
+.incluye{border-top:0}
+.incluye li{border-bottom:0;padding:9px 0}
+.ayuda.bf{color:var(--negro);margin-top:-6px}
+.ayuda.bf b{color:var(--verde);font-weight:600}
 .palabras{grid-template-columns:repeat(3,minmax(0,1fr));gap:2px 16px;max-width:720px}
 .palabras .op{border:0;background:none;color:var(--negro);margin-left:-12px;padding:8px 12px;min-height:52px;gap:14px;font:400 18px/1.3 var(--texto)}
 .palabras .op:hover{border:0;background:rgba(15,59,50,.06)}
@@ -877,6 +881,7 @@ const params = new URLSearchParams(location.search);
 const ver = params.get('ver');
 const origen = ORIGEN[params.get('o')] || 'la web';
 const DESTINO = ver ? '' : params.get('api') === 'local' && ['localhost', '127.0.0.1'].includes(location.hostname) ? `http://127.0.0.1:${/^\d{2,5}$/.test(params.get('puerto') || '') ? params.get('puerto') : 8793}/api/expediente` : API;
+const BF = (() => { try { const fin = Date.parse('2026-12-01T00:00:00+01:00'), ahora = Date.now(); return Number.isFinite(fin) && Number.isFinite(ahora) && ahora < fin; } catch (e) { return false; } })();
 const CLAVE = 'covalente-cuestionario', ARCHIVO = 'covalente-expedientes', PANTALLAS = ['inicio','necesitas','cliente','consulta','servicio','antes','pregunta','contacto','final'];
 const PREG = ['servicio','antes','pregunta','contacto'];
 let A = {}, pantalla = 'inicio', i = 0, pestanaColor = 'si', qAhora = '';
@@ -1100,6 +1105,7 @@ function servicio(){
     ${arriba()}
     <h1>¿Qué quieres que hagamos?</h1>
     <p class="ayuda">Precios cerrados, sin IVA.</p>
+    ${BF ? '<p class="ayuda bf"><b>Black Friday:</b> 20&nbsp;% de descuento en marca, web y extras para encargos que nos confirmes hasta el lunes 30 de noviembre. No incluye el dominio ni el mantenimiento.</p>' : ''}
     <div class="paquetes" role="radiogroup" aria-label="Servicio">
       ${SERVICIOS.filter(x => x[0] !== 'extra').map(([k, t, d, p]) => `<div class="paquete" role="radio" aria-checked="${s === k}" tabindex="${s === k || (!s && k === 'kit') ? 0 : -1}" data-s="${k}" aria-labelledby="pn-${k} pp-${k}" aria-describedby="pq-${k}">
         <span class="radio" aria-hidden="true"></span>

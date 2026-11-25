@@ -78,14 +78,14 @@ h2{font-size:clamp(38px, 4.6vw, 66px)}
 .boton svg{width:20px; height:20px; flex:none}
 .enlace{font-weight:700; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:5px}
 .enlace:hover{text-decoration-thickness:2px}
-/* Entrada al cuestionario (25/11): una tecla en relieve, verde sobre verde, para no competir con el WhatsApp; su icono, fino */
-.boton.relieve{background:linear-gradient(#22604F,#174A3D); color:var(--marfil); font-weight:600;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 1px 0 #051914, 0 2px 3px rgba(0,0,0,.28), 0 14px 22px -14px rgba(0,0,0,.75); transition:transform .12s cubic-bezier(.2,.7,.2,1), box-shadow .12s, background .12s}
-.boton.relieve:hover{background:linear-gradient(#266957,#1A5143); transform:translateY(-1px)}
-.boton.relieve:active{transform:translateY(2px); background:#174A3D; box-shadow:inset 0 2px 4px rgba(0,0,0,.45)}
-.boton.relieve svg{color:var(--oro)}
+/* Cuéntanos tu negocio, el botón principal de la apertura (25/11): el oro, en relieve, con su icono fino en verde */
+.boton.oro.relieve{background:linear-gradient(#D8B66F,#C29A50); color:var(--negro); font-weight:700;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38), 0 1px 0 #6E5426, 0 2px 3px rgba(0,0,0,.3), 0 14px 22px -14px rgba(0,0,0,.8); transition:transform .12s cubic-bezier(.2,.7,.2,1), box-shadow .12s, background .12s}
+.boton.oro.relieve:hover{background:linear-gradient(#E0C07C,#CBA459); transform:translateY(-1px)}
+.boton.oro.relieve:active{transform:translateY(2px); background:#C29A50; box-shadow:inset 0 2px 4px rgba(60,42,10,.45)}
+.boton.oro.relieve svg{color:var(--verde)}
 svg.fino{fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
-@media (prefers-reduced-motion:reduce){ .boton.relieve{transition:none} .boton.relieve:hover, .boton.relieve:active{transform:none} }
+@media (prefers-reduced-motion:reduce){ .boton.oro.relieve{transition:none} .boton.oro.relieve:hover, .boton.oro.relieve:active{transform:none} }
 /* El catálogo, junto a los precios: la flecha de descargar, fina, y su texto */
 .al-catalogo{display:inline-flex; align-items:center; gap:10px; min-height:44px; margin-top:10px; padding:6px 14px 6px 4px; margin-left:-4px; border-radius:4px; color:var(--verde); font-weight:600; font-size:16px; text-decoration:none}
 .al-catalogo svg{width:20px; height:20px; flex:none}
@@ -214,7 +214,7 @@ footer.oscuro{background:var(--verde-2)}
   display:flex; flex-direction:column; border:1px solid var(--linea); border-radius:14px; padding:26px 26px 22px; background:var(--blanco); box-shadow:0 1px 0 rgba(26,26,26,.03), 0 24px 48px -32px rgba(15,59,50,.35); transition:border-color .2s, box-shadow .2s}
 .p-cab{display:flex; align-items:center; justify-content:space-between; gap:12px}
 .paquete h3{font-size:24px; letter-spacing:-.01em}
-.pct{padding:6px 10px; border-radius:99px; background:var(--rojo); color:#FFF; font-size:13.5px; font-weight:800; line-height:1; white-space:nowrap}
+/* 25/11: fuera la etiqueta roja del porcentaje (al lado del Black Friday se leía como un descuento, y era un rojo saturado). La comparación va en su caja, debajo de la barra */
 .precio{display:flex; align-items:baseline; gap:8px; margin-top:18px}
 .precio b{font:600 64px/.9 var(--titulo); letter-spacing:-.02em; color:var(--nuestro); font-variant-numeric:lining-nums}
 .precio span{font-size:16px; font-weight:600; color:var(--suave)}
@@ -225,10 +225,10 @@ footer.oscuro{background:var(--verde-2)}
 .compara s::after{content:""; position:absolute; left:-3px; right:-3px; top:52%; height:2px; border-radius:2px; background:var(--rojo); rotate:-9deg; transform-origin:left; transition:scale .45s cubic-bezier(.6,0,.2,1) .2s}
 .barra{display:block; height:12px; margin:10px 0; border-radius:6px; overflow:hidden; background:repeating-linear-gradient(135deg, var(--raya) 0 3px, transparent 3px 7px); box-shadow:inset 0 0 0 1px var(--raya)}
 .barra i{display:block; height:100%; width:calc(var(--p) * 1%); min-width:8px; border-radius:6px; background:var(--nuestro); transition:width 1s cubic-bezier(.55,0,.15,1) .15s}
-.dif .total{font:600 30px/1 var(--titulo); color:var(--dif); letter-spacing:-.01em; font-variant-numeric:lining-nums; white-space:nowrap; transition:opacity .3s ease .5s}
+.compara .dif{display:block; font-size:16px; font-weight:600; line-height:1.3; color:var(--verde)}
+.destacado .compara .dif{color:var(--oro)}
 .paquete.espera .barra i{width:100%; transition:none}
 .paquete.espera .compara s::after{scale:0 1; transition:none}
-.paquete.espera .total{opacity:0; transition:none}
 /* 13/11 (ella: «deja lo esencial, y que lo que incluye lo despliegue cada usuario»): a la vista, una línea con lo esencial;
    la lista de lo que incluye va plegada al pie de la tarjeta y la abre quien quiera */
 .esencia{margin-top:12px; font-size:15.5px; line-height:1.4; color:var(--suave)}
@@ -282,30 +282,37 @@ footer.oscuro{background:var(--verde-2)}
 .sumale{margin-top:56px; display:grid; gap:24px}
 .extras h3{font-size:28px}
 .extras > p{margin-top:6px; color:var(--gris); font-size:15.5px}
-.x-lista{margin-top:18px; display:grid; gap:8px}
-.x-item{border:1px solid var(--linea); border-radius:10px; background:var(--blanco); transition:border-color .15s, background-color .15s}
-.x-item:hover{border-color:#BDB7AB}
-.x-item:has(.x-pieza[aria-pressed="true"]){border-color:var(--verde); background:#F1F6F3}
-.x-pieza{display:grid; grid-template-columns:88px minmax(0, 1fr) auto 32px; align-items:center; gap:14px; width:100%; padding:8px 14px 2px 8px; border:0; border-radius:10px 10px 0 0; background:none; font:inherit; color:var(--negro); text-align:left; cursor:pointer}
-.x-pieza img{width:88px; height:66px; border-radius:6px; object-fit:cover; background:#EFECE6}
-.x-texto{display:grid; gap:1px; min-width:0}
+.x-lista{margin-top:18px; display:grid; gap:6px}
+/* Cada extra, una fila sin recuadro (25/11: ningún rectángulo con borde que encierre un botón). Añadir, icono fino con su texto */
+.x-item{margin-inline:-8px; border-radius:4px; transition:background-color .15s}
+.x-item:hover{background:rgba(15,59,50,.05)}
+.x-pieza{display:grid; grid-template-columns:88px minmax(0, 1fr) auto auto; grid-template-areas:"f t p a"; align-items:center; gap:14px; width:100%; padding:8px 8px 2px; border:0; border-radius:4px 4px 0 0; background:none; font:inherit; color:var(--negro); text-align:left; cursor:pointer}
+.x-pieza img{grid-area:f; width:88px; height:66px; border-radius:6px; object-fit:cover; background:#EFECE6}
+.x-texto{grid-area:t; display:grid; gap:1px; min-width:0}
 .x-nom{font-weight:700; font-size:15.5px; line-height:1.25}
 .x-texto small{font-size:13.5px; line-height:1.3; color:var(--gris)}
-.x-precio{font:600 19px/1 var(--titulo); font-variant-numeric:lining-nums; white-space:nowrap}
+.x-precio{grid-area:p; font:600 19px/1 var(--titulo); font-variant-numeric:lining-nums; white-space:nowrap}
 .x-precio small{font:600 12.5px var(--f); color:var(--gris)}
-.x-marca{display:grid; place-items:center; width:32px; height:32px; border-radius:50%; border:1.5px solid #BDB7AB; color:var(--negro); transition:background-color .15s, border-color .15s}
-.x-marca svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round}
+.x-marca{grid-area:a; display:inline-flex; align-items:center; gap:6px; color:var(--verde); font:500 16px/1.2 var(--f); white-space:nowrap}
+.x-marca svg{flex:none; width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
+.x-marca .x-dice{display:grid}
+.x-marca .x-dice > span{grid-area:1/1}
+.x-marca .x-si{visibility:hidden; font-weight:600} /* Añadido, siempre en su peso: así Añadir y Añadido ocupan lo mismo y la fila no salta */
 .x-marca .hecho{display:none}
-.x-pieza[aria-pressed="true"] .x-marca{background:var(--verde); border-color:var(--verde); color:#FFF}
+.x-pieza:hover .x-marca{color:var(--negro)}
+.x-pieza[aria-pressed="true"] .x-marca{color:var(--verde)}
 .x-pieza[aria-pressed="true"] .mas{display:none}
 .x-pieza[aria-pressed="true"] .hecho{display:inline}
+.x-pieza[aria-pressed="true"] .x-no{visibility:hidden}
+.x-pieza[aria-pressed="true"] .x-si{visibility:visible}
 .x-info summary{display:grid; place-items:center; width:36px; height:26px; margin:-2px 0 4px 103px; border-radius:6px; list-style:none; color:var(--verde); cursor:pointer}
 .x-info summary::-webkit-details-marker{display:none}
 .x-info summary:hover{background:rgba(15,59,50,.07)}
 .x-info summary svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transition:rotate .2s}
 .x-info[open] summary svg{rotate:180deg}
 .x-info p{margin:0 16px 14px 110px; font-size:14px; line-height:1.5; color:#3F3D38; max-width:62ch; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
-@media (max-width:480px){ .x-pieza{grid-template-columns:64px minmax(0, 1fr) auto 30px; gap:10px; padding-right:10px} .x-pieza img{width:64px; height:48px} .x-texto small{font-size:12.5px} .x-marca{width:30px; height:30px} .x-info summary{margin-left:75px} .x-info p{margin:0 12px 12px 12px} }
+@media (max-width:480px){ .x-pieza{grid-template-columns:64px minmax(0, 1fr) auto; grid-template-areas:"f t p" "f t a"; gap:6px 10px} .x-pieza img{width:64px; height:48px} .x-texto small{font-size:12.5px} .x-precio{align-self:end; justify-self:end} .x-marca{align-self:start; justify-self:end} .x-info summary{margin-left:75px} .x-info p{margin:0 12px 12px 12px} }
+@media (prefers-reduced-motion:reduce){ .x-item{transition:none} }
 
 /* Tu presupuesto: en el móvil, una barra que se queda pegada abajo en cuanto eliges algo; en el escritorio, un panel al lado de la lista */
 .presupuesto{display:none}
@@ -331,6 +338,14 @@ footer.oscuro{background:var(--verde-2)}
   .p-pedir{width:100%}
 }
 .iva{margin-top:20px; font-size:14px; color:var(--gris)}
+/* Black Friday 2026 (25/11): se ve hasta el lunes 30/11 y se oculta solo el 1/12 a las 00:00, hora de Madrid (ver BF en el código).
+   Sin JavaScript, o si no se puede leer la fecha, no sale. El 1/12 se quita del HTML (servicios.md). Sin tachados: el precio es el de siempre */
+.bf[hidden], .p-bf[hidden]{display:none !important}
+.bf-linea{max-width:800px; margin:-16px 0 36px; font-size:17px; line-height:1.45; color:var(--negro); text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+.bf-linea b{color:var(--verde)}
+.bf-precio{margin-top:10px; font-size:16px; font-weight:600; line-height:1.3; color:var(--nuestro); font-variant-numeric:lining-nums}
+.iva.bf{margin-top:4px}
+.p-bf{margin-top:4px; font-size:15px; font-weight:600; color:var(--oro)}
 @media (prefers-reduced-motion:reduce){ .x-marca, .paquete, .barra i, .p-incluye summary svg{transition:none} .p-incluye[open] ul{animation:none} .presupuesto.cambia .p-total b{animation:none} }
 
 /* ——— Cómo trabajamos: la molécula del logo es el camino. Cada átomo, un paso; la flecha sube hasta «brilla».
@@ -592,8 +607,7 @@ footer.oscuro{background:var(--verde-2)}
         <p class="lema">para los negocios pequeños que quieren brillar.</p>
         <p class="oferta">Marca y web a medida, con precio cerrado.</p>
         <div class="acciones">
-          <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio."><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Escríbenos por WhatsApp</a>
-          <a class="boton relieve" href="cuestionario/"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h8l3.5 3.5v13.5h-11.5z"/><path d="M14.5 3.5V7H18"/><path d="M9.5 11.5h5.5M9.5 14.5h5.5M9.5 17.5h3"/></svg>Cuéntanos tu negocio</a>
+          <a class="boton oro relieve" href="cuestionario/"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h8l3.5 3.5v13.5h-11.5z"/><path d="M14.5 3.5V7H18"/><path d="M9.5 11.5h5.5M9.5 14.5h5.5M9.5 17.5h3"/></svg>Cuéntanos tu negocio</a>
           <a class="enlace" href="#trabajos">Ver trabajos</a>
         </div>
         <ul class="garantias">
@@ -608,7 +622,7 @@ footer.oscuro{background:var(--verde-2)}
           <span class="direccion" aria-hidden="true"><i></i><span>covalente.eu/casos/taberna-la-jarra</span></span>
           <span class="pantalla"><img src="img/trabajos/jarra-escritorio-1440.webp" srcset="img/trabajos/jarra-escritorio-800.webp 800w, img/trabajos/jarra-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 52vw, 92vw" alt="La web de muestra de Taberna La Jarra a las 12:45, la hora del vermut" width="1440" height="900" fetchpriority="high"><img src="img/trabajos/jarra-e2-escritorio-1440.webp" srcset="img/trabajos/jarra-e2-escritorio-800.webp 800w, img/trabajos/jarra-e2-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 52vw, 92vw" alt="La web de muestra de Taberna La Jarra a las 21:30, con cañas y raciones" width="1440" height="900"><img src="img/trabajos/jarra-e3-escritorio-1440.webp" srcset="img/trabajos/jarra-e3-escritorio-800.webp 800w, img/trabajos/jarra-e3-escritorio-1440.webp 1440w" sizes="(min-width:1000px) 52vw, 92vw" alt="La web de muestra de Taberna La Jarra a las 9:30, con café y porras" width="1440" height="900"></span>
         </a>
-        <a class="movil uno" href="casos/nerea-nails/" aria-label="Abrir la web de Nerea Nails"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: una mano con esmalte cereza con brillo" width="600" height="1298"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: una mano con esmalte fucsia, ojo de gato" width="600" height="1298"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: una mano con esmalte turquesa con brillo" width="600" height="1298"></span></a>
+        <a class="movil uno" href="casos/nerea-nails/" aria-label="Abrir la web de Nerea Nails"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: el semipermanente cereza en una mano, con su precio, y las cuatro técnicas" width="600" height="1298"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil, con la manicura rusa elegida" width="600" height="1298"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil, con la pedicura semipermanente elegida" width="600" height="1298"></span></a>
         <a class="movil dos" href="casos/flores-santa-maria/" aria-label="Abrir la web de Flores Santa María"><span class="pantalla"><img src="img/trabajos/flores-movil-600.webp" alt="La web de muestra de Flores Santa María en un móvil, con el ramo Mandarina" width="600" height="1298"><img src="img/trabajos/flores-e2-movil-600.webp" alt="La web de muestra de Flores Santa María en un móvil, con el ramo Frambuesa" width="600" height="1298"><img src="img/trabajos/flores-e3-movil-600.webp" alt="La web de muestra de Flores Santa María en un móvil, con el ramo Azahar" width="600" height="1298"></span></a>
         </div>
       </figure>
@@ -622,11 +636,11 @@ footer.oscuro{background:var(--verde-2)}
     <p>Muestras de nuestro trabajo. Ábrelas y pruébalas.</p>
   </div>
   <ul class="muestras">
-    <li><a class="muestra" href="casos/nerea-nails/" style="--fondo:#F3D9DF; --tinta:#3B0E1C" data-estados="Cereza con brillo|Fucsia, ojo de gato|Turquesa con brillo">
+    <li><a class="muestra" href="casos/nerea-nails/" style="--fondo:#F3D9DF; --tinta:#3B0E1C" data-estados="Semipermanente|Manicura rusa|Pedicura semi">
       <h3>Nerea Nails</h3>
-      <p class="linea">Pruebas el esmalte en tu mano antes de reservar.</p>
+      <p class="linea">Eliges la técnica y ves el antes y el después en la misma mano.</p>
       <span class="abrir">Ver la web</span>
-      <span class="escena"><img class="retrato" src="img/trabajos/nerea-retrato-360.webp" srcset="img/trabajos/nerea-retrato-360.webp 360w, img/trabajos/nerea-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="La dueña de Nerea Nails, una muestra, sonriendo en su salón entre esmaltes" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: una mano con esmalte cereza con brillo" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: una mano con esmalte fucsia, ojo de gato" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: una mano con esmalte turquesa con brillo" width="600" height="1298" loading="lazy"></span></span></span>
+      <span class="escena"><img class="retrato" src="img/trabajos/nerea-retrato-360.webp" srcset="img/trabajos/nerea-retrato-360.webp 360w, img/trabajos/nerea-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="La dueña de Nerea Nails, una muestra, sonriendo en su salón entre esmaltes" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: el semipermanente cereza en una mano, con su precio, y las cuatro técnicas" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil, con la manicura rusa elegida" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil, con la pedicura semipermanente elegida" width="600" height="1298" loading="lazy"></span></span></span>
     </a></li>
     <li><a class="muestra" href="casos/taberna-la-jarra/" style="--fondo:#8E1D15; --tinta:#FCEFE2" data-estados="12:45, la hora del vermut|21:30, cañas y raciones|9:30, café y porras">
       <h3>Taberna La Jarra</h3>
@@ -649,15 +663,17 @@ footer.oscuro{background:var(--verde-2)}
       <h2 id="t-precios">Precios</h2>
       <p>Tres paquetes con precio cerrado. Elige el tuyo.</p>
     </div>
+    <p class="bf bf-linea" hidden><b>Black Friday:</b> 20&nbsp;% de descuento en marca, web y extras para encargos que nos confirmes hasta el lunes 30 de noviembre. No incluye el dominio ni el mantenimiento.</p>
     <div class="paquetes">
       <article class="paquete" data-k="kit" data-nombre="Kit de marca" data-precio="49">
-        <div class="p-cab"><h3>Kit de marca</h3><span class="pct">−92 %</span></div>
+        <div class="p-cab"><h3>Kit de marca</h3></div>
         <p class="precio"><b>49 €</b></p>
+        <p class="bf bf-precio" hidden>Con el descuento, 39,20 €</p>
         <p class="esencia">Logotipo, colores, letras y plantillas para tus redes.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>590 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:8.3"><i></i></span>
-          <p class="dif"><span>Diferencia</span> <b class="total" data-meta="541">−541 €</b></p>
+          <p class="dif">92&nbsp;% menos que otros estudios</p>
         </div>
         <p class="plazo">Listo en 7-10 días laborables</p>
         <a class="boton directo" data-wa="Hola, Covalente. Me interesa el Kit de marca para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit de marca">Pedir por WhatsApp</a>
@@ -676,13 +692,14 @@ footer.oscuro{background:var(--verde-2)}
         </details>
       </article>
       <article class="paquete" data-k="web" data-nombre="Página web" data-precio="39">
-        <div class="p-cab"><h3>Página web</h3><span class="pct">−90 %</span></div>
+        <div class="p-cab"><h3>Página web</h3></div>
         <p class="precio"><b>39 €</b></p>
+        <p class="bf bf-precio" hidden>Con el descuento, 31,20 €</p>
         <p class="esencia">A medida, con tu dominio y tu botón de WhatsApp.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>400 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:9.75"><i></i></span>
-          <p class="dif"><span>Diferencia</span> <b class="total" data-meta="361">−361 €</b></p>
+          <p class="dif">90&nbsp;% menos que otros estudios</p>
         </div>
         <p class="plazo">Lista en 5-7 días laborables</p>
         <a class="boton directo" data-wa="Hola, Covalente. Me interesa la Página web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp la Página web">Pedir por WhatsApp</a>
@@ -701,13 +718,14 @@ footer.oscuro{background:var(--verde-2)}
         </details>
       </article>
       <article class="paquete destacado" data-k="kitweb" data-nombre="Kit + web" data-precio="69">
-        <div class="p-cab"><h3>Kit + web</h3><span class="pct">−94 %</span></div>
+        <div class="p-cab"><h3>Kit + web</h3></div>
         <p class="precio"><b>69 €</b></p>
+        <p class="bf bf-precio" hidden>Con el descuento, 55,20 €</p>
         <p class="esencia">Marca y web a juego, 19 € menos que por separado.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>1.080 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:6.4"><i></i></span>
-          <p class="dif"><span>Diferencia</span> <b class="total" data-meta="1011">−1.011 €</b></p>
+          <p class="dif">94&nbsp;% menos que otros estudios</p>
         </div>
         <p class="plazo">Todo listo en 10-15 días laborables</p>
         <a class="boton oro directo" data-wa="Hola, Covalente. Me interesa el Kit + web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit + web">Pedir por WhatsApp</a>
@@ -731,17 +749,17 @@ footer.oscuro{background:var(--verde-2)}
         <h3>Súmale lo que necesites</h3>
         <p>Toca una pieza para sumarla a tu presupuesto.</p>
         <ul class="x-lista">
-        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Tarjeta" data-precio="15"><img src="img/extras/tarjeta-240.webp" alt="Tarjetas de visita y de fidelidad de Nerea Nails, una muestra, sobre un mostrador" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Tarjeta</span><small>Tarjeta de visita o de fidelidad, lista para imprimir</small></span><b class="x-precio">15 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Tarjeta" data-precio="15"><img src="img/extras/tarjeta-240.webp" alt="Tarjetas de visita y de fidelidad de Nerea Nails, una muestra, sobre un mostrador" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Tarjeta</span><small>Tarjeta de visita o de fidelidad, lista para imprimir</small></span><b class="x-precio">15 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 3.5v11M3.5 9h11"/><path class="hecho" d="m3.5 9.5 3.5 3.5 7.5-8"/></svg><span class="x-dice"><span class="x-no">Añadir</span><span class="x-si">Añadido</span></span></span></button>
           <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Diseñamos tu tarjeta de visita o una de fidelidad (por ejemplo, de sellos: al décimo café, uno gratis), por las dos caras y con tu marca. Si quieres, con un QR que lleva a tu web o a tu <span style="hyphens:none">WhatsApp</span>, y lo otro, escrito. Te la entregamos en PDF preparado para la imprenta. La impresión va aparte.</p></details></li>
-        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Carta" data-precio="19"><img src="img/extras/carta-240.webp" alt="La carta de Taberna La Jarra, una muestra, junto a un vermut" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Carta</span><small>Carta, menú o lista de precios con tu marca</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Carta" data-precio="19"><img src="img/extras/carta-240.webp" alt="La carta de Taberna La Jarra, una muestra, junto a un vermut" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Carta</span><small>Carta, menú o lista de precios con tu marca</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 3.5v11M3.5 9h11"/><path class="hecho" d="m3.5 9.5 3.5 3.5 7.5-8"/></svg><span class="x-dice"><span class="x-no">Añadir</span><span class="x-si">Añadido</span></span></span></button>
           <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Una hoja con tu carta, el menú del día o la lista de precios de tus servicios. Te la damos en PDF para imprimir, en imagen para redes y WhatsApp, y editable para que cambies los precios cuando quieras.</p></details></li>
-        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="6 plantillas más" data-precio="19"><img src="img/extras/plantillas-240.webp" alt="Publicaciones de Instagram de Flores Santa María, una muestra, en un móvil" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">6 plantillas más</span><small>Seis diseños más para Instagram, editables</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="6 plantillas más" data-precio="19"><img src="img/extras/plantillas-240.webp" alt="Publicaciones de Instagram de Flores Santa María, una muestra, en un móvil" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">6 plantillas más</span><small>Seis diseños más para Instagram, editables</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 3.5v11M3.5 9h11"/><path class="hecho" d="m3.5 9.5 3.5 3.5 7.5-8"/></svg><span class="x-dice"><span class="x-no">Añadir</span><span class="x-si">Añadido</span></span></span></button>
           <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Seis plantillas más para publicaciones e historias: ofertas, horarios, novedades o fechas especiales. Están en Canva: cambias el texto y la foto, y publicas. Se suman a las 6 que ya trae el Kit de marca.</p></details></li>
-        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Ficha en Google Maps" data-precio="19"><img src="img/extras/ficha-240.webp" alt="La ficha de Taberna La Jarra, una muestra, en Google Maps" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Ficha en Google Maps</span><small>Tu negocio en Google Maps y en el buscador</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Ficha en Google Maps" data-precio="19"><img src="img/extras/ficha-240.webp" alt="La ficha de Taberna La Jarra, una muestra, en Google Maps" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Ficha en Google Maps</span><small>Tu negocio en Google Maps y en el buscador</small></span><b class="x-precio">19 €</b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 3.5v11M3.5 9h11"/><path class="hecho" d="m3.5 9.5 3.5 3.5 7.5-8"/></svg><span class="x-dice"><span class="x-no">Añadir</span><span class="x-si">Añadido</span></span></span></button>
           <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Creamos o ponemos a punto tu perfil de empresa de Google: categoría, horario, fotos, servicios y enlaces a tu web y a tu WhatsApp, para que te encuentren al buscar en Maps. Google pide verificar que el negocio es tuyo; ese paso lo haces tú y te guiamos.</p></details></li>
-        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Mantenimiento" data-precio="12" data-cada="mes"><img src="img/extras/mantenimiento-240.webp" alt="Un mensaje pide el horario de agosto y la web, una muestra, ya lo enseña" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Mantenimiento</span><small>Actualizamos tu web cuando lo necesites</small></span><b class="x-precio">12 €<small>/mes</small></b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Mantenimiento" data-precio="12" data-cada="mes"><img src="img/extras/mantenimiento-240.webp" alt="Un mensaje pide el horario de agosto y la web, una muestra, ya lo enseña" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Mantenimiento</span><small>Actualizamos tu web cuando lo necesites</small></span><b class="x-precio">12 €<small>/mes</small></b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 3.5v11M3.5 9h11"/><path class="hecho" d="m3.5 9.5 3.5 3.5 7.5-8"/></svg><span class="x-dice"><span class="x-no">Añadir</span><span class="x-si">Añadido</span></span></span></button>
           <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Nos escribes por WhatsApp y cambiamos lo que necesites: precios, horarios, fotos, textos o un aviso de vacaciones. Incluye hasta 4 cambios pequeños al mes, una revisión mensual de que todo funciona y el aviso antes de que caduque tu dominio. Sin permanencia: lo das de baja cuando quieras.</p></details></li>
-        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Dominio" data-precio="19" data-cada="año"><img src="img/extras/dominio-240.webp" alt="La web de Taberna La Jarra, una muestra, con la dirección tunegocio.es" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Dominio</span><small>Tu dirección web, registrada a tu nombre</small></span><b class="x-precio">19 €<small>/año</small></b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 4v10M4 9h10"/><path class="hecho" d="m4 9.5 3 3 7-7.5"/></svg></span></button>
+        <li class="x-item"><button class="x-pieza" type="button" aria-pressed="false" data-nombre="Dominio" data-precio="19" data-cada="año"><img src="img/extras/dominio-240.webp" alt="La web de Taberna La Jarra, una muestra, con la dirección tunegocio.es" width="240" height="180" loading="lazy"><span class="x-texto"><span class="x-nom">Dominio</span><small>Tu dirección web, registrada a tu nombre</small></span><b class="x-precio">19 €<small>/año</small></b><span class="x-marca" aria-hidden="true"><svg viewBox="0 0 18 18"><path class="mas" d="M9 3.5v11M3.5 9h11"/><path class="hecho" d="m3.5 9.5 3.5 3.5 7.5-8"/></svg><span class="x-dice"><span class="x-no">Añadir</span><span class="x-si">Añadido</span></span></span></button>
           <details class="x-info"><summary aria-label="Qué incluye"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></summary><p>Registramos tu dirección web a tu nombre y la renovamos cada año para que no caduque. Los 19 € son para un .es o un .com; otras terminaciones o un nombre muy buscado cuestan más, y te decimos el precio antes. Depende de que esté libre. Si un día te vas, te la pasamos sin coste. Si prefieres pagarla tú, un .es o un .com cuesta unos 10-15 € al año y te explicamos cómo.</p></details></li>
         </ul>
       </div>
@@ -751,12 +769,14 @@ footer.oscuro{background:var(--verde-2)}
           <p class="p-que" id="p-que">Elige un paquete y súmale lo que necesites.</p>
           <ul class="p-lineas" id="p-lineas" hidden></ul>
           <p class="p-total" id="p-total" hidden></p>
+          <p class="p-bf" id="p-bf" hidden></p>
         </div>
         <a class="boton oro p-pedir" id="p-pedir" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Pedir por WhatsApp</a>
         <p class="sr" id="p-voz" aria-live="polite"></p>
       </div>
     </div>
     <p class="iva">Precios sin IVA.</p>
+    <p class="iva bf" hidden>El precio de referencia es el más bajo de los últimos 30 días, el de cada paquete.</p>
     <a class="al-catalogo" href="catalogo/"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 19.5h14"/></svg><span>El catálogo completo, en PDF</span></a>
   </div>
 </section>
@@ -831,6 +851,9 @@ footer.oscuro{background:var(--verde-2)}
 <script>
 // Los botones de WhatsApp llevan el mensaje ya escrito (sin JavaScript, cada paquete abre el suyo)
 const WA = 'https://wa.me/34613912752?text=';
+// Black Friday 2026: hasta el 30/11 a las 23:59:59, hora de Madrid (en diciembre, UTC+1). Si algo falla, no se enseña. El 1/12, fuera del HTML
+const BF = (() => { try { const fin = Date.parse('2026-12-01T00:00:00+01:00'), ahora = Date.now(); return Number.isFinite(fin) && Number.isFinite(ahora) && ahora < fin; } catch (e) { return false; } })();
+if (BF) document.querySelectorAll('.bf').forEach(e => { e.hidden = false; });
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.wa); });
 
 // De dónde llega la visita (?o=ig, tt, pin, g, cartel, tarjeta, taller o web): se añade al mensaje de WhatsApp y pasa a los casos. No se guarda nada
@@ -841,7 +864,7 @@ if (ORIGEN[origen]) {
     const u = new URL(a.href);
     a.href = u.origin + u.pathname + '?text=' + encodeURIComponent(((u.searchParams.get('text') || '') + ' ' + ORIGEN[origen]).trim());
   });
-  document.querySelectorAll('a[href^="casos/"]').forEach(a => { a.href = a.getAttribute('href') + '?o=' + origen; });
+  document.querySelectorAll('a[href^="casos/"], a[href="cuestionario/"]').forEach(a => { a.href = a.getAttribute('href') + '?o=' + origen; }); // el cuestionario la apunta en el expediente
 }
 
 // La reacción, en «Cómo trabajamos»: al verse, el polvo de oro llena la sección y se junta en la molécula del logo, cuyos átomos son los pasos; sube hasta «brilla» y el puntero lo aparta.
@@ -1001,10 +1024,10 @@ if (ORIGEN[origen]) {
     const io = new IntersectionObserver(es => {
       for (const e of es) {
         if (!e.isIntersecting) continue;
-        const p = e.target.closest('.paquete'), el = p.querySelector('.total'); io.unobserve(e.target);
+        const p = e.target.closest('.paquete'), el = p.querySelector('.total'); io.unobserve(e.target);   // desde el 25/11 no hay cifra que contar: solo la barra y el tachado
         requestAnimationFrame(() => {
           p.classList.remove('espera');
-          setTimeout(() => {
+          if (el) setTimeout(() => {
             const t0 = performance.now();
             const paso = t => {
               const k = Math.min(1, (t - t0) / 700), s = 1 - Math.pow(1 - k, 3);
@@ -1023,7 +1046,7 @@ if (ORIGEN[origen]) {
   (() => {
     const caja = document.getElementById('presupuesto'); if (!caja) return;
     const paquetes = [...document.querySelectorAll('.paquete')], piezas = [...document.querySelectorAll('.x-pieza')];
-    const que = document.getElementById('p-que'), lineas = document.getElementById('p-lineas'), total = document.getElementById('p-total'), pedir = document.getElementById('p-pedir'), voz = document.getElementById('p-voz');
+    const que = document.getElementById('p-que'), lineas = document.getElementById('p-lineas'), total = document.getElementById('p-total'), pedir = document.getElementById('p-pedir'), voz = document.getElementById('p-voz'), conBf = document.getElementById('p-bf');
     const dinero = x => x.toLocaleString('es-ES', { minimumFractionDigits: Number.isInteger(x) ? 0 : 2, maximumFractionDigits: 2 }) + ' €';
     const lista = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a.at(-1);
     let elegido = null;
@@ -1034,7 +1057,7 @@ if (ORIGEN[origen]) {
       const unaVez = (p ? +p.dataset.precio : 0) + sueltas.filter(b => !b.dataset.cada).reduce((s, b) => s + +b.dataset.precio, 0);
       const cada = sueltas.filter(b => b.dataset.cada).map(b => `${dinero(+b.dataset.precio)} al ${b.dataset.cada}`);
       let msg = 'Hola, Covalente. Quiero hablar de mi negocio.', frase = '';
-      caja.classList.toggle('activo', nombres.length > 0); caja.classList.toggle('lleno', nombres.length > 0);
+      caja.classList.toggle('activo', nombres.length > 0); caja.classList.toggle('lleno', nombres.length > 0); conBf.hidden = true; conBf.textContent = '';
       const filas = [p && [p.dataset.nombre, +p.dataset.precio, ''], ...sueltas.map(b => [b.dataset.nombre, +b.dataset.precio, b.dataset.cada ? ' /' + b.dataset.cada : ''])].filter(Boolean);
       lineas.innerHTML = filas.map(([n, v, c]) => `<li><span>${n}</span><b>${dinero(v)}${c}</b></li>`).join(''); lineas.hidden = !filas.length;
       if (nombres.length) {
@@ -1046,6 +1069,7 @@ if (ORIGEN[origen]) {
         const cuenta = [unaVez && dinero(unaVez), ...cada].filter(Boolean).join(' y ');
         msg = `Hola, Covalente. Me interesa: ${lista(nombres)} (${cuenta}).`;
         frase = `${lista(nombres)}: ${cuenta}.`;
+        if (BF && unaVez) { const d = dinero(Math.round(unaVez * 80) / 100); conBf.textContent = `Con el descuento, ${d}`; conBf.hidden = false; msg += ` Con el descuento de Black Friday, ${d}.`; frase += ` Con el descuento, ${d}.`; }
       } else {
         que.textContent = 'Elige un paquete y súmale lo que necesites.'; total.hidden = true;
       }
