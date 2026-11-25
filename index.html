@@ -27,7 +27,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://covalente.eu/">
-<meta property="og:title" content="Covalente · Tenemos química">
+<meta property="og:title" content="Covalente: Tenemos química">
 <meta property="og:description" content="Marca y web para los negocios pequeños que quieren brillar.">
 <meta property="og:image" content="https://covalente.eu/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -174,7 +174,9 @@ footer.oscuro{background:var(--verde-2)}
   box-shadow:0 30px 60px -36px rgba(26,26,26,.55)}
 .muestra h3{font-size:clamp(30px, 2.6vw, 40px); font-weight:500}
 .muestra .linea{margin-top:10px; font-size:17px; line-height:1.4; max-width:26ch; opacity:.86}
-.muestra .abrir{align-self:flex-start; margin:20px 0 28px; padding:10px 18px; border-radius:999px; background:var(--tinta); color:var(--fondo); font-size:15px; font-weight:700}
+/* Ver la web (25/11): la acción con su icono fino (una ventana que se abre) y su texto, sin caja; la tarjeta entera es el enlace */
+.muestra .abrir{align-self:flex-start; display:inline-flex; align-items:center; gap:10px; margin:20px 0 28px; font-size:16px; font-weight:700}
+.muestra .abrir svg{width:22px; height:22px; flex:none}
 /* 12/11: la dueña de cada muestra, sonriendo en su local, y el móvil con su web por delante */
 .muestra .escena{position:relative; display:block; margin:auto 0 0; padding-top:8px}
 .muestra .retrato{display:block; width:74%; aspect-ratio:4 / 5; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 18px 36px -24px rgba(0,0,0,.6)}
@@ -183,7 +185,6 @@ footer.oscuro{background:var(--verde-2)}
   box-shadow:0 22px 40px -22px rgba(0,0,0,.55); transition:translate .5s cubic-bezier(.2,.7,.2,1)}
 .muestra .movil img{border-radius:27px}
 .muestra:hover .movil{translate:0 -12px}
-.muestra:hover .abrir{text-decoration:underline; text-underline-offset:3px}
 .muestra:focus-visible{outline:3px solid var(--negro); outline-offset:4px}
 @media (max-width:899px){
   .muestras{grid-auto-flow:column; grid-auto-columns:min(82%, 360px); overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:var(--margen);
@@ -268,13 +269,23 @@ footer.oscuro{background:var(--verde-2)}
 /* Elegir: con JavaScript, cada paquete se elige (uno a la vez) y va al presupuesto; sin él, cada uno abre WhatsApp directamente */
 .elegir{display:none}
 .js .paquete .directo{display:none}
-.js .elegir{display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:50px; padding:12px 24px; border-radius:8px; border:1.5px solid currentColor; background:none; color:inherit; font:700 16px/1 var(--f); cursor:pointer; transition:background-color .15s, color .15s, border-color .15s}
-.elegir svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; display:none}
-.elegir:hover{background:rgba(26,26,26,.06)}
-.destacado .elegir:hover{background:rgba(243,236,221,.1)}
-.elegir[aria-pressed="true"]{background:var(--verde); border-color:var(--verde); color:var(--blanco)}
+/* 25/11: en relieve, como «Cuéntanos tu negocio» (verde en los dos claros, oro en el Kit + web), sin borde.
+   Elegido: hundido, con la marca fina, y el paquete con su anillo */
+.js .elegir{display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:50px; padding:12px 24px; border-radius:8px; border:0; font:700 16px/1 var(--f); cursor:pointer;
+  background:linear-gradient(#22604F,#174A3D); color:var(--marfil);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 1px 0 #051914, 0 2px 3px rgba(15,59,50,.3), 0 12px 20px -14px rgba(15,59,50,.7);
+  transition:transform .12s cubic-bezier(.2,.7,.2,1), box-shadow .12s, background .12s}
+.elegir svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; display:none}
+.elegir:hover{background:linear-gradient(#266957,#1A5143); transform:translateY(-1px)}
+.elegir:active, .elegir[aria-pressed="true"], .elegir[aria-pressed="true"]:hover{transform:translateY(1px); background:#174A3D; box-shadow:inset 0 2px 4px rgba(0,0,0,.45)}
 .elegir[aria-pressed="true"] svg{display:block}
-.destacado .elegir[aria-pressed="true"]{background:var(--oro); border-color:var(--oro); color:var(--negro)}
+.destacado .elegir{background:linear-gradient(#D8B66F,#C29A50); color:var(--negro);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38), 0 1px 0 #6E5426, 0 2px 3px rgba(0,0,0,.3), 0 14px 22px -14px rgba(0,0,0,.8)}
+.destacado .elegir:hover{background:linear-gradient(#E0C07C,#CBA459)}
+.destacado .elegir:active, .destacado .elegir[aria-pressed="true"], .destacado .elegir[aria-pressed="true"]:hover{background:#C29A50; box-shadow:inset 0 2px 4px rgba(60,42,10,.45)}
+.destacado .elegir svg{color:var(--verde)}
+.destacado .elegir:focus-visible{outline-color:var(--marfil)}
+@media (prefers-reduced-motion:reduce){ .elegir{transition:none} .elegir:hover, .elegir:active, .elegir[aria-pressed="true"]{transform:none} }
 .paquete:has(.elegir[aria-pressed="true"]){border-color:var(--verde); box-shadow:0 0 0 2px var(--verde), 0 24px 48px -32px rgba(15,59,50,.45)}
 .paquete.destacado:has(.elegir[aria-pressed="true"]){box-shadow:0 0 0 2px var(--oro), 0 30px 60px -30px rgba(11,47,40,.7)}
 
@@ -639,19 +650,19 @@ footer.oscuro{background:var(--verde-2)}
     <li><a class="muestra" href="casos/nerea-nails/" style="--fondo:#F3D9DF; --tinta:#3B0E1C" data-estados="Semipermanente|Manicura rusa|Pedicura semi">
       <h3>Nerea Nails</h3>
       <p class="linea">Eliges la técnica y ves el antes y el después en la misma mano.</p>
-      <span class="abrir">Ver la web</span>
+      <span class="abrir"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 8.5h17"/><path d="M10 16l5-5M11.5 11H15v3.5"/></svg>Ver la web</span>
       <span class="escena"><img class="retrato" src="img/trabajos/nerea-retrato-360.webp" srcset="img/trabajos/nerea-retrato-360.webp 360w, img/trabajos/nerea-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="La dueña de Nerea Nails, una muestra, sonriendo en su salón entre esmaltes" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/nerea-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil: el semipermanente cereza en una mano, con su precio, y las cuatro técnicas" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e2-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil, con la manicura rusa elegida" width="600" height="1298" loading="lazy"><img src="img/trabajos/nerea-e3-movil-600.webp" alt="La web de muestra de Nerea Nails en un móvil, con la pedicura semipermanente elegida" width="600" height="1298" loading="lazy"></span></span></span>
     </a></li>
     <li><a class="muestra" href="casos/taberna-la-jarra/" style="--fondo:#8E1D15; --tinta:#FCEFE2" data-estados="12:45, la hora del vermut|21:30, cañas y raciones|9:30, café y porras">
       <h3>Taberna La Jarra</h3>
       <p class="linea">La barra cambia con la hora del día.</p>
-      <span class="abrir">Ver la web</span>
+      <span class="abrir"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 8.5h17"/><path d="M10 16l5-5M11.5 11H15v3.5"/></svg>Ver la web</span>
       <span class="escena"><img class="retrato" src="img/trabajos/charo-retrato-360.webp" srcset="img/trabajos/charo-retrato-360.webp 360w, img/trabajos/charo-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="La dueña de Taberna La Jarra, una muestra, sirviendo un vermut en la barra" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/jarra-movil-600.webp" alt="La web de muestra de Taberna La Jarra en un móvil, a las 12:45, la hora del vermut" width="600" height="1298" loading="lazy"><img src="img/trabajos/jarra-e2-movil-600.webp" alt="La web de muestra de Taberna La Jarra en un móvil, a las 21:30, con cañas y raciones" width="600" height="1298" loading="lazy"><img src="img/trabajos/jarra-e3-movil-600.webp" alt="La web de muestra de Taberna La Jarra en un móvil, a las 9:30, con café y porras" width="600" height="1298" loading="lazy"></span></span></span>
     </a></li>
     <li><a class="muestra" href="casos/flores-santa-maria/" style="--fondo:#266699; --tinta:#FFF4E4" data-estados="Mandarina|Frambuesa|Azahar">
       <h3>Flores Santa María</h3>
       <p class="linea">La web se pinta del ramo que eliges.</p>
-      <span class="abrir">Ver la web</span>
+      <span class="abrir"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 8.5h17"/><path d="M10 16l5-5M11.5 11H15v3.5"/></svg>Ver la web</span>
       <span class="escena"><img class="retrato" src="img/trabajos/ines-retrato-360.webp" srcset="img/trabajos/ines-retrato-360.webp 360w, img/trabajos/ines-retrato-600.webp 600w" sizes="(min-width:900px) 280px, 62vw" alt="La florista de Flores Santa María, una muestra, con un ramo en la tienda" width="600" height="750" loading="lazy"><span class="movil" aria-hidden="true"><span class="pantalla"><img src="img/trabajos/flores-movil-600.webp" alt="La web de muestra de Flores Santa María en un móvil, con el ramo Mandarina" width="600" height="1298" loading="lazy"><img src="img/trabajos/flores-e2-movil-600.webp" alt="La web de muestra de Flores Santa María en un móvil, con el ramo Frambuesa" width="600" height="1298" loading="lazy"><img src="img/trabajos/flores-e3-movil-600.webp" alt="La web de muestra de Flores Santa María en un móvil, con el ramo Azahar" width="600" height="1298" loading="lazy"></span></span></span>
     </a></li>
   </ul>
