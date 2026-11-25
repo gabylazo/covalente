@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Taberna La Jarra · Taberna en el barrio de las Letras</title>
+<title>Taberna La Jarra, web de muestra de Covalente</title>
 <meta name="description" content="Taberna de toda la vida en el barrio de las Letras: café con porras, vermut de grifo, cocido los jueves y cañas con raciones. Web de muestra de Covalente.">
 <meta name="theme-color" content="#203F91">
 <link rel="preload" href="fuentes/Bricolage-taberna.woff2" as="font" type="font/woff2" crossorigin>
@@ -185,7 +185,8 @@ button{cursor:pointer}
 .m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px Bricolage, system-ui, sans-serif;text-anchor:middle}
 .m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:#A3241B;stroke:#fff;stroke-width:2.5} .m-pin circle{fill:#F4B81C}
 .m-nombre-pin,.m-nombre-origen{font:700 15px Bricolage, system-ui, sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
-.mapa .crece{position:absolute;right:.6rem;top:.6rem;padding:.3rem .6rem;border-radius:999px;background:#fff;font-size:.8rem;font-weight:600}
+/* Ampliar, sin óvalo (Dirección, 25/11): una plaquita con su sombra */
+.mapa .crece{position:absolute;right:.6rem;top:.6rem;padding:.35rem .65rem;border-radius:3px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2),0 6px 14px -6px rgba(0,0,0,.4);font-size:.82rem;font-weight:600}
 .pie{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:space-between;align-items:center;padding:1.2rem 1rem calc(6rem + env(safe-area-inset-bottom));font-size:.85rem}
 .pie a{color:inherit}
 .pie button{padding:.55rem .9rem;border:2px solid currentColor;border-radius:3px;background:none;font-weight:600}
@@ -295,7 +296,7 @@ dialog .principal{width:100%;min-height:3.2rem;margin-top:.4rem;border:0;border-
 
   <div class="barra" id="barra">
     <img src="img/manana-1280.jpg" srcset="img/manana-640.jpg 640w, img/manana-1280.jpg 1280w" sizes="(min-width:900px) 58vw, 100vw" width="1280" height="1588" alt="La barra por la mañana: café con leche, porras, tostada con tomate y tortilla." fetchpriority="high">
-    <canvas id="lienzo-a" role="img" aria-label=""></canvas>
+    <canvas id="lienzo-a" role="img" aria-label="La barra de La Jarra a esta hora del día"></canvas>
     <canvas id="lienzo-b" aria-hidden="true"></canvas>
     <div class="capa" id="capa"></div>
     <div class="persiana" aria-hidden="true"><img id="persiana-foto" alt="" width="1280" height="1588" decoding="async"><p id="persiana-texto">Abrimos a las 20:00</p></div>
@@ -460,7 +461,7 @@ const ahora = forzada ? aMin(forzada) : ahoraMadrid();
 /* Estado real, arriba a la derecha */
 {
   const f = franjaDe(ahora), e = $('#estado');
-  if (f.cerrado) { e.textContent = `Cerrado · abrimos a las ${hhmm(f.abre)}`; e.classList.add('cerrado'); }
+  if (f.cerrado) { e.textContent = `Cerrado, abrimos a las ${hhmm(f.abre)}`; e.classList.add('cerrado'); }
   else e.textContent = `Abierto hasta las ${hhmm(f.id === 'noche' ? 0 : 990)}`;
 }
 
@@ -714,7 +715,7 @@ function medirAsoma() { if (movil.matches) caja.style.setProperty('--asoma', $('
 
 /* ── La pizarra: la carta entera en texto; el + solo en lo que se puede llevar ── */
 function pintarCarta() {
-  $('#carta').innerHTML = Object.entries(CARTA).map(([f, l]) => `<section aria-labelledby="t-${f}"><h3 id="t-${f}">${TITULOS[f][0]} · ${TITULOS[f][1]}</h3><ul>${l.map(p =>
+  $('#carta').innerHTML = Object.entries(CARTA).map(([f, l]) => `<section aria-labelledby="t-${f}"><h3 id="t-${f}">${TITULOS[f][0]}, ${TITULOS[f][1]}</h3><ul>${l.map(p =>
     `<li class="${p.agotado ? 'acabado' : ''}"><span class="plato">${p.nombre}</span><span class="precio">${p.precio ? euros(p.precio) : 'gratis'}</span>${p.llevar ? `<button type="button" data-id="${p.id}" aria-label="Añadir ${p.nombre.toLowerCase()} para llevar" ${p.agotado ? 'disabled' : ''}>+</button>` : '<span></span>'}</li>`).join('')}</ul></section>`).join('');
 }
 $('#carta').addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) apuntar(b.dataset.id, null); });
@@ -751,7 +752,7 @@ function abrirHoja(cual, horaElegida) {
   $('#hoja-titulo').textContent = sitio ? 'Guárdame mesa' : 'Para llevar';
   $('#horas-titulo').textContent = sitio ? '¿A qué hora venís?' : '¿A qué hora lo recoges?';
   $('#hoja-ok').textContent = sitio ? 'Guárdame la mesa' : 'Apártamelo';
-  $('#hoja-lleva').textContent = sitio ? 'Lo pedís en la mesa.' : [...cuenta].map(([id, n]) => `${PLATOS[id].nombre}${n > 1 ? ' × ' + n : ''}`).join(', ') + ' · ' + $('#total').textContent;
+  $('#hoja-lleva').textContent = sitio ? 'Lo pedís en la mesa.' : [...cuenta].map(([id, n]) => `${PLATOS[id].nombre}${n > 1 ? ' × ' + n : ''}`).join(', ') + ', en total ' + $('#total').textContent;
   fichas($('#personas'), 'personas', [1, 2, 3, 4, 5, 6].map(n => [String(n), String(n)]), '2');
   const h = sitio ? mesasLibres(ahora + 30) : recogidas();
   if (horaElegida && !h.some(x => x[0] === horaElegida)) h.unshift([horaElegida, horaElegida]);

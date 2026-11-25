@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Flores Santa María · web de muestra de Covalente</title>
+<title>Flores Santa María, web de muestra de Covalente</title>
 <meta name="description" content="Flores Santa María, floristería en la calle de Santa María (Madrid): cinco ramos cada día, cada uno con su color, y uno mixto a tu gusto, para recoger o en casa. Web de muestra de Covalente.">
 <meta name="theme-color" content="#266699">
 <link rel="canonical" href="https://covalente.eu/casos/flores-santa-maria/">
@@ -38,10 +38,17 @@ button, input{font:inherit; color:inherit}
 [tabindex="-1"]:focus{outline:none}
 .oculto{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
 
-.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:12px 24px; border:0; border-radius:999px; background:var(--negro); color:var(--papel); font-weight:600; font-size:16px; text-decoration:none; cursor:pointer; transition:filter .15s}
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:12px 24px; border:0; border-radius:4px; background:var(--negro); color:var(--papel); font-weight:600; font-size:16px; text-decoration:none; cursor:pointer; transition:filter .15s, transform .12s cubic-bezier(.2,.7,.2,1), box-shadow .12s ease}
 .boton:hover{filter:brightness(1.12)}
-.boton.claro{background:none; color:var(--negro); box-shadow:inset 0 0 0 1.5px var(--negro)}
-.boton.claro:hover{background:var(--blanco); filter:none}
+/* En relieve, como los de la casa (Dirección, 25/11: «no pongas más botones ovalados»): sin óvalo ni borde, con su canto y su sombra */
+.boton:not(.claro){box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 1px 0 rgba(0,0,0,.55), 0 2px 3px rgba(35,28,25,.24), 0 14px 22px -14px rgba(35,28,25,.6)}
+@media (hover:hover) and (pointer:fine){.boton:not(.claro):not(:disabled):hover{transform:translateY(-1px)}}
+.boton:not(.claro):not(:disabled):active{transform:translateY(2px); box-shadow:inset 0 2px 4px rgba(0,0,0,.4)}
+.boton:disabled{box-shadow:none}
+/* las de apoyo (Cómo llegar, Ver el panel, Volver), sin caja: el icono fino y su texto */
+.boton.claro{background:none; color:var(--negro); box-shadow:none; min-height:44px; padding:0 6px; gap:9px}
+.boton.claro:hover{background:none; filter:none; text-decoration:none; opacity:.78}
+.boton .ico{width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round}
 
 /* ——— La pared ——— */
 .pared{position:relative; background:var(--pared); color:var(--tinta); transition:background-color .7s ease, color .7s ease}
@@ -51,7 +58,8 @@ button, input{font:inherit; color:inherit}
 .abierto{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px}
 .abierto i{width:8px; height:8px; border-radius:50%; background:currentColor; opacity:.9}
 .abierto.cerrado i{opacity:.35}
-.inventado{font-size:13px; padding:6px 12px; border-radius:999px; box-shadow:inset 0 0 0 1px currentColor; text-decoration:none; white-space:nowrap}
+/* «Muestra de Covalente», sin óvalo ni borde (Dirección, 25/11): texto pequeño, como dato secundario, y sigue siendo el enlace */
+.inventado{display:inline-flex; align-items:center; min-height:44px; padding:0 2px; font-size:13px; font-weight:500; color:inherit; text-decoration:none; white-space:nowrap}
 .cab > *{white-space:nowrap}
 
 .escenas{position:relative; overflow:hidden; container-type:size; touch-action:pan-y}
@@ -91,7 +99,7 @@ button, input{font:inherit; color:inherit}
 .tam:has(input:focus-visible){outline:2px solid var(--tinta); outline-offset:2px}
 .cuando{font-size:15px}
 .cuando b{font-weight:600}
-.pide .boton{width:100%; min-height:58px; font-size:18px; background:var(--boton); color:var(--boton-t); transition:background-color .7s, color .7s, filter .15s}
+.pide .boton{width:100%; min-height:58px; font-size:18px; background:var(--boton); color:var(--boton-t); transition:background-color .7s, color .7s, filter .15s, transform .12s cubic-bezier(.2,.7,.2,1)}
 .quedan{font-size:13px; text-align:center; opacity:.85; margin-top:-6px}
 
 @media (min-width:1100px){
@@ -161,11 +169,11 @@ button, input{font:inherit; color:inherit}
 .horario{display:grid; grid-template-columns:auto auto; justify-content:start; gap:2px 18px; font-size:15px; color:var(--gris)}
 .horario .hoy-dia{color:var(--negro); font-weight:600}
 .llegar{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
-.atrib{font-size:12px; color:var(--gris)}
+.atrib{font-size:13px; color:var(--gris)}
 .mapa{position:relative; display:block; width:100%; height:200px; margin:0; padding:0; border:0; border-radius:4px; overflow:hidden; cursor:pointer; background:#F1EEE8; transition:height .6s cubic-bezier(.3,.7,.2,1)}
 .mapa.grande{height:min(420px, 80vw)}
 .mapa svg{position:absolute; left:50%; top:50%; width:max(100%, 620px); height:auto; translate:-55% -52%}
-.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:5px 10px; border-radius:999px; background:#fff; font-size:12px; font-weight:600}
+.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:6px 11px; border-radius:4px; background:#fff; box-shadow:0 1px 2px rgba(35,28,25,.2), 0 6px 14px -6px rgba(35,28,25,.4); font-size:13px; font-weight:600}
 .m-suelo{fill:#F1EEE8} .m-edificio{fill:#E4DFD6;stroke:#D6CFC3;stroke-width:.7} .m-parque{fill:#CFE5C0} .m-plaza{fill:#EBE6DC}
 .m-borde path{fill:none;stroke:#D3CDC2;stroke-linecap:round;stroke-linejoin:round} .m-borde .g{stroke:#E2C774}
 .m-calle path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round} .m-calle .g{stroke:#FCE9A6} .m-calle .z{stroke:#F7F4EE}
@@ -205,8 +213,9 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
 .horas{display:flex; flex-wrap:wrap; gap:6px}
 .hora{position:relative}
 .hora input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
-.hora span{display:grid; place-items:center; min-width:62px; min-height:42px; padding:0 10px; border-radius:999px; box-shadow:inset 0 0 0 1px var(--linea); font-weight:600; font-size:15px}
-.hora input:checked + span{background:var(--negro); color:var(--blanco); box-shadow:none}
+/* las horas, teclas claras en relieve; la elegida, hundida en negro (25/11: sin óvalos) */
+.hora span{display:grid; place-items:center; min-width:62px; min-height:44px; padding:0 10px; border-radius:4px; background:linear-gradient(#FFFEFB,#FAF5EA); box-shadow:inset 0 1px 0 #fff, 0 1px 0 rgba(35,28,25,.18), 0 2px 3px rgba(35,28,25,.08), 0 6px 10px -8px rgba(35,28,25,.3); font-weight:600; font-size:15px}
+.hora input:checked + span{background:var(--negro); color:var(--blanco); box-shadow:inset 0 2px 4px rgba(0,0,0,.45)}
 .hora input:focus-visible + span{outline:2px solid var(--negro); outline-offset:2px}
 .tono span{gap:8px; padding:0 14px 0 10px}
 .tono i{width:16px; height:16px; border-radius:50%; background:var(--c); box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
@@ -235,7 +244,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
   <section class="pared" aria-labelledby="t-tienda-h">
     <header class="cab">
       <p class="marca">Flores Santa María</p>
-      <p class="donde">Calle de Santa María · barrio de las Letras</p>
+      <p class="donde">Calle de Santa María, barrio de las Letras</p>
       <p class="abierto" id="abierto"><i></i><span>Abierto</span></p>
       <a class="inventado" href="https://covalente.eu">Muestra de Covalente</a>
     </header>
@@ -301,7 +310,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
       <p>A 3 minutos andando del metro de Antón Martín.</p>
       <dl class="horario" id="horario"></dl>
       <button class="mapa" type="button" id="mapa" aria-expanded="false" aria-label="Mapa: calle de Santa María, a 3 minutos andando del metro de Antón Martín. Toca para agrandarlo."><p class="crece" aria-hidden="true">Ampliar</p></button>
-      <div class="llegar"><a class="boton claro" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760">Cómo llegar</a></div>
+      <div class="llegar"><a class="boton claro" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41276%2C-3.69654#map=18/40.41255/-3.69760"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.2s-6.6-5.9-6.6-11.3a6.6 6.6 0 0 1 13.2 0c0 5.4-6.6 11.3-6.6 11.3Z"/><circle cx="12" cy="9.9" r="2.3"/></svg>Cómo llegar</a></div>
       <p class="atrib">Mapa: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
     </div>
   </section>
@@ -309,7 +318,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
 
 <footer>
   <p>Web de muestra diseñada por <a href="https://covalente.eu">Covalente</a>. Fotos creadas con IA. <a href="/legal.html">Aviso legal</a></p>
-  <button class="boton claro" type="button" id="abrir-panel">Ver el panel de Inés</button>
+  <button class="boton claro" type="button" id="abrir-panel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="4.2" width="16.8" height="15.6" rx="1.6"/><path d="M3.6 9.2h16.8M9.4 9.2v10.6"/></svg>Ver el panel de Inés</button>
 </footer>
 
 <dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
@@ -339,7 +348,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
     <div class="acciones">
       <button class="boton" value="ok" id="encargar">Encargar</button>
       <p class="pago" id="pago">Pagas al recogerlo, con tarjeta o en efectivo.</p>
-      <button class="boton claro" value="cancelar" formnovalidate>Volver</button>
+      <button class="boton claro" value="cancelar" formnovalidate><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>Volver</button>
     </div>
   </form>
   <div class="hecho" id="hecho" hidden>
@@ -471,7 +480,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
     $('#flores-txt').textContent = r.flores;
     const primera = lista[0];
     $('#cuando').innerHTML = primera == null ? 'Hoy ya no da tiempo.' : `<b>${cuando} desde las ${hhmm(primera)}</b>, en la tienda o en tu casa.`;
-    $('#quiero').textContent = `${agotado ? 'Lo quiero para mañana' : 'Lo quiero'} · ${euros(t.precio)}`;
+    $('#quiero').textContent = `${agotado ? 'Lo quiero para mañana' : 'Lo quiero'} por ${euros(t.precio)}`;
     $('#quedan').textContent = agotado ? 'Los de hoy se han acabado.' : cuando === 'Hoy' ? `Quedan ${r.quedan} para hoy. Pagas al recogerlo.` : 'Pagas al recogerlo, con tarjeta o en efectivo.';
     document.querySelectorAll('.ramo').forEach(l => { const q2 = RAMOS[l.dataset.id].quedan; l.classList.toggle('agotado', q2 === 0); l.querySelector('small').textContent = q2 === 0 ? 'Mañana' : ''; });
   }
@@ -516,15 +525,15 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
   function pintarHoja() {
     const r = RAMOS[est.ramo], t = TAMANO[est.t], casa = est.entrega === 'casa', total = t.precio + (casa ? est.envio : 0);
     $('#t-hoja').textContent = r.n; bola($('#hoja-bola'), est.ramo);
-    $('#resumen').textContent = `${t.n}, unos ${t.tallos} tallos · ${euros(t.precio)}`;
+    $('#resumen').textContent = `${t.n}, unos ${t.tallos} tallos, ${euros(t.precio)}`;
     const casaL = $('#op-casa'); casaL.querySelector('input').disabled = !est.reparto;
     $('#reparto-texto').textContent = est.reparto ? `Barrio de las Letras, +${euros(est.envio)}` : 'Hoy no hay reparto';
     $('#campo-dir').hidden = !casa; $('#c-dir').required = casa;
     const mixto = !!r.mixto, pocos = mixto && est.mezcla.size < 2;
     $('#f-mezcla').hidden = !mixto;
-    if (mixto) $('#resumen').textContent = `${t.n}, unos ${t.tallos} tallos, con ${mezclaTexto()} · ${euros(t.precio)}`;
+    if (mixto) $('#resumen').textContent = `${t.n}, unos ${t.tallos} tallos, con ${mezclaTexto()}, ${euros(t.precio)}`;
     $('#mezcla-aviso').textContent = pocos ? 'Elige al menos dos colores para mezclar.' : 'Lo mezclamos con lo que llegó hoy del mercado.';
-    $('#encargar').textContent = pocos ? 'Elige al menos dos colores' : `Encargar · ${euros(total)}`; $('#encargar').disabled = est.hora == null || pocos;
+    $('#encargar').textContent = pocos ? 'Elige al menos dos colores' : `Encargar por ${euros(total)}`; $('#encargar').disabled = est.hora == null || pocos;
     $('#pago').textContent = casa ? 'Pagas al recibirlo, con tarjeta o en efectivo.' : 'Pagas al recogerlo, con tarjeta o en efectivo.';
   }
   $('#pide').addEventListener('submit', e => {
@@ -582,7 +591,7 @@ dialog.hoja::backdrop{background:rgba(20,18,16,.5)}
   // ——— Lo que en la web real abre WhatsApp ———
   let avisoT;
   document.querySelectorAll('[data-demo]').forEach(b => b.onclick = () => {
-    const a = $('#aviso'); a.textContent = `En la web real, «${b.dataset.demo}» abre WhatsApp con la tienda.`;
+    const a = $('#aviso'); a.textContent = `En la web real, “${b.dataset.demo}” abre WhatsApp con la tienda.`;
     a.classList.add('ver'); clearTimeout(avisoT); avisoT = setTimeout(() => a.classList.remove('ver'), 3200);
   });
 

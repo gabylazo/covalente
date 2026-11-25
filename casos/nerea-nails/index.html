@@ -44,8 +44,15 @@ h2{font:400 clamp(40px,5vw,68px)/1 "Mazius Display", Georgia, serif; letter-spac
 .boton{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 22px; border:0; border-radius:var(--radio);
   background:var(--texto); color:#fff; font:600 16px/1.15 "Hanken Grotesk", sans-serif; text-decoration:none; cursor:pointer; text-align:center; transition:background-color .2s}
 .boton.acento{background:var(--acento)}
-.boton.contorno{background:transparent; color:var(--texto); box-shadow:inset 0 0 0 1px var(--texto); min-height:48px}
-.boton.contorno:hover{background:color-mix(in srgb, var(--texto) 6%, transparent)}
+/* Botones en relieve, como los de la casa (Dirección, 25/11): una tecla con su canto y su sombra, que sube un pelo al pasar y baja al pulsar */
+.boton:not(.contorno){box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 1px 0 rgba(0,0,0,.6), 0 2px 3px rgba(29,20,24,.24), 0 14px 22px -14px rgba(29,20,24,.62); transition:transform .12s cubic-bezier(.2,.7,.2,1), box-shadow .12s ease, filter .15s ease}
+.boton.acento{box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 1px 0 #6A0A1B, 0 2px 3px rgba(80,8,22,.26), 0 14px 22px -14px rgba(80,8,22,.65)}
+@media (hover:hover) and (pointer:fine){.boton:not(.contorno):not(:disabled):hover{transform:translateY(-1px)}}
+.boton:not(.contorno):not(:disabled):active{transform:translateY(2px); box-shadow:inset 0 2px 4px rgba(0,0,0,.45)}
+.boton:disabled{box-shadow:none}
+/* Las acciones de apoyo, sin caja ni borde (25/11): el icono fino y su texto. Con dos juntas (WhatsApp y Correo), solo una en relieve */
+.boton.contorno{background:none; color:var(--texto); box-shadow:none; min-height:44px; padding:0 6px; gap:9px}
+.boton.contorno:hover{background:none; color:var(--acento)}
 .boton svg{width:20px; height:20px; flex:none}
 
 /* Cabecera */
@@ -58,21 +65,21 @@ h2{font:400 clamp(40px,5vw,68px)/1 "Mazius Display", Georgia, serif; letter-spac
 @media (min-width:640px){.signo{display:block}}
 /* Los iconos de los datos: de línea fina, al lado de un dato y nunca de adorno */
 .ico{display:inline-block; width:17px; height:17px; flex:none; vertical-align:-.2em; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round}
-/* «Muestra de Covalente» lleva la marca del estudio tal cual (Gabriela, 20/11): una placa en su verde botella con el logo de fichero,
-   en oro y marfil, y «Muestra de» delante, en pequeño. Sigue siendo el enlace a covalente.eu. En el móvil, el icono y el nombre en dos líneas */
-.muestra{display:inline-flex; align-items:center; min-height:44px; padding:0 14px; border-radius:var(--radio); background:#0F3B32; color:#F3ECDD; font-size:12.5px; font-weight:500; line-height:1.2; text-decoration:none; white-space:nowrap; transition:background-color .2s}
-.muestra:hover{background:#0B2F28}
+/* «Muestra de Covalente», sin placa (Dirección, 25/11: texto sin óvalo ni borde, más pequeño, como dato secundario). Solo texto:
+   el logo en oro sobre el papel no se leía. Sigue siendo el enlace a covalente.eu. En el móvil, en dos líneas */
+.muestra{display:inline-flex; align-items:center; min-height:44px; padding:0 4px; color:var(--suave); font-size:13px; font-weight:500; line-height:1.2; text-decoration:none; white-space:nowrap; transition:color .2s ease}
+.muestra:hover{color:var(--texto)}
 .muestra .m-in{display:inline-flex; align-items:baseline; gap:8px}
-.muestra .m-logo{display:block; width:auto; height:17px; translate:0 3.7px}     /* la línea de base de «covalente», a la de «Muestra de» */
+.muestra .m-logo{display:none}     /* la línea de base de «covalente», a la de «Muestra de» */
 .muestra .m-ico{display:none; width:auto; height:19px}
-.muestra .m-nom{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%)}      /* a lo ancho, el nombre lo dice el logo */
+.muestra .m-nom{font-weight:600; color:var(--texto)}
 .cab .boton{min-height:44px; padding:0 18px; font-size:15px}
 /* En el móvil (hasta 520 px), el botón de la muestra va en dos líneas, del mismo alto que «Pedir cita», para que la cabecera no se salga */
-@media (max-width:520px){.muestra{padding:0 9px; font-size:12.5px} .muestra .m-in{align-items:center; gap:7px} .muestra .m-logo{display:none} .muestra .m-ico{display:block}
-  .muestra .m-txt{display:flex; flex-direction:column} .muestra .m-nom{position:static; width:auto; height:auto; clip-path:none; font-size:12.5px; font-weight:600}}
+@media (max-width:520px){.muestra{padding:0 2px; font-size:13px} .muestra .m-in{align-items:center; gap:7px} .muestra .m-logo{display:none} .muestra .m-ico{display:none}
+  .muestra .m-txt{display:flex; flex-direction:column} .muestra .m-nom{position:static; width:auto; height:auto; clip-path:none; font-size:13px; font-weight:600}}
 @media (max-width:420px){.marca{font-size:24px} .cab{gap:10px} .cab .boton{padding:0 14px}}
 @media (max-width:389px){.marca{font-size:22px} .cab{gap:8px; padding-inline:12px} .cab .boton{padding:0 10px}}
-@media (max-width:350px){.marca{font-size:20px} .cab{gap:6px} .muestra{padding:0 8px} .muestra .m-ico{display:none}}
+@media (max-width:350px){.marca{font-size:20px} .cab{gap:6px} .muestra{padding:0} .muestra .m-ico{display:none}}
 
 /* ===== Servicios: eliges uno y la foto enseña cómo queda ===== */
 .servicio{display:grid}
@@ -106,7 +113,7 @@ h2{font:400 clamp(40px,5vw,68px)/1 "Mazius Display", Georgia, serif; letter-spac
 .pista{display:none; margin:0 0 -6px; font-size:14px; color:var(--suave)} .pista b{font-weight:600; color:var(--texto)}      /* debajo de la foto: qué pasa si la pulsas */
 .fotos.con-pista ~ .mando .pista{display:block} .pista .sin-movimiento{display:none}                 /* solo si el guion ha puesto las uñas de antes */
 @media (prefers-reduced-motion:reduce){.pista .con-movimiento{display:none} .pista .sin-movimiento{display:inline}}
-/* Los botones de las técnicas (Gabriela, 20/11, tarde: «deben ser diferentes, otro diseño… pensar en cada recuadro como una pantalla»):
+/* Los botones de las técnicas (20/11, tarde: «deben ser diferentes, otro diseño… pensar en cada recuadro como una pantalla»):
    cada uno enseña su técnica en una foto, con el nombre y el precio debajo. Son botones de verdad, rectos y de radio pequeño.
    La foto del botón es un detalle de cerca de las uñas; la escena entera va en la foto grande, para que la técnica elegida no enseñe dos veces lo mismo.
    El elegido lleva un marco cereza de 2 px y el precio en cereza y en negrita; los demás, un filo de 1 px */
@@ -139,10 +146,12 @@ section{padding:26px max(16px,4vw)}
 .agenda h2{font-size:clamp(34px,4vw,48px); margin:0}
 .agenda .cab-ag{display:flex; align-items:end; justify-content:space-between; gap:10px 16px; margin-bottom:14px; flex-wrap:wrap}
 .agenda .para{display:block; margin-top:4px; font-size:15px; color:var(--suave)}
-.quien{display:flex; gap:6px; flex-wrap:wrap}
+/* Con quién: lista con su círculo, sin cajas (25/11) */
+.quien{display:flex; gap:2px 24px; flex-wrap:wrap}
 .quien input{position:absolute; opacity:0; width:1px; height:1px}
-.quien label{min-height:40px; display:inline-flex; align-items:center; padding:0 14px; border-radius:var(--radio); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--texto) 55%, transparent); cursor:pointer; font-size:15px; font-weight:600}
-.quien input:checked + label{background:var(--texto); color:#fff}
+.quien label{min-height:44px; display:inline-flex; align-items:center; gap:10px; padding:0 2px; border-radius:var(--radio); cursor:pointer; font-size:15px; font-weight:600}
+.quien label::before{content:""; flex:none; width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--texto) 62%, transparent); transition:background-color .15s ease, box-shadow .15s ease}
+.quien input:checked + label::before{box-shadow:inset 0 0 0 1px var(--acento); background:radial-gradient(circle, var(--acento) 0 4.5px, transparent 5px)}
 .quien input:focus-visible + label{outline:3px solid var(--texto); outline-offset:2px}
 .semana{display:grid; grid-template-columns:repeat(7, minmax(0, 1fr)); gap:5px}      /* siete casillas iguales, también con «Cerrado» dentro */
 .dia{display:grid; justify-items:center; align-content:start; gap:3px; min-height:84px; padding:8px 2px 6px; border:0; border-radius:4px; background:color-mix(in srgb, var(--papel) 60%, #fff); cursor:pointer; transition:background-color .2s}
@@ -202,7 +211,7 @@ section{padding:26px max(16px,4vw)}
 .m-metro rect{fill:#2B4C9B;stroke:#fff;stroke-width:2.5} .m-metro text{fill:#fff;font:800 15px "Hanken Grotesk", system-ui, sans-serif;text-anchor:middle}
 .m-sombra{fill:rgb(0 0 0/.22)} .m-pin path{fill:var(--acento);stroke:#fff;stroke-width:2.5} .m-pin circle{fill:#fff}
 .m-nombre-pin,.m-nombre-origen{font:700 15px "Hanken Grotesk", system-ui, sans-serif;fill:#2A2724;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
-.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:7px 12px; border-radius:var(--radio); background:#fff; box-shadow:0 0 0 1px var(--linea); font-size:14px; font-weight:600}
+.mapa .crece{position:absolute; right:10px; top:10px; margin:0; padding:7px 12px; border-radius:var(--radio); background:#fff; box-shadow:0 1px 2px rgba(29,20,24,.2), 0 6px 14px -6px rgba(29,20,24,.4); font-size:14px; font-weight:600}
 @media (max-width:639px){.mapa .crece{right:auto; left:10px}}      /* en el móvil, a la izquierda: a la derecha tapaba el nombre del salón */
 /* En Huertas: lo importante (lo cerca que queda del metro) va primero, en grande y con su icono; la dirección y el horario, pequeños */
 .datos-sitio{margin:18px 0 0}
@@ -214,6 +223,7 @@ section{padding:26px max(16px,4vw)}
 @media (min-width:640px){.menudos{grid-template-columns:auto auto; justify-content:start; column-gap:36px}}
 .atrib{font-size:13px; color:var(--suave); margin:8px 0 0}
 .llegar{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.llegar .boton.contorno{padding-left:0}
 .contacto{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:18px; padding-top:18px; border-top:1px solid var(--linea)}
 .contacto .boton{min-height:56px; font-size:17px}
 
@@ -268,13 +278,16 @@ dialog.hoja:not([open]){display:none; transform:translateY(28px); opacity:0}
 dialog.hoja::backdrop{background:rgba(29,20,24,.45)}
 @media (min-width:900px){dialog.hoja{inset:0 0 0 auto; width:460px; height:100dvh; max-height:100dvh; border-radius:0}}
 .hoja .arriba{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 20px 8px}
-/* Volver es el signo ‹ solo, sin caja ni borde (Gabriela, 20/11: «la flecha de atrás, ponla este signo, el de comparación, solo, sin botón»).
+/* Volver es el signo ‹ solo, sin caja ni borde (20/11: «la flecha de atrás, ponla este signo, el de comparación, solo, sin botón»).
    Por dentro sigue siendo un botón, con su nombre, 44 × 44 de zona de toque y el foco visible; se arrima a la izquierda para alinearse con el título */
 .hoja .volver{display:grid; place-items:center; width:44px; height:44px; margin-left:-13px; padding:0; border:0; border-radius:var(--radio); background:transparent; color:var(--texto); cursor:pointer}
 .hoja .volver:hover{color:var(--acento)}
 .hoja .volver svg{width:24px; height:24px}
 .hoja .volver[hidden]{display:grid; visibility:hidden}
-.hoja .cerrar{min-height:44px; padding:0 16px; border:0; border-radius:var(--radio); background:transparent; box-shadow:inset 0 0 0 1px var(--texto); font:600 15px/1 "Hanken Grotesk", sans-serif; cursor:pointer}
+.hoja .cerrar{display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 2px 0 8px; border:0; border-radius:var(--radio); background:transparent; color:var(--texto); font:600 15px/1 "Hanken Grotesk", sans-serif; cursor:pointer}
+/* Cerrar, sin recuadro (25/11): una x fina y su nombre */
+.hoja .cerrar::before{content:""; width:14px; height:14px; flex:none; background:linear-gradient(45deg,transparent calc(50% - .65px),currentColor calc(50% - .65px),currentColor calc(50% + .65px),transparent calc(50% + .65px)),linear-gradient(-45deg,transparent calc(50% - .65px),currentColor calc(50% - .65px),currentColor calc(50% + .65px),transparent calc(50% + .65px))}
+.hoja .cerrar:hover{color:var(--acento)}
 .hoja h2{font-size:38px; margin:0; padding:2px 20px 14px}
 .hoja h2:focus{outline:none}
 .hoja .cuerpo{overflow:auto; padding:0 20px 20px; flex:1}
@@ -305,6 +318,13 @@ input:focus-visible + .fila,input:focus-visible + .ficha{outline:3px solid var(-
 .ficha small{font-size:13px; color:var(--suave)}
 input:checked + .ficha{background:var(--texto); color:#fff; border-color:var(--texto)}
 input:checked + .ficha small{color:#E4D9DC}
+/* en la hoja, «Con quién» también en lista con su círculo (25/11) */
+.fichas.quienes{flex-direction:column; gap:0}
+.fichas.quienes .ficha{display:flex; align-items:center; justify-content:flex-start; gap:12px; min-height:52px; padding:6px 2px; border:0; border-radius:0; background:none; text-align:left}
+.fichas.quienes .ficha::before{content:""; flex:none; width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--texto) 62%, transparent)}
+.fichas.quienes input:checked + .ficha{background:none; color:var(--texto)}
+.fichas.quienes input:checked + .ficha::before{box-shadow:inset 0 0 0 1px var(--acento); background:radial-gradient(circle, var(--acento) 0 4.5px, transparent 5px)}
+.fichas.quienes input:checked + .ficha small,.fichas.quienes .ficha small{color:var(--suave)}
 input:disabled + .ficha{opacity:.45; cursor:not-allowed}
 .aviso-demo{font-size:14px; margin:12px 0 0; color:var(--suave)}
 /* En la web real, «Enviar por WhatsApp» y «Enviar el correo» abren la aplicación con el mensaje ya escrito; en la muestra se enseña el mensaje y no se envía nada */
@@ -497,17 +517,17 @@ a:not(.boton):not(.muestra):active{opacity:.7}
         <li><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><span>Martes a viernes, de 10:00 a 20:00<br>Sábados, de 10:00 a 15:00</span></li>
       </ul>
     </div>
-    <div class="llegar"><a class="boton contorno" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41350%2C-3.69835#map=18/40.41290/-3.69850" rel="noopener">Cómo llegar</a></div>
+    <div class="llegar"><a class="boton contorno" href="https://www.openstreetmap.org/directions?route=40.41227%2C-3.69871%3B40.41350%2C-3.69835#map=18/40.41290/-3.69850" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Cómo llegar</a></div>
     <div class="contacto">
-      <button class="boton contorno" type="button" id="wa-contacto"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>WhatsApp</button>
-      <button class="boton contorno" type="button" id="correo-contacto"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v.5l-10 6.2L2 6.5V6a1 1 0 0 1 1-1Zm-1 3.8 10 6.2 10-6.2V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1Z"/></svg>Correo</button>
+      <button class="boton" type="button" id="wa-contacto"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>WhatsApp</button>
+      <button class="boton contorno" type="button" id="correo-contacto"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="5.6" width="17.2" height="12.8" rx="1.6"/><path d="m3.9 6.6 8.1 6.2 8.1-6.2"/></svg>Correo</button>
     </div>
   </section>
 </main>
 
 <footer>
   <span>Web de muestra diseñada por <a href="https://covalente.eu">Covalente</a>. Fotos creadas con IA. <a href="/legal.html">Aviso legal</a></span>
-  <button class="boton contorno" type="button" id="abrir-panel">Ver el panel de Nerea</button>
+  <button class="boton contorno" type="button" id="abrir-panel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="4.2" width="16.8" height="15.6" rx="1.6"/><path d="M3.6 9.2h16.8M9.4 9.2v10.6"/></svg>Ver el panel de Nerea</button>
 </footer>
 
 <dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
@@ -746,7 +766,7 @@ a:not(.boton):not(.muestra):active{opacity:.7}
       if (!r.pronto && (!r.dia || !franjasDe(deClave(r.dia), s.min).length)) { r.dia = dias.length ? clave(dias[0]) : null; r.pronto = !r.dia; }
       const fr = r.pronto ? [] : franjasDe(deClave(r.dia), s.min);
       if (!fr.some(f => f.id === r.franja)) r.franja = fr.length === 1 ? fr[0].id : null;
-      p.innerHTML = `<div class="fichas" role="radiogroup" aria-label="Con quién">${[{ id: 'cualquiera', n: 'Me da igual' }, ...EQUIPO].map(q => `<input type="radio" name="quien" id="q-${q.id}" value="${q.id}"${q.id === r.quien ? ' checked' : ''}><label class="ficha" for="q-${q.id}">${q.n}${q.que ? `<small>${q.que.toLowerCase()}</small>` : '<small>la primera libre</small>'}</label>`).join('')}</div>
+      p.innerHTML = `<div class="fichas quienes" role="radiogroup" aria-label="Con quién">${[{ id: 'cualquiera', n: 'Me da igual' }, ...EQUIPO].map(q => `<input type="radio" name="quien" id="q-${q.id}" value="${q.id}"${q.id === r.quien ? ' checked' : ''}><label class="ficha" for="q-${q.id}">${q.n}${q.que ? `<small>${q.que.toLowerCase()}</small>` : '<small>la primera libre</small>'}</label>`).join('')}</div>
         <p class="etiqueta">Día</p><div class="dias-h" role="radiogroup" aria-label="Día"><input type="radio" name="dia" id="d-pronto" value=""${r.pronto ? ' checked' : ''}><label class="ficha" for="d-pronto">Cuanto<br>antes</label>${dias.map(d => { const k = clave(d); return `<input type="radio" name="dia" id="d${k}" value="${k}"${!r.pronto && k === r.dia ? ' checked' : ''}><label class="ficha" for="d${k}" aria-label="${fLarga.format(d)}">${fDS.format(d).replace('.', '')}<b>${d.getDate()}</b></label>`; }).join('')}</div>
         ${fr.length ? `<p class="etiqueta">Mañana o tarde</p><div class="fichas" role="radiogroup" aria-label="Mañana o tarde">${fr.map(f => `<input type="radio" name="franja" id="f-${f.id}" value="${f.id}"${f.id === r.franja ? ' checked' : ''}><label class="ficha" for="f-${f.id}">${f.n}<small>de ${hm(f.a)} a ${hm(f.c)}</small></label>`).join('')}</div>` : ''}`;
       p.querySelectorAll('[name=quien]').forEach(i => i.onchange = () => { r.quien = i.value; pintarResumen(); });

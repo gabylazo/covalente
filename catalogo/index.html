@@ -52,9 +52,11 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
 .verde figcaption b, .verde .pie b, .verde .mas b, .verde .nota b{color:var(--marfil)}
 .nota{font-size:var(--t-nota); line-height:1.42; color:var(--gris)}
 .credito, .p-que, .pasos p, .rotulo{text-align:left; hyphens:manual; -webkit-hyphens:manual}
-.boton{display:inline-flex; align-items:center; justify-content:center; gap:.7em; border-radius:3px; background:var(--verde); color:var(--marfil);
+.boton{display:inline-flex; align-items:center; justify-content:center; gap:.7em; border-radius:3px; color:var(--marfil);
+  background:linear-gradient(#22604F, #174A3D); box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 1px 0 #051914, 0 2px 3px rgba(15,59,50,.3), 0 12px 20px -14px rgba(15,59,50,.7);
   font-weight:600; text-decoration:none; white-space:nowrap}
-.verde .boton{background:var(--oro); color:var(--negro)}
+.verde .boton{background:linear-gradient(#D8B66F, #C29A50); color:var(--negro); box-shadow:inset 0 1px 0 rgba(255,255,255,.38), 0 1px 0 #6E5426, 0 2px 3px rgba(0,0,0,.3), 0 14px 22px -14px rgba(0,0,0,.8)}
+.m-foto{display:block}
 .boton svg{flex:none; width:1.25em; height:1.25em; fill:currentColor}
 .accion{text-align:left}
 .lam{position:relative; display:flex; align-items:center; justify-content:center; border-radius:3px; overflow:hidden}
@@ -108,10 +110,14 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
 .c-logo svg{overflow:visible}
 .cierre{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.42 .26'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>")}
 @media screen{
-  :root{--t:17px; --t-pie:15.5px; --t-nota:14px; --t-h2:clamp(38px, 10.6vw, 46px); --t-h3:25px; --px:20px; --t-dato:12.5px; --m-dato:12px; --p-pest:6px}
+  :root{--t:17px; --t-pie:16px; --t-nota:14px; --t-h2:clamp(38px, 10.6vw, 46px); --t-h3:25px; --px:20px; --t-dato:12.5px; --m-dato:12px; --p-pest:6px}
   .pag{padding:76px var(--px)}
   .boton{min-height:50px; padding:0 24px; font-size:16.5px}
-  .boton:hover{background:#0A2B24} .verde .boton:hover{background:#D8B670}
+  .boton{transition:transform .12s cubic-bezier(.2,.7,.2,1), box-shadow .12s, background .12s}
+  .boton:hover{background:linear-gradient(#266957, #1A5143); transform:translateY(-1px)} .verde .boton:hover{background:linear-gradient(#E0C07C, #CBA459)}
+  .boton:active{transform:translateY(2px); background:#174A3D; box-shadow:inset 0 2px 4px rgba(0,0,0,.45)} .verde .boton:active{background:#C29A50; box-shadow:inset 0 2px 4px rgba(60,42,10,.45)}
+  .solo-pdf{display:none !important}
+  @media (prefers-reduced-motion:reduce){ .boton{transition:none} .boton:hover, .boton:active{transform:none} }
   .titulo{display:grid; grid-template-columns:1fr auto; align-items:baseline; column-gap:.4em; row-gap:10px}
   .titulo h2, .titulo .nom{grid-column:1 / -1}
   .titulo.ch{display:flex}
@@ -127,7 +133,9 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .sangre{width:calc(100% + 2 * var(--px)); max-width:none; margin-inline:calc(-1 * var(--px))}
   
   .portada{padding-top:26px; padding-bottom:0; overflow:hidden}
-  .p-que{font-size:13.5px; color:var(--marfil-2)}
+  .p-que{font-size:16px; color:var(--marfil-2)}
+  .nota:not(.credito):not(.c-legal):not(.c-fecha){font-size:16px}
+  .precio small{font-size:max(.5em, 16px)}
   .p-marca{margin-top:38px}
   .p-marca svg{width:100%; height:auto}
   .p-oficio{display:block; margin-top:16px; font:600 17px/1.2 Figtree, system-ui, sans-serif; letter-spacing:0; color:rgba(243,236,221,.86)}
@@ -191,8 +199,7 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .h-20 figcaption{margin-top:0}
   .h-20 .accion{margin-top:22px}
   .lista{margin-top:34px}
-  .lista li{padding:12px 0; border-top:1px solid rgba(201,163,92,.75)}
-  .lista li:last-child{border-bottom:1px solid rgba(201,163,92,.75)}
+  .lista li{padding:9px 0}      
   
   .resumen .lams{grid-template-rows:auto 120px}
   .r-logo{grid-column:1 / -1; aspect-ratio:16 / 9}
@@ -214,8 +221,7 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   
   .como h2{font-size:var(--t-h2)}
   .pasos{margin-top:30px}
-  .pasos li{display:grid; grid-template-columns:62px 1fr; align-items:center; padding:20px 0; border-top:1px solid rgba(201,163,92,.6)}
-  .pasos li:last-child{border-bottom:1px solid rgba(201,163,92,.6)}
+  .pasos li{display:grid; grid-template-columns:62px 1fr; align-items:center; padding:20px 0}      
   .pasos .n{font:400 58px/1 "Bodoni Moda", serif; color:var(--oro)}
   .pasos h3{font-size:25px; line-height:1.1}
   .pasos p{margin-top:6px; color:var(--marfil-2); text-align:left}
@@ -229,9 +235,8 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .muestra + .muestra{margin-top:48px}
   .m-pie{margin-top:14px}
   .m-pie h3{font-size:27px}
-  .m-url{font-size:var(--t-pie); text-align:left}
-  .m-url a, .c-legal a{display:inline-block; padding:11px 0}
-  .m-pie .boton{margin-top:6px}
+  .c-legal a{display:inline-block; padding:11px 0}
+  .m-pie .boton{margin-top:14px}
   .m-nerea img{width:62%}
   
   .cierre{padding-top:92px; padding-bottom:56px; text-align:center}
@@ -355,7 +360,7 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .muestras{display:grid; grid-template-columns:8fr 4fr; column-gap:70px; align-items:end}
   .muestras .cab, .m-flores, .muestras .credito{grid-column:1 / -1}
   .muestra + .muestra{margin-top:84px}
-  .m-flores .m-pie{display:grid; grid-template-columns:auto 1fr auto; column-gap:28px; align-items:center}
+  .m-flores .m-pie{display:grid; grid-template-columns:1fr auto; column-gap:28px; align-items:center}
   .m-flores .boton{margin-top:0}
   .m-pie h3{font-size:34px}
   .m-nerea img{width:100%}
@@ -367,7 +372,7 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
 }
 @page{size:210mm 297mm; margin:0}
 @media print{
-  :root{--t:9.4pt; --t-pie:8.6pt; --t-nota:7.3pt; --t-h2:14mm; --t-h3:6mm; --linea:.28mm; --t-dato:6.4pt; --m-dato:2mm; --p-pest:1.1mm}
+  :root{--t:9.4pt; --t-pie:8.6pt; --t-nota:8pt; --t-h2:14mm; --t-h3:6mm; --linea:.28mm; --t-dato:7pt; --m-dato:2mm; --p-pest:1.1mm}
   html, body{width:210mm; background:#fff}
   *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
   .solo-web{display:none !important}
@@ -408,7 +413,7 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .mini img{width:26mm}
   .indice .titulo{font-size:9.6mm; align-self:end}
   .indice .pie{align-self:start; margin-top:2.6mm; font-size:10pt; text-align:left}
-  .sumario > .nota{left:59mm; top:270mm; font-size:8pt}
+  .sumario > .nota{left:59mm; top:270mm; font-size:9pt}
   
   .rotulo{margin-top:1.5mm}
   .tablero{left:16mm; top:53mm; width:178mm}
@@ -432,8 +437,8 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .p-tab img{width:3mm; height:3mm}
   .t-color .lams{grid-template-columns:1fr 60mm}
   .colores{grid-template-columns:repeat(4, 1fr)}
-  .colores li{height:24mm; padding:2mm; font-size:5.9pt; line-height:1.35}
-  .colores b{font-size:7.6pt}
+  .colores li{height:24mm; padding:2mm; font-size:6.6pt; line-height:1.35}
+  .colores b{font-size:8pt}
   .letra{padding:2mm}
   .letra .aa{font-size:11mm}
   .letra b{margin-top:1.4mm}
@@ -443,18 +448,18 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .banda .det .nota{margin-top:2.6mm}
   .banda .accion{margin-top:4mm}
   
-  .horas{left:16mm; top:55mm; width:178mm; height:137mm}
+  .horas{left:16mm; top:55mm; width:178mm; height:139mm}
   .h-12{position:absolute; left:0; top:0; width:124mm}
-  .nav-barra{height:6mm; padding:0 2.4mm; font-size:6.6pt}
+  .nav-barra{height:6mm; padding:0 2.4mm; font-size:7pt}
   .nav-url{height:3.8mm; line-height:3.8mm}
-  .desliza .nav-vista{height:122mm; overflow:hidden}
+  .desliza .nav-vista{height:auto; overflow:hidden}      
+  .solo-pdf{display:block}
   .h-20{position:absolute; left:132mm; top:0; width:46mm}
-  .h-20 .m-mov{height:99.5mm; box-shadow:0 5mm 9mm -5mm rgba(26,26,26,.5)}
+  .h-20 .m-mov{height:auto; box-shadow:0 5mm 9mm -5mm rgba(26,26,26,.5)}
   .h-20 .accion{margin-top:4mm}
-  .lista{left:16mm; top:194mm; width:112mm}
-  .lista li{padding:2mm 0; border-top:.25mm solid rgba(201,163,92,.8)}
-  .lista li:last-child{border-bottom:.25mm solid rgba(201,163,92,.8)}
-  .web .det{left:16mm; top:243mm; width:112mm}
+  .lista{left:16mm; top:200mm; width:112mm}
+  .lista li{padding:1.8mm 0}      
+  .web .det{left:16mm; top:246mm; width:112mm}
   .web .det .nota{margin-top:0}
   
   .resumen{left:16mm; top:55mm; width:178mm}
@@ -465,10 +470,10 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .r-icono{gap:5mm}
   .r-icono img{width:13mm; height:13mm}
   .f-web{left:16mm; top:111mm; width:178mm}
-  .montaje{position:relative; height:102mm}
-  .montaje .nav{width:150mm}
-  .montaje .nav-vista{height:93.75mm}
-  .montaje .m-mov{position:absolute; right:0; top:15mm; width:39mm; height:84.4mm; outline:1.4mm solid var(--verde); box-shadow:0 5mm 9mm -5mm rgba(0,0,0,.55)}
+  .montaje{position:relative; height:96mm; padding-top:9.1mm}
+  .montaje .nav{width:150mm}      
+  .montaje .nav-vista{height:auto}
+  .montaje .m-mov{position:absolute; right:0; top:0; width:39mm; height:auto; outline:1.4mm solid var(--verde); box-shadow:0 5mm 9mm -5mm rgba(0,0,0,.55)}
   .kitweb .det{left:16mm; top:236mm; width:122mm}
   
   .extras h2{left:16mm; top:21mm; font-size:14mm}
@@ -492,14 +497,13 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   
   .como > h2{left:16mm; top:21mm; font-size:14mm}
   .pasos{left:16mm; right:16mm; top:47mm}
-  .pasos li{display:grid; grid-template-columns:30mm 1fr; align-items:center; height:46mm; border-top:.25mm solid rgba(201,163,92,.6)}
-  .pasos li:last-child{border-bottom:.25mm solid rgba(201,163,92,.6)}
+  .pasos li{display:grid; grid-template-columns:30mm 1fr; align-items:center; height:46mm}      
   .pasos .n{font:400 19mm/1 "Bodoni Moda", serif; color:var(--oro)}
   .pasos h3{font-size:7.6mm}
   .pasos p{margin-top:1.6mm; font-size:10.5pt; color:var(--marfil-2); text-align:left}
   .cond{left:16mm; right:16mm; top:225mm}
   .cond h2{font-size:8mm}
-  .cond ul{margin-top:5mm; columns:2; column-gap:10mm; font-size:8.4pt; line-height:1.42; color:var(--marfil-2)}
+  .cond ul{margin-top:5mm; columns:2; column-gap:10mm; font-size:8.6pt; line-height:1.42; color:var(--marfil-2)}
   .cond li{break-inside:avoid}
   .cond li + li{margin-top:2.6mm}
   .cond b{font-weight:600; color:var(--marfil)}
@@ -509,13 +513,12 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   .m-flores img{height:79.7mm}
   .m-pie{margin-top:3.2mm}
   .m-pie h3{font-size:6.6mm}
-  .m-url{margin-top:1.4mm; font-size:8.6pt; text-align:left}
-  .m-pie .boton{margin-top:3mm}
-  .m-flores .m-pie{display:grid; grid-template-columns:auto 1fr auto; column-gap:7mm; align-items:center}
-  .m-flores .m-url, .m-flores .boton{margin-top:0}
-  .m-jarra{left:16mm; top:168mm; width:118mm}
+  .m-pie .boton{margin-top:3.6mm}
+  .m-flores .m-pie{display:grid; grid-template-columns:1fr auto; column-gap:7mm; align-items:center}
+  .m-flores .boton{margin-top:0}
+  .m-jarra{left:16mm; top:171mm; width:118mm}
   .m-jarra img{height:73.75mm}
-  .m-nerea{left:144mm; top:182.6mm; width:50mm}
+  .m-nerea{left:144mm; top:185.6mm; width:50mm}
   .m-nerea img{height:59.15mm}
   
   .c-logo{left:45mm; top:70mm; width:120mm}
@@ -547,9 +550,9 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   <section class="pag sumario" aria-label="Lo que hacemos y lo que cuesta">
     <p class="frase">Cada marca y cada web las diseñamos desde cero para un solo negocio: <em>el tuyo.</em></p>
     <ul class="indice">
-      <li><a href="#kit"><span class="lam l-verde mini"><img src="img/marca/logo-apilado-oscuro.svg" alt="" width="688" height="457"></span><span class="titulo"><span class="nom">Kit de marca</span><span class="enlace" aria-hidden="true"></span><span class="precio">49&nbsp;€</span></span><span class="pie">Para que tu negocio se reconozca y se vea igual en todas partes.</span></a></li>
-      <li><a href="#web"><img src="img/web-jarra-movil-12.jpg" alt="" width="600" height="1298"><span class="titulo"><span class="nom">Página web</span><span class="enlace" aria-hidden="true"></span><span class="precio">39&nbsp;€</span></span><span class="pie">Para que te encuentren y te escriban.</span></a></li>
-      <li><a href="#kit-web"><img src="img/web-covalente-movil.jpg" alt="" width="600" height="1298"><span class="titulo"><span class="nom">Kit <span class="sig">+</span> web</span><span class="enlace" aria-hidden="true"></span><span class="precio">69&nbsp;€</span></span><span class="pie">Marca y web a juego, 19 € menos que por separado.</span></a></li>
+      <li><a href="#kit"><span class="lam l-verde mini"><img loading="lazy" decoding="async" src="img/marca/logo-apilado-oscuro.svg" alt="" width="688" height="457"></span><span class="titulo"><span class="nom">Kit de marca</span><span class="enlace" aria-hidden="true"></span><span class="precio">49&nbsp;€</span></span><span class="pie">Para que tu negocio se reconozca y se vea igual en todas partes.</span></a></li>
+      <li><a href="#web"><img loading="lazy" decoding="async" src="img/web-jarra-movil.jpg" alt="" width="900" height="1772"><span class="titulo"><span class="nom">Página web</span><span class="enlace" aria-hidden="true"></span><span class="precio">39&nbsp;€</span></span><span class="pie">Para que te encuentren y te escriban.</span></a></li>
+      <li><a href="#kit-web"><img loading="lazy" decoding="async" src="img/web-covalente-movil.jpg" alt="" width="900" height="2213"><span class="titulo"><span class="nom">Kit <span class="sig">+</span> web</span><span class="enlace" aria-hidden="true"></span><span class="precio">69&nbsp;€</span></span><span class="pie">Marca y web a juego, 19 € menos que por separado.</span></a></li>
     </ul>
     <p class="nota">Precios cerrados, sin IVA (21&nbsp;%).</p>
   </section>
@@ -558,20 +561,20 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
     <div class="tablero">
       <figure class="t-logo">
         <div class="lams">
-          <span class="lam l-verde g"><img src="img/marca/logo-principal.svg" alt="El logo de Covalente sobre verde botella: el icono, el nombre y el lema debajo." width="688" height="594"></span>
-          <span class="lam l-marfil a"><img src="img/marca/logo-apilado-claro.svg" alt="El mismo logo sobre marfil." width="688" height="457"></span>
-          <span class="lam l-verde h"><img src="img/marca/logo-horizontal-oscuro.svg" alt="El logo en horizontal, sobre verde botella." width="851" height="134"></span>
-          <span class="lam l-marfil h2"><img src="img/marca/logo-horizontal-claro.svg" alt="El logo en horizontal, sobre marfil." width="851" height="134"></span>
+          <span class="lam l-verde g"><img loading="lazy" decoding="async" src="img/marca/logo-principal.svg" alt="El logo de Covalente sobre verde botella: el icono, el nombre y el lema debajo." width="688" height="594"></span>
+          <span class="lam l-marfil a"><img loading="lazy" decoding="async" src="img/marca/logo-apilado-claro.svg" alt="El mismo logo sobre marfil." width="688" height="457"></span>
+          <span class="lam l-verde h"><img loading="lazy" decoding="async" src="img/marca/logo-horizontal-oscuro.svg" alt="El logo en horizontal, sobre verde botella." width="851" height="134"></span>
+          <span class="lam l-marfil h2"><img loading="lazy" decoding="async" src="img/marca/logo-horizontal-claro.svg" alt="El logo en horizontal, sobre marfil." width="851" height="134"></span>
         </div>
         <figcaption><b>Logotipo a medida:</b> la versión principal, una horizontal y un icono pequeño, en color, en blanco y negro y para fondo oscuro.</figcaption>
       </figure>
       <figure class="t-icono">
         <div class="lams">
-          <span class="lam l-marfil tams"><span class="tam"><img src="img/marca/icono.svg" alt="" width="16" height="16" style="width:16px; height:16px"><small>16 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="" width="24" height="24" style="width:24px; height:24px"><small>24 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="" width="32" height="32" style="width:32px; height:32px"><small>32 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="" width="48" height="48" style="width:48px; height:48px"><small>48 px</small></span><span class="tam"><img src="img/marca/icono.svg" alt="El icono de Covalente, a 64 píxeles." width="64" height="64" style="width:64px; height:64px"><small>64 px</small></span></span>
-          <span class="lam l-verde gig"><img src="img/marca/suelto.svg" alt="El icono, a gran tamaño." width="300" height="200"><small class="dato">En el rótulo</small></span>
-          <span class="lam l-verde uso"><span class="app"><img src="img/marca/icono.svg" alt="El icono en la pantalla de un móvil," width="64" height="64"><small><span class="np">Covalente</span></small></span><small class="dato">Icono de app</small></span>
-          <span class="lam l-marfil uso"><span class="perfil"><img src="img/marca/perfil.svg" alt="en redondo, como foto de perfil," width="1080" height="1080"><small>@covalenteestudio</small></span><small class="dato">Foto de perfil</small></span>
-          <span class="lam l-marfil uso ancha"><span class="pest"><span class="p-tab"><img src="img/marca/icono.svg" alt="y en la pestaña del navegador." width="16" height="16" style="width:16px; height:16px"><span><span class="np">Covalente</span>, estudio de diseño</span></span><span class="p-barra"><i></i></span></span><small class="dato">Pestaña del navegador</small></span>
+          <span class="lam l-marfil tams"><span class="tam"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="" width="16" height="16" style="width:16px; height:16px"><small>16 px</small></span><span class="tam"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="" width="24" height="24" style="width:24px; height:24px"><small>24 px</small></span><span class="tam"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="" width="32" height="32" style="width:32px; height:32px"><small>32 px</small></span><span class="tam"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="" width="48" height="48" style="width:48px; height:48px"><small>48 px</small></span><span class="tam"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="El icono de Covalente, a 64 píxeles." width="64" height="64" style="width:64px; height:64px"><small>64 px</small></span></span>
+          <span class="lam l-verde gig"><img loading="lazy" decoding="async" src="img/marca/suelto.svg" alt="El icono, a gran tamaño." width="300" height="200"><small class="dato">En el rótulo</small></span>
+          <span class="lam l-verde uso"><span class="app"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="El icono en la pantalla de un móvil," width="64" height="64"><small><span class="np">Covalente</span></small></span><small class="dato">Icono de app</small></span>
+          <span class="lam l-marfil uso"><span class="perfil"><img loading="lazy" decoding="async" src="img/marca/perfil.svg" alt="en redondo, como foto de perfil," width="1080" height="1080"><small>@covalenteestudio</small></span><small class="dato">Foto de perfil</small></span>
+          <span class="lam l-marfil uso ancha"><span class="pest"><span class="p-tab"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="y en la pestaña del navegador." width="16" height="16" style="width:16px; height:16px"><span><span class="np">Covalente</span>, estudio de diseño</span></span><span class="p-barra"><i></i></span></span><small class="dato">Pestaña del navegador</small></span>
         </div>
         <figcaption><b>Foto de perfil</b> para <span class="np">Instagram</span>, <span class="np">WhatsApp</span> y Google, e <b>icono para tu web</b>.</figcaption>
       </figure>
@@ -583,9 +586,9 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
         <figcaption><b>Tus colores y tus letras,</b> con sus códigos. Las letras son de licencia libre: las usas donde quieras.</figcaption>
       </figure>
       <div class="banda">
-        <figure class="t-nombre"><img src="img/kit-nombres.jpg" alt="Cuaderno abierto con tres nombres propuestos para un negocio; el elegido, destacado." width="1400" height="1400">
+        <figure class="t-nombre"><img loading="lazy" decoding="async" src="img/kit-nombres.jpg" alt="Cuaderno abierto con tres nombres propuestos para un negocio; el elegido, destacado." width="1400" height="1400">
           <figcaption><b>Tu nombre, si aún no lo tienes claro:</b> te proponemos tres, comprobados en el registro de marcas, en el dominio y en <span class="np">Instagram</span>, y eliges uno.</figcaption></figure>
-        <figure class="t-pieza"><img src="img/extra-tarjeta.jpg" alt="Las tarjetas de Covalente sobre una mesa, con el logo y la frase en relieve." width="1800" height="1200">
+        <figure class="t-pieza"><img loading="lazy" decoding="async" src="img/extra-tarjeta.jpg" alt="Las tarjetas de Covalente sobre una mesa, con el logo y la frase en relieve." width="1800" height="1200">
           <figcaption><b>En piezas reales:</b> nuestras tarjetas, con relieve.</figcaption></figure>
         <div class="det">
           <p class="mas"><b>Y además:</b> guía de uso en PDF, 6 plantillas para <span class="np">Instagram</span> en Canva, foto de perfil, icono para tu web y todos los archivos y los derechos, por escrito.</p>
@@ -600,13 +603,13 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
     <div class="cab"><div class="titulo"><h2 id="t-web">Página web</h2><span class="enlace" aria-hidden="true"></span><p class="precio">39&nbsp;€</p></div><p class="promesa">Para que te encuentren y te escriban.</p></div>
     <div class="horas">
       <figure class="nav desliza h-12">
-        <div class="nav-marco"><div class="nav-barra" aria-hidden="true"><span class="nav-url">covalente.eu/casos/taberna-la-jarra</span></div><div class="nav-vista" tabindex="0" role="region" aria-label="La web de Taberna La Jarra, entera. Se desliza hacia abajo." style="--razon:1.74931"><img src="img/web-jarra-entera.jpg" alt="La web de Taberna La Jarra a las 12:00, la hora del vermut: la barra con el vermut y las tapas, el horario del día, las mesas libres, la pizarra con la carta y el mapa para llegar." width="1440" height="2519"></div></div>
+        <div class="nav-marco"><div class="nav-barra" aria-hidden="true"><span class="nav-url">covalente.eu/casos/taberna-la-jarra</span></div><div class="nav-vista" tabindex="0" role="region" aria-label="La web de Taberna La Jarra, entera. Se desliza hacia abajo." style="--razon:1.74937"><img loading="lazy" decoding="async" class="solo-web" src="img/web-jarra-entera.jpg" alt="La web de Taberna La Jarra a las 12:00, la hora del vermut: la barra con el vermut y las tapas, el horario del día, las mesas libres, la pizarra con la carta y el mapa para llegar." width="1600" height="2799"></div></div>
         <figcaption><b>A las 12:00,</b> la hora del vermut.<span class="solo-web"> Desliza dentro de la ventana para ver la web entera.</span></figcaption>
       </figure>
       <div class="h-20">
-        <figure><img class="m-mov" src="img/web-jarra-movil.jpg" alt="La misma web en un móvil a las 20:00: la pared ha cambiado de color y en la barra hay cañas y raciones." width="600" height="1298">
+        <figure><img loading="lazy" decoding="async" class="m-mov" src="img/web-jarra-movil.jpg" alt="La misma web en un móvil a las 20:00: la pared ha cambiado de color y en la barra hay cañas y raciones." width="900" height="1772">
           <figcaption><b>A las 20:00,</b> cañas y raciones: la web cambia con la hora.</figcaption></figure>
-        <p class="accion"><a class="boton" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">Abrir la muestra<span class="oculto"> de Taberna La Jarra</span></a></p>
+        <p class="accion"><a class="boton" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">Ver la muestra<span class="oculto"> de Taberna La Jarra</span></a></p>
       </div>
     </div>
     <ul class="lista">
@@ -625,16 +628,16 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
     <div class="cab"><div class="titulo doble"><h2 id="t-kit-web">Kit <span class="sig">+</span> web</h2><span class="enlace" aria-hidden="true"></span><p class="precio">69&nbsp;€</p></div><p class="promesa">Marca y web a juego, 19 € menos que por separado.</p><p class="nota rotulo">El ejemplo es nuestra propia marca.</p></div>
     <figure class="resumen">
       <div class="lams">
-        <span class="lam l-marfil r-logo"><img src="img/marca/logo-apilado-claro.svg" alt="La marca de Covalente: su logo," width="688" height="457"></span>
+        <span class="lam l-marfil r-logo"><img loading="lazy" decoding="async" src="img/marca/logo-apilado-claro.svg" alt="La marca de Covalente: su logo," width="688" height="457"></span>
         <span class="r-colores"><span class=igual style="background:#0F3B32; color:#F3ECDD">Verde botella</span><span style="background:#C9A35C; color:#1A1A1A">Oro</span><span style="background:#F3ECDD; color:#1A1A1A">Marfil</span><span style="background:#1A1A1A; color:#F3ECDD">Negro</span></span>
-        <span class="lam l-marfil r-icono"><img src="img/marca/icono.svg" alt="su icono" width="64" height="64"><img class="redondo" src="img/marca/perfil.svg" alt="y su foto de perfil." width="1080" height="1080"></span>
+        <span class="lam l-marfil r-icono"><img loading="lazy" decoding="async" src="img/marca/icono.svg" alt="su icono" width="64" height="64"><img loading="lazy" decoding="async" class="redondo" src="img/marca/perfil.svg" alt="y su foto de perfil." width="1080" height="1080"></span>
       </div>
       <figcaption><b>Todo el Kit de marca:</b> logotipo, colores y letras, guía, plantillas y foto de perfil.</figcaption>
     </figure>
     <figure class="f-web">
       <div class="montaje">
-        <div class="nav"><div class="nav-marco"><div class="nav-barra" aria-hidden="true"><span class="nav-url">covalente.eu</span></div><div class="nav-vista"><img src="img/web-covalente-escritorio.jpg" alt="La web de Covalente en un ordenador, con los mismos colores, el mismo logo y las mismas letras que la marca." width="1440" height="900"></div></div></div>
-        <img class="m-mov" src="img/web-covalente-movil.jpg" alt="La misma web en un móvil." width="600" height="1298">
+        <div class="nav"><div class="nav-marco"><div class="nav-barra" aria-hidden="true"><span class="nav-url">covalente.eu</span></div><div class="nav-vista"><img loading="lazy" decoding="async" src="img/web-covalente-escritorio.jpg" alt="La web de Covalente en un ordenador, con los mismos colores, el mismo logo y las mismas letras que la marca." width="2200" height="1187"></div></div></div>
+        <img loading="lazy" decoding="async" class="m-mov" src="img/web-covalente-movil.jpg" alt="La misma web en un móvil." width="900" height="2213">
       </div>
       <figcaption><b>Toda la Página web,</b> con lo que tu cliente quiere saber y tu botón de <span class="np">WhatsApp</span>.</figcaption>
     </figure>
@@ -649,16 +652,16 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
     <div class="pag ex1">
       <h2 id="t-extras">Súmale lo que necesites</h2>
       <article class="extra e-tarjeta">
-      <img src="img/extra-tarjeta.jpg" alt="Tarjetas de visita en tres colores, por las dos caras, sobre una mesa." width="1800" height="1200">
+      <img loading="lazy" decoding="async" src="img/extra-tarjeta.jpg" alt="Tarjetas de visita en tres colores, por las dos caras, sobre una mesa." width="1800" height="1200">
       <div class="e-pie"><div class="titulo ch"><h3>Tarjeta</h3><span class="enlace" aria-hidden="true"></span><p class="precio">15&nbsp;€</p></div><p class="pie">De visita o de fidelidad, por las dos caras y con tu marca, lista para imprimir. La impresión va aparte.</p></div>
     </article>
       <div class="fila2">
         <article class="extra e-carta">
-      <img src="img/extra-carta.jpg" alt="La carta de Taberna La Jarra, impresa, sobre la barra de zinc junto a un vermut." width="1200" height="1500">
+      <img loading="lazy" decoding="async" src="img/extra-carta.jpg" alt="La carta de Taberna La Jarra, impresa, sobre la barra de zinc junto a un vermut." width="1200" height="1500">
       <div class="e-pie"><div class="titulo ch"><h3>Carta</h3><span class="enlace" aria-hidden="true"></span><p class="precio">19&nbsp;€</p></div><p class="pie">Carta, menú o lista de precios con tu marca: en PDF para imprimir, en imagen para redes y <span class="np">WhatsApp</span>, y editable para que cambies los precios.</p></div>
     </article>
         <article class="extra e-plantillas">
-          <div class="tira"><img src="img/extra-plantilla-1.jpg" alt="Plantilla de Instagram de Nerea Nails para una novedad." width="720" height="900"><img src="img/extra-plantilla-2.jpg" alt="Plantilla de Instagram de Nerea Nails con el horario." width="720" height="900"><img src="img/extra-plantilla-3.jpg" alt="Plantilla de Instagram de Nerea Nails para fechas especiales." width="720" height="900"></div>
+          <div class="tira"><img loading="lazy" decoding="async" src="img/extra-plantilla-1.jpg" alt="Plantilla de Instagram de Nerea Nails para una novedad." width="720" height="900"><img loading="lazy" decoding="async" src="img/extra-plantilla-2.jpg" alt="Plantilla de Instagram de Nerea Nails con el horario." width="720" height="900"><img loading="lazy" decoding="async" src="img/extra-plantilla-3.jpg" alt="Plantilla de Instagram de Nerea Nails para fechas especiales." width="720" height="900"></div>
           <div class="e-pie"><div class="titulo ch"><h3>6 plantillas más</h3><span class="enlace" aria-hidden="true"></span><p class="precio">19&nbsp;€</p></div><p class="pie">Seis diseños más para <span class="np">Instagram</span>, en Canva: horarios, novedades o fechas especiales.</p></div>
         </article>
       </div>
@@ -666,15 +669,15 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
     </div>
     <div class="pag ex2">
       <article class="extra e-ficha">
-      <img src="img/extra-ficha.jpg" alt="Un mapa con el pin de Taberna La Jarra y su ficha: fotos, horario y botones para llegar, llamar y abrir su web." width="1200" height="900">
+      <img loading="lazy" decoding="async" src="img/extra-ficha.jpg" alt="Un mapa con el pin de Taberna La Jarra y su ficha: fotos, horario y botones para llegar, llamar y abrir su web." width="1200" height="900">
       <div class="e-pie"><div class="titulo ch"><h3>Ficha en Google Maps</h3><span class="enlace" aria-hidden="true"></span><p class="precio">19&nbsp;€</p></div><p class="pie">Creamos o ponemos a punto tu perfil de empresa de Google: categoría, horario, fotos, servicios y enlaces. Google te pide verificar que el negocio es tuyo, y te guiamos.</p></div>
     </article>
       <article class="extra e-mant">
-      <img src="img/extra-mantenimiento.jpg" alt="Un mensaje pide poner el horario de agosto; la respuesta dice que ya está, y debajo se ve el horario cambiado en la web." width="1200" height="900">
+      <img loading="lazy" decoding="async" src="img/extra-mantenimiento.jpg" alt="Un mensaje pide poner el horario de agosto; la respuesta dice que ya está, y debajo se ve el horario cambiado en la web." width="1200" height="900">
       <div class="e-pie"><div class="titulo ch"><h3>Mantenimiento</h3><span class="enlace" aria-hidden="true"></span><p class="precio">12&nbsp;€<small> al mes</small></p></div><p class="pie">Nos escribes por <span class="np">WhatsApp</span> y cambiamos lo que necesites: hasta 4 cambios pequeños al mes. Lo grande se presupuesta aparte. Sin permanencia.</p></div>
     </article>
       <article class="extra e-dominio">
-      <img src="img/extra-dominio.jpg" alt="La barra de direcciones de un navegador con el rótulo Tu dominio y, escrito, covalente.eu; debajo, la cabecera de nuestra web." width="1280" height="245">
+      <img loading="lazy" decoding="async" src="img/extra-dominio.jpg" alt="La barra de direcciones de un navegador con el rótulo Tu dominio y, escrito, covalente.eu; debajo, la cabecera de nuestra web." width="2560" height="490">
       <div class="e-pie"><div class="titulo ch"><h3>Dominio</h3><span class="enlace" aria-hidden="true"></span><p class="precio"><small>desde </small>19&nbsp;€<small> al año</small></p></div><p class="pie">Registramos tu dirección web a tu nombre y la renovamos cada año. Un .es o un .com, 19 € al año; otras terminaciones o un nombre muy buscado cuestan más, y te decimos el precio antes. Depende de que esté libre.</p></div>
     </article>
       <p class="nota credito">Ejemplos con Flores Santa María y Taberna La Jarra, muestras de <span class="np">Covalente</span>, con fotos creadas con IA. Mapa: © colaboradores de <span class="np">OpenStreetMap</span>.</p>
@@ -702,16 +705,16 @@ figcaption b, .pie b, .lista b, .mas b, .nota b{font-weight:600; color:var(--neg
   <section class="pag muestras" id="muestras" aria-labelledby="t-muestras">
     <div class="cab"><h2 id="t-muestras">Muestras</h2><p class="promesa">Muestras de nuestro trabajo en covalente.eu. Ábrelas en el móvil y pruébalas.</p></div>
     <article class="muestra m-flores">
-      <img src="img/muestra-flores.jpg" alt="Portada de la web de Flores Santa María: un ramo naranja sobre fondo azul y la palabra Mandarina." width="1440" height="645">
-      <div class="m-pie"><h3>Flores Santa María</h3><p class="m-url"><a href="https://covalente.eu/casos/flores-santa-maria/?o=catalogo">covalente.eu/casos/flores-santa-maria</a></p><a class="boton" href="https://covalente.eu/casos/flores-santa-maria/?o=catalogo">Abrir la muestra<span class="oculto"> de Flores Santa María</span></a></div>
+      <a class="m-foto" href="https://covalente.eu/casos/flores-santa-maria/?o=catalogo"><img loading="lazy" decoding="async" src="img/muestra-flores.jpg" alt="Portada de la web de Flores Santa María: un ramo naranja sobre fondo azul y la palabra Mandarina." width="2400" height="1075"></a>
+      <div class="m-pie"><h3>Flores Santa María</h3><a class="boton" href="https://covalente.eu/casos/flores-santa-maria/?o=catalogo">Ver la muestra<span class="oculto"> de Flores Santa María</span></a></div>
     </article>
     <article class="muestra m-jarra">
-      <img src="img/muestra-jarra.jpg" alt="Portada de la web de Taberna La Jarra a la hora de las cañas: la barra con raciones y las mesas libres." width="1440" height="900">
-      <div class="m-pie"><h3>Taberna La Jarra</h3><p class="m-url"><a href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">covalente.eu/casos/taberna-la-jarra</a></p><a class="boton" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">Abrir la muestra<span class="oculto"> de Taberna La Jarra</span></a></div>
+      <a class="m-foto" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo"><img loading="lazy" decoding="async" src="img/muestra-jarra.jpg" alt="Portada de la web de Taberna La Jarra a la hora de las cañas: la barra con raciones y las mesas libres." width="1800" height="1125"></a>
+      <div class="m-pie"><h3>Taberna La Jarra</h3><a class="boton" href="https://covalente.eu/casos/taberna-la-jarra/?o=catalogo">Ver la muestra<span class="oculto"> de Taberna La Jarra</span></a></div>
     </article>
     <article class="muestra m-nerea">
-      <img src="img/muestra-nerea.jpg" alt="Portada de la web de Nerea Nails: una mano con semipermanente cereza sobre una toalla de lino." width="600" height="710">
-      <div class="m-pie"><h3>Nerea Nails</h3><p class="m-url"><a href="https://covalente.eu/casos/nerea-nails/?o=catalogo">covalente.eu/casos/nerea-nails</a></p><a class="boton" href="https://covalente.eu/casos/nerea-nails/?o=catalogo">Abrir la muestra<span class="oculto"> de Nerea Nails</span></a></div>
+      <a class="m-foto" href="https://covalente.eu/casos/nerea-nails/?o=catalogo"><img loading="lazy" decoding="async" src="img/muestra-nerea.jpg" alt="Portada de la web de Nerea Nails: una mano con semipermanente cereza sobre una toalla de lino." width="900" height="1066"></a>
+      <div class="m-pie"><h3>Nerea Nails</h3><a class="boton" href="https://covalente.eu/casos/nerea-nails/?o=catalogo">Ver la muestra<span class="oculto"> de Nerea Nails</span></a></div>
     </article>
     <p class="nota credito">Las fotos de las muestras están creadas con IA.</p>
   </section>
