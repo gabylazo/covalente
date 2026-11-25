@@ -1105,7 +1105,7 @@ function servicio(){
     ${arriba()}
     <h1>¿Qué quieres que hagamos?</h1>
     <p class="ayuda">Precios cerrados, sin IVA.</p>
-    ${BF ? '<p class="ayuda bf"><b>Black Friday:</b> 20&nbsp;% de descuento en marca, web y extras para encargos que nos confirmes hasta el lunes 30 de noviembre. No incluye el dominio ni el mantenimiento.</p>' : ''}
+    ${BF ? '<p class="ayuda bf"><b>Black Friday en Covalente:</b> marca y web a medida, por mucho menos de lo que cobran otros estudios.</p>' : ''}
     <div class="paquetes" role="radiogroup" aria-label="Servicio">
       ${SERVICIOS.filter(x => x[0] !== 'extra').map(([k, t, d, p]) => `<div class="paquete" role="radio" aria-checked="${s === k}" tabindex="${s === k || (!s && k === 'kit') ? 0 : -1}" data-s="${k}" aria-labelledby="pn-${k} pp-${k}" aria-describedby="pq-${k}">
         <span class="radio" aria-hidden="true"></span>

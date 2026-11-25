@@ -85,6 +85,9 @@ h2{font-size:clamp(38px, 4.6vw, 66px)}
 .boton.oro.relieve:active{transform:translateY(2px); background:#C29A50; box-shadow:inset 0 2px 4px rgba(60,42,10,.45)}
 .boton.oro.relieve svg{color:var(--verde)}
 svg.fino{fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
+/* Escríbenos (25/11): el icono fino de WhatsApp delante, del color del texto y a la altura de la letra */
+.boton.escribe{gap:8px}
+.boton.escribe svg{width:1.2em; height:1.2em}
 @media (prefers-reduced-motion:reduce){ .boton.oro.relieve{transition:none} .boton.oro.relieve:hover, .boton.oro.relieve:active{transform:none} }
 /* El catálogo, junto a los precios: la flecha de descargar, fina, y su texto */
 .al-catalogo{display:inline-flex; align-items:center; gap:10px; min-height:44px; margin-top:10px; padding:6px 14px 6px 4px; margin-left:-4px; border-radius:4px; color:var(--verde); font-weight:600; font-size:16px; text-decoration:none}
@@ -215,7 +218,7 @@ footer.oscuro{background:var(--verde-2)}
   display:flex; flex-direction:column; border:1px solid var(--linea); border-radius:14px; padding:26px 26px 22px; background:var(--blanco); box-shadow:0 1px 0 rgba(26,26,26,.03), 0 24px 48px -32px rgba(15,59,50,.35); transition:border-color .2s, box-shadow .2s}
 .p-cab{display:flex; align-items:center; justify-content:space-between; gap:12px}
 .paquete h3{font-size:24px; letter-spacing:-.01em}
-/* 25/11: fuera la etiqueta roja del porcentaje (al lado del Black Friday se leía como un descuento, y era un rojo saturado). La comparación va en su caja, debajo de la barra */
+/* 25/11: fuera la etiqueta roja del porcentaje (era un rojo saturado). La comparación va en su caja, debajo de la barra */
 .precio{display:flex; align-items:baseline; gap:8px; margin-top:18px}
 .precio b{font:600 64px/.9 var(--titulo); letter-spacing:-.02em; color:var(--nuestro); font-variant-numeric:lining-nums}
 .precio span{font-size:16px; font-weight:600; color:var(--suave)}
@@ -348,15 +351,12 @@ footer.oscuro{background:var(--verde-2)}
   .presupuesto.lleno .p-total{margin-top:12px}
   .p-pedir{width:100%}
 }
-.iva{margin-top:20px; font-size:14px; color:var(--gris)}
-/* Black Friday 2026 (25/11): se ve hasta el lunes 30/11 y se oculta solo el 1/12 a las 00:00, hora de Madrid (ver BF en el código).
-   Sin JavaScript, o si no se puede leer la fecha, no sale. El 1/12 se quita del HTML (servicios.md). Sin tachados: el precio es el de siempre */
-.bf[hidden], .p-bf[hidden]{display:none !important}
+.iva{margin-top:20px; font-size:14px; color:var(--gris); text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+/* Black Friday 2026 (25/11): una sola línea, sin cifras; los precios son los de siempre. Se ve hasta el lunes 30/11 y se oculta sola
+   el 1/12 a las 00:00, hora de Madrid (BF en el código). Sin JavaScript, o si no se puede leer la fecha, no sale. El 1/12 se quita del HTML (servicios.md) */
+.bf[hidden]{display:none !important}
 .bf-linea{max-width:800px; margin:-16px 0 36px; font-size:17px; line-height:1.45; color:var(--negro); text-align:justify; hyphens:auto; -webkit-hyphens:auto}
 .bf-linea b{color:var(--verde)}
-.bf-precio{margin-top:10px; font-size:16px; font-weight:600; line-height:1.3; color:var(--nuestro); font-variant-numeric:lining-nums}
-.iva.bf{margin-top:4px}
-.p-bf{margin-top:4px; font-size:15px; font-weight:600; color:var(--oro)}
 @media (prefers-reduced-motion:reduce){ .x-marca, .paquete, .barra i, .p-incluye summary svg{transition:none} .p-incluye[open] ul{animation:none} .presupuesto.cambia .p-total b{animation:none} }
 
 /* ——— Cómo trabajamos: la molécula del logo es el camino. Cada átomo, un paso; la flecha sube hasta «brilla».
@@ -606,7 +606,7 @@ footer.oscuro{background:var(--verde-2)}
       <a href="#precios">Precios</a>
       <a href="#como">Cómo trabajamos</a>
     </nav>
-    <a class="boton oro" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Escríbenos</a>
+    <a class="boton oro escribe" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio."><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.8 20.2 5.1 16.3A8.5 8.5 0 1 1 8 19Z"/><path d="M9.3 7.8c.3-.3.8-.3 1 .1l.9 1.7c.1.3.1.6-.2.8l-.6.6a6 6 0 0 0 2.7 2.7l.6-.6c.2-.3.5-.3.8-.2l1.7.9c.4.2.4.7.1 1l-.7.7c-.6.6-1.5.8-2.3.4a9.8 9.8 0 0 1-4.6-4.6c-.4-.8-.2-1.7.4-2.3Z"/></svg>Escríbenos</a>
   </div>
 </header>
 
@@ -674,17 +674,16 @@ footer.oscuro{background:var(--verde-2)}
       <h2 id="t-precios">Precios</h2>
       <p>Tres paquetes con precio cerrado. Elige el tuyo.</p>
     </div>
-    <p class="bf bf-linea" hidden><b>Black Friday:</b> 20&nbsp;% de descuento en marca, web y extras para encargos que nos confirmes hasta el lunes 30 de noviembre. No incluye el dominio ni el mantenimiento.</p>
+    <p class="bf bf-linea" hidden><b>Black Friday en Covalente:</b> marca y web a medida, por mucho menos de lo que cobran otros estudios.</p>
     <div class="paquetes">
       <article class="paquete" data-k="kit" data-nombre="Kit de marca" data-precio="49">
         <div class="p-cab"><h3>Kit de marca</h3></div>
         <p class="precio"><b>49 €</b></p>
-        <p class="bf bf-precio" hidden>Con el descuento, 39,20 €</p>
         <p class="esencia">Logotipo, colores, letras y plantillas para tus redes.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>590 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:8.3"><i></i></span>
-          <p class="dif">92&nbsp;% menos que otros estudios</p>
+          <p class="dif">91&nbsp;% menos que otros estudios</p>
         </div>
         <p class="plazo">Listo en 7-10 días laborables</p>
         <a class="boton directo" data-wa="Hola, Covalente. Me interesa el Kit de marca para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit de marca">Pedir por WhatsApp</a>
@@ -705,7 +704,6 @@ footer.oscuro{background:var(--verde-2)}
       <article class="paquete" data-k="web" data-nombre="Página web" data-precio="39">
         <div class="p-cab"><h3>Página web</h3></div>
         <p class="precio"><b>39 €</b></p>
-        <p class="bf bf-precio" hidden>Con el descuento, 31,20 €</p>
         <p class="esencia">A medida, con tu dominio y tu botón de WhatsApp.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>400 €</s></p>
@@ -731,12 +729,11 @@ footer.oscuro{background:var(--verde-2)}
       <article class="paquete destacado" data-k="kitweb" data-nombre="Kit + web" data-precio="69">
         <div class="p-cab"><h3>Kit + web</h3></div>
         <p class="precio"><b>69 €</b></p>
-        <p class="bf bf-precio" hidden>Con el descuento, 55,20 €</p>
         <p class="esencia">Marca y web a juego, 19 € menos que por separado.</p>
         <div class="compara">
           <p class="otro"><span>Otros estudios</span> <s>1.080 €</s></p>
           <span class="barra" aria-hidden="true" style="--p:6.4"><i></i></span>
-          <p class="dif">94&nbsp;% menos que otros estudios</p>
+          <p class="dif">93&nbsp;% menos que otros estudios</p>
         </div>
         <p class="plazo">Todo listo en 10-15 días laborables</p>
         <a class="boton oro directo" data-wa="Hola, Covalente. Me interesa el Kit + web para mi negocio." href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio." aria-label="Pedir por WhatsApp el Kit + web">Pedir por WhatsApp</a>
@@ -780,14 +777,12 @@ footer.oscuro{background:var(--verde-2)}
           <p class="p-que" id="p-que">Elige un paquete y súmale lo que necesites.</p>
           <ul class="p-lineas" id="p-lineas" hidden></ul>
           <p class="p-total" id="p-total" hidden></p>
-          <p class="p-bf" id="p-bf" hidden></p>
         </div>
         <a class="boton oro p-pedir" id="p-pedir" href="https://wa.me/34613912752?text=Hola%2C%20Covalente.%20Quiero%20hablar%20de%20mi%20negocio.">Pedir por WhatsApp</a>
         <p class="sr" id="p-voz" aria-live="polite"></p>
       </div>
     </div>
-    <p class="iva">Precios sin IVA.</p>
-    <p class="iva bf" hidden>El precio de referencia es el más bajo de los últimos 30 días, el de cada paquete.</p>
+    <p class="iva">Precios sin IVA. Otros estudios: la mitad de los estudios de Madrid y en línea que hemos mirado cobra eso o más (precios públicos, octubre de 2026).</p>
     <a class="al-catalogo" href="catalogo/"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 19.5h14"/></svg><span>El catálogo completo, en PDF</span></a>
   </div>
 </section>
@@ -862,7 +857,7 @@ footer.oscuro{background:var(--verde-2)}
 <script>
 // Los botones de WhatsApp llevan el mensaje ya escrito (sin JavaScript, cada paquete abre el suyo)
 const WA = 'https://wa.me/34613912752?text=';
-// Black Friday 2026: hasta el 30/11 a las 23:59:59, hora de Madrid (en diciembre, UTC+1). Si algo falla, no se enseña. El 1/12, fuera del HTML
+// Black Friday 2026, la línea de Precios: hasta el 30/11 a las 23:59:59, hora de Madrid (en diciembre, UTC+1). Si algo falla, no se enseña. El 1/12, fuera del HTML
 const BF = (() => { try { const fin = Date.parse('2026-12-01T00:00:00+01:00'), ahora = Date.now(); return Number.isFinite(fin) && Number.isFinite(ahora) && ahora < fin; } catch (e) { return false; } })();
 if (BF) document.querySelectorAll('.bf').forEach(e => { e.hidden = false; });
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.wa); });
@@ -1057,7 +1052,7 @@ if (ORIGEN[origen]) {
   (() => {
     const caja = document.getElementById('presupuesto'); if (!caja) return;
     const paquetes = [...document.querySelectorAll('.paquete')], piezas = [...document.querySelectorAll('.x-pieza')];
-    const que = document.getElementById('p-que'), lineas = document.getElementById('p-lineas'), total = document.getElementById('p-total'), pedir = document.getElementById('p-pedir'), voz = document.getElementById('p-voz'), conBf = document.getElementById('p-bf');
+    const que = document.getElementById('p-que'), lineas = document.getElementById('p-lineas'), total = document.getElementById('p-total'), pedir = document.getElementById('p-pedir'), voz = document.getElementById('p-voz');
     const dinero = x => x.toLocaleString('es-ES', { minimumFractionDigits: Number.isInteger(x) ? 0 : 2, maximumFractionDigits: 2 }) + ' €';
     const lista = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a.at(-1);
     let elegido = null;
@@ -1068,7 +1063,7 @@ if (ORIGEN[origen]) {
       const unaVez = (p ? +p.dataset.precio : 0) + sueltas.filter(b => !b.dataset.cada).reduce((s, b) => s + +b.dataset.precio, 0);
       const cada = sueltas.filter(b => b.dataset.cada).map(b => `${dinero(+b.dataset.precio)} al ${b.dataset.cada}`);
       let msg = 'Hola, Covalente. Quiero hablar de mi negocio.', frase = '';
-      caja.classList.toggle('activo', nombres.length > 0); caja.classList.toggle('lleno', nombres.length > 0); conBf.hidden = true; conBf.textContent = '';
+      caja.classList.toggle('activo', nombres.length > 0); caja.classList.toggle('lleno', nombres.length > 0);
       const filas = [p && [p.dataset.nombre, +p.dataset.precio, ''], ...sueltas.map(b => [b.dataset.nombre, +b.dataset.precio, b.dataset.cada ? ' /' + b.dataset.cada : ''])].filter(Boolean);
       lineas.innerHTML = filas.map(([n, v, c]) => `<li><span>${n}</span><b>${dinero(v)}${c}</b></li>`).join(''); lineas.hidden = !filas.length;
       if (nombres.length) {
@@ -1080,7 +1075,6 @@ if (ORIGEN[origen]) {
         const cuenta = [unaVez && dinero(unaVez), ...cada].filter(Boolean).join(' y ');
         msg = `Hola, Covalente. Me interesa: ${lista(nombres)} (${cuenta}).`;
         frase = `${lista(nombres)}: ${cuenta}.`;
-        if (BF && unaVez) { const d = dinero(Math.round(unaVez * 80) / 100); conBf.textContent = `Con el descuento, ${d}`; conBf.hidden = false; msg += ` Con el descuento de Black Friday, ${d}.`; frase += ` Con el descuento, ${d}.`; }
       } else {
         que.textContent = 'Elige un paquete y súmale lo que necesites.'; total.hidden = true;
       }
