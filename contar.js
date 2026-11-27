@@ -14,7 +14,7 @@
   let ref = ''; try { ref = new URL(document.referrer).hostname; } catch (e) {}
   const interna = /(^|\.)covalente\.eu$|^gabylazo\.github\.io$/.test(ref) || (local && /^(localhost|127\.0\.0\.1)$/.test(ref));
   const o = q.get('o');
-  const origen = ['ig', 'tt', 'pin', 'g', 'cartel', 'tarjeta', 'taller', 'web'].includes(o) ? o : interna ? 'sin-saber' : !ref ? 'directo'
+  const origen = ['ig', 'tt', 'pin', 'wa', 'g', 'cartel', 'tarjeta', 'taller', 'web'].includes(o) ? o : interna ? 'sin-saber' : !ref ? 'directo'
     : /(^|\.)instagram\.com$/.test(ref) ? 'ig' : /(^|\.)tiktok\.com$/.test(ref) ? 'tt' : /(^|\.)pinterest\./.test(ref) ? 'pin'
     : /(^|\.)(google|bing|duckduckgo|ecosia|yahoo|brave|qwant|yandex|startpage)\./.test(ref) ? 'busqueda' : 'otras';
   const manda = tipo => { try { navigator.sendBeacon(URL_C, new Blob([JSON.stringify({ tipo, origen, pagina })], { type: 'text/plain' })); } catch (e) {} };
