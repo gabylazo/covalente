@@ -355,6 +355,14 @@ footer.oscuro{background:var(--verde-2)}
 /* Black Friday 2026 (25/11): una sola línea, sin cifras; los precios son los de siempre. Se ve hasta el lunes 30/11 y se oculta sola
    el 1/12 a las 00:00, hora de Madrid (BF en el código). Sin JavaScript, o si no se puede leer la fecha, no sale. El 1/12 se quita del HTML (servicios.md) */
 .bf[hidden]{display:none !important}
+.bf-banda{margin:0;padding:12px 16px;background:#0A2C25;color:#F3ECDD;font-size:16px;line-height:1.45;text-align:center;border-bottom:1px solid rgba(201,163,92,.35)}
+.bf-banda b{color:#D9B672;font-weight:600}
+.bf-banda a{color:#F3ECDD;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.25em;white-space:nowrap;margin-left:.35em}
+.bf-banda a:focus-visible{outline:2px solid #F3ECDD;outline-offset:3px}
+@media (max-width:760px){.bf-banda .bf-mas{display:none}.bf-banda b::after{content:"."}}
+body:has(.bf-banda:not([hidden])) .portada{padding-top:calc(116px + 46px)}
+@media (min-width:1000px){body:has(.bf-banda:not([hidden])) .portada{padding-top:calc(150px + 46px)}}
+
 .bf-linea{max-width:800px; margin:-16px 0 36px; font-size:17px; line-height:1.45; color:var(--negro); text-align:justify; hyphens:auto; -webkit-hyphens:auto}
 .bf-linea b{color:var(--verde)}
 @media (prefers-reduced-motion:reduce){ .x-marca, .paquete, .barra i, .p-incluye summary svg{transition:none} .p-incluye[open] ul{animation:none} .presupuesto.cambia .p-total b{animation:none} }
@@ -598,7 +606,9 @@ footer.oscuro{background:var(--verde-2)}
 </script>
 <a class="salto" href="#trabajos">Saltar a los trabajos</a>
 
+<!-- 28/11: la franja de arriba del Black Friday, hasta el 30/11 a las 23:59:59 (la misma comprobación que la línea de Precios). Sin cifras, sin descuento ni oferta: los precios son los de siempre (LCD). -->
 <header class="oscuro">
+  <p class="bf bf-banda" hidden><b>Black Friday en Covalente</b><span class="bf-mas">: marca y web a medida, por mucho menos de lo que cobran otros estudios.</span> <a href="#precios">Ver los precios</a></p>
   <div class="caja cabecera">
     <a class="marca" href="./" aria-label="Covalente, inicio"><img src="img/covalente-horizontal-oscuro.svg" alt="" width="851" height="134"></a>
     <nav aria-label="Secciones">
@@ -782,7 +792,7 @@ footer.oscuro{background:var(--verde-2)}
         <p class="sr" id="p-voz" aria-live="polite"></p>
       </div>
     </div>
-    <p class="iva">Precios sin IVA. Otros estudios: la mitad de los estudios de Madrid y en línea que hemos mirado cobra eso o más (precios públicos, octubre de 2026).</p>
+    <p class="iva">Precios sin IVA.</p>
     <a class="al-catalogo" href="catalogo/"><svg class="fino" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 19.5h14"/></svg><span>El catálogo completo, en PDF</span></a>
   </div>
 </section>
